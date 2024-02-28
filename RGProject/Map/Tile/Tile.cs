@@ -17,6 +17,7 @@ namespace FantasyRPG.Map.Tile
     }
     internal interface ITile
     {
+
         dynamic Interact() => "The world is at your fingertips.";
         // dynamic Clone(); // figure this one out
     }
