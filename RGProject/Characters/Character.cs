@@ -11,9 +11,17 @@ namespace FantasyRPG.Characters
     {
         Controller, // Player
         Servant,
-        Enemy,
+        Enemy
     }
-    internal interface ICharacter
+    public enum Hero
+    {
+
+    }
+    public enum Enemy
+    {
+
+    }
+    public interface ICharacter
     {
         Guid Id { get; }
         string Name { get; }
@@ -22,6 +30,7 @@ namespace FantasyRPG.Characters
         double Damage { get; set; }
         double Resistance { get; set; }
         double Dodge { get; set; }
+        Character Type { get; }
         List<IPotion> Potions { get; set; }
         List<IWeapon> Weapons { get; set; }
         IWeapon CurrentWeapon { get; set; }
