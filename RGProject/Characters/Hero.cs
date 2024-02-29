@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FantasyRPG.UI
+namespace FantasyRPG.Characters
 {
-    internal class Menu
+    internal class Hero : Character
     {
     }
 }

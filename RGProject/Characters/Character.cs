@@ -1,15 +1,15 @@
-﻿using FantasyRPG.Items;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FantasyRPG.Items;
 
 namespace FantasyRPG.Characters
 {
     public enum Character
     {
-        Controller,
+        Controller, // Player
         Servant,
         Enemy,
     }
