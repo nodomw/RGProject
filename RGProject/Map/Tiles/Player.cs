@@ -14,4 +14,3 @@ namespace FantasyRPG.Map.Tiles
         public string Interact() => "You, yourself and you.";
     }
 }
-}
