@@ -27,8 +27,9 @@ namespace FantasyRPG.Items
         Damage, // Increases damage by (n)%
         Resistance // Increases resistance to attacks by (n)%
     }
-    internal interface IWeapon
+    public interface IWeapon
     {
+        Guid Id { get; }
         string Name { get; }
         string Description { get; }
         int Level { get; set; }
@@ -39,7 +40,7 @@ namespace FantasyRPG.Items
         double Critical();
         string Interact();
     }
-    internal interface IPotion
+    public interface IPotion
     {
         string Name { get; }
         string Description { get; }
@@ -47,7 +48,7 @@ namespace FantasyRPG.Items
         double Use(double Input);
         string Interact();
     }
-    internal interface IMagic : IWeapon
+    public interface IMagic : IWeapon
     {
         Magic Type { get; }
     }
