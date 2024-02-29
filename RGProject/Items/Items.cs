@@ -15,6 +15,12 @@ namespace FantasyRPG.Items
         Dark, // Cast spells to support the damage output of your team
         Light // Heal your team
     }
+    public enum Weapon
+    {
+        Sword,
+        Bow,
+        Spell
+    }
     public enum Modifier // Potion and spell Modifiers
     {
         Heal, // Heals (n)
