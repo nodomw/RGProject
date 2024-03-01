@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FantasyRPG.Items.Weapons
 {
-    public class Bow : IWeapon
+    public class Bow : Weapon
     {
         public Bow(int level) => Level = level;
         public string Name { get; } = "Longbow";

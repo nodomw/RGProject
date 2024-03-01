@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace FantasyRPG.Items.Weapons
 {
-    public class Spell : IMagic
+    public class Spell : Weapon
     {
-        public Spell(int level, Magic magicType)
+        public Spell(int level, MagicType magicType)
         {
             Level = level;
             Type = magicType;
@@ -18,7 +18,7 @@ namespace FantasyRPG.Items.Weapons
         public string Description { get; } = "Show your worth as a mage on the battlefield.";
         public int Level { get; set; } = 0;
         public int Damage { get; set; } = 7;
-        public Magic Type { get; }
+        public MagicType Type { get; }
 
         // TODO: temporary
         public int Attack() => Damage;
