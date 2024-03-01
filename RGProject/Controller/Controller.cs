@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace FantasyRPG.Controller
 {
-    internal class Controller
+    public enum PlayerState
     {
+        Map, // walking around the map
+        Menu, // has any menu open
+        Fighting // in midst of a fight
+    }
+    public interface Player
+    { 
+        Character character { get; }
     }
 }
