@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FantasyRPG.Characters;
 
 namespace FantasyRPG.Map.Tiles
 {
     public class Player : Tile
     {
-        public readonly Guid Id = Guid.NewGuid();
-        public readonly TileType Type = TileType.Player;
-        public string Name { get; set; }
-        public string Interact() => "You, yourself and you.";
+        public Player(string name, Character character)
+        {
+            Name = name;
+            Character = character;
+        }
+        public new readonly Guid Id = Guid.NewGuid();
+        public new readonly TileType Type = TileType.Player;
+        public new required string Name { get; set; }
+        public Character Character { get; }
+        public new string Interact() => "You, yourself and you.";
     }
 }

@@ -1,13 +1,7 @@
 ﻿using FantasyRPG.Characters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FantasyRPG.Items
-{ 
+{
     public enum MagicType
     {
         Fire, // Enemy takes passive damage over time (2-3 turns)
@@ -52,7 +46,13 @@ namespace FantasyRPG.Items
     {
         MagicType Type { get; }
     }
-    public abstract class Weapon : IWeapon
+    public abstract class Item
+    {
+        public Guid Id { get; }
+        public string Name { get; }
+        public string Description { get; }
+    }
+    public abstract class Weapon : Item, IWeapon
     {
         public Guid Id { get; } = Guid.NewGuid();
         public string Name { get; }
@@ -65,7 +65,7 @@ namespace FantasyRPG.Items
         public double Critical() => Damage * 1.5;
         public string Interact() => "";
     }
-    public abstract class Potion : IPotion
+    public abstract class Potion : Item, IPotion
     {
         public string Name { get; }
         public string Description { get; }
