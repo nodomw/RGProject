@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FantasyRPG.Items.Potions
 {
-    public class Resistance : IPotion // TODO
+    public class Resistance : Potion // TODO
     {
         public string Name { get; } = "Resistance Potion";
         public string Description { get; } = "";

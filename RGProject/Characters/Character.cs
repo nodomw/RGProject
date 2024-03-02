@@ -28,16 +28,17 @@ namespace FantasyRPG.Characters
     {
 
     }
-    abstract class Character
+    public abstract class Character
     {
         public Guid Id { get; }
         public string Name { get; }
+        public CharacterType Type { get; }
+        public TilePosition Position { get; set; }
         public int Level { get; set; }
         public int XP { get; set; } // figure out xp amount for each level
         public double Health { get; set; }
         public double Resistance { get; set; }
         public double Dodge { get; set; }
-        public CharacterType Type { get; }
         public List<IPotion> Potions { get; set; }
         public List<IWeapon> Weapons { get; set; }
         public IWeapon CurrentWeapon { get; set; }

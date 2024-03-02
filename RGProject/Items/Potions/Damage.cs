@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace FantasyRPG.Items.Potions
 {
-    public class Damage : IPotion // TODO
+    public class Damage : Potion // TODO
     {
-        public string Name { get; } = "Damage Potion";
-        public string Description { get; } = "";
-        public PotionModifier Stat { get; } = PotionModifier.Damage;
+        public new string Name { get; } = "Damage Potion";
+        public new string Description { get; } = "";
+        public new PotionModifier Stat { get; } = PotionModifier.Damage;
         public double Use(double Input) => Input;
         public string Interact() => "";
     }

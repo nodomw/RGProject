@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace FantasyRPG.Map.Tiles
 {
-    public class Loot : ITile
+    public class Loot : Tile
     {
         public readonly Guid Id = Guid.NewGuid();
-        public readonly Tile Type = Tile.Loot;
-        public string Name { get; set; }
+        public readonly TileType Type = TileType.Loot;
+        public string Name { get; set; } = "Loot";
         public string Interact() => "Treasures galore!";
     }
 }

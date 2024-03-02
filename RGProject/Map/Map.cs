@@ -15,21 +15,7 @@ namespace FantasyRPG.Map
         bool ReplaceTile(TilePosition tp, Tile tile);
         bool ReplaceEnums();
     }
-    public class TilePosition
-    {
-        public TilePosition(Tile tile, int x, int y, int z)
-        {
-            Tile = tile;
-            X = x;
-            Y = y;
-            Z = z;
-        }
-        public Guid Id { get; set; } = Guid.NewGuid();
-        public Tile Tile { get; set; }
-        public int X { get; set; }
-        public int Y { get; set; }
-        public int Z { get; set; }
-    }
+    
     public class Map : IMap
     {
         // Map is a 3D matrix of 'Tile'
@@ -74,18 +60,18 @@ namespace FantasyRPG.Map
                     {
                         if (Tiles[x, y, z] == null) continue;
 
-                        switch (Tiles[x, y, z])
+                        switch (Tiles[x, y, z].Type)
                         {
-                            case ETile.Terrain:
+                            case TileType.Terrain:
                                 Tiles[x, y, z] = new Tiles.Terrain();
                                 break;
-                            case ETile.Enemy:
+                            case TileType.Enemy:
                                 Tiles[x, y, z] = new Tiles.Enemy();
                                 break;
-                            case ETile.Loot:
+                            case TileType.Loot:
                                 Tiles[x, y, z] = new Tiles.Loot();
                                 break;
-                            case ETile.Player:
+                            case TileType.Player:
                                 Tiles[x, y, z] = new Tiles.Player();
                                 break;
                             default:

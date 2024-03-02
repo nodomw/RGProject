@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace FantasyRPG.Map.Tiles
 {
-    public class Terrain : ITile
+    public class Terrain : Tile
     {
         public readonly Guid Id = Guid.NewGuid();
-        public readonly Tile Type = Tile.Terrain;
-        public string Name { get; set; }
+        public readonly TileType Type = TileType.Terrain;
+        public string Name { get; set; } = "Terrain";
         public string Interact() => "Nature, in all it's might and glory.";
     }
 }

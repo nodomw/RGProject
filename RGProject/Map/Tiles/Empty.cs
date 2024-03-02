@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace FantasyRPG.Map.Tiles
 {
-    public class Empty : ITile
+    public class Empty : Tile
     {
-        public readonly Guid Id = Guid.NewGuid();
-        public readonly Tile Type = Tile.Empty;
-        public string Name { get; set; }
-
-        public string Interact() => "An empty piece of land. Nothing to see here.";
+        public new readonly Guid Id = Guid.NewGuid();
+        public new readonly TileType Type = TileType.Empty;
+        public new string Name { get; set; } = "Empty";
+        public new string Interact() => "An empty piece of land. Nothing to see here.";
     }
 }

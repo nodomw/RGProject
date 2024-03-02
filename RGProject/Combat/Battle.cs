@@ -10,21 +10,21 @@ namespace FantasyRPG.Combat
     public interface IBattle : IDisposable
     {
         Guid Id { get; }
-        ICharacter Hero { get; }
-        ICharacter Enemy { get; }
+        Character Hero { get; }
+        Character Enemy { get; }
         void Initiate();
         void Turn(); // Advance to next turn
-        void Defeat(ICharacter Character);
+        void Defeat(Character Character);
     }
     public class Battle : IBattle
     {
         public Guid Id { get; } = Guid.NewGuid();
-        public ICharacter Hero { get; }
-        public ICharacter Enemy { get; }
-        public ICharacter CurrentlyAttacking { get; set; }
+        public Character Hero { get; }
+        public Character Enemy { get; }
+        public Character CurrentlyAttacking { get; set; }
         public void Initiate() { }
         public void Turn() { }
-        public void Defeat(ICharacter Character) { }
+        public void Defeat(Character Character) { }
         public void Dispose()
         {
             GC.SuppressFinalize(this);

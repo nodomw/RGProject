@@ -1,5 +1,4 @@
-﻿using FantasyRPG.Map.Maps;
-using FantasyRPG.Characters;
+﻿using FantasyRPG.Characters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,9 +44,9 @@ namespace FantasyRPG.Items
     {
         string Name { get; }
         string Description { get; }
+        int Power { get; }
         PotionModifier Stat { get; }
         double Use(Character character);
-        string Interact();
     }
     public interface IMagic : IWeapon
     {
@@ -89,6 +88,5 @@ namespace FantasyRPG.Items
                     return (double)0;
             }
         }
-        public string Interact();
     }
 }

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace FantasyRPG.Map.Tiles
 {
-    public class Enemy : ITile
+    public class Enemy : Tile
     {
-        public readonly Guid Id = Guid.NewGuid();
-        public readonly Tile Type = Tile.Enemy;
-        public string Name { get; set; }
-        public string Interact() => "A vicious foe.";
+        public new readonly Guid Id = Guid.NewGuid();
+        public new readonly TileType Type = TileType.Enemy;
+        public new string Name { get; set; } = "Enemy";
+        public new string Interact() => "A vicious foe.";
     }
 }

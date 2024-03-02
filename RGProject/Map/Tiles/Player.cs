@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace FantasyRPG.Map.Tiles
 {
-    public class Player : ITile
+    public class Player : Tile
     {
         public readonly Guid Id = Guid.NewGuid();
-        public readonly Tile Type = Tile.Player;
+        public readonly TileType Type = TileType.Player;
         public string Name { get; set; }
         public string Interact() => "You, yourself and you.";
     }
