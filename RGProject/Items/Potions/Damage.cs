@@ -10,7 +10,7 @@ namespace FantasyRPG.Items.Potions
     {
         public string Name { get; } = "Damage Potion";
         public string Description { get; } = "";
-        public Modifier Stat { get; } = Modifier.Damage;
+        public PotionModifier Stat { get; } = PotionModifier.Damage;
         public double Use(double Input) => Input;
         public string Interact() => "";
     }

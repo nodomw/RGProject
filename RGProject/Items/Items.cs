@@ -1,4 +1,5 @@
 ﻿using FantasyRPG.Map.Maps;
+using FantasyRPG.Characters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,20 +9,20 @@ using System.Threading.Tasks;
 
 namespace FantasyRPG.Items
 { 
-    public enum Magic
+    public enum MagicType
     {
         Fire, // Enemy takes passive damage over time (2-3 turns)
         Ice, // Decreases enemy DMG
         Dark, // Cast spells to support the damage output of your team
         Light // Heal your team
     }
-    public enum Weapon
+    public enum WeaponType
     {
         Sword,
         Bow,
         Spell
     }
-    public enum Modifier // Potion and spell Modifiers
+    public enum PotionModifier // Potion and spell Modifiers
     {
         Heal, // Heals (n)
         Damage, // Increases damage by (n)%
@@ -44,12 +45,50 @@ namespace FantasyRPG.Items
     {
         string Name { get; }
         string Description { get; }
-        Modifier Stat { get; }
-        double Use(double Input);
+        PotionModifier Stat { get; }
+        double Use(Character character);
         string Interact();
     }
     public interface IMagic : IWeapon
     {
-        Magic Type { get; }
+        MagicType Type { get; }
+    }
+    public abstract class Weapon : IWeapon
+    {
+        public Guid Id { get; } = Guid.NewGuid();
+        public string Name { get; }
+        public string Description { get; }
+        public int Level { get; set; }
+        public int Damage { get; set; }
+
+        // damage from attacks is returned as 'int'. double is needed for multiplication
+        public int Attack() => Damage;
+        public double Critical() => Damage * 1.5;
+        public string Interact() => "";
+    }
+    public abstract class Potion : IPotion
+    {
+        public string Name { get; }
+        public string Description { get; }
+        public int Power { get; }
+        public PotionModifier Stat { get; }
+        public double Use(Character character)
+        {
+            switch (Stat)
+            {
+                case PotionModifier.Heal:
+                    character.Health += Power;
+                    return (double)character.Health;
+                case PotionModifier.Damage:
+                    character.CurrentWeapon.Damage += Power;
+                    return (double)character.CurrentWeapon.Damage;
+                case PotionModifier.Resistance:
+                    character.Resistance += Power;
+                    return (double)character.Resistance;
+                default:
+                    return (double)0;
+            }
+        }
+        public string Interact();
     }
 }
