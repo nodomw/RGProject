@@ -68,7 +68,7 @@ namespace FantasyRPG.Map
                                 Tiles[x, y, z] = new Tiles.Loot();
                                 break;
                             case TileType.Player:
-                                Tiles[x, y, z] = new Tiles.Player();
+                                Tiles[x, y, z] = new Tiles.Player(); // this shid
                                 break;
                             default:
                                 break;

@@ -12,11 +12,12 @@ namespace FantasyRPG.Combat
         Guid Id { get; }
         Character Hero { get; }
         Character Enemy { get; }
+        Character CurrentlyAttacking { get; set; }
         void Initiate();
         void Turn(); // Advance to next turn
         void Defeat(Character Character);
     }
-    public class Battle : IBattle
+    public class Battle : IBattle // cant really work on this until there is concrete information on how shit sould work
     {
         public Guid Id { get; } = Guid.NewGuid();
         public Character Hero { get; }
