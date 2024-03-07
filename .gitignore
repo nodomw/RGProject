@@ -363,4 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # vscode because copilot autosuggest
-.vscode/settings.json
+settings.json
