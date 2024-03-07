@@ -14,23 +14,11 @@ namespace FantasyRPG.Map
         void ReplaceEnums();
     }
 
-    public class Map : IMap
+    public class Map(string name, Tile[,] tiles) : IMap
     {
-        // maybe
-        // Map is a 3D matrix of 'Tile'
-        // Z0: Decorations and 'Terrain' Tiles
-        // Z1: Enemy Tiles
-        // Z2: Loot and Servant Tiles
-        // Z3: Player Tile
-
-        public Map(string name, Tile[,] tiles)
-        {
-            Name = name;
-            Tiles = tiles;
-        }
-        public Tile[,] Tiles { get; set; }
+        public Tile[,] Tiles { get; set; } = tiles;
         public Guid Id { get; } = Guid.NewGuid();
-        public string Name { get; }
+        public string Name { get; } = name;
 
         public bool SwapTile(TilePosition tile1, TilePosition tile2) // TODO (should work now though)
         {

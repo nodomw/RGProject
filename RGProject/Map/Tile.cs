@@ -11,19 +11,12 @@ namespace FantasyRPG.Map
         Servant,
         Player
     }
-    public class TilePosition
+    public class TilePosition(Tile tile, int x, int y /*int z*/)
     {
-        public TilePosition(Tile tile, int x, int y /*int z*/)
-        {
-            Tile = tile;
-            X = x;
-            Y = y;
-            // Z = z;
-        }
         public Guid Id { get; set; } = Guid.NewGuid();
-        public Tile Tile { get; set; }
-        public int X { get; set; }
-        public int Y { get; set; }
+        public Tile Tile { get; set; } = tile;
+        public int X { get; set; } = x;
+        public int Y { get; set; } = y;
         // public int Z { get; set; }
     }
     internal interface ITile
@@ -34,6 +27,10 @@ namespace FantasyRPG.Map
         public Markup DisplayCharacter { get; }
         string Interact();
         // dynamic Clone(); // figure this one out
+    }
+    internal interface ICharacterTile
+    {
+        public void Move(TilePosition to);
     }
     public abstract class Tile : ITile
     {

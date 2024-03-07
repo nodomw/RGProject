@@ -4,9 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FantasyRPG.Characters;
-using FantasyRPG.Items;
-using FantasyRPG.Map;
-using FantasyRPG.Map;
 using FantasyRPG.Map.Tiles;
 
 namespace FantasyRPG.Controller
