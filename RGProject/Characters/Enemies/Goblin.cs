@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FantasyRPG.Characters.Enemies
+namespace FantasyRPG.Characters.Enemies;
+
+internal class Goblin
 {
-    internal class Goblin
-    {
-    }
 }

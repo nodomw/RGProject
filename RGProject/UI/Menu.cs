@@ -10,12 +10,38 @@ namespace FantasyRPG.UI
     {
         public static void Show()
         {
-            Console.WriteLine("1. New Game");
-            Console.WriteLine("2. Load Game");
-            Console.WriteLine("3. Exit");
+            Console.Clear();
+            var hero = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("Select an option, use arrow keys to navigate.")
+                    .PageSize(10)
+                    .MoreChoicesText("[grey](Move up and down to reveal more Options.)[/]")
+                    .AddChoices(new[]
+                    {
+                        "[gray]New Game[/]",
+                        "[green]Load Game[/]",
+                        "[red]Exit[/]"
+                    }));
+
+            hero = hero.Split('[', ']')[2];
+
+            if (hero == "New Game")
+            {
+                ShowCharSelection();
+            }
+            else if (hero == "Load Game")
+            {
+                Console.WriteLine("Loading Game...");
+                Console.ReadKey();
+            }
+            else if (hero == "Exit")
+            {
+                Console.WriteLine("Exiting Game...");
+                Console.ReadKey();
+            }
         }
-        
-        public static void ShowCharSelection()
+
+        public string ShowCharSelection()
         {
             Console.WriteLine("1. Warrior");
             Console.WriteLine("2. Mage");
@@ -26,12 +52,12 @@ namespace FantasyRPG.UI
             Console.WriteLine("7. Hunter");
             Console.WriteLine("8. Ninja");
         }
-        
+
         public static void ShowCharCreation()
         {
             Console.WriteLine("Enter your character's name: ");
         }
-        
+
         public static void ShowInGameMenu()
         {
             Console.WriteLine("1. Show Stats");
@@ -41,7 +67,7 @@ namespace FantasyRPG.UI
             Console.WriteLine("5. Show Map");
             Console.WriteLine("6. Exit");
         }
-        
+
         public static void ShowMaps()
         {
             Console.WriteLine("1. First Map");
@@ -50,101 +76,177 @@ namespace FantasyRPG.UI
             Console.WriteLine("4. Fourth Map");
             Console.WriteLine("5. Exit");
         }
-        
+
         public static void ShowMainMenu()
         {
             Console.WriteLine("1. Continue");
             Console.WriteLine("2. Save");
             Console.WriteLine("3. Exit");
         }
-        
+
         public static void ShowInventoryMenu()
         {
             Console.WriteLine("1. Use Item");
             Console.WriteLine("2. Equip Item");
             Console.WriteLine("3. Exit");
         }
-        
+
         public static void ShowEquipMenu()
         {
             Console.WriteLine("1. Equip Weapon");
             Console.WriteLine("2. Equip Armor");
             Console.WriteLine("3. Exit");
         }
-        
+
         public static void ShowItemMenu()
         {
             Console.WriteLine("1. Use Health Potion");
             Console.WriteLine("2. Use Mana Potion");
             Console.WriteLine("3. Exit");
         }
-        
-/*-----------------------------------------------------------------------------------------------------------------------------------------------------*/
-        
+
+        /*-----------------------------------------------------------------------------------------------------------------------------------------------------*/
+
         public static void ShowBattleMenu()
         {
-            Console.WriteLine("1. Attack");
-            Console.WriteLine("2. Defend");
-            Console.WriteLine("3. Use Item");
-            Console.WriteLine("5. Run");
+            Console.Clear();
+            var hero = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("Choose your [red]Move[/]!")
+                    .PageSize(10)
+                    .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
+                    .AddChoices(new[]
+                    {
+                        "Attack", "Defend", "Use Item", "[red]Run[/]"
+                    }));
         }
-        
-        public static void ShowMageAttacks()
+
+        public void ShowWarriorAttacks()
         {
-            Console.WriteLine("1. Fireball");
-            Console.WriteLine("2. Ice Shard");
-            Console.WriteLine("3. Thunderbolt");
-            Console.WriteLine("4. Exit");
+            Console.Clear();
+            var hero = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("Choose your [red]Attack[/]!")
+                    .PageSize(10)
+                    .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
+                    .AddChoices(new[]
+                    {
+                        "Slash", "Shield Bash", "War Cry", "[red]Exit[/]"
+                    }));
         }
-        
-        public static void ShowWarriorAttacks()
+
+        public void ShowMageAttacks()
         {
-            Console.WriteLine("1. Slash");
-            Console.WriteLine("2. Shield Bash");
-            Console.WriteLine("3. War Cry");
-            Console.WriteLine("4. Exit");
+            Console.Clear();
+            var hero = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("Choose your [red]Attack[/]!")
+                    .PageSize(10)
+                    .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
+                    .AddChoices(new[]
+                    {
+                        "Fireball", "Ice Shard", "Thunderbolt", "[red]Exit[/]"
+                    }));
         }
-        
-        public static void ShowAssassinAttacks()
+
+        public void ShowElfAttacks()
+        {
+            Console.Clear();
+            var hero = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("Choose your [red]Attack[/]!")
+                    .PageSize(10)
+                    .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
+                    .AddChoices(new[]
+                    {
+                        "Arrow Shot", "Arrow Rain", "Shocking Arrow", "[red]Exit[/]"
+                    }));
+        }
+
+        public void ShowAssassinAttacks()
         {
             Console.WriteLine("1. Dagger Strike");
             Console.WriteLine("2. Poison Strike");
             Console.WriteLine("3. Shadow Strike");
             Console.WriteLine("4. Exit");
         }
-        
+
         public static void ShowPaladinAttacks()
         {
-            Console.WriteLine("1. Holy Strike");
-            Console.WriteLine("2. Holy Shield");
-            Console.WriteLine("3. Holy Light");
-            Console.WriteLine("4. Exit");
+            Console.Clear();
+            var hero = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("Choose your [red]Attack[/]!")
+                    .PageSize(10)
+                    .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
+                    .AddChoices(new[]
+                    {
+                        "Holy Strike", "Holy Shield", "Holy Light", "[red]Exit[/]"
+                    }));
         }
-        
-        public static void ShowElfAttacks()
+
+
+        public void ShowHeroAttacks()
         {
-            Console.WriteLine("1. Arrow Shot");
-            Console.WriteLine("2. Arrow Rain");
-            Console.WriteLine("3. Arrow Storm");
-            Console.WriteLine("4. Exit");
+            Console.Clear();
+            var hero = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("Choose your [red]Attack[/]!")
+                    .PageSize(10)
+                    .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
+                    .AddChoices(new[]
+                    {
+                        "Heroic Strike", "Crown", "Getting a cape", "[red]Exit[/]"
+                    }));
         }
-        
-        public static void ShowHeroAttacks()
+
+        public void ShowHunterAttacks()
         {
-            Console.WriteLine("1. Heroic Strike");
-            Console.WriteLine("2. Heroic Shield");
-            Console.WriteLine("3. Heroic Light");
-            Console.WriteLine("4. Exit");
+            Console.Clear();
+            var hero = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("Choose your [red]Attack[/]!")
+                    .PageSize(10)
+                    .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
+                    .AddChoices(new[]
+                    {
+                        "Blast Shot", "Bloodthirsty", "Explorer", "[red]Exit[/]"
+                    }));
         }
-        
-        public static void ShowHunterAttacks()
+
+        public void ShowNinjaAttacks()
         {
-            Console.WriteLine("1. Hunter's Strike");
-            Console.WriteLine("2. Hunter's Shield");
-            Console.WriteLine("3. Hunter's Light");
-            Console.WriteLine("4. Exit");
+            Console.Clear();
+            var hero = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("Choose your [red]Attack[/]!")
+                    .PageSize(10)
+                    .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
+                    .AddChoices(new[]
+                    {
+                        "Spinning Blades", "Smoke Bomb", "Sharper dagger", "[red]Exit[/]"
+                    }));
         }
-        
+
+        /*-----------------------------------------------------------------------------------------------------------------------------------------------------*/
+        // During peacetime
+
+        public void ShowPeaceMenu()
+        {
+            Console.Clear();
+            var hero = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("Choose what you want to [green]Do[/]!")
+                    .PageSize(10)
+                    .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
+                    .AddChoices(new[]
+                    {
+                        "Move", "Use Item", "Show In Game Menu", "Show Main Menu"
+                    }));
+
+
+        }
+
         public static void ShowNinjaAttacks()
         {
             Console.WriteLine("1. Ninja Strike");

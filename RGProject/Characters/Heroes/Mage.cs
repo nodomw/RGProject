@@ -1,7 +1,6 @@
-﻿namespace FantasyRPG.Characters.Heroes
+﻿namespace FantasyRPG.Characters.Heroes;
+
+internal class Mage
 {
-    internal class Mage
-    {
-        
-    }
+
 }
