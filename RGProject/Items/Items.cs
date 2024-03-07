@@ -54,9 +54,9 @@ public abstract class Item
 }
 public abstract class Weapon : Item, IWeapon
 {
-    public Guid Id { get; } = Guid.NewGuid();
-    public string Name { get; }
-    public string Description { get; }
+    public new Guid Id { get; } = Guid.NewGuid();
+    public new string Name { get; }
+    public new string Description { get; }
     public int Level { get; set; }
     public int Damage { get; set; }
 
@@ -67,8 +67,8 @@ public abstract class Weapon : Item, IWeapon
 }
 public abstract class Potion : Item, IPotion
 {
-    public string Name { get; }
-    public string Description { get; }
+    public new string Name { get; }
+    public new string Description { get; }
     public int Power { get; }
     public PotionModifier Stat { get; }
     public double Use(Character character)
