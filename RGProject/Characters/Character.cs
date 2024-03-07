@@ -15,8 +15,8 @@ public enum UpgradableTraits
     Resistance,
     Dodge
 }
-public enum Hero { }
-public enum Enemy { }
+public enum Hero { } // TODO
+public enum Enemy { } // TODO
 public abstract class Character
 {
     public Guid Id { get; }
