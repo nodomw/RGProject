@@ -1,4 +1,4 @@
-using FantasyRPG.UI;
+﻿using FantasyRPG.UI;
 using Spectre.Console;
 
 var game = new Menu();
