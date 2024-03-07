@@ -38,7 +38,7 @@ namespace FantasyRPG.Characters
         public List<IWeapon> Weapons { get; set; }
         public IWeapon CurrentWeapon { get; set; }
 
-        public int Attack(int Damage) => CurrentWeapon.Damage * (Level / 100); // should increase with level so like level 12 should give you a 1.2% passive damage increase
+        public int Attack() => CurrentWeapon.Damage * (Level / 100); // should increase with level so like level 12 should give you a 1.2% passive damage increase
         public int LevelUp()
         {
             Level += 1;
