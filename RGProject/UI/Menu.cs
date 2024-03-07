@@ -26,6 +26,23 @@ namespace FantasyRPG.UI
                         "[green]Load Game[/]",
                         "[red]Exit[/]"
                     }));
+
+            hero = hero.Split('[', ']')[2];
+            
+            if (hero == "New Game")
+            {
+                ShowCharSelection();
+            }
+            else if (hero == "Load Game")
+            {
+                Console.WriteLine("Loading Game...");
+                Console.ReadKey();
+            }
+            else if (hero == "Exit")
+            {
+                Console.WriteLine("Exiting Game...");
+                Console.ReadKey();
+            }
         }
 
         public string ShowCharSelection()
@@ -158,6 +175,20 @@ namespace FantasyRPG.UI
                     }));
         }
 
+        public void ShowWarriorAttacks()
+        {
+            Console.Clear();
+            var hero = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("Choose your [red]Attack[/]!")
+                    .PageSize(10)
+                    .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
+                    .AddChoices(new[]
+                    {
+                        "Slash", "Shield Bash", "War Cry", "[red]Exit[/]"
+                    }));
+        }
+
         public void ShowMageAttacks()
         {
             Console.Clear();
@@ -172,7 +203,7 @@ namespace FantasyRPG.UI
                     }));
         }
 
-        public void ShowWarriorAttacks()
+        public void ShowElfAttacks()
         {
             Console.Clear();
             var hero = AnsiConsole.Prompt(
@@ -182,7 +213,7 @@ namespace FantasyRPG.UI
                     .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
                     .AddChoices(new[]
                     {
-                        "Slash", "Shield Bash", "War Cry", "[red]Exit[/]"
+                        "Arrow Shot", "Arrow Rain", "Shocking Arrow", "[red]Exit[/]"
                     }));
         }
 
@@ -214,19 +245,6 @@ namespace FantasyRPG.UI
                     }));
         }
 
-        public void ShowElfAttacks()
-        {
-            Console.Clear();
-            var hero = AnsiConsole.Prompt(
-                new SelectionPrompt<string>()
-                    .Title("Choose your [red]Attack[/]!")
-                    .PageSize(10)
-                    .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
-                    .AddChoices(new[]
-                    {
-                        "Arrow Shot", "Arrow Rain", "Arrow Storm", "[red]Exit[/]"
-                    }));
-        }
 
         public void ShowHeroAttacks()
         {
@@ -238,7 +256,7 @@ namespace FantasyRPG.UI
                     .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
                     .AddChoices(new[]
                     {
-                        "Heroic Strike", "Heroic Shield", "Heroic Light", "[red]Exit[/]"
+                        "Heroic Strike", "Crown", "Getting a cape", "[red]Exit[/]"
                     }));
         }
 
@@ -252,7 +270,7 @@ namespace FantasyRPG.UI
                     .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
                     .AddChoices(new[]
                     {
-                        "Hunter's Strike", "Hunter's Shield", "Hunter's Light", "[red]Exit[/]"
+                        "Blast Shot", "Bloodthirsty", "Explorer", "[red]Exit[/]"
                     }));
         }
 
@@ -266,7 +284,7 @@ namespace FantasyRPG.UI
                     .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
                     .AddChoices(new[]
                     {
-                        "Katana Strike", "Smoke Bomb", "Shuriken Throw", "[red]Exit[/]"
+                        "Spinning Blades", "Smoke Bomb", "Sharper dagger", "[red]Exit[/]"
                     }));
         }
         
@@ -285,6 +303,8 @@ namespace FantasyRPG.UI
                     {
                         "Move", "Use Item", "Show In Game Menu", "Show Main Menu"
                     }));
+            
+            
         }
         
         public void ShowMoveMenu()

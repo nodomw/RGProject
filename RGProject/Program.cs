@@ -18,8 +18,9 @@ namespace FantasyRPG
             
             AnsiConsole.Write(new Markup("[red]Press any key to continue.....[/]"));
             Console.ReadKey();
-
+            
             game.Show();
+            game.ShowPeaceMenu();
             charname = game.ShowCharSelection();
         }
     }
