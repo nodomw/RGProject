@@ -12,4 +12,13 @@
     <PackageReference Include="System.Text.Json" Version="8.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="ANSI Shadow.flf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Cyberlarge.flf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
