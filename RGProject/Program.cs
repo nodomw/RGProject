@@ -6,7 +6,7 @@ var font = FigletFont.Load("ANSI Shadow.flf");
 var font2 = FigletFont.Load("Cyberlarge.flf");
 string charname = "";
 
-// Console.Clear();
+Console.Clear();
 AnsiConsole.Write(new FigletText(font2, "Welcome to").Centered().Color(Color.White));
 AnsiConsole.Write(new FigletText(font, "Fantasy Frontiers").Centered().Color(Color.Red));
 
