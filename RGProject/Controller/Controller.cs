@@ -1,5 +1,5 @@
 ﻿using FantasyRPG.Characters;
-using FantasyRPG.Map.Tiles;
+using FantasyRPG.Map;
 
 namespace FantasyRPG.Controller;
 

@@ -21,7 +21,7 @@ public abstract class Tile
 {
     public Guid Id { get; } = Guid.NewGuid();
     public TileType Type { get; }
-    public TilePosition Position { get; set; }
+    public TilePosition Position { get; set; } // TODO: add to all classes that inherit
     public string Name { get; set; }
     public string Interact() => "The world is at your fingertips.";
     public Markup DisplayCharacter { get; } = new Markup("[darkgray].[/]");
