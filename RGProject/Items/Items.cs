@@ -79,8 +79,8 @@ public abstract class Potion : Item, IPotion
                 character.Health += Power;
                 return (double)character.Health;
             case PotionModifier.Damage:
-                character.CurrentWeapon.Damage += Power;
-                return (double)character.CurrentWeapon.Damage;
+                character.Weapon.Damage += Power;
+                return (double)character.Weapon.Damage;
             case PotionModifier.Resistance:
                 character.Resistance += Power;
                 return (double)character.Resistance;
