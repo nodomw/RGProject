@@ -4,6 +4,7 @@
     {
         public new readonly Guid Id = Guid.NewGuid();
         public new readonly TileType Type = TileType.Enemy;
+        public new TilePosition Position { get; set; }
         public new string Name { get; set; } = "Enemy";
         public new string Interact() => "A vicious foe.";
     }
