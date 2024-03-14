@@ -9,10 +9,9 @@ namespace FantasyRPG.Map.Tiles
             Name = name;
             Character = character;
         }
-        public readonly Guid Id = Guid.NewGuid();
-        public readonly TileType Type = TileType.Servant;
+        public new readonly TileType Type = TileType.Servant;
         public Character Character { get; }
         public new string Name { get; set; } = "Servant";
-        public string Interact() => "Your fellow ally, ready to help out at a moment's notice.";
+        public new string Interact() => "Your fellow ally, ready to help out at a moment's notice.";
     }
 }
