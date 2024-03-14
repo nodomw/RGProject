@@ -16,7 +16,9 @@ public class Hunter : Character
 	public new int Level { get; set; } = 0;
 	public new int XP { get; set; } = 0;
 	public new double Health { get; set; } = 900;
-	public new double Resistance { get; set; } // uhm
+	public new double Damage { get; set; } = 500;
+	public new double CounterDamage { get; set; } = 10;
+	public new double Defense { get; set; } = 10;
 	public new double Dodge { get; set; } = 0;
 	public new double Stun { get; set; } = 0;
 	public new List<IPotion> Potions { get; set; }

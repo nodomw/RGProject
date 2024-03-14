@@ -16,7 +16,9 @@ public class Warrior : Character
 	public new int Level { get; set; } = 0;
 	public new int XP { get; set; } = 0;
 	public new double Health { get; set; } = 400;
-	public new double Resistance { get; set; } // uhm
+	public new double Damage { get; set; } = 500;
+	public new double CounterDamage { get; set; } = 20;
+	public new double Defense { get; set; } = 20;
 	public new double Dodge { get; set; } = 0;
 	public new double Stun { get; set; } = 5;
 	public new List<IPotion> Potions { get; set; }

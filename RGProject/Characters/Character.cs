@@ -35,12 +35,13 @@ public abstract class Character
     public int Level { get; set; }
     public int XP { get; set; } // TODO: figure out xp amount for each level
 
-    public double Health { get; set; }
-    public double DEF { get; set; }
-    public double Dodge { get; set; }
-    public double Stun { get; set; }
-    public double Combo { get; set; }
-    public double ATK { get; set; }
+    public double Health { get; set; } // HP
+    public double Damage { get; set; } // ATK
+    public double CounterDamage { get; set; } // CATK%
+    public double Defense { get; set; } // DEF%
+    public double Dodge { get; set; } // %
+    public double Stun { get; set; } // %
+    public double Combo { get; set; } // %
     public List<IPotion> Potions { get; set; }
     public IWeapon Weapon { get; set; }
 
@@ -56,7 +57,7 @@ public abstract class Character
         // hoep this works, havent tested yet
         if (new Random().Next(100) < Dodge)
         {
-            Health -= Damage * (1 - (DEF / 100));
+            Health -= Damage * (1 - (Defense / 100));
         }
 
         return Damage;
