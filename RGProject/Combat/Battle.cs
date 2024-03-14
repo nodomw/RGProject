@@ -37,7 +37,7 @@ public class Battle : IBattle // cant really work on this until there is concret
             dmg = Enemy.Damage - Hero.Defense;
         }
 
-        return InTurn;
+        return InTurn == Hero ? Enemy : Hero;
     }
     public void Defeat(Character Character) { }
     public void Dispose() => GC.SuppressFinalize(this);
