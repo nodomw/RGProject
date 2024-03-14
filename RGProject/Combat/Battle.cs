@@ -25,16 +25,16 @@ public class Battle : IBattle // cant really work on this until there is concret
     }
 
     public Character Turn()
-    { 
+    {
         double dmg = 0;
-            
+
         if (InTurn == Hero)
         {
-            dmg = Hero.ATK - Enemy.DEF;
+            dmg = Hero.Damage - Enemy.Defense;
         }
         else
         {
-            dmg = Enemy.ATK - Hero.DEF;
+            dmg = Enemy.Damage - Hero.Defense;
         }
 
         return InTurn;

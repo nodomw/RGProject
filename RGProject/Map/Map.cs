@@ -4,7 +4,7 @@ namespace FantasyRPG.Map;
 
 public class Map(string name, Tile[,] tiles)
 {
-    public Tile[,] Tiles { get; set; } = tiles;
+    public Tile[,] Tiles { get; set; } = tiles; // Tile & TileType
     public Guid Id { get; } = Guid.NewGuid();
     public string Name { get; } = name;
 
