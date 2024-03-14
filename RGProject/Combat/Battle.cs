@@ -31,9 +31,6 @@ public class Battle : IBattle // cant really work on this until there is concret
         InTurn = Hero;
         Player.State = State.Fighting;
     }
-
-    private Battle b = new(new Hunter("joni"), new Vampire("gino"));
-
     public Character Turn()
     {
         Random rnd = new Random();
