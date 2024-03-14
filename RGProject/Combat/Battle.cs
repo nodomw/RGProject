@@ -1,5 +1,8 @@
 ﻿using FantasyRPG.Characters;
 using FantasyRPG.Controller;
+using RGProject.Characters.Enemies;
+using RGProject.Characters.Heroes;
+using Spectre.Console;
 
 namespace FantasyRPG.Combat;
 
@@ -24,17 +27,37 @@ public class Battle : IBattle // cant really work on this until there is concret
         Player.State = State.Fighting;
     }
 
+    private Battle b = new(new Hunter("joni"), new Vampire("gino"));
+
     public Character Turn()
     {
+        Random rnd = new Random();
+        double HeroDodgeChance = Hero.Dodge;
+        double HeroStunChance = Hero.Stun;
+        double EnemyDodgeChance = Enemy.Dodge;
+        double EnemyStunChance = Enemy.Stun;
         double dmg = 0;
+        double defDmg = 0;
+
+        int count = 0;
 
         if (InTurn == Hero)
         {
-            dmg = Hero.Damage - Enemy.Defense;
+            for (int i = 0; i < 100; i++)
+            {
+                int rndchance = rnd.Next(100);
+                if (rndchance < EnemyDodgeChance)
+                {
+                    count++;
+                }
+            }
+            Console.WriteLine(count);
+            defDmg = Hero.Damage / 100;
+            dmg = Hero.Damage - (defDmg * Enemy.DEF);
         }
         else
         {
-            dmg = Enemy.Damage - Hero.Defense;
+            dmg = Enemy.Damage - Hero.DEF;
         }
 
         return InTurn == Hero ? Enemy : Hero;

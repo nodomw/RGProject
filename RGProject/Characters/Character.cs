@@ -38,7 +38,7 @@ public abstract class Character
     public double Health { get; set; } // HP
     public double Damage { get; set; } // ATK
     public double CounterDamage { get; set; } // CATK%
-    public double Defense { get; set; } // DEF%
+    public double DEF { get; set; } // DEF%
     public double Dodge { get; set; } // %
     public double Stun { get; set; } // %
     public double Combo { get; set; } // %
@@ -57,7 +57,7 @@ public abstract class Character
         // hoep this works, havent tested yet
         if (new Random().Next(100) < Dodge)
         {
-            Health -= Damage * (1 - (Defense / 100));
+            Health -= Damage * (1 - (DEF / 100));
         }
 
         return Damage;
