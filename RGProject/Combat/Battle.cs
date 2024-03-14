@@ -17,6 +17,11 @@ public interface IBattle : IDisposable
 }
 public class Battle : IBattle // cant really work on this until there is concrete information on how shit should work
 {
+    public Battle(Character hero, Character enemy)
+    {
+        Hero = hero;
+        Enemy = enemy;
+    }
     public Character Hero { get; }
     public Character Enemy { get; }
     public Player Player { get; }
