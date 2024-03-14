@@ -34,6 +34,7 @@ public abstract class Character
     public TilePosition Position { get; set; }
     public int Level { get; set; }
     public int XP { get; set; } // TODO: figure out xp amount for each level
+
     public double Health { get; set; }
     public double Resistance { get; set; }
     public double Dodge { get; set; }

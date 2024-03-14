@@ -10,7 +10,6 @@ public class Hero : Character
 	{
 		Name = name;
 	}
-
 	public new CharacterType Type { get; }
 	public new TilePosition Position { get; set; }
 	public new int Level { get; set; } = 0;

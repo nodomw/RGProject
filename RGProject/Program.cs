@@ -1,18 +1,27 @@
-﻿using FantasyRPG.UI;
+﻿using FantasyRPG.Map;
+using FantasyRPG.Map.Tiles;
+using FantasyRPG.Characters;
+using FantasyRPG.UI;
 using Spectre.Console;
+using RGProject.Characters.Heroes;
 
-var game = new Menu();
-var font = FigletFont.Load("ANSI Shadow.flf");
-var font2 = FigletFont.Load("Cyberlarge.flf");
-string charname = "";
+// var game = new Menu();
+// var font = FigletFont.Load("ANSI Shadow.flf");
+// var font2 = FigletFont.Load("Cyberlarge.flf");
+// string charname = "";
 
-Console.Clear();
-AnsiConsole.Write(new FigletText(font2, "Welcome to").Centered().Color(Color.White));
-AnsiConsole.Write(new FigletText(font, "Fantasy Frontiers").Centered().Color(Color.Red));
+// Console.Clear();
+// AnsiConsole.Write(new FigletText(font2, "Welcome to").Centered().Color(Color.White));
+// AnsiConsole.Write(new FigletText(font, "Fantasy Frontiers").Centered().Color(Color.Red));
 
-AnsiConsole.Write(new Markup("[red]Press any key to continue.....[/]"));
-Console.ReadKey();
+// AnsiConsole.Write(new Markup("[red]Press any key to continue.....[/]"));
+// Console.ReadKey();
 
-game.Show();
-game.ShowPeaceMenu();
-charname = game.ShowCharSelection();
+// game.Show();
+// game.ShowPeaceMenu();
+// charname = game.ShowCharSelection();
+Character h = new Hero("joni");
+
+Tile s = new Servant("Servant", h);
+
+System.Console.WriteLine(s.Id);
