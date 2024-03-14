@@ -32,8 +32,6 @@ public class Battle : IBattle // cant really work on this until there is concret
         Player.State = State.Fighting;
     }
 
-    private Battle b = new(new Hunter("joni"), new Vampire("gino"));
-
     public Character Turn()
     {
         Random rnd = new Random();
@@ -49,6 +47,7 @@ public class Battle : IBattle // cant really work on this until there is concret
 
         if (InTurn == Hero)
         {
+            AnsiConsole.Write(new Markup("It's your turn!"));
             for (int i = 0; i < 100; i++)
             {
                 int rndchance = rnd.Next(100);
@@ -96,7 +95,7 @@ public class Battle : IBattle // cant really work on this until there is concret
             }
             else
             {
-                InTurn = Hero;
+                InTurn = Enemy;
             }
 
         }
