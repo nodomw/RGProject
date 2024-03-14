@@ -12,7 +12,7 @@ namespace FantasyRPG.UI;
 internal class Menu
 {
     // Starting the game
-    public void Show()
+    public string[] Show()
     {
         Console.Clear();
         var hero = AnsiConsole.Prompt(
@@ -28,10 +28,12 @@ internal class Menu
                 }));
 
         hero = hero.Split('[', ']')[2];
+        
+        string [] temp = new string[2];
 
         if (hero == "New Game")
         {
-            ShowCharSelection();
+            temp = ShowCharSelection();
         }
         else if (hero == "Load Game")
         {
@@ -40,12 +42,15 @@ internal class Menu
         }
         else if (hero == "Exit")
         {
-            Console.WriteLine("Exiting Game...");
-            Console.ReadKey();
+            AnsiConsole.Write(new Markup("See you next time [red1]Adventurer[/]!"));
+            
+            Environment.Exit(0);
         }
+
+        return temp;
     }
 
-    public string ShowCharSelection()
+    public string[] ShowCharSelection()
     {
         Console.Clear();
         var hero = AnsiConsole.Prompt(
@@ -57,11 +62,12 @@ internal class Menu
                 {
                     "Warrior", "Mage", "Elf", "Assassin", "Paladin", "Hero", "Hunter", "Ninja"
                 }));
-
+        
         string name = ShowCharCreation();
+        string[] everything = {name, hero};
         AnsiConsole.WriteLine($"You chose {name}, who is a(n) {hero}! Good luck on your adventure!");
         Console.ReadKey();
-        return name;
+        return everything;
     }
 
     public string ShowCharCreation()
@@ -121,7 +127,7 @@ internal class Menu
         Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
-                .Title("[yellow]Inventory[/]")
+                .Title("[gold1]Inventory[/]")
                 .PageSize(10)
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
                 .AddChoices(new[]
@@ -307,7 +313,7 @@ internal class Menu
 
     }
 
-    public void ShowMoveMenu()
+    public string[] ShowMoveMenu()
     {
         Console.Clear();
         var hero = AnsiConsole.Prompt(
@@ -319,9 +325,24 @@ internal class Menu
                 {
                      "Up", "Down", "Left", "Right", "[red]Exit[/]"
                 }));
+        
+        string[] everything = new string[2];
+        
+        if (hero != "[red]Exit[/]")
+        {
+            string length = ShowMoveLengthMenu();
+            everything[0] = hero;
+            everything[1] = length;
+        }
+        else
+        {
+            everything[0] = hero;
+        }
+        return everything;
+
     }
 
-    public void ShowMoveLengthMenu()
+    public string ShowMoveLengthMenu()
     {
         Console.Clear();
         var hero = AnsiConsole.Prompt(
@@ -333,7 +354,7 @@ internal class Menu
                 {
                     "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"
                 }));
-    }
 
-
+        return hero;
+    }   
 }

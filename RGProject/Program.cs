@@ -19,4 +19,3 @@ Console.ReadKey();
 
 game.Show();
 game.ShowPeaceMenu();
-charname = game.ShowCharSelection();

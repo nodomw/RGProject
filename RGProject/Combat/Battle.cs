@@ -12,7 +12,7 @@ public interface IBattle : IDisposable
     Character Turn(); // Advance to next turn
     void Defeat(Character Character);
 }
-public class Battle : IBattle // cant really work on this until there is concrete information on how shit sould work
+public class Battle : IBattle // cant really work on this until there is concrete information on how shit should work
 {
     public Character Hero { get; }
     public Character Enemy { get; }
@@ -23,7 +23,22 @@ public class Battle : IBattle // cant really work on this until there is concret
         InTurn = Hero;
         Player.State = State.Fighting;
     }
-    public Character Turn() => InTurn == Hero ? Enemy : Hero;
+
+    public Character Turn()
+    { 
+        double dmg = 0;
+            
+        if (InTurn == Hero)
+        {
+            dmg = Hero.ATK - Enemy.DEF;
+        }
+        else
+        {
+            dmg = Enemy.ATK - Hero.DEF;
+        }
+
+        return InTurn;
+    }
     public void Defeat(Character Character) { }
     public void Dispose() => GC.SuppressFinalize(this);
 }

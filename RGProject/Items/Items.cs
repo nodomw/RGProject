@@ -82,8 +82,8 @@ public abstract class Potion : Item, IPotion
                 character.Weapon.Damage += Power;
                 return (double)character.Weapon.Damage;
             case PotionModifier.Resistance:
-                character.Resistance += Power;
-                return (double)character.Resistance;
+                character.DEF += Power;
+                return (double)character.DEF;
             default:
                 return (double)0;
         }
