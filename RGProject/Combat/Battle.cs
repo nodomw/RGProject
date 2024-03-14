@@ -44,7 +44,8 @@ public class Battle : IBattle // cant really work on this until there is concret
         double dmg = 0;
         double defDmg = 0;
 
-        int count = 0;
+        int countW = 0;
+        int countL = 0;
 
         if (InTurn == Hero)
         {
@@ -53,12 +54,51 @@ public class Battle : IBattle // cant really work on this until there is concret
                 int rndchance = rnd.Next(100);
                 if (rndchance < EnemyDodgeChance)
                 {
-                    count++;
+                    countW++;
+                }
+                else
+                {
+                    countL++;
                 }
             }
-            Console.WriteLine(count);
-            defDmg = Hero.Damage / 100;
-            dmg = Hero.Damage - (defDmg * Enemy.DEF);
+
+            if (countW >= countL)
+            {
+                InTurn = Enemy;
+            }
+            else
+            {
+                defDmg = Hero.Damage / 100;
+                dmg = Hero.Damage - (defDmg * Enemy.DEF);
+            }
+
+            countW = 0;
+            countL = 0;
+
+            for (int i = 0; i < 100; i++)
+            {
+                int rndchance = rnd.Next(100);
+                if (rndchance < HeroStunChance)
+                {
+                    countW++;
+                    //InTurn = Hero;
+                }
+                else
+                {
+                    countL++;
+                    //InTurn = Enemy;
+                }
+            }
+
+            if (countW >= countL)
+            {
+                InTurn = Hero;
+            }
+            else
+            {
+                InTurn = Hero;
+            }
+
         }
         else
         {
