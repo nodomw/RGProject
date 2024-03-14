@@ -17,7 +17,7 @@ public class Hero : Character
 	public new double Health { get; set; } = 1000;
 	public new double Damage { get; set; } = 450;
 	public new double CounterDamage { get; set; } = 10;
-	public new double Defense { get; set; } = 20;
+	public new double DEF { get; set; } = 20;
 	public new double Dodge { get; set; } = 10;
 	public new double Stun { get; set; } = 20;
 	public new List<IPotion> Potions { get; set; }

@@ -18,7 +18,7 @@ public class Assassin : Character
 	public new double Health { get; set; } = 300;
 	public new double Damage { get; set; } = 600;
 	public new double CounterDamage { get; set; } = 10;
-	public new double Defense { get; set; } = 5; // %
+	public new double DEF { get; set; } = 5; // %
 	public new double Dodge { get; set; } = 25;
 	public new double Stun { get; set; } = 25;
 	public new List<IPotion> Potions { get; set; }
