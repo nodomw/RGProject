@@ -10,7 +10,7 @@ public interface IBattle : IDisposable
     Character InTurn { get; set; }
     void Initiate();
     Character Turn(); // Advance to next turn
-    void Defeat(Character Character);
+    void Defeat();
 }
 public class Battle : IBattle // cant really work on this until there is concrete information on how shit should work
 {
@@ -39,6 +39,6 @@ public class Battle : IBattle // cant really work on this until there is concret
 
         return InTurn == Hero ? Enemy : Hero;
     }
-    public void Defeat(Character Character) { }
+    public void Defeat() { }
     public void Dispose() => GC.SuppressFinalize(this);
 }
