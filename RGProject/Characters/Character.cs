@@ -50,8 +50,11 @@ public abstract class Character
     }
     public int TakeDamage(int Damage)
     {
-        // TODO: calculate dodge probability chance
-        Health -= Damage * (1 - (Resistance / 100));
+        // hoep this works, havent tested yet
+        if (new Random().Next(100) < Dodge)
+        {
+            Health -= Damage * (1 - (Resistance / 100));
+        }
 
         return Damage;
     }
