@@ -1,11 +1,11 @@
-﻿using FantasyRPG.Map;
+﻿using FantasyRPG.UI;
+using FantasyRPG.Map;
+using Spectre.Console;
+using FantasyRPG.Combat;
 using FantasyRPG.Map.Tiles;
 using FantasyRPG.Characters;
-using FantasyRPG.Combat;
-using FantasyRPG.UI;
-using RGProject.Characters.Enemies;
-using Spectre.Console;
 using RGProject.Characters.Heroes;
+using RGProject.Characters.Enemies;
 
 var game = new Menu();
 var battle = new Battle(new Hunter("joni"), new Vampire("gino"));
