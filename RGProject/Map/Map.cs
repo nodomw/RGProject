@@ -1,4 +1,5 @@
 ﻿// Ignore Spelling: Enums
+using Spectre.Console;
 
 namespace FantasyRPG.Map;
 
@@ -44,6 +45,19 @@ public class Map(string name, Tile[,] tiles)
                         break;
                 }
             }
+        }
+    }
+    public void Draw() // Draw the map;
+    {
+        for (int x = 0; x < Tiles.GetLength(0); x++)
+        {
+            for (int y = 0; y < Tiles.GetLength(1); y++)
+            {
+                AnsiConsole.Write(Tiles[x, y].DisplayCharacter);
+                AnsiConsole.Write("     ");
+            }
+            AnsiConsole.WriteLine();
+            AnsiConsole.WriteLine();
         }
     }
 }

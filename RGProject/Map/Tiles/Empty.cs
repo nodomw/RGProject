@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Spectre.Console;
 namespace FantasyRPG.Map.Tiles
 {
     public class Empty : Tile
@@ -6,6 +6,7 @@ namespace FantasyRPG.Map.Tiles
         public new readonly Guid Id = Guid.NewGuid();
         public new readonly TileType Type = TileType.Empty;
         public new string Name { get; set; } = "Empty";
+        public new Markup DisplayCharacter { get; } = new Markup("[grey]#[/]");
         public new string Interact() => "An empty piece of land. Nothing to see here.";
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FantasyRPG.Characters;
+using Spectre.Console;
 
 namespace FantasyRPG.Map.Tiles
 {
@@ -13,6 +14,7 @@ namespace FantasyRPG.Map.Tiles
         public new readonly TileType Type = TileType.Player;
         public new required string Name { get; set; }
         public Character Character { get; }
+        public new Markup DisplayCharacter { get; } = new Markup("[white]*[/]");
         public new string Interact() => "You, yourself and you.";
     }
 }

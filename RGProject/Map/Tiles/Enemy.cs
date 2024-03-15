@@ -1,6 +1,8 @@
 ﻿using FantasyRPG.Characters;
+using Spectre.Console;
 
 namespace FantasyRPG.Map.Tiles;
+
 
 public class Enemy : Tile
 {
@@ -14,5 +16,6 @@ public class Enemy : Tile
     public Character Character { get; }
     public new TilePosition Position { get; set; }
     public new string Name { get; set; } = "Enemy";
+    public new Markup DisplayCharacter { get; } = new Markup("[red]![/]");
     public new string Interact() => "A vicious foe.";
 }

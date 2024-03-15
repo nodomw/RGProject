@@ -1,4 +1,5 @@
 ﻿using FantasyRPG.Characters;
+using Spectre.Console;
 
 namespace FantasyRPG.Map.Tiles
 {
@@ -12,6 +13,7 @@ namespace FantasyRPG.Map.Tiles
         public new readonly TileType Type = TileType.Servant;
         public Character Character { get; }
         public new string Name { get; set; } = "Servant";
+        public new Markup DisplayCharacter { get; } = new Markup("[blue]S[/]");
         public new string Interact() => "Your fellow ally, ready to help out at a moment's notice.";
     }
 }
