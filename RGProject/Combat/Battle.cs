@@ -16,7 +16,7 @@ public interface IBattle : IDisposable
     Character Turn(); // Advance to next turn
     void Defeat();
 }
-public class Battle : IBattle // cant really work on this until there is concrete information on how shit should work
+public class Battle : IBattle
 {
     public Battle(Character hero, Character enemy)
     {
@@ -42,6 +42,7 @@ public class Battle : IBattle // cant really work on this until there is concret
 
     public Character Turn()
     {
+        InTurn = Hero;
         var menu = new Menu();
         double dmg = 0;
         double defDmg = 0;
@@ -49,8 +50,6 @@ public class Battle : IBattle // cant really work on this until there is concret
 
         int countW = 0;
         int countL = 0;
-
-        Console.WriteLine(Hero.Stun);
 
         for (int i = 0; i < 100; i++)
         {
@@ -82,7 +81,8 @@ public class Battle : IBattle // cant really work on this until there is concret
         }
 
         Console.WriteLine("Dodge: " + countW + " Lose: "+countL);
-        /*if (InTurn == Hero)
+
+        if (InTurn == Hero)
         {
             AnsiConsole.Write(new Markup("It's your turn!"));
             string move = menu.ShowBattleMenu();
@@ -157,7 +157,9 @@ public class Battle : IBattle // cant really work on this until there is concret
             }
             else
             {
-                AnsiConsole.Write(new Markup("You chose run!"));
+                double losthp = Hero.Health/100 * 5;
+                Hero.Health -= losthp;
+                AnsiConsole.Write(new Markup($"You chose run and lost [red1]{losthp}hp[/] during the escape!"));
             }
 
             if (ChanceSuccessful(Enemy.Dodge))
@@ -212,7 +214,7 @@ public class Battle : IBattle // cant really work on this until there is concret
                     InTurn = Enemy;
                 }
             }
-        }*/
+        }
 
         return InTurn == Hero ? Enemy : Hero;
     }

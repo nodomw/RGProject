@@ -150,7 +150,7 @@ internal class Menu
                 }));
     }
 
-    public void ShowItemMenu()
+    public string ShowItemMenu()
     {
         Console.Clear();
         var hero = AnsiConsole.Prompt(
@@ -162,6 +162,8 @@ internal class Menu
                 {
                     "Use Health Potion", "Use Mana Potion", "[red]Exit[/]"
                 }));
+
+        return hero;
     }
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------*/
