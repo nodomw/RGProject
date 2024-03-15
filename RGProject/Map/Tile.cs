@@ -2,6 +2,24 @@
 
 namespace FantasyRPG.Map;
 
+public enum EnemyTile
+{
+    Emperor,
+    Headhunter,
+    Prince,
+    Vampire
+}
+public enum CharacterTile
+{
+    Assasin,
+    Elf,
+    Hero,
+    Hunter,
+    Mage,
+    Ninja,
+    Paladin,
+    Warrior
+}
 public enum TileType
 {
     Empty,
@@ -17,13 +35,13 @@ public class TilePosition(int x, int y /*int z*/)
     public int Y { get; set; } = y;
     // public int Z { get; set; }
 }
-public abstract class Tile
+public interface ITile
 {
-    public Guid Id { get; } = Guid.NewGuid();
+    public Guid Id { get; }
     public TileType Type { get; }
     public TilePosition Position { get; set; } // TODO: add to all classes that inherit
     public string Name { get; set; }
-    public string Interact() => "The world is at your fingertips.";
-    public Markup DisplayCharacter { get; } = new Markup("[blue].[/]");
+    public string Interact();
+    public Markup DisplayCharacter { get; }
 }
 

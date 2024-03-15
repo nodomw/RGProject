@@ -28,8 +28,8 @@ internal class Menu
                 }));
 
         hero = hero.Split('[', ']')[2];
-        
-        string [] temp = new string[2];
+
+        string[] temp = new string[2];
 
         if (hero == "New Game")
         {
@@ -43,7 +43,7 @@ internal class Menu
         else if (hero == "Exit")
         {
             AnsiConsole.Write(new Markup("See you next time [red1]Adventurer[/]!"));
-            
+
             Environment.Exit(0);
         }
 
@@ -62,7 +62,7 @@ internal class Menu
                 {
                     "Warrior", "Mage", "Elf", "Assassin", "Paladin", "Hero", "Hunter", "Ninja"
                 }));
-        
+
         string name = ShowCharCreation();
         string[] everything = {name, hero};
         AnsiConsole.WriteLine($"You chose {name}, who is a(n) {hero}! Good luck on your adventure!");
@@ -195,9 +195,9 @@ internal class Menu
                 {
                     "Run: you lose 5% hp",
                     "Defend: increases your defense by 25%" ,
-                    "Slash: basic attack", 
-                    "Shield bash: gives 200 hp but deals 0 damage, in the next round you will gain 70% defence and counter-attack" , 
-                    "War cry: deals 200 damage and boosts your combo to 45%. Next round you will gain 20% defence." , 
+                    "Slash: basic attack",
+                    "Shield bash: gives 200 hp but deals 0 damage, in the next round you will gain 70% defence and counter-attack" ,
+                    "War cry: deals 200 damage and boosts your combo to 45%. Next round you will gain 20% defence." ,
                     "[red]Exit[/]"
                 }));
     }
@@ -228,9 +228,9 @@ internal class Menu
                 {
                     "Run: you lose 5% hp",
                     "Defend: increases your defense by 25%",
-                    "Fireball: Basic attack, deals 400 damage", 
-                    "Ice shard: deals 150 damage and in the next round the enemy only deals 50% damage.", 
-                    "Thunderbolt: deals 700 damage. Cooldown: 3 rounds!", 
+                    "Fireball: Basic attack, deals 400 damage",
+                    "Ice shard: deals 150 damage and in the next round the enemy only deals 50% damage.",
+                    "Thunderbolt: deals 700 damage. Cooldown: 3 rounds!",
                     "[red]Exit[/]"
                 }));
     }
@@ -263,7 +263,7 @@ internal class Menu
                     "Defend: increases your defense by 25%",
                     "Arrow shot: basic attack, deals 550 damage",
                     "Arrow rain: deals 800 damage and in the next round you will lose 15% stun and combo",
-                    "Shocking arrow: deals 300 damage while giving you a 60% stun", 
+                    "Shocking arrow: deals 300 damage while giving you a 60% stun",
                     "[red]Exit[/]"
                 }));
     }
@@ -296,7 +296,7 @@ internal class Menu
                     "Defend: increases your defense by 25%",
                     "Dagger strike: Basic attack, deals 600 damage",
                     "Poison strike: deals 200 damage. In the next round you will damage your enemy with 50hp and sets the enemy damage to 50%",
-                    "Shadow strike: Deals 0 damage and sets dodge to 70% and every other stats to 0%. Cooldown? 4 rounds", 
+                    "Shadow strike: Deals 0 damage and sets dodge to 70% and every other stats to 0%. Cooldown? 4 rounds",
                     "[red]Exit[/]"
                 }));
     }
@@ -479,9 +479,9 @@ internal class Menu
                 {
                      "Up", "Down", "Left", "Right", "[red]Exit[/]"
                 }));
-        
+
         string[] everything = new string[2];
-        
+
         if (hero != "[red]Exit[/]")
         {
             string length = ShowMoveLengthMenu();
@@ -510,5 +510,5 @@ internal class Menu
                 }));
 
         return hero;
-    }   
+    }
 }
