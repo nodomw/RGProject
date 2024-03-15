@@ -23,9 +23,7 @@ Loot rp = new(new Resistance());
 Empty e = new();
 Terrain t = new();
 
-AnsiConsole.Write(v.DisplayCharacter);
-
-Map m1 = new Map("map 1", new Tile[,] {
+Map m1 = new Map("map 1", new ITile[,] {
 	// Create a 10x10 array of Tiles which consist of the following:
 	// Empty, Terrain, Loot, Enemy
 	// There must be only one Player tile

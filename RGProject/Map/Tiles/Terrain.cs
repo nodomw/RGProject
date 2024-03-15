@@ -2,12 +2,13 @@
 
 namespace FantasyRPG.Map.Tiles
 {
-    public class Terrain : Tile
+    public class Terrain : ITile
     {
-        public new readonly Guid Id = Guid.NewGuid();
-        public new readonly TileType Type = TileType.Terrain;
-        public new string Name { get; set; } = "Terrain";
-        public new Markup DisplayCharacter { get; } = new Markup("[green]#[/]");
-        public new string Interact() => "Nature, in all it's might and glory.";
+        public Guid Id { get; } = Guid.NewGuid();
+        public TileType Type { get; } = TileType.Terrain;
+        public string Name { get; set; } = "Terrain";
+        public TilePosition Position { get; set; }
+        public Markup DisplayCharacter { get; } = new Markup("[green]#[/]");
+        public string Interact() => "Nature, in all it's might and glory.";
     }
 }

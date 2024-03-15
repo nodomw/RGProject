@@ -3,17 +3,19 @@ using Spectre.Console;
 
 namespace FantasyRPG.Map.Tiles
 {
-    public class Servant : Tile
+    public class Servant : ITile
     {
         public Servant(string name, Character character)
         {
             Name = name;
             Character = character;
         }
-        public new readonly TileType Type = TileType.Servant;
+        public Guid Id { get; } = Guid.NewGuid();
+        public TileType Type { get; } = TileType.Servant;
         public Character Character { get; }
-        public new string Name { get; set; } = "Servant";
-        public new Markup DisplayCharacter { get; } = new Markup("[blue]S[/]");
-        public new string Interact() => "Your fellow ally, ready to help out at a moment's notice.";
+        public TilePosition Position { get; set; }
+        public string Name { get; set; } = "Servant";
+        public Markup DisplayCharacter { get; } = new Markup("[blue]S[/]");
+        public string Interact() => "Your fellow ally, ready to help out at a moment's notice.";
     }
 }

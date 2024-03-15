@@ -3,13 +3,13 @@ using Spectre.Console;
 
 namespace FantasyRPG.Map;
 
-public class Map(string name, Tile[,] tiles)
+public class Map(string name, ITile[,] tiles)
 {
-    public Tile[,] Tiles { get; set; } = tiles; // Tile & TileType
+    public ITile[,] Tiles { get; set; } = tiles; // Tile & TileType
     public Guid Id { get; } = Guid.NewGuid();
     public string Name { get; } = name;
 
-    public bool SwapTile(Tile tile, Tile tile2) // TODO (should work now though)
+    public bool SwapTile(ITile tile, ITile tile2) // TODO (should work now though)
     {
         if (Tiles[tile.Position.X, tile.Position.Y] == null || Tiles[tile2.Position.X, tile2.Position.Y] == null) return false;
 
@@ -18,7 +18,7 @@ public class Map(string name, Tile[,] tiles)
 
         return true;
     }
-    public bool ReplaceTile(TilePosition at, Tile to) // TODO (same here)
+    public bool ReplaceTile(TilePosition at, ITile to) // TODO (same here)
     {
         if (Tiles[at.X, at.Y] == null) return false;
 

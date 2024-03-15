@@ -3,16 +3,17 @@ using Spectre.Console;
 
 namespace FantasyRPG.Map.Tiles;
 
-public class Loot : Tile
+public class Loot : ITile
 {
     public Loot(Item item)
     {
         Item = item;
     }
-    public new readonly Guid Id = Guid.NewGuid();
-    public new readonly TileType Type = TileType.Loot;
+    public Guid Id { get; } = Guid.NewGuid();
+    public TileType Type { get; } = TileType.Loot;
     public Item Item { get; set; }
-    public new string Name { get; set; } = "Loot";
-    public new Markup DisplayCharacter { get; } = new Markup("[yellow]$[/]");
-    public new string Interact() => "Treasures galore!";
+    public string Name { get; set; } = "Loot";
+    public TilePosition Position { get; set; }
+    public Markup DisplayCharacter { get; } = new Markup("[yellow]$[/]");
+    public string Interact() => "Treasures galore!";
 }
