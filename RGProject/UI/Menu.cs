@@ -191,7 +191,12 @@ internal class Menu
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
                 .AddChoices(new[]
                 {
-                    "", "[red]Exit[/]"
+                    "Run: you lose 5% hp"
+                    "Defend: increases your defense by 25%" ,
+                    "Slash: basic attack", 
+                    "Shield bash: gives 200 hp but deals 0 damage, in the next round you will gain 70% defence and counter-attack" , 
+                    "War cry: deals 200 damage and boosts your combo to 45%. Next round you will gain 20% defence." , 
+                    "[red]Exit[/]"
                 }));
     }
 
@@ -219,7 +224,12 @@ internal class Menu
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
                 .AddChoices(new[]
                 {
-                    "", "[red]Exit[/]"
+                    "Run: you lose 5% hp",
+                    "Defend: increases your defense by 25%",
+                    "Fireball: Basic attack, deals 400 damage", 
+                    "Ice shard: deals 150 damage and in the next round the enemy only deals 50% damage.", 
+                    "Thunderbolt: deals 700 damage. Cooldown: 3 rounds!", 
+                    "[red]Exit[/]"
                 }));
     }
 
@@ -247,7 +257,12 @@ internal class Menu
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
                 .AddChoices(new[]
                 {
-                    "", "[red]Exit[/]"
+                    "Run: you lose 5% hp",
+                    "Defend: increases your defense by 25%",
+                    "Arrow shot: basic attack, deals 550 damage",
+                    "Arrow rain: deals 800 damage and in the next round you will lose 15% stun and combo",
+                    "Shocking arrow: deals 300 damage while giving you a 60% stun", 
+                    "[red]Exit[/]"
                 }));
     }
 
@@ -275,7 +290,12 @@ internal class Menu
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
                 .AddChoices(new[]
                 {
-                    "", "[red]Exit[/]"
+                    "Run: you lose 5% hp",
+                    "Defend: increases your defense by 25%",
+                    "Dagger strike: Basic attack, deals 600 damage",
+                    "Poison strike: deals 200 damage. In the next round you will damage your enemy with 50hp and sets the enemy damage to 50%",
+                    "Shadow strike: Deals 0 damage and sets dodge to 70% and every other stats to 0%. Cooldown? 4 rounds", 
+                    "[red]Exit[/]"
                 }));
     }
 
@@ -303,7 +323,12 @@ internal class Menu
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
                 .AddChoices(new[]
                 {
-                    "", "[red]Exit[/]"
+                    "Run: you lose 5% hp",
+                    "Defend: increases your defense by 25%",
+                    "Holy strike: basic attack, deals 300 damage",
+                    "Holy shield: doesnt deal damage but gives you 300 hp, and in next round boosts your defence by 15%",
+                    "Holy light: 800 damage but damages you for 300 and the next round you lose 25% counter-attack and 10% defense. 3 round cooldown.",
+                    "[red]Exit[/]"
                 }));
     }
 
@@ -331,7 +356,12 @@ internal class Menu
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
                 .AddChoices(new[]
                 {
-                    "", "[red]Exit[/]"
+                    "Run: you lose 5% hp",
+                    "Defend: increases your defense by 25%",
+                    "Heroic strike:",
+                    "Crown: deals 100 damage and givs you 25% critical damage. The next round you will gain 25% defence. 3 round cooldown",
+                    "Getting a cape: The next 2 rounds you will gain 20% dmg and 10% def. 3 round cooldown.",
+                    "[red]Exit[/]"
                 }));
     }
 
@@ -360,7 +390,12 @@ internal class Menu
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
                 .AddChoices(new[]
                 {
-                    "", "[red]Exit[/]"
+                    "Run: you lose 5% hp",
+                    "Defend: increases your defense by 25%",
+                    "Blast shot: basic attack, deals 700 damage",
+                    "Bloodthristy: -20% from the enemy's health while dealing 600 damage to them, and boosting your stun by 10%. Useable only once after 3 hit!",
+                    "Explorer: Gives you 1 random item which can be found on the current map. After used yoour item you get you deal 550 damage automatically. Useable once/map",
+                    "[red]Exit[/]"
                 }));
     }
 
@@ -388,7 +423,12 @@ internal class Menu
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
                 .AddChoices(new[]
                 {
-                    "", "[red]Exit[/]"
+                    "Run: you lose 5% hp",
+                    "Defend: increases your defense by 25%",
+                    "Spinning blades: basic attack, deals 400 damage",
+                    "Smoke bomb: Doesnt deals damage and you cannot shoot for 2 rounds but you gain 3x multiplier for run and you wont lose hp if you run",
+                    "Sharper dagger: 600 dmg, enemy only has 85% damage in the next round. 3 round cooldown",
+                    "[red]Exit[/]"
                 }));
     }
 
