@@ -1,5 +1,6 @@
 ﻿using FantasyRPG.Characters;
 using FantasyRPG.Controller;
+using FantasyRPG.UI;
 using RGProject.Characters.Enemies;
 using RGProject.Characters.Heroes;
 using Spectre.Console;
@@ -32,9 +33,16 @@ public class Battle : IBattle // cant really work on this until there is concret
         Player.State = State.Fighting;
     }
 
+    Random rnd = new Random();
+    public bool ChanceSuccessful(double chance)
+    {
+        int randomNumber = rnd.Next(101); // Generates a random number between 0 and 100 inclusive
+        return randomNumber < chance;
+    }
+
     public Character Turn()
     {
-        Random rnd = new Random();
+        var menu = new Menu();
         double HeroDodgeChance = Hero.Dodge;
         double HeroStunChance = Hero.Stun;
         double EnemyDodgeChance = Enemy.Dodge;
@@ -48,60 +56,133 @@ public class Battle : IBattle // cant really work on this until there is concret
         if (InTurn == Hero)
         {
             AnsiConsole.Write(new Markup("It's your turn!"));
-            for (int i = 0; i < 100; i++)
+            string move = menu.ShowBattleMenu();
+
+            if (move == "Attack")
             {
-                int rndchance = rnd.Next(100);
-                if (rndchance < EnemyDodgeChance)
+                switch (Hero.Type)
                 {
-                    countW++;
-                }
-                else
-                {
-                    countL++;
+                    case CharacterType.Hero:
+                        menu.ShowHeroAttacks();
+                        break;
+                    case CharacterType.Warrior:
+                        menu.ShowWarriorAttacks();
+                        break;
+                    case CharacterType.Assassin:
+                        menu.ShowAssassinAttacks();
+                        break;
+                    case CharacterType.Paladin:
+                        menu.ShowPaladinAttacks();
+                        break;
+                    case CharacterType.Hunter:
+                        menu.ShowHunterAttacks();
+                        break;
+                    case CharacterType.Ninja:
+                        menu.ShowNinjaAttacks();
+                        break;
+                    case CharacterType.Elf:
+                        menu.ShowElfAttacks();
+                        break;
+                    case CharacterType.Mage:
+                        menu.ShowMageAttacks();
+                        break;
                 }
             }
-
-            if (countW >= countL)
+            else if(move == "Defend" )
             {
+
+            }
+            else if (move == "Use item")
+            {
+
+            }
+            else if (move == "Information")
+            {
+                switch (Hero.Type)
+                {
+                    case CharacterType.Hero:
+                        menu.ShowHeroInfo();
+                        break;
+                    case CharacterType.Warrior:
+                        menu.ShowWarriorInfo();
+                        break;
+                    case CharacterType.Assassin:
+                        menu.ShowAssassinInfo();
+                        break;
+                    case CharacterType.Paladin:
+                        menu.ShowPaladinInfo();
+                        break;
+                    case CharacterType.Hunter:
+                        menu.ShowHunterInfo();
+                        break;
+                    case CharacterType.Ninja:
+                        menu.ShowNinjaInfo();
+                        break;
+                    case CharacterType.Elf:
+                        menu.ShowElfInfo();
+                        break;
+                    case CharacterType.Mage:
+                        menu.ShowMageInfo();
+                        break;
+                }
+            }
+            else
+            {
+                AnsiConsole.Write(new Markup("You chose run!"));
+            }
+
+            if (ChanceSuccessful(EnemyDodgeChance))
+            {
+                // Dodge was successful
                 InTurn = Enemy;
             }
             else
             {
+                // Dodge was not successful
                 defDmg = Hero.Damage / 100;
                 dmg = Hero.Damage - (defDmg * Enemy.DEF);
+                Enemy.Health -= dmg;
+                if (ChanceSuccessful(HeroStunChance))
+                {
+                    // Stun was successful
+                    InTurn = Hero;
+                }
+                else
+                {
+                    // Stun was not successful
+                    InTurn = Enemy;
+                }
             }
 
             countW = 0;
             countL = 0;
 
-            for (int i = 0; i < 100; i++)
+        }
+        else
+        {
+            AnsiConsole.Write(new Markup("The enemy attacks!"));
+            if (ChanceSuccessful(HeroDodgeChance))
             {
-                int rndchance = rnd.Next(100);
-                if (rndchance < HeroStunChance)
-                {
-                    countW++;
-                    //InTurn = Hero;
-                }
-                else
-                {
-                    countL++;
-                    //InTurn = Enemy;
-                }
-            }
-
-            if (countW >= countL)
-            {
+                // Dodge was successful
                 InTurn = Hero;
             }
             else
             {
-                InTurn = Enemy;
+                // Dodge was not successful
+                defDmg = Enemy.Damage / 100;
+                dmg = Enemy.Damage - (defDmg * Hero.DEF);
+                Hero.Health -= dmg;
+                if (ChanceSuccessful(EnemyStunChance))
+                {
+                    // Stun was successful
+                    InTurn = Hero;
+                }
+                else
+                {
+                    // Stun was not successful
+                    InTurn = Enemy;
+                }
             }
-
-        }
-        else
-        {
-            dmg = Enemy.Damage - Hero.DEF;
         }
 
         return InTurn == Hero ? Enemy : Hero;

@@ -167,7 +167,7 @@ internal class Menu
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------*/
     // During battle
 
-    public void ShowBattleMenu()
+    public string ShowBattleMenu()
     {
         Console.Clear();
         var hero = AnsiConsole.Prompt(
@@ -179,6 +179,8 @@ internal class Menu
                 {
                     "Attack", "Defend", "Use Item", "Information", "[red]Run[/]"
                 }));
+
+        return hero;
     }
 
     public void ShowWarriorInfo()
@@ -237,7 +239,7 @@ internal class Menu
                 }));
     }
 
-    public void ShowEfInfo()
+    public void ShowElfInfo()
     {
         Console.Clear();
         var hero = AnsiConsole.Prompt(
