@@ -177,7 +177,21 @@ internal class Menu
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
                 .AddChoices(new[]
                 {
-                    "Attack", "Defend", "Use Item", "[red]Run[/]"
+                    "Attack", "Defend", "Use Item", "Information", "[red]Run[/]"
+                }));
+    }
+
+    public void ShowWarriorInfo()
+    {
+        Console.Clear();
+        var hero = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("These are your [red]Abilities[/]!")
+                .PageSize(10)
+                .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
+                .AddChoices(new[]
+                {
+                    "", "[red]Exit[/]"
                 }));
     }
 
@@ -195,6 +209,20 @@ internal class Menu
                 }));
     }
 
+    public void ShowMageInfo()
+    {
+        Console.Clear();
+        var hero = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("These are your [red]Abilities[/]!")
+                .PageSize(10)
+                .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
+                .AddChoices(new[]
+                {
+                    "", "[red]Exit[/]"
+                }));
+    }
+
     public void ShowMageAttacks()
     {
         Console.Clear();
@@ -206,6 +234,20 @@ internal class Menu
                 .AddChoices(new[]
                 {
                     "Fireball", "Ice Shard", "Thunderbolt", "[red]Exit[/]"
+                }));
+    }
+
+    public void ShowEfInfo()
+    {
+        Console.Clear();
+        var hero = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("These are your [red]Abilities[/]!")
+                .PageSize(10)
+                .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
+                .AddChoices(new[]
+                {
+                    "", "[red]Exit[/]"
                 }));
     }
 
@@ -223,6 +265,20 @@ internal class Menu
                 }));
     }
 
+    public void ShowAssassinInfo()
+    {
+        Console.Clear();
+        var hero = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("These are your [red]Abilities[/]!")
+                .PageSize(10)
+                .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
+                .AddChoices(new[]
+                {
+                    "", "[red]Exit[/]"
+                }));
+    }
+
     public void ShowAssassinAttacks()
     {
         Console.Clear();
@@ -237,6 +293,20 @@ internal class Menu
                 }));
     }
 
+    public void ShowPaladinInfo()
+    {
+        Console.Clear();
+        var hero = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("These are your [red]Abilities[/]!")
+                .PageSize(10)
+                .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
+                .AddChoices(new[]
+                {
+                    "", "[red]Exit[/]"
+                }));
+    }
+
     public void ShowPaladinAttacks()
     {
         Console.Clear();
@@ -248,6 +318,20 @@ internal class Menu
                 .AddChoices(new[]
                 {
                     "Holy Strike", "Holy Shield", "Holy Light", "[red]Exit[/]"
+                }));
+    }
+
+    public void ShowHeroInfo()
+    {
+        Console.Clear();
+        var hero = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("These are your [red]Abilities[/]!")
+                .PageSize(10)
+                .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
+                .AddChoices(new[]
+                {
+                    "", "[red]Exit[/]"
                 }));
     }
 
@@ -266,6 +350,20 @@ internal class Menu
                 }));
     }
 
+    public void ShowHunterInfo()
+    {
+        Console.Clear();
+        var hero = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("These are your [red]Abilities[/]!")
+                .PageSize(10)
+                .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
+                .AddChoices(new[]
+                {
+                    "", "[red]Exit[/]"
+                }));
+    }
+
     public void ShowHunterAttacks()
     {
         Console.Clear();
@@ -277,6 +375,20 @@ internal class Menu
                 .AddChoices(new[]
                 {
                     "Blast Shot", "Bloodthirsty", "Explorer", "[red]Exit[/]"
+                }));
+    }
+
+    public void ShowNinjaInfo()
+    {
+        Console.Clear();
+        var hero = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("These are your [red]Abilities[/]!")
+                .PageSize(10)
+                .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
+                .AddChoices(new[]
+                {
+                    "", "[red]Exit[/]"
                 }));
     }
 
