@@ -193,7 +193,7 @@ internal class Menu
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
                 .AddChoices(new[]
                 {
-                    "Run: you lose 5% hp"
+                    "Run: you lose 5% hp",
                     "Defend: increases your defense by 25%" ,
                     "Slash: basic attack", 
                     "Shield bash: gives 200 hp but deals 0 damage, in the next round you will gain 70% defence and counter-attack" , 
