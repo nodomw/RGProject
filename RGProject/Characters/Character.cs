@@ -26,9 +26,9 @@ public enum CharacterType // TODO
     Emperor,
     Headhunter
 }
-public abstract class Character
+public interface ICharacter
 {
-    public Guid Id { get; } = Guid.NewGuid();
+    public Guid Id { get; }
     public string Name { get; set; }
     public CharacterType Type { get; }
     public TilePosition Position { get; set; }
