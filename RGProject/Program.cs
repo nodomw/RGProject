@@ -9,7 +9,7 @@ using RGProject.Characters.Heroes;
 using RGProject.Characters.Enemies;
 using FantasyRPG.Items.Potions;
 
-var game = new Menu();
+var menu = new Menu();
 var battle = new Battle(new Hunter("joni"), new Vampire("gino"));
 var font = FigletFont.Load("ANSI Shadow.flf");
 var font2 = FigletFont.Load("Cyberlarge.flf");
