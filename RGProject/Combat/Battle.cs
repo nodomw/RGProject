@@ -36,24 +36,53 @@ public class Battle : IBattle // cant really work on this until there is concret
     Random rnd = new Random();
     public bool ChanceSuccessful(double chance)
     {
-        int randomNumber = rnd.Next(101); // Generates a random number between 0 and 100 inclusive
-        return randomNumber < chance;
+        int randomNumber = rnd.Next(101);
+        return randomNumber < (int)chance;
     }
 
     public Character Turn()
     {
         var menu = new Menu();
-        double HeroDodgeChance = Hero.Dodge;
-        double HeroStunChance = Hero.Stun;
-        double EnemyDodgeChance = Enemy.Dodge;
-        double EnemyStunChance = Enemy.Stun;
         double dmg = 0;
         double defDmg = 0;
+        double def = 0;
 
         int countW = 0;
         int countL = 0;
 
-        if (InTurn == Hero)
+        Console.WriteLine(Hero.Stun);
+
+        for (int i = 0; i < 100; i++)
+        {
+            if (ChanceSuccessful(Hero.Stun))
+            {
+                countW++;
+            }
+            else
+            {
+                countL++;
+            }
+        }
+
+        Console.WriteLine("Stun: " + countW + " Lose: " + countL);
+
+        countW = 0;
+        countL = 0;
+
+        for (int i = 0; i < 100; i++)
+        {
+            if (ChanceSuccessful(Hero.Dodge))
+            {
+                countW++;
+            }
+            else
+            {
+                countL++;
+            }
+        }
+
+        Console.WriteLine("Dodge: " + countW + " Lose: "+countL);
+        /*if (InTurn == Hero)
         {
             AnsiConsole.Write(new Markup("It's your turn!"));
             string move = menu.ShowBattleMenu();
@@ -90,11 +119,11 @@ public class Battle : IBattle // cant really work on this until there is concret
             }
             else if(move == "Defend" )
             {
-
+                def = Hero.DEF + (25 * (Hero.DEF / 100));
             }
             else if (move == "Use item")
             {
-
+                menu.ShowItemMenu();
             }
             else if (move == "Information")
             {
@@ -131,7 +160,7 @@ public class Battle : IBattle // cant really work on this until there is concret
                 AnsiConsole.Write(new Markup("You chose run!"));
             }
 
-            if (ChanceSuccessful(EnemyDodgeChance))
+            if (ChanceSuccessful(Enemy.Dodge))
             {
                 // Dodge was successful
                 InTurn = Enemy;
@@ -142,7 +171,7 @@ public class Battle : IBattle // cant really work on this until there is concret
                 defDmg = Hero.Damage / 100;
                 dmg = Hero.Damage - (defDmg * Enemy.DEF);
                 Enemy.Health -= dmg;
-                if (ChanceSuccessful(HeroStunChance))
+                if (ChanceSuccessful(Hero.Stun))
                 {
                     // Stun was successful
                     InTurn = Hero;
@@ -161,7 +190,7 @@ public class Battle : IBattle // cant really work on this until there is concret
         else
         {
             AnsiConsole.Write(new Markup("The enemy attacks!"));
-            if (ChanceSuccessful(HeroDodgeChance))
+            if (ChanceSuccessful(Hero.Dodge))
             {
                 // Dodge was successful
                 InTurn = Hero;
@@ -172,7 +201,7 @@ public class Battle : IBattle // cant really work on this until there is concret
                 defDmg = Enemy.Damage / 100;
                 dmg = Enemy.Damage - (defDmg * Hero.DEF);
                 Hero.Health -= dmg;
-                if (ChanceSuccessful(EnemyStunChance))
+                if (ChanceSuccessful(Enemy.Stun))
                 {
                     // Stun was successful
                     InTurn = Hero;
@@ -183,7 +212,7 @@ public class Battle : IBattle // cant really work on this until there is concret
                     InTurn = Enemy;
                 }
             }
-        }
+        }*/
 
         return InTurn == Hero ? Enemy : Hero;
     }
