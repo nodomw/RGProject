@@ -40,7 +40,7 @@ public interface IPotion
     string Description { get; }
     int Power { get; }
     PotionModifier Stat { get; }
-    double Use(Character character);
+    double Use(ICharacter character);
 }
 public interface IMagic : IWeapon
 {
@@ -71,7 +71,7 @@ public abstract class Potion : Item, IPotion
     public new string Description { get; }
     public int Power { get; }
     public PotionModifier Stat { get; }
-    public double Use(Character character)
+    public double Use(ICharacter character)
     {
         switch (Stat)
         {

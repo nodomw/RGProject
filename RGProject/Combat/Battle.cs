@@ -9,24 +9,24 @@ namespace FantasyRPG.Combat;
 
 public interface IBattle : IDisposable
 {
-    Character Hero { get; }
-    Character Enemy { get; }
-    Character InTurn { get; set; }
+    ICharacter Hero { get; }
+    ICharacter Enemy { get; }
+    ICharacter InTurn { get; set; }
     void Initiate();
-    Character Turn(); // Advance to next turn
+    ICharacter Turn(); // Advance to next turn
     void Defeat();
 }
 public class Battle : IBattle
 {
-    public Battle(Character hero, Character enemy)
+    public Battle(ICharacter hero, ICharacter enemy)
     {
         Hero = hero;
         Enemy = enemy;
     }
-    public Character Hero { get; }
-    public Character Enemy { get; }
+    public ICharacter Hero { get; }
+    public ICharacter Enemy { get; }
     public Player Player { get; }
-    public Character InTurn { get; set; }
+    public ICharacter InTurn { get; set; }
     public void Initiate()
     {
         InTurn = Hero;
@@ -40,7 +40,7 @@ public class Battle : IBattle
         return randomNumber < (int)chance;
     }
 
-    public Character Turn()
+    public ICharacter Turn()
     {
         InTurn = Hero;
         var menu = new Menu();

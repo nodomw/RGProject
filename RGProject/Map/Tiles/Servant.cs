@@ -5,14 +5,14 @@ namespace FantasyRPG.Map.Tiles
 {
     public class Servant : ITile
     {
-        public Servant(string name, Character character)
+        public Servant(string name, ICharacter character)
         {
             Name = name;
             Character = character;
         }
         public Guid Id { get; } = Guid.NewGuid();
         public TileType Type { get; } = TileType.Servant;
-        public Character Character { get; }
+        public ICharacter Character { get; }
         public TilePosition Position { get; set; }
         public string Name { get; set; } = "Servant";
         public Markup DisplayCharacter { get; } = new Markup("[blue]S[/]");
