@@ -1,13 +1,39 @@
 ﻿// Ignore Spelling: Enums
+using FantasyRPG.Map.Tiles;
 using Spectre.Console;
 
 namespace FantasyRPG.Map;
 
-public class Map(string name, ITile[,] tiles)
+public enum DrawCriteria
 {
-    public ITile[,] Tiles { get; set; } = tiles; // Tile & TileType
+    Name,
+    Guid,
+    DisplayCharacter
+}
+
+public class Map
+{
+    public Map(string name, ITile[,] tiles)
+    {
+        Name = name;
+        Tiles = tiles;
+        // set the TilePosition for all tiles
+        for (int x = 0; x < tiles.GetLength(0); x++)
+        {
+            for (int y = 0; y < tiles.GetLength(1); y++)
+            {
+                tiles[x, y].Position = new TilePosition(x, y);
+                if (tiles[x, y] is Player)
+                {
+                    PlayerTile = (Player)tiles[x, y];
+                }
+            }
+        }
+    }
+    public ITile[,] Tiles { get; set; } // Tile & TileType
     public Guid Id { get; } = Guid.NewGuid();
-    public string Name { get; } = name;
+    public string Name { get; }
+    public Player PlayerTile { get; set; }
 
     public bool SwapTile(ITile tile, ITile tile2) // TODO (should work now though)
     {
@@ -26,38 +52,38 @@ public class Map(string name, ITile[,] tiles)
 
         return true;
     }
-    public void ReplaceEnums() // this is pretty much so that you dont nessecarily need to have every single thing as a class, only stuff that has actual data (e.g: loot, players, enemies, servants)
+    public void Draw(DrawCriteria criteria) // Draw the map;
     {
         for (int x = 0; x < Tiles.GetLength(0); x++)
         {
             for (int y = 0; y < Tiles.GetLength(1); y++)
             {
-                // All tiles that contain data should be a class, not enum
-                switch (Tiles[x, y].Type)
+                switch (criteria)
                 {
-                    case TileType.Terrain:
-                        Tiles[x, y] = new Tiles.Terrain();
+                    case DrawCriteria.Name:
+                        Console.Write(Tiles[x, y].Name);
                         break;
-                    case TileType.Empty:
-                        Tiles[x, y] = new Tiles.Empty();
+                    case DrawCriteria.Guid:
+                        Console.Write(Tiles[x, y].Id);
                         break;
-                    default: // do nothing for everything else
+                    case DrawCriteria.DisplayCharacter:
+                        AnsiConsole.Write(Tiles[x, y].DisplayCharacter);
                         break;
                 }
-            }
-        }
-    }
-    public void Draw() // Draw the map;
-    {
-        for (int x = 0; x < Tiles.GetLength(0); x++)
-        {
-            for (int y = 0; y < Tiles.GetLength(1); y++)
-            {
-                AnsiConsole.Write(Tiles[x, y].DisplayCharacter);
                 AnsiConsole.Write("     ");
             }
             AnsiConsole.WriteLine();
             AnsiConsole.WriteLine();
         }
     }
+    public ITile GetTileById(Guid id) // Get a tile by its id
+    {
+        foreach (var tile in Tiles)
+        {
+            if (tile.Id == id) return tile;
+        }
+        return new Empty();
+    }
+    // Get a tile by its position
+    public ITile GetTileByPosition(TilePosition position) => Tiles[position.X, position.Y];
 }
