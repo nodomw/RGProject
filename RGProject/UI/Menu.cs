@@ -14,7 +14,7 @@ namespace FantasyRPG.UI;
 
 internal class Menu
 {
-    public Battle battle;
+    public Battle menubattle = new Battle(new Elf("asd"), new Emperor("dsa"));
 
     public string currentmenu = "";
     public void PreviousMenu()
@@ -22,10 +22,10 @@ internal class Menu
         switch (currentmenu)
         {
             case "ShowElfInfo" or "ShowWarriorInfo" or "ShowMageInfo" or "ShowAssassinInfo" or "ShowPaladinInfo" or "ShowHeroInfo" or "ShowHunterInfo" or "ShowNinjaInfo":
-                battle.Turn();
+                menubattle.Turn();
                 break;
             case "ShowElfAttacks" or "ShowWarriorAttacks" or "ShowMageAttacks" or "ShowAssassinAttacks" or "ShowPaladinAttacks" or "ShowHeroAttacks" or "ShowHunterAttacks" or "ShowNinjaAttacks":
-                battle.Turn();
+                menubattle.Turn();
                 break;
         }
     }
