@@ -27,6 +27,7 @@ public class Battle : IBattle
     public ICharacter Enemy { get; }
     public Player Player { get; }
     public ICharacter InTurn { get; set; }
+    public int Turns { get; set; }
     public void Initiate()
     {
         InTurn = Hero;
