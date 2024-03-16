@@ -78,45 +78,58 @@ public class Map
             AnsiConsole.WriteLine();
         }
     }
-    public void DrawGrid() // I KNOW ITS JANK FUCK YOU
+    public void DrawGrid()
     {
         TilePosition Center = PlayerTile.Position;
 
-        List<Markup> Directions = new(){
-        GetTileByPosition(new TilePosition(Center.X - 2, Center.Y + 2)).DisplayCharacter,
-        GetTileByPosition(new TilePosition(Center.X - 1, Center.Y + 2)).DisplayCharacter,
-        GetTileByPosition(new TilePosition(Center.X, Center.Y + 2)).DisplayCharacter,
-        GetTileByPosition(new TilePosition(Center.X + 1, Center.Y + 2)).DisplayCharacter,
-        GetTileByPosition(new TilePosition(Center.X + 2, Center.Y + 2)).DisplayCharacter,
-
-        GetTileByPosition(new TilePosition(Center.X - 2, Center.Y + 1)).DisplayCharacter,
-        GetTileByPosition(new TilePosition(Center.X - 1, Center.Y + 1)).DisplayCharacter, // Northwest
-        GetTileByPosition(new TilePosition(Center.X, Center.Y + 1)).DisplayCharacter, // North
-        GetTileByPosition(new TilePosition(Center.X + 1, Center.Y + 1)).DisplayCharacter, // Northeast
-        GetTileByPosition(new TilePosition(Center.X + 2, Center.Y + 1)).DisplayCharacter,
-
-        GetTileByPosition(new TilePosition(Center.X - 2, Center.Y)).DisplayCharacter,
-        GetTileByPosition(new TilePosition(Center.X - 1, Center.Y)).DisplayCharacter, // West
-        GetTileByPosition(Center).DisplayCharacter, // Center
-        GetTileByPosition(new TilePosition(Center.X + 1, Center.Y)).DisplayCharacter, // East
-        GetTileByPosition(new TilePosition(Center.X + 2, Center.Y)).DisplayCharacter,
-
-        GetTileByPosition(new TilePosition(Center.X - 2, Center.Y - 1)).DisplayCharacter,
-        GetTileByPosition(new TilePosition(Center.X - 1, Center.Y - 1)).DisplayCharacter, // Southwest
-        GetTileByPosition(new TilePosition(Center.X, Center.Y - 1)).DisplayCharacter, // South
-        GetTileByPosition(new TilePosition(Center.X + 1, Center.Y - 1)).DisplayCharacter, // Southeast
-        GetTileByPosition(new TilePosition(Center.X + 2, Center.Y - 1)).DisplayCharacter,
-
-        GetTileByPosition(new TilePosition(Center.X - 2, Center.Y - 2)).DisplayCharacter,
-        GetTileByPosition(new TilePosition(Center.X - 1, Center.Y - 2)).DisplayCharacter,
-        GetTileByPosition(new TilePosition(Center.X, Center.Y - 2)).DisplayCharacter,
-        GetTileByPosition(new TilePosition(Center.X + 1, Center.Y - 2)).DisplayCharacter,
-        GetTileByPosition(new TilePosition(Center.X + 2, Center.Y - 2)).DisplayCharacter,
-        };
-        for (int i = 0; i < Directions.Count; i++)
+        Markup[,] grid = new Markup[,]
         {
-            AnsiConsole.Write(Directions[i]);
-            // AnsiConsole.Write(" ");
+            {
+                GetTileByPosition(new TilePosition(Center.X - 2, Center.Y + 2)).DisplayCharacter,
+                GetTileByPosition(new TilePosition(Center.X - 1, Center.Y + 2)).DisplayCharacter,
+                GetTileByPosition(new TilePosition(Center.X, Center.Y + 2)).DisplayCharacter,
+                GetTileByPosition(new TilePosition(Center.X + 1, Center.Y + 2)).DisplayCharacter,
+                GetTileByPosition(new TilePosition(Center.X + 2, Center.Y + 2)).DisplayCharacter,
+            },
+            {
+                GetTileByPosition(new TilePosition(Center.X - 2, Center.Y + 1)).DisplayCharacter,
+                GetTileByPosition(new TilePosition(Center.X - 1, Center.Y + 1)).DisplayCharacter, // Northwest
+                GetTileByPosition(new TilePosition(Center.X, Center.Y + 1)).DisplayCharacter, // North
+                GetTileByPosition(new TilePosition(Center.X + 1, Center.Y + 1)).DisplayCharacter, // Northeast
+                GetTileByPosition(new TilePosition(Center.X + 2, Center.Y + 1)).DisplayCharacter,
+            },
+            {
+                GetTileByPosition(new TilePosition(Center.X - 2, Center.Y)).DisplayCharacter,
+                GetTileByPosition(new TilePosition(Center.X - 1, Center.Y)).DisplayCharacter, // West
+                GetTileByPosition(Center).DisplayCharacter, // Center
+                GetTileByPosition(new TilePosition(Center.X + 1, Center.Y)).DisplayCharacter, // East
+                GetTileByPosition(new TilePosition(Center.X + 2, Center.Y)).DisplayCharacter,
+            },
+            {
+                GetTileByPosition(new TilePosition(Center.X - 2, Center.Y - 1)).DisplayCharacter,
+                GetTileByPosition(new TilePosition(Center.X - 1, Center.Y - 1)).DisplayCharacter, // Southwest
+                GetTileByPosition(new TilePosition(Center.X, Center.Y - 1)).DisplayCharacter, // South
+                GetTileByPosition(new TilePosition(Center.X + 1, Center.Y - 1)).DisplayCharacter, // Southeast
+                GetTileByPosition(new TilePosition(Center.X + 2, Center.Y - 1)).DisplayCharacter,
+            },
+            {
+                GetTileByPosition(new TilePosition(Center.X - 2, Center.Y - 2)).DisplayCharacter,
+                GetTileByPosition(new TilePosition(Center.X - 1, Center.Y - 2)).DisplayCharacter,
+                GetTileByPosition(new TilePosition(Center.X, Center.Y - 2)).DisplayCharacter,
+                GetTileByPosition(new TilePosition(Center.X + 1, Center.Y - 2)).DisplayCharacter,
+                GetTileByPosition(new TilePosition(Center.X + 2, Center.Y - 2)).DisplayCharacter,
+            }
+        };
+
+        for (int x = 0; x < grid.GetLength(0); x++)
+        {
+            for (int y = 0; y < grid.GetLength(1); y++)
+            {
+                AnsiConsole.Write(grid[x, y]);
+                AnsiConsole.Write("     ");
+            }
+            AnsiConsole.WriteLine();
+            AnsiConsole.WriteLine();
         }
     }
     public ITile GetTileById(Guid id) // Get a tile by its id
@@ -125,7 +138,7 @@ public class Map
         {
             if (tile.Id == id) return tile;
         }
-        return new Empty();
+        throw new Exception("Tile not found");
     }
     // Get a tile by its position
     public ITile GetTileByPosition(TilePosition position) => Tiles[position.X, position.Y];
