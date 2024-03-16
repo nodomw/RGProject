@@ -45,6 +45,12 @@ public class Map
         // move 'tile' to 'to'
         Tiles[to.X, to.Y] = tile;
         tile.Position = to;
+
+        // in case
+        if (typeof(Player).IsInstanceOfType(tile))
+        {
+            PlayerTile = (Player)tile;
+        }
     }
     public bool ReplaceTile(TilePosition at, ITile tile) // TODO (same here)
     {
