@@ -54,7 +54,7 @@ public class Map
 
         return true;
     }
-    public void Draw(DrawCriteria criteria) // Draw the map;
+    public void DrawFull(DrawCriteria criteria) // Draw the map;
     {
         for (int x = 0; x < Tiles.GetLength(0); x++)
         {
@@ -76,6 +76,47 @@ public class Map
             }
             AnsiConsole.WriteLine();
             AnsiConsole.WriteLine();
+        }
+    }
+    public void DrawGrid() // I KNOW ITS JANK FUCK YOU
+    {
+        TilePosition Center = PlayerTile.Position;
+
+        List<Markup> Directions = new(){
+        GetTileByPosition(new TilePosition(Center.X - 2, Center.Y + 2)).DisplayCharacter,
+        GetTileByPosition(new TilePosition(Center.X - 1, Center.Y + 2)).DisplayCharacter,
+        GetTileByPosition(new TilePosition(Center.X, Center.Y + 2)).DisplayCharacter,
+        GetTileByPosition(new TilePosition(Center.X + 1, Center.Y + 2)).DisplayCharacter,
+        GetTileByPosition(new TilePosition(Center.X + 2, Center.Y + 2)).DisplayCharacter,
+
+        GetTileByPosition(new TilePosition(Center.X - 2, Center.Y + 1)).DisplayCharacter,
+        GetTileByPosition(new TilePosition(Center.X - 1, Center.Y + 1)).DisplayCharacter, // Northwest
+        GetTileByPosition(new TilePosition(Center.X, Center.Y + 1)).DisplayCharacter, // North
+        GetTileByPosition(new TilePosition(Center.X + 1, Center.Y + 1)).DisplayCharacter, // Northeast
+        GetTileByPosition(new TilePosition(Center.X + 2, Center.Y + 1)).DisplayCharacter,
+
+        GetTileByPosition(new TilePosition(Center.X - 2, Center.Y)).DisplayCharacter,
+        GetTileByPosition(new TilePosition(Center.X - 1, Center.Y)).DisplayCharacter, // West
+        GetTileByPosition(Center).DisplayCharacter, // Center
+        GetTileByPosition(new TilePosition(Center.X + 1, Center.Y)).DisplayCharacter, // East
+        GetTileByPosition(new TilePosition(Center.X + 2, Center.Y)).DisplayCharacter,
+
+        GetTileByPosition(new TilePosition(Center.X - 2, Center.Y - 1)).DisplayCharacter,
+        GetTileByPosition(new TilePosition(Center.X - 1, Center.Y - 1)).DisplayCharacter, // Southwest
+        GetTileByPosition(new TilePosition(Center.X, Center.Y - 1)).DisplayCharacter, // South
+        GetTileByPosition(new TilePosition(Center.X + 1, Center.Y - 1)).DisplayCharacter, // Southeast
+        GetTileByPosition(new TilePosition(Center.X + 2, Center.Y - 1)).DisplayCharacter,
+
+        GetTileByPosition(new TilePosition(Center.X - 2, Center.Y - 2)).DisplayCharacter,
+        GetTileByPosition(new TilePosition(Center.X - 1, Center.Y - 2)).DisplayCharacter,
+        GetTileByPosition(new TilePosition(Center.X, Center.Y - 2)).DisplayCharacter,
+        GetTileByPosition(new TilePosition(Center.X + 1, Center.Y - 2)).DisplayCharacter,
+        GetTileByPosition(new TilePosition(Center.X + 2, Center.Y - 2)).DisplayCharacter,
+        };
+        for (int i = 0; i < Directions.Count; i++)
+        {
+            AnsiConsole.Write(Directions[i]);
+            // AnsiConsole.Write(" ");
         }
     }
     public ITile GetTileById(Guid id) // Get a tile by its id
