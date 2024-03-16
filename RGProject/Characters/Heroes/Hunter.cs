@@ -4,6 +4,14 @@ using FantasyRPG.Items;
 
 namespace RGProject.Characters.Heroes;
 
+public enum HunterAttacks
+{
+	None,
+	BlastShot,
+	Bloodthirsty,
+	Explorer
+}
+
 public class Hunter : ICharacter
 {
 	public Hunter(string name)
@@ -12,7 +20,7 @@ public class Hunter : ICharacter
 	}
 	public Guid Id { get; } = Guid.NewGuid();
 	public string Name { get; set; }
-	public CharacterType Type { get; }
+	public CharacterType Type { get; } = CharacterType.Hunter;
 	public TilePosition Position { get; set; }
 	public int Level { get; set; } = 0;
 	public int XP { get; set; } = 0;

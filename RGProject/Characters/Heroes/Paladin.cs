@@ -4,6 +4,14 @@ using FantasyRPG.Items;
 
 namespace RGProject.Characters.Heroes;
 
+public enum PaladinAttacks
+{
+	None,
+	HolyStrike,
+	HolyShield,
+	HolyLight
+}
+
 public class Paladin : ICharacter
 {
 	public Paladin(string name)
@@ -12,7 +20,7 @@ public class Paladin : ICharacter
 	}
 	public Guid Id { get; } = Guid.NewGuid();
 	public string Name { get; set; }
-	public CharacterType Type { get; }
+	public CharacterType Type { get; } = CharacterType.Paladin;
 	public TilePosition Position { get; set; }
 	public int Level { get; set; } = 0;
 	public int XP { get; set; } = 0;

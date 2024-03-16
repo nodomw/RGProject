@@ -4,6 +4,14 @@ using FantasyRPG.Items;
 
 namespace RGProject.Characters.Heroes;
 
+public enum AssassinAttacks
+{
+	None,
+	DaggerStrike,
+	PoisonDagger,
+	ShadowStrike
+}
+
 public class Assassin : ICharacter
 {
 	public Assassin(string name)
@@ -13,7 +21,7 @@ public class Assassin : ICharacter
 
 	public Guid Id { get; } = Guid.NewGuid();
 	public string Name { get; set; }
-	public CharacterType Type { get; }
+	public CharacterType Type { get; } = CharacterType.Assassin;
 	public TilePosition Position { get; set; }
 	public int Level { get; set; } = 0;
 	public int XP { get; set; } = 0;

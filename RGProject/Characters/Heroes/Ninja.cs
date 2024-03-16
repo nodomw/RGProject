@@ -4,6 +4,14 @@ using FantasyRPG.Items;
 
 namespace RGProject.Characters.Heroes;
 
+public enum NinjaAttacks
+{
+	None,
+	SpinningBlades,
+	SmokeBomb,
+	SharperDagger
+}
+
 public class Ninja : ICharacter
 {
 	public Ninja(string name)
@@ -12,7 +20,7 @@ public class Ninja : ICharacter
 	}
 	public Guid Id { get; } = Guid.NewGuid();
 	public string Name { get; set; }
-	public CharacterType Type { get; }
+	public CharacterType Type { get; } = CharacterType.Ninja;
 	public TilePosition Position { get; set; }
 	public int Level { get; set; } = 0;
 	public int XP { get; set; } = 0;

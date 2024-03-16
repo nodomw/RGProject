@@ -4,6 +4,14 @@ using FantasyRPG.Items;
 
 namespace RGProject.Characters.Heroes;
 
+public enum HeroAttacks
+{
+	None,
+	HeroicStrike,
+	Crown,
+	GettingACape
+}
+
 public class Hero : ICharacter
 {
 	public Hero(string name)
@@ -12,7 +20,7 @@ public class Hero : ICharacter
 	}
 	public Guid Id { get; } = Guid.NewGuid();
 	public string Name { get; set; }
-	public CharacterType Type { get; }
+	public CharacterType Type { get; } = CharacterType.Hero;
 	public TilePosition Position { get; set; }
 	public int Level { get; set; } = 0;
 	public int XP { get; set; } = 0;

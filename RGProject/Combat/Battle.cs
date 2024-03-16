@@ -40,47 +40,45 @@ public class Battle : IBattle
         return randomNumber < (int)chance;
     }
 
+    public double CalcDamage(double dmgMultiplier = 1.0, double stunMultiplier = 1.0)
+    {
+        double dmg = 0;
+        double defDmg = 0;
+
+        if (ChanceSuccessful(Enemy.Dodge))
+        {
+            // Dodge was successful
+            InTurn = Enemy;
+            AnsiConsole.Console.Write(new Markup("The enemy [blue1]dodged[/] the attack!"));
+        }
+        else
+        {
+            // Dodge was not successful
+            defDmg = Hero.Damage*dmgMultiplier / 100;
+            dmg = Hero.Damage*dmgMultiplier - (defDmg * Enemy.DEF);
+            Enemy.Health -= dmg;
+            AnsiConsole.Write(new Markup($"You dealt [green3]{dmg}dmg[/] to the enemy!"));
+            if (ChanceSuccessful(Hero.Stun*stunMultiplier))
+            {
+                // Stun was successful
+                InTurn = Hero;
+                AnsiConsole.Write(new Markup("\nThe enemy is [yellow3_1]stunned![/]"));
+            }
+            else
+            {
+                // Stun was not successful
+                InTurn = Enemy;
+            }
+        }
+
+        return dmg;
+    }
+
     public ICharacter Turn()
     {
         InTurn = Hero;
         var menu = new Menu();
-        double dmg = 0;
-        double defDmg = 0;
         double def = 0;
-
-        int countW = 0;
-        int countL = 0;
-
-        for (int i = 0; i < 100; i++)
-        {
-            if (ChanceSuccessful(Hero.Stun))
-            {
-                countW++;
-            }
-            else
-            {
-                countL++;
-            }
-        }
-
-        Console.WriteLine("Stun: " + countW + " Lose: " + countL);
-
-        countW = 0;
-        countL = 0;
-
-        for (int i = 0; i < 100; i++)
-        {
-            if (ChanceSuccessful(Hero.Dodge))
-            {
-                countW++;
-            }
-            else
-            {
-                countL++;
-            }
-        }
-
-        Console.WriteLine("Dodge: " + countW + " Lose: "+countL);
 
         if (InTurn == Hero)
         {
@@ -91,29 +89,128 @@ public class Battle : IBattle
             {
                 switch (Hero.Type)
                 {
-                    case CharacterType.Hero:
-                        menu.ShowHeroAttacks();
-                        break;
-                    case CharacterType.Warrior:
-                        menu.ShowWarriorAttacks();
-                        break;
                     case CharacterType.Assassin:
-                        menu.ShowAssassinAttacks();
-                        break;
-                    case CharacterType.Paladin:
-                        menu.ShowPaladinAttacks();
-                        break;
-                    case CharacterType.Hunter:
-                        menu.ShowHunterAttacks();
-                        break;
-                    case CharacterType.Ninja:
-                        menu.ShowNinjaAttacks();
+                        AssassinAttacks a = menu.ShowAssassinAttacks();
+                        switch (a)
+                        {
+                            case AssassinAttacks.DaggerStrike:
+                                CalcDamage();
+                                break;
+                            case AssassinAttacks.PoisonDagger:
+                                CalcDamage();
+                                break;
+                            case AssassinAttacks.ShadowStrike:
+                                CalcDamage();
+                                break;
+                        }
                         break;
                     case CharacterType.Elf:
-                        menu.ShowElfAttacks();
+                        ElfAttacks b = menu.ShowElfAttacks();
+                        switch (b)
+                        {
+                            case ElfAttacks.ArrowShot:
+                                CalcDamage();
+                                break;
+                            case ElfAttacks.ArrowRain:
+                                CalcDamage(1.6);
+                                break;
+                            case ElfAttacks.ShockingArrow:
+                                CalcDamage(0.6, 5);
+                                break;
+                        }
+                        break;
+                    case CharacterType.Hero:
+                        HeroAttacks c = menu.ShowHeroAttacks();
+                        switch (c)
+                        {
+                            case HeroAttacks.Crown:
+                                CalcDamage();
+                                break;
+                            case HeroAttacks.GettingACape:
+                                CalcDamage();
+                                break;
+                            case HeroAttacks.HeroicStrike:
+                                CalcDamage();
+                                break;
+                        }
+                        break;
+                    case CharacterType.Hunter:
+                        HunterAttacks d = menu.ShowHunterAttacks();
+                        switch (d)
+                        {
+                            case HunterAttacks.BlastShot:
+                                CalcDamage();
+                                break;
+                            case HunterAttacks.Bloodthirsty:
+                                CalcDamage();
+                                break;
+                            case HunterAttacks.Explorer:
+                                CalcDamage();
+                                break;
+                        }
                         break;
                     case CharacterType.Mage:
-                        menu.ShowMageAttacks();
+                        MageAttacks e = menu.ShowMageAttacks();
+                        switch (e)
+                        {
+                            case MageAttacks.Fireball:
+                                CalcDamage();
+                                break;
+                            case MageAttacks.IceShard:
+                                CalcDamage();
+                                break;
+                            case MageAttacks.Thunderbolt:
+                                CalcDamage();
+                                break;
+                        }
+                        break;
+                    case CharacterType.Ninja:
+                        NinjaAttacks f = menu.ShowNinjaAttacks();
+                        if (f != NinjaAttacks.None)
+                        {
+                            switch (f)
+                            {
+                                case NinjaAttacks.SharperDagger:
+                                    CalcDamage();
+                                    break;
+                                case NinjaAttacks.SmokeBomb:
+                                    CalcDamage();
+                                    break;
+                                case NinjaAttacks.SpinningBlades:
+                                    CalcDamage();
+                                    break;
+                            }
+                        }
+                        break;
+                    case CharacterType.Paladin:
+                        PaladinAttacks g = menu.ShowPaladinAttacks();
+                        switch (g)
+                        {
+                            case PaladinAttacks.HolyStrike:
+                                CalcDamage();
+                                break;
+                            case PaladinAttacks.HolyShield:
+                                CalcDamage();
+                                break;
+                            case PaladinAttacks.HolyLight:
+                                CalcDamage();
+                                break;
+                        }
+                        break;
+                    case CharacterType.Warrior:
+                        WarriorAttacks h = menu.ShowWarriorAttacks();
+                        switch (h)
+                        {
+                            case WarriorAttacks.Slash:
+                                CalcDamage();
+                                break;
+                            case WarriorAttacks.ShieldBash:
+                                CalcDamage();
+                                break;
+                            case WarriorAttacks.WarCry:
+                                CalcDamage();
+                                break;
+                        }
                         break;
                 }
             }
@@ -157,37 +254,10 @@ public class Battle : IBattle
             }
             else
             {
-                double losthp = Hero.Health/100 * 5;
+                double losthp = Hero.Health/100 * 10;
                 Hero.Health -= losthp;
                 AnsiConsole.Write(new Markup($"You chose run and lost [red1]{losthp}hp[/] during the escape!"));
             }
-
-            if (ChanceSuccessful(Enemy.Dodge))
-            {
-                // Dodge was successful
-                InTurn = Enemy;
-            }
-            else
-            {
-                // Dodge was not successful
-                defDmg = Hero.Damage / 100;
-                dmg = Hero.Damage - (defDmg * Enemy.DEF);
-                Enemy.Health -= dmg;
-                if (ChanceSuccessful(Hero.Stun))
-                {
-                    // Stun was successful
-                    InTurn = Hero;
-                }
-                else
-                {
-                    // Stun was not successful
-                    InTurn = Enemy;
-                }
-            }
-
-            countW = 0;
-            countL = 0;
-
         }
         else
         {
@@ -200,8 +270,8 @@ public class Battle : IBattle
             else
             {
                 // Dodge was not successful
-                defDmg = Enemy.Damage / 100;
-                dmg = Enemy.Damage - (defDmg * Hero.DEF);
+                double defDmg = Enemy.Damage / 100;
+                double dmg = Enemy.Damage - (defDmg * Hero.DEF);
                 Hero.Health -= dmg;
                 if (ChanceSuccessful(Enemy.Stun))
                 {
