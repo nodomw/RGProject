@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.JavaScript;
 using System.Text;
 using System.Threading.Tasks;
+using FantasyRPG.Characters;
 using FantasyRPG.Combat;
 using RGProject.Characters.Enemies;
 using RGProject.Characters.Heroes;
@@ -14,9 +15,17 @@ namespace FantasyRPG.UI;
 
 internal class Menu
 {
-    public Battle menubattle = new Battle(new Elf("asd"), new Emperor("dsa"));
-
+    // TODO: get the classes n shit from the external part
+    public ICharacter hero { get; set; } = new Hero("test");
+    public ICharacter enemy { get; set; } = new Vampire("test2");
+    public Battle menubattle;
     public string currentmenu = "";
+
+    public Menu()
+    {
+        menubattle = new Battle(hero, enemy);
+    }
+
     public void PreviousMenu()
     {
         switch (currentmenu)
@@ -88,6 +97,18 @@ internal class Menu
         string[] everything = {name, hero};
         AnsiConsole.WriteLine($"You chose {name}, who is a(n) {hero}! Good luck on your adventure!");
         Console.ReadKey();
+        this.hero = hero switch
+        {
+            "Warrior" => new Warrior(name),
+            "Mage" => new Mage(name),
+            "Elf" => new Elf(name),
+            "Assassin" => new Assassin(name),
+            "Paladin" => new Paladin(name),
+            "Hero" => new Hero(name),
+            "Hunter" => new Hunter(name),
+            "Ninja" => new Ninja(name),
+            _ => throw new ArgumentOutOfRangeException()
+        };
         return everything;
     }
 
