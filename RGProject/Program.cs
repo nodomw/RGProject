@@ -32,9 +32,10 @@ ICharacter hero = charclass switch
 	_ => throw new ArgumentOutOfRangeException()
 };
 
-menu.hero = hero;
 menu.enemy = enemy;
+menu.hero = hero;
 Battle battle = new Battle(hero, enemy);
+menu.battle = battle;
 battle.Turn();
 
 /*Console.Clear();
