@@ -1,4 +1,5 @@
 ﻿// Ignore Spelling: Enums
+using System.ComponentModel;
 using FantasyRPG.Map.Tiles;
 using Spectre.Console;
 
@@ -35,20 +36,21 @@ public class Map
     public string Name { get; }
     public Player PlayerTile { get; set; }
 
-    public bool SwapTile(ITile tile, ITile tile2) // TODO (should work now though)
+    public void MoveTile(ITile tile, TilePosition to)
     {
-        if (Tiles[tile.Position.X, tile.Position.Y] == null || Tiles[tile2.Position.X, tile2.Position.Y] == null) return false;
+        // move the tile at 'to' to the position of 'tile'
+        ITile tile1 = GetTileByPosition(to);
+        Tiles[tile.Position.X, tile.Position.Y] = tile1;
 
-        Tiles[tile.Position.X, tile.Position.Y] = tile2;
-        Tiles[tile2.Position.X, tile2.Position.Y] = tile;
-
-        return true;
+        // move 'tile' to 'to'
+        Tiles[to.X, to.Y] = tile;
+        tile.Position = to;
     }
-    public bool ReplaceTile(TilePosition at, ITile to) // TODO (same here)
+    public bool ReplaceTile(TilePosition at, ITile tile) // TODO (same here)
     {
         if (Tiles[at.X, at.Y] == null) return false;
 
-        Tiles[at.X, at.Y] = to;
+        Tiles[at.X, at.Y] = tile;
 
         return true;
     }
