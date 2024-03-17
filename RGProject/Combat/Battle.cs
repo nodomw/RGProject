@@ -98,10 +98,11 @@ public class Battle : IBattle
                                 CalcDamage();
                                 break;
                             case AssassinAttacks.PoisonDagger:
-                                CalcDamage();
+                                CalcDamage(0.4);
                                 break;
                             case AssassinAttacks.ShadowStrike:
                                 CalcDamage();
+                                Hero.Dodge = Hero.TempDodge;
                                 break;
                         }
                         break;
@@ -124,13 +125,13 @@ public class Battle : IBattle
                         HeroAttacks c = menu.ShowHeroAttacks();
                         switch (c)
                         {
-                            case HeroAttacks.Crown:
+                            case HeroAttacks.HeroicStrike:
                                 CalcDamage();
+                                break;
+                            case HeroAttacks.Crown:
+                                CalcDamage(0.3);
                                 break;
                             case HeroAttacks.GettingACape:
-                                CalcDamage();
-                                break;
-                            case HeroAttacks.HeroicStrike:
                                 CalcDamage();
                                 break;
                         }

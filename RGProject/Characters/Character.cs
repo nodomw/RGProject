@@ -37,11 +37,17 @@ public interface ICharacter
 
     public double Health { get; set; } // HP
     public double Damage { get; set; } // ATK
-    public double CounterDamage { get; set; } // CATK%
+    public double CATK { get; set; } // CATK%
     public double DEF { get; set; } // DEF%
+    public double Crit { get; set; } // DEF%
     public double Dodge { get; set; } // %
     public double Stun { get; set; } // %
     public double Combo { get; set; } // %
+    public double TempDodge { get; set; } // %
+    public double TempStun { get; set; } // %
+    public double TempCrit { get; set; } // %
+    public double DmgBoost { get; set; } // %
+    public double DEFBoost { get; set; } // %
     public List<IPotion> Potions { get; set; }
     public IWeapon Weapon { get; set; }
 

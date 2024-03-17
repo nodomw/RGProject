@@ -18,11 +18,17 @@ public class Headhunter : ICharacter
 	public int XP { get; set; } = 0;
 	public double Health { get; set; } = 6000;
 	public double Damage { get; set; } = 300;
-	public double CounterDamage { get; set; } = 0;
+	public double CATK { get; set; } = 0;
 	public double DEF { get; set; } = 0;
+	public double Crit { get; set; } = 0;
 	public double Dodge { get; set; } = 25;
 	public double Stun { get; set; } = 10;
 	public double Combo { get; set; } = 0;
+	public double TempDodge { get; set; }
+	public double TempStun { get; set; } // %
+	public double TempCrit { get; set; } // %
+	public double DmgBoost { get; set; } // %
+	public double DEFBoost { get; set; } // %
 	public List<IPotion> Potions { get; set; }
 	public IWeapon Weapon { get; set; }
 }
