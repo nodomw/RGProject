@@ -147,5 +147,15 @@ public class Map
         throw new Exception("Tile not found");
     }
     // Get a tile by its position
-    public ITile GetTileByPosition(TilePosition position) => Tiles[position.X, position.Y];
+    public ITile GetTileByPosition(TilePosition position)
+    {
+        try
+        {
+            return Tiles[position.X, position.Y];
+        }
+        catch (IndexOutOfRangeException)
+        {
+            return new Empty();
+        }
+    }
 }
