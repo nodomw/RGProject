@@ -1,45 +1,59 @@
 ﻿using FantasyRPG.UI;
 using FantasyRPG.Map;
 using Spectre.Console;
-using FantasyRPG.Items;
 using FantasyRPG.Combat;
 using FantasyRPG.Map.Tiles;
 using FantasyRPG.Characters;
 using RGProject.Characters.Heroes;
 using RGProject.Characters.Enemies;
-using FantasyRPG.Items.Potions;
 
-var menu = new Menu();
-var battle = new Battle(new Hunter("joni"), new Vampire("gino"));
+Menu menu = new Menu();
 var font = FigletFont.Load("ANSI Shadow.flf");
 var font2 = FigletFont.Load("Cyberlarge.flf");
+string charclass = "";
 string charname = "";
+string[] temp = new string[2];
+
+temp = menu.ShowCharSelection();
+charname = temp[0];
+charclass = temp[1];
+
+ICharacter hero;
+
+switch (charclass)
+{
+    case "Assassin":
+        hero= new Assassin(charname);
+        break;
+    case "Elf":
+        hero = new Elf(charname);
+        break;
+    case "Hero":
+        hero = new Hero(charname);
+        break;
+    case "Hunter":
+        hero = new Hunter(charname);
+        break;
+    case "Mage":
+        hero = new Mage(charname);
+        break;
+    case "Ninja":
+        hero = new Ninja(charname);
+        break;
+    case "Paladin":
+        hero = new Paladin(charname);
+        break;
+    case "Warrior":
+        hero = new Warrior(charname);
+        break;
+    default:
+        hero = new Hero(charname);
+        break;
+}
+Battle battle = new Battle(hero,new Emperor("Lajos"));
+menu = new Menu { menubattle = battle };
 
 battle.Turn();
-Enemy v = new("vampire", new Vampire("gino juno"));
-Loot dp = new(new Damage());
-Loot hp = new(new Heal());
-Loot rp = new(new Resistance());
-Empty e = new();
-Terrain t = new();
-
-Map m1 = new Map("map 1", new ITile[,] {
-	// Create a 10x10 array of Tiles which consist of the following:
-	// Empty, Terrain, Loot, Enemy
-	// There must be only one Player tile
-	{ e, e, e, e, e, e, e, e, e, e },
-	{ e, e, e, e, e, e, e, e, e, e },
-	{ e, e, e, e, e, e, e, e, e, e },
-	{ e, e, e, e, e, e, e, e, e, e },
-	{ e, e, e, e, e, e, e, e, e, e },
-	{ e, e, e, e, e, e, e, e, e, e },
-	{ e, e, e, e, e, e, e, e, e, e },
-	{ e, e, e, e, e, e, e, e, e, e },
-	{ e, e, e, e, e, e, e, e, e, e },
-	{ e, e, e, e, e, e, e, e, e, e }
-});
-
-m1.Draw();
 
 /*Console.Clear();
 AnsiConsole.Write(new FigletText(font2, "Welcome to").Centered().Color(Color.White));
@@ -48,5 +62,6 @@ AnsiConsole.Write(new FigletText(font, "Fantasy Frontiers").Centered().Color(Col
 AnsiConsole.Write(new Markup("[red]Press any key to continue.....[/]"));
 Console.ReadKey();
 
-game.Show();
-game.ShowPeaceMenu();*/
+temp = menu.Show();
+charname = temp[0];
+charclass = temp[1];*/

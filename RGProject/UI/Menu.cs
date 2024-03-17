@@ -14,7 +14,7 @@ namespace FantasyRPG.UI;
 
 internal class Menu
 {
-    public Battle menubattle = new Battle(new Elf("asd"), new Emperor("dsa"));
+    public Battle menubattle; //= new Battle(new Elf("asd"), new Emperor("dsa"));
 
     public string currentmenu = "";
     public void PreviousMenu()
