@@ -85,7 +85,7 @@ internal class Menu
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
                 .AddChoices(new[]
                 {
-                    "Warrior", "Mage", "Elf", "Assassin", "Paladin", "Hero", "Hunter", "Ninja"
+                    "Assassin", "Elf", "Hero", "Hunter", "Mage", "Ninja", "Paladin", "Warrior"
                 }));
 
         string name = ShowCharCreation();

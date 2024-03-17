@@ -36,8 +36,8 @@ public class Ninja : ICharacter
 	public double TempDodge { get; set; }
 	public double TempStun { get; set; } // %
 	public double TempCrit { get; set; } // %
-	public double DmgBoost { get; set; } // %
-	public double DEFBoost { get; set; } // %
+	public double TempDmg { get; set; } // %
+	public double TempDEF { get; set; } // %
 	public List<IPotion> Potions { get; set; }
 	public IWeapon Weapon { get; set; }
 }

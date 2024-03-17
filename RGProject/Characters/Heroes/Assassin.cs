@@ -29,15 +29,15 @@ public class Assassin : ICharacter
 	public double Damage { get; set; } = 600;
 	public double CATK { get; set; } = 10;
 	public double DEF { get; set; } = 5; // %
-	public double Crit { get; set; } = 0;
+	public double Crit { get; set; } = 100;
 	public double Dodge { get; set; } = 25;
 	public double Stun { get; set; } = 25;
 	public double Combo { get; set; } = 0;
-	public double TempDodge { get; set; } = 75;
+	public double TempDodge { get; set; }
 	public double TempStun { get; set; } // %
 	public double TempCrit { get; set; } // %
-	public double DmgBoost { get; set; } // %
-	public double DEFBoost { get; set; } // %
+	public double TempDmg { get; set; } // %
+	public double TempDEF { get; set; } // %
 	public List<IPotion> Potions { get; set; }
 	public IWeapon Weapon { get; set; }
 }

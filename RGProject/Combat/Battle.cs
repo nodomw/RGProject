@@ -55,21 +55,24 @@ public class Battle : IBattle
         else
         {
             // Dodge was not successful
-            defDmg = Hero.Damage*dmgMultiplier / 100;
-            dmg = Hero.Damage*dmgMultiplier - (defDmg * Enemy.DEF);
-            Enemy.Health -= dmg;
-            AnsiConsole.Write(new Markup($"You dealt [green3]{dmg}dmg[/] to the enemy!"));
-            if (ChanceSuccessful(Hero.Stun*stunMultiplier))
+            if (ChanceSuccessful(Hero.Crit))
             {
-                // Stun was successful
-                InTurn = Hero;
-                AnsiConsole.Write(new Markup("\nThe enemy is [yellow3_1]stunned![/]"));
+                defDmg = Hero.Damage*dmgMultiplier / 100;
+                dmg = Hero.Damage*dmgMultiplier*2 - (defDmg * Enemy.DEF);
+                Enemy.Health -= dmg;
+                Hero.TempStun = Hero.Stun;
+                Hero.Stun += 20;
+                AnsiConsole.Write(new Markup($"You hit a [yellow]critical[/] point and dealt [green3]{dmg}dmg[/] to the enemy!"));
+
             }
             else
             {
-                // Stun was not successful
-                InTurn = Enemy;
+                defDmg = Hero.Damage*dmgMultiplier / 100;
+                dmg = Hero.Damage*dmgMultiplier - (defDmg * Enemy.DEF);
+                Enemy.Health -= dmg;
+                AnsiConsole.Write(new Markup($"You dealt [green3]{dmg}dmg[/] to the enemy!"));
             }
+
         }
 
         return dmg;
@@ -102,7 +105,8 @@ public class Battle : IBattle
                                 break;
                             case AssassinAttacks.ShadowStrike:
                                 CalcDamage();
-                                Hero.Dodge = Hero.TempDodge;
+                                Hero.TempDodge = Hero.Dodge;
+                                Hero.Dodge = 75;
                                 break;
                         }
                         break;
@@ -129,10 +133,19 @@ public class Battle : IBattle
                                 CalcDamage();
                                 break;
                             case HeroAttacks.Crown:
+                                Hero.TempCrit = Hero.Crit;
+                                Hero.Crit += 25;
                                 CalcDamage(0.3);
+                                Hero.TempDEF = Hero.DEF;
+                                Hero.DEF += 25;
+                                Hero.Crit = Hero.TempCrit;
                                 break;
                             case HeroAttacks.GettingACape:
                                 CalcDamage();
+                                Hero.TempDmg = Hero.Damage;
+                                Hero.TempDEF = Hero.DEF;
+                                Hero.Damage += 20;
+                                Hero.DEF += 10;
                                 break;
                         }
                         break;
