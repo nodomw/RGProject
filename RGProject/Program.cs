@@ -7,52 +7,35 @@ using FantasyRPG.Characters;
 using RGProject.Characters.Heroes;
 using RGProject.Characters.Enemies;
 
-Menu menu = new Menu();
+var enemy = new Emperor("Lajos");
 var font = FigletFont.Load("ANSI Shadow.flf");
 var font2 = FigletFont.Load("Cyberlarge.flf");
 string charclass = "";
 string charname = "";
 string[] temp = new string[2];
 
+var menu = new Menu();
 temp = menu.ShowCharSelection();
 charname = temp[0];
 charclass = temp[1];
 
-ICharacter hero;
-
-switch (charclass)
+ICharacter hero = charclass switch
 {
-    case "Assassin":
-        hero= new Assassin(charname);
-        break;
-    case "Elf":
-        hero = new Elf(charname);
-        break;
-    case "Hero":
-        hero = new Hero(charname);
-        break;
-    case "Hunter":
-        hero = new Hunter(charname);
-        break;
-    case "Mage":
-        hero = new Mage(charname);
-        break;
-    case "Ninja":
-        hero = new Ninja(charname);
-        break;
-    case "Paladin":
-        hero = new Paladin(charname);
-        break;
-    case "Warrior":
-        hero = new Warrior(charname);
-        break;
-    default:
-        hero = new Hero(charname);
-        break;
-}
-Battle battle = new Battle(hero,new Emperor("Lajos"));
-menu = new Menu { menubattle = battle };
+	"Warrior" => new Warrior(charname),
+	"Mage" => new Mage(charname),
+	"Elf" => new Elf(charname),
+	"Assassin" => new Assassin(charname),
+	"Paladin" => new Paladin(charname),
+	"Hero" => new Hero(charname),
+	"Hunter" => new Hunter(charname),
+	"Ninja" => new Ninja(charname),
+	_ => throw new ArgumentOutOfRangeException()
+};
 
+menu.enemy = enemy;
+menu.hero = hero;
+Battle battle = new Battle(hero, enemy);
+menu.battle = battle;
 battle.Turn();
 
 /*Console.Clear();

@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.JavaScript;
 using System.Text;
 using System.Threading.Tasks;
+using FantasyRPG.Characters;
 using FantasyRPG.Combat;
 using RGProject.Characters.Enemies;
 using RGProject.Characters.Heroes;
@@ -14,18 +15,21 @@ namespace FantasyRPG.UI;
 
 internal class Menu
 {
-    public Battle menubattle; //= new Battle(new Elf("asd"), new Emperor("dsa"));
-
+    // TODO: get the classes n shit from the external part
+    public ICharacter hero;
+    public ICharacter enemy { get; set; }
+    public Battle battle { get; set; }
     public string currentmenu = "";
+
     public void PreviousMenu()
     {
         switch (currentmenu)
         {
             case "ShowElfInfo" or "ShowWarriorInfo" or "ShowMageInfo" or "ShowAssassinInfo" or "ShowPaladinInfo" or "ShowHeroInfo" or "ShowHunterInfo" or "ShowNinjaInfo":
-                menubattle.Turn();
+                battle.Turn();
                 break;
             case "ShowElfAttacks" or "ShowWarriorAttacks" or "ShowMageAttacks" or "ShowAssassinAttacks" or "ShowPaladinAttacks" or "ShowHeroAttacks" or "ShowHunterAttacks" or "ShowNinjaAttacks":
-                menubattle.Turn();
+                battle.Turn();
                 break;
         }
     }
@@ -88,6 +92,18 @@ internal class Menu
         string[] everything = {name, hero};
         AnsiConsole.WriteLine($"You chose {name}, who is a(n) {hero}! Good luck on your adventure!");
         Console.ReadKey();
+        this.hero = hero switch
+        {
+            "Warrior" => new Warrior(name),
+            "Mage" => new Mage(name),
+            "Elf" => new Elf(name),
+            "Assassin" => new Assassin(name),
+            "Paladin" => new Paladin(name),
+            "Hero" => new Hero(name),
+            "Hunter" => new Hunter(name),
+            "Ninja" => new Ninja(name),
+            _ => throw new ArgumentOutOfRangeException()
+        };
         return everything;
     }
 
