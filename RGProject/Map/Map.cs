@@ -138,13 +138,21 @@ public class Map
             AnsiConsole.WriteLine();
         }
     }
-    public ITile GetTileById(Guid id) // Get a tile by its id
+    public ITile GetTileById(Guid id) // just hope it doesn't take O(n^2)
     {
-        foreach (var tile in Tiles)
+        // if LINQ was evil:
+        // Tiles.AsQueryable().Select(tile => tile.Id == id);
+
+        // if LINQ was good:
+        foreach (var Tile in Tiles)
         {
-            if (tile.Id == id) return tile;
+            if (Tile.Id == id)
+            {
+                return Tile;
+            }
         }
         throw new Exception("Tile not found");
+
     }
     // Get a tile by its position
     public ITile GetTileByPosition(TilePosition position)
@@ -155,7 +163,10 @@ public class Map
         }
         catch (IndexOutOfRangeException)
         {
-            return new Empty();
+            ITile FakeTile = new Empty();
+            FakeTile.Passable = true;
+            // FakeTile.Fake = true;
+            return FakeTile;
         }
     }
 }

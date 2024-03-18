@@ -15,6 +15,7 @@ public class Enemy : ITile
     public TileType Type { get; } = TileType.Enemy;
     public ICharacter Character { get; }
     public TilePosition Position { get; set; }
+    public bool Passable { get; set; } = false;
     public string Name { get; set; } = "Enemy";
     public Markup DisplayCharacter { get; } = new Markup("[red]![/]");
     public string Interact() => "A vicious foe.";

@@ -14,6 +14,7 @@ namespace FantasyRPG.Map.Tiles
         public TileType Type { get; } = TileType.Servant;
         public ICharacter Character { get; }
         public TilePosition Position { get; set; }
+        public bool Passable { get; set; } = true;
         public string Name { get; set; } = "Servant";
         public Markup DisplayCharacter { get; } = new Markup("[blue]S[/]");
         public string Interact() => "Your fellow ally, ready to help out at a moment's notice.";
