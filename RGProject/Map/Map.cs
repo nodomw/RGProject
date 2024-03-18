@@ -88,7 +88,7 @@ public class Map
     {
         TilePosition Center = PlayerTile.Position;
 
-        Markup[,] grid = new Markup[,]
+        Markup[,] grid = new Markup[,] // IF I MISS THIS JUMPSHOT I'LL KILL MYSELF
         {
             {
                 GetTileByPosition(new TilePosition(Center.X - 2, Center.Y + 2)).DisplayCharacter,
