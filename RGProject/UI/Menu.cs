@@ -417,7 +417,7 @@ public class Menu(Battle battle)
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
                 .AddChoices(new[]
                 {
-                    "Every ability has a 3 round cooldown, except for the basic attack.",
+                    "Every ability has a 3 rounds cooldown, except for the basic attack.",
                     "Run: you lose 10% hp",
                     "Defend: increases your defense by 25%",
                     "Dagger strike: Basic attack, deals 600 damage",
@@ -536,7 +536,7 @@ public class Menu(Battle battle)
                     "Defend: increases your defense by 25%",
                     "Heroic strike:",
                     "Crown: deals 100 damage and givs you 25% critical damage. The next round you will gain 25% defence. 3 round cooldown",
-                    "Getting a cape: The next 2 rounds you will gain 20% dmg and 10% def. 3 round cooldown.",
+                    "Getting a cape: The next 2 rounds you will gain 20% dmg and 10% def. 3 rounds cooldown.",
                     "[red]Exit[/]"
                 }));
 
@@ -592,8 +592,8 @@ public class Menu(Battle battle)
                     "Run: you lose 10% hp",
                     "Defend: increases your defense by 25%",
                     "Blast shot: basic attack, deals 700 damage",
-                    "Bloodthristy: -20% from the enemy's health, and boosting your stun by 10%, but your damage is decreasing by 14,5% for this map. Useable only once/map after 3 hit!",
-                    "Explorer: Gives you 1 random item which can be found on the current map. After used yoour item you get you deal 550 damage automatically. Useable once/map",
+                    "Bloodthristy: -20% from the enemy's health, and boosting your stun by 10%, but your damage is decreasing by 14,5% for this map. Can be used only once/map after 3 hit!",
+                    "Explorer: Gives you 1 random item which can be found on the current map. After it's used your damage is decreasing by 14,5% for this map. Can be used once/map",
                     "[red]Exit[/]"
                 }));
 
@@ -650,7 +650,7 @@ public class Menu(Battle battle)
                     "Defend: increases your defense by 25%",
                     "Spinning blades: basic attack, deals 400 damage",
                     "Smoke bomb: Doesnt deals damage and you cannot shoot for 2 rounds but you gain 3x multiplier for run and you wont lose hp if you run",
-                    "Sharper dagger: 600 dmg, enemy only has 85% damage in the next round. 3 round cooldown",
+                    "Sharper dagger: 600 dmg, enemy only has 85% damage in the next round. 3 rounds cooldown",
                     "[red]Exit[/]"
                 }));
 

@@ -199,11 +199,15 @@ public class Battle : IBattle
                                 break;
                             case AssassinAttacks.PoisonDagger:
                                 CalcDamage(0.4);
+                                //Next round 50dmg and -50% dmg from enemy
+                                //3 rounds cooldown
                                 break;
                             case AssassinAttacks.ShadowStrike:
-                                CalcDamage();
                                 Hero.TempDodge = Hero.Dodge;
                                 Hero.Dodge = 75;
+                                CalcDamage();
+                                Hero.Dodge = Hero.TempDodge;
+                                //4 rounds cooldown
                                 break;
                         }
                         break;
@@ -216,9 +220,11 @@ public class Battle : IBattle
                                 break;
                             case ElfAttacks.ArrowRain:
                                 CalcDamage(1.6);
+                                //3 rounds cooldown
                                 break;
                             case ElfAttacks.ShockingArrow:
                                 CalcDamage(0.6, 5);
+                                //3 rounds cooldown
                                 break;
                         }
                         break;
@@ -236,6 +242,7 @@ public class Battle : IBattle
                                 Hero.TempDEF = Hero.DEF;
                                 Hero.DEF += 25;
                                 Hero.Crit = Hero.TempCrit;
+                                //3 rounds cooldown
                                 break;
                             case HeroAttacks.GettingACape:
                                 CalcDamage();
@@ -243,6 +250,7 @@ public class Battle : IBattle
                                 Hero.TempDEF = Hero.DEF;
                                 Hero.Damage += 20;
                                 Hero.DEF += 10;
+                                //3 rounds cooldown
                                 break;
                         }
                         break;
@@ -258,9 +266,12 @@ public class Battle : IBattle
                                 Hero.Damage *= 0.855;
                                 bloodthirsty = true;
                                 AnsiConsole.Write(new Markup("You used [red1]Bloodthirsty[/] and dealt 20% of the enemy's health and increased your stun by 10%"));
+                                //Once/map
                                 break;
                             case HunterAttacks.Explorer:
-                                CalcDamage();
+                                Hero.Damage *= 0.855;
+                                //Gets a random item on the map
+                                //Once/map
                                 break;
                         }
                         break;
@@ -272,10 +283,13 @@ public class Battle : IBattle
                                 CalcDamage();
                                 break;
                             case MageAttacks.IceShard:
-                                CalcDamage();
+                                CalcDamage(0.375);
+                                //Next round enemy dmg -50%
+                                //3 rounds cooldown
                                 break;
                             case MageAttacks.Thunderbolt:
-                                CalcDamage();
+                                CalcDamage(1.75);
+                                //3 rounds cooldown
                                 break;
                         }
                         break;
@@ -285,14 +299,17 @@ public class Battle : IBattle
                         {
                             switch (f)
                             {
-                                case NinjaAttacks.SharperDagger:
+                                case NinjaAttacks.SpinningBlades:
                                     CalcDamage();
                                     break;
                                 case NinjaAttacks.SmokeBomb:
                                     CalcDamage();
+                                    //3 rounds cooldwon
                                     break;
-                                case NinjaAttacks.SpinningBlades:
-                                    CalcDamage();
+                                case NinjaAttacks.SharperDagger:
+                                    CalcDamage(1.5);
+                                    //Next round enemy -15% dmg
+                                    //3 rounds cooldown
                                     break;
                             }
                         }
@@ -305,10 +322,15 @@ public class Battle : IBattle
                                 CalcDamage();
                                 break;
                             case PaladinAttacks.HolyShield:
-                                CalcDamage();
+                                Hero.Health += 500;
+                                //Next round DEF +20%
+                                //3 rounds cooldown
                                 break;
                             case PaladinAttacks.HolyLight:
-                                CalcDamage();
+                                Hero.Health -= 300;
+                                CalcDamage(2.667);
+                                //Next round -10% def and -25% catk
+                                //3 rounds cooldown
                                 break;
                         }
                         break;
@@ -320,10 +342,17 @@ public class Battle : IBattle
                                 CalcDamage();
                                 break;
                             case WarriorAttacks.ShieldBash:
-                                CalcDamage();
+                                Hero.Health += 200;
+                                //Next round DEF +70% and CATK +70%
+                                //3 rounds cooldown
                                 break;
                             case WarriorAttacks.WarCry:
-                                CalcDamage();
+                                Hero.TempCombo = Hero.Combo;
+                                Hero.Combo += 45;
+                                CalcDamage(0.5);
+                                Hero.Combo = Hero.TempCombo;
+                                //Next round +20% DEF
+                                //3 rounds cooldown
                                 break;
                         }
                         break;

@@ -29,6 +29,8 @@ public class Prince : ICharacter
 	public double TempCrit { get; set; } // %
 	public double TempDmg { get; set; } // %
 	public double TempDEF { get; set; } // %
+	public double TempCombo { get; set; } // %
+	public double TempCATK { get; set; } // %
 	public List<IPotion> Potions { get; set; }
 	public IWeapon Weapon { get; set; }
 }

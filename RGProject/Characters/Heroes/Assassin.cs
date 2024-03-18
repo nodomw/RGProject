@@ -32,12 +32,14 @@ public class Assassin : ICharacter
 	public double Crit { get; set; } = 10;
 	public double Dodge { get; set; } = 25;
 	public double Stun { get; set; } = 25;
-	public double Combo { get; set; } = 50;
+	public double Combo { get; set; } = 25;
 	public double TempDodge { get; set; }
 	public double TempStun { get; set; } // %
 	public double TempCrit { get; set; } // %
 	public double TempDmg { get; set; } // %
 	public double TempDEF { get; set; } // %
+	public double TempCombo { get; set; } // %
+	public double TempCATK { get; set; } // %
 	public List<IPotion> Potions { get; set; }
 	public IWeapon Weapon { get; set; }
 }
