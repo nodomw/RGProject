@@ -40,6 +40,7 @@ public interface ITile
     public Guid Id { get; }
     public TileType Type { get; }
     public TilePosition Position { get; set; } // TODO: add to all classes that inherit
+    public bool Passable { get; set; }
     public string Name { get; set; }
     public string Interact();
     public Markup DisplayCharacter { get; }

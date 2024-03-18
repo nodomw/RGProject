@@ -14,6 +14,7 @@ namespace FantasyRPG.Map.Tiles
         public TileType Type { get; } = TileType.Player;
         public string Name { get; set; }
         public ICharacter Character { get; }
+        public bool Passable { get; set; } = true;
         public TilePosition Position { get; set; }
         public Markup DisplayCharacter { get; } = new Markup("[white]*[/]");
         public string Interact() => "You, yourself and you.";
