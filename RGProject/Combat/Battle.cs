@@ -55,29 +55,87 @@ public class Battle : IBattle
         else
         {
             // Dodge was not successful
-            if (ChanceSuccessful(Hero.Crit))
+            if (bloodthirsty)
             {
-                defDmg = Hero.Damage*dmgMultiplier / 100;
-                dmg = Hero.Damage*dmgMultiplier*2 - (defDmg * Enemy.DEF);
-                Enemy.Health -= dmg;
-                Hero.TempStun = Hero.Stun;
-                Hero.Stun += 20;
-                AnsiConsole.Write(new Markup($"You hit a [yellow]critical[/] point and dealt [green3]{dmg}dmg[/] to the enemy!"));
+                if (ChanceSuccessful(Hero.Crit))
+                {
+                    dmg = Enemy.Health * 0.80;
+                    Enemy.Health -= dmg;
+                    Hero.TempStun = Hero.Stun;
+                    Hero.Stun += 20;
+                    if (ChanceSuccessful(Hero.Stun))
+                    {
+                        AnsiConsole.Write(new Markup($"You hit a [red1]critical[/] point and dealt [green3]{dmg}dmg[/] to the enemy and [yellow1]stunned[/] it!"));
+                        InTurn = Hero;
+                    }
+                    else
+                    {
+                        AnsiConsole.Write(new Markup($"You hit a [red1]critical[/] point and dealt [green3]{dmg}dmg[/] to the enemy!"));
+                        InTurn = Enemy;
+                    }
 
+                }
+                else
+                {
+                    defDmg = Hero.Damage*dmgMultiplier / 100;
+                    dmg = Hero.Damage*dmgMultiplier - (defDmg * Enemy.DEF);
+                    Enemy.Health -= dmg;
+                    if (ChanceSuccessful(Hero.Stun))
+                    {
+                        AnsiConsole.Write(new Markup($"You dealt [green3]{dmg}dmg[/] to the enemy and [yellow1]stunned[/] it!"));
+                        InTurn = Hero;
+                    }
+                    else
+                    {
+                        AnsiConsole.Write(new Markup($"You dealt [green3]{dmg}dmg[/] to the enemy!"));
+                        InTurn = Enemy;
+                    }
+                }
             }
             else
             {
-                defDmg = Hero.Damage*dmgMultiplier / 100;
-                dmg = Hero.Damage*dmgMultiplier - (defDmg * Enemy.DEF);
-                Enemy.Health -= dmg;
-                AnsiConsole.Write(new Markup($"You dealt [green3]{dmg}dmg[/] to the enemy!"));
-            }
+                if (ChanceSuccessful(Hero.Crit))
+                {
+                    defDmg = Hero.Damage*dmgMultiplier / 100;
+                    dmg = Hero.Damage*dmgMultiplier*2 - (defDmg * Enemy.DEF);
+                    Enemy.Health -= dmg;
+                    Hero.TempStun = Hero.Stun;
+                    Hero.Stun += 20;
+                    if (ChanceSuccessful(Hero.Stun))
+                    {
+                        AnsiConsole.Write(new Markup($"You hit a [red1]critical[/] point and dealt [green3]{dmg}dmg[/] to the enemy and [yellow1]stunned[/] it!"));
+                        InTurn = Hero;
+                    }
+                    else
+                    {
+                        AnsiConsole.Write(new Markup($"You hit a [red1]critical[/] point and dealt [green3]{dmg}dmg[/] to the enemy!"));
+                        InTurn = Enemy;
+                    }
 
+                }
+                else
+                {
+                    defDmg = Hero.Damage*dmgMultiplier / 100;
+                    dmg = Hero.Damage*dmgMultiplier - (defDmg * Enemy.DEF);
+                    Enemy.Health -= dmg;
+                    if (ChanceSuccessful(Hero.Stun))
+                    {
+                        AnsiConsole.Write(new Markup($"You dealt [green3]{dmg}dmg[/] to the enemy and [yellow1]stunned[/] it!"));
+                        InTurn = Hero;
+                    }
+                    else
+                    {
+                        AnsiConsole.Write(new Markup($"You dealt [green3]{dmg}dmg[/] to the enemy!"));
+                        InTurn = Enemy;
+                    }
+                }
+            }
         }
 
         return dmg;
     }
 
+    public bool bloodthirsty = true;
     public ICharacter Turn()
     {
         InTurn = Hero;
@@ -157,7 +215,10 @@ public class Battle : IBattle
                                 CalcDamage();
                                 break;
                             case HunterAttacks.Bloodthirsty:
-                                CalcDamage();
+                                Enemy.Health *= 0.8;
+                                Hero.Damage *= 0.855;
+                                bloodthirsty = true;
+                                AnsiConsole.Write(new Markup("You used [red1]Bloodthirsty[/] and dealt 20% of the enemy's health and increased your stun by 10%"));
                                 break;
                             case HunterAttacks.Explorer:
                                 CalcDamage();
@@ -233,7 +294,7 @@ public class Battle : IBattle
             {
                 def = Hero.DEF + (25 * (Hero.DEF / 100));
             }
-            else if (move == "Use item")
+            else if (move == "Use Item")
             {
                 menu.ShowItemMenu();
             }
@@ -267,11 +328,17 @@ public class Battle : IBattle
                         break;
                 }
             }
-            else
+            else if(move == "Run")
             {
                 double losthp = Hero.Health/100 * 10;
                 Hero.Health -= losthp;
                 AnsiConsole.Write(new Markup($"You chose run and lost [red1]{losthp}hp[/] during the escape!"));
+            }
+            else
+            {
+                AnsiConsole.Write(new Markup("404 Choice not found!"));
+                Console.ReadKey();
+                Turn();
             }
         }
         else

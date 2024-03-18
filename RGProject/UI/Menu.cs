@@ -592,7 +592,7 @@ public class Menu(Battle battle)
                     "Run: you lose 10% hp",
                     "Defend: increases your defense by 25%",
                     "Blast shot: basic attack, deals 700 damage",
-                    "Bloodthristy: -20% from the enemy's health while dealing 600 damage to them, and boosting your stun by 10%. Useable only once after 3 hit!",
+                    "Bloodthristy: -20% from the enemy's health, and boosting your stun by 10%, but your damage is decreasing by 14,5% for this map. Useable only once/map after 3 hit!",
                     "Explorer: Gives you 1 random item which can be found on the current map. After used yoour item you get you deal 550 damage automatically. Useable once/map",
                     "[red]Exit[/]"
                 }));
