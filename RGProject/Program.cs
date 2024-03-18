@@ -14,8 +14,8 @@ string charclass = "";
 string charname = "";
 string[] temp = new string[2];
 
-var menu = new Menu();
-temp = menu.ShowCharSelection();
+var tempmenu = new Menu(new Battle(new Hero("john doe"), new Emperor("Lajos")));
+temp = tempmenu.ShowCharSelection();
 charname = temp[0];
 charclass = temp[1];
 
@@ -32,10 +32,8 @@ ICharacter hero = charclass switch
 	_ => throw new ArgumentOutOfRangeException()
 };
 
-menu.enemy = enemy;
-menu.hero = hero;
 Battle battle = new Battle(hero, enemy);
-menu.battle = battle;
+var menu = new Menu(battle);
 battle.Turn();
 
 /*Console.Clear();

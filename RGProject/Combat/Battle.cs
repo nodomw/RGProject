@@ -81,7 +81,7 @@ public class Battle : IBattle
     public ICharacter Turn()
     {
         InTurn = Hero;
-        var menu = new Menu();
+        var menu = new Menu(this); // wtf
         double def = 0;
 
         if (InTurn == Hero)

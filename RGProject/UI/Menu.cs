@@ -13,12 +13,12 @@ using Spectre.Console;
 
 namespace FantasyRPG.UI;
 
-internal class Menu
+public class Menu(Battle battle)
 {
     // TODO: get the classes n shit from the external part
-    public ICharacter hero;
+    public Battle battle { get; set; } = battle;
+    public ICharacter hero { get; set; }
     public ICharacter enemy { get; set; }
-    public Battle battle { get; set; }
     public string currentmenu = "";
 
     public void PreviousMenu()
