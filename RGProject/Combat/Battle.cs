@@ -63,15 +63,35 @@ public class Battle : IBattle
                     Enemy.Health -= dmg;
                     Hero.TempStun = Hero.Stun;
                     Hero.Stun += 20;
-                    if (ChanceSuccessful(Hero.Stun))
+                    bloodthirsty = false;
+                    if (ChanceSuccessful(Hero.Combo))
                     {
-                        AnsiConsole.Write(new Markup($"You hit a [red1]critical[/] point and dealt [green3]{dmg}dmg[/] to the enemy and [yellow1]stunned[/] it!"));
-                        InTurn = Hero;
+                        if (ChanceSuccessful(Hero.Stun))
+                        {
+                            AnsiConsole.Write(new Markup($"You hit a [red1]critical[/] point and dealt [green3]{dmg}dmg[/] to the enemy and [yellow1]stunned[/] it!"));
+                            InTurn = Hero;
+                        }
+                        else
+                        {
+                            AnsiConsole.Write(new Markup($"You hit a [red1]critical[/] point and dealt [green3]{dmg}dmg[/] to the enemy!"));
+                            InTurn = Enemy;
+                        }
+                        AnsiConsole.Write(new Markup("\nYou achieved a [gold1]combo[/] and you strike again!"));
+                        Console.ReadKey();
+                        CalcDamage(dmgMultiplier, stunMultiplier);
                     }
                     else
                     {
-                        AnsiConsole.Write(new Markup($"You hit a [red1]critical[/] point and dealt [green3]{dmg}dmg[/] to the enemy!"));
-                        InTurn = Enemy;
+                        if (ChanceSuccessful(Hero.Stun))
+                        {
+                            AnsiConsole.Write(new Markup($"You hit a [red1]critical[/] point and dealt [green3]{dmg}dmg[/] to the enemy and [yellow1]stunned[/] it!"));
+                            InTurn = Hero;
+                        }
+                        else
+                        {
+                            AnsiConsole.Write(new Markup($"You hit a [red1]critical[/] point and dealt [green3]{dmg}dmg[/] to the enemy!"));
+                            InTurn = Enemy;
+                        }
                     }
 
                 }
@@ -80,15 +100,34 @@ public class Battle : IBattle
                     defDmg = Hero.Damage*dmgMultiplier / 100;
                     dmg = Hero.Damage*dmgMultiplier - (defDmg * Enemy.DEF);
                     Enemy.Health -= dmg;
-                    if (ChanceSuccessful(Hero.Stun))
+                    if (ChanceSuccessful(Hero.Combo))
                     {
-                        AnsiConsole.Write(new Markup($"You dealt [green3]{dmg}dmg[/] to the enemy and [yellow1]stunned[/] it!"));
-                        InTurn = Hero;
+                        if (ChanceSuccessful(Hero.Stun))
+                        {
+                            AnsiConsole.Write(new Markup($"You hit a [red1]critical[/] point and dealt [green3]{dmg}dmg[/] to the enemy and [yellow1]stunned[/] it!"));
+                            InTurn = Hero;
+                        }
+                        else
+                        {
+                            AnsiConsole.Write(new Markup($"You hit a [red1]critical[/] point and dealt [green3]{dmg}dmg[/] to the enemy!"));
+                            InTurn = Enemy;
+                        }
+                        AnsiConsole.Write(new Markup("\nYou achieved a [gold1]combo[/] and you strike again!"));
+                        Console.ReadKey();
+                        CalcDamage(dmgMultiplier, stunMultiplier);
                     }
                     else
                     {
-                        AnsiConsole.Write(new Markup($"You dealt [green3]{dmg}dmg[/] to the enemy!"));
-                        InTurn = Enemy;
+                        if (ChanceSuccessful(Hero.Stun))
+                        {
+                            AnsiConsole.Write(new Markup($"You hit a [red1]critical[/] point and dealt [green3]{dmg}dmg[/] to the enemy and [yellow1]stunned[/] it!"));
+                            InTurn = Hero;
+                        }
+                        else
+                        {
+                            AnsiConsole.Write(new Markup($"You hit a [red1]critical[/] point and dealt [green3]{dmg}dmg[/] to the enemy!"));
+                            InTurn = Enemy;
+                        }
                     }
                 }
             }
