@@ -40,12 +40,16 @@
         {
             "label": "run",
             "command": "dotnet",
-            "type": "process",
+            "type": "shell",
             "args": [
                 "run",
                 "--project",
                 "${workspaceFolder}/RGProject/FantasyRPG.csproj"
             ],
+            "presentation": {
+                "reveal": "always",
+                "panel":
+            }
             "problemMatcher": ["$msCompile"]
         }
     ]
