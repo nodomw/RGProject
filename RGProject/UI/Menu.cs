@@ -370,8 +370,8 @@ public class Menu(Battle battle)
                     "Run: you lose 10% hp",
                     "Defend: increases your defense by 25%",
                     "Arrow shot: basic attack, deals 500 damage",
-                    "Arrow rain: deals 800 damage and in the next round you will lose 15% stun and combo",
-                    "Shocking arrow: deals 300 damage while giving you a 60% stun",
+                    "Arrow rain: deals 160% of your damage and in the next round you will lose 15% stun and combo",
+                    "Shocking arrow: deals 60% of your damage while giving you a 60% stun",
                     "[red]Exit[/]"
                 }));
 
@@ -428,7 +428,7 @@ public class Menu(Battle battle)
                     "Run: you lose 10% hp",
                     "Defend: increases your defense by 25%",
                     "Dagger strike: Basic attack, deals 600 damage",
-                    "Poison strike: deals 200 damage. In the next round you will damage your enemy with 50hp and sets the enemy damage to 50%",
+                    "Poison strike: deals 40% of your damage. In the next round you will damage your enemy with 50hp and sets the enemy damage to 50%",
                     "Shadow strike: Deals 0 damage and sets dodge to 70% and every other stats to 0%. Cooldown? 4 rounds",
                     "[red]Exit[/]"
                 }));
