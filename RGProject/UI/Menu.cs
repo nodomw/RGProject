@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices.JavaScript;
-using System.Text;
-using System.Threading.Tasks;
-using FantasyRPG.Characters;
+﻿using FantasyRPG.Characters;
 using FantasyRPG.Combat;
-using RGProject.Characters.Enemies;
 using RGProject.Characters.Heroes;
 using Spectre.Console;
 
@@ -15,7 +7,6 @@ namespace FantasyRPG.UI;
 
 public class Menu(Battle battle)
 {
-    // TODO: get the classes n shit from the external part
     public Battle battle { get; set; } = battle;
     public string currentmenu = "";
 

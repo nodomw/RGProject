@@ -7,16 +7,7 @@ using Spectre.Console;
 
 namespace FantasyRPG.Combat;
 
-public interface IBattle : IDisposable
-{
-    ICharacter Hero { get; }
-    ICharacter Enemy { get; }
-    ICharacter InTurn { get; set; }
-    void Initiate();
-    ICharacter Turn(); // Advance to next turn
-    bool Defeat();
-}
-public class Battle : IBattle
+public class Battle : IDisposable
 {
     public Battle(ICharacter hero, ICharacter enemy)
     {
@@ -315,7 +306,7 @@ public class Battle : IBattle
 
         return dmg;
     }
-    
+
     public bool Cooldown(int cooldown, int currentRound = 0)
     {
         if (currentRound + cooldown <= turncount)
