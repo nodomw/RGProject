@@ -31,6 +31,9 @@ public class Menu(Battle battle)
             case "ShowElfAttacks" or "ShowWarriorAttacks" or "ShowMageAttacks" or "ShowAssassinAttacks" or "ShowPaladinAttacks" or "ShowHeroAttacks" or "ShowHunterAttacks" or "ShowNinjaAttacks":
                 battle.Turn();
                 break;
+            case "ShowItemMenu":
+                battle.Turn();
+                break;
         }
     }
     // Starting the game
@@ -128,6 +131,7 @@ public class Menu(Battle battle)
                 {
                     "First Map", "Second Map", "Third Map", "Fourth Map", "[red]Exit[/]"
                 }));
+
     }
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -212,6 +216,10 @@ public class Menu(Battle battle)
                     "Use Health Potion", "Use Mana Potion", "[red]Exit[/]"
                 }));
 
+        if (hero == "[red]Exit[/]")
+        {
+            PreviousMenu();
+        }
         return hero;
     }
 
@@ -231,6 +239,11 @@ public class Menu(Battle battle)
                 {
                     "Attack", "Defend", "Use Item", "Information", "[red]Run[/]"
                 }));
+
+        if (hero == "[red]Run[/]")
+        {
+            hero = hero.Split('[', ']')[2];
+        }
 
         return hero;
     }
