@@ -1,4 +1,6 @@
-﻿using Spectre.Console;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
+using Spectre.Console;
 
 namespace FantasyRPG.Map;
 
@@ -29,10 +31,16 @@ public enum TileType
     Servant,
     Player
 }
+
 public class TilePosition(int x, int y)
 {
     public int X { get; set; } = x;
     public int Y { get; set; } = y;
+
+    public override string ToString()
+    {
+        return $"({X}, {Y})";
+    }
 }
 public interface ITile
 {
@@ -42,6 +50,6 @@ public interface ITile
     public bool Passable { get; set; }
     public string Name { get; set; }
     public string Interact();
-    public Markup DisplayCharacter { get; }
+    public Markup DisplayCharacter { get; set; }
 }
 
