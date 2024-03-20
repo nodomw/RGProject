@@ -17,8 +17,6 @@ public class Menu(Battle battle)
 {
     // TODO: get the classes n shit from the external part
     public Battle battle { get; set; } = battle;
-    public ICharacter hero { get; set; }
-    public ICharacter enemy { get; set; }
     public string currentmenu = "";
 
     public void PreviousMenu()
@@ -37,7 +35,7 @@ public class Menu(Battle battle)
         }
     }
     // Starting the game
-    public string[] Show()
+    public void Show()
     {
         currentmenu = "Show";
         Console.Clear();
@@ -55,11 +53,9 @@ public class Menu(Battle battle)
 
         hero = hero.Split('[', ']')[2];
 
-        string[] temp = new string[2];
-
         if (hero == "New Game")
         {
-            temp = ShowCharSelection();
+            ShowCharSelection();
         }
         else if (hero == "Load Game")
         {
@@ -73,15 +69,14 @@ public class Menu(Battle battle)
             Environment.Exit(0);
         }
 
-        return temp;
     }
 
-    public string[] ShowCharSelection()
+    public ICharacter ShowCharSelection()
     {
         currentmenu = "ShowCharSelection";
 
         Console.Clear();
-        var hero = AnsiConsole.Prompt(
+        var @class = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose your [green]Character[/]!")
                 .PageSize(10)
@@ -92,10 +87,7 @@ public class Menu(Battle battle)
                 }));
 
         string name = ShowCharCreation();
-        string[] everything = {name, hero};
-        AnsiConsole.WriteLine($"You chose {name}, who is a(n) {hero}! Good luck on your adventure!");
-        Console.ReadKey();
-        this.hero = hero switch
+        ICharacter hero = @class switch
         {
             "Warrior" => new Warrior(name),
             "Mage" => new Mage(name),
@@ -107,7 +99,9 @@ public class Menu(Battle battle)
             "Ninja" => new Ninja(name),
             _ => throw new ArgumentOutOfRangeException()
         };
-        return everything;
+        AnsiConsole.WriteLine($"You chose {hero.Name}, who is a(n) {@class}! Good luck on your adventure!");
+        Console.ReadKey();
+        return hero;
     }
 
     public string ShowCharCreation()

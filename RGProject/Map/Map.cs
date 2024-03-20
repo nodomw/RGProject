@@ -152,20 +152,21 @@ public class Map
             }
         }
         throw new Exception("Tile not found");
-
     }
     // Get a tile by its position
-    public ITile GetTileByPosition(TilePosition position)
+    public ITile GetTileByPosition(TilePosition tp)
     {
         try
         {
-            return Tiles[position.X, position.Y];
+            return Tiles[tp.X, tp.Y];
         }
         catch (IndexOutOfRangeException)
         {
-            ITile FakeTile = new Empty();
-            FakeTile.Passable = true;
-            // FakeTile.Fake = true;
+            Empty FakeTile = new()
+            {
+                Passable = true,
+                Fake = true
+            };
             return FakeTile;
         }
     }
