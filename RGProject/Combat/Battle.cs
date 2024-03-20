@@ -38,7 +38,7 @@ public class Battle : IBattle
     public bool ChanceSuccessful(double chance)
     {
         int randomNumber = rnd.Next(101);
-        return randomNumber < (int)chance;
+        return randomNumber <= (int)chance;
     }
 
     public double HeroCalcDamage(double dmgMultiplier = 1.0, double stunMultiplier = 1.0)
@@ -110,12 +110,12 @@ public class Battle : IBattle
                     {
                         if (ChanceSuccessful(Hero.Stun))
                         {
-                            AnsiConsole.Write(new Markup($"You hit a [red1]critical[/] point and dealt [green3]{dmg}dmg[/] to the enemy and [yellow1]stunned[/] it!"));
+                            AnsiConsole.Write(new Markup($"You dealt [green3]{dmg}dmg[/] to the enemy and [yellow1]stunned[/] it!"));
                             InTurn = Hero;
                         }
                         else
                         {
-                            AnsiConsole.Write(new Markup($"You hit a [red1]critical[/] point and dealt [green3]{dmg}dmg[/] to the enemy!"));
+                            AnsiConsole.Write(new Markup($"You dealt [green3]{dmg}dmg[/] to the enemy!"));
                             InTurn = Enemy;
                         }
                         AnsiConsole.Write(new Markup("\nYou achieved a [gold1]combo[/] and you strike again!"));
@@ -126,12 +126,12 @@ public class Battle : IBattle
                     {
                         if (ChanceSuccessful(Hero.Stun))
                         {
-                            AnsiConsole.Write(new Markup($"You hit a [red1]critical[/] point and dealt [green3]{dmg}dmg[/] to the enemy and [yellow1]stunned[/] it!"));
+                            AnsiConsole.Write(new Markup($"You dealt [green3]{dmg}dmg[/] to the enemy and [yellow1]stunned[/] it!"));
                             InTurn = Hero;
                         }
                         else
                         {
-                            AnsiConsole.Write(new Markup($"You hit a [red1]critical[/] point and dealt [green3]{dmg}dmg[/] to the enemy!"));
+                            AnsiConsole.Write(new Markup($"You dealt [green3]{dmg}dmg[/] to the enemy!"));
                             InTurn = Enemy;
                         }
                     }
@@ -189,12 +189,12 @@ public class Battle : IBattle
                     {
                         if (ChanceSuccessful(Hero.Stun))
                         {
-                            AnsiConsole.Write(new Markup($"You hit a [red1]critical[/] point and dealt [green3]{dmg}dmg[/] to the enemy and [yellow1]stunned[/] it!"));
+                            AnsiConsole.Write(new Markup($"You dealt [green3]{dmg}dmg[/] to the enemy and [yellow1]stunned[/] it!"));
                             InTurn = Hero;
                         }
                         else
                         {
-                            AnsiConsole.Write(new Markup($"You hit a [red1]critical[/] point and dealt [green3]{dmg}dmg[/] to the enemy!"));
+                            AnsiConsole.Write(new Markup($"You dealt [green3]{dmg}dmg[/] to the enemy!"));
                             InTurn = Enemy;
                         }
                         AnsiConsole.Write(new Markup("\nYou achieved a [gold1]combo[/] and you strike again!"));
@@ -205,12 +205,12 @@ public class Battle : IBattle
                     {
                         if (ChanceSuccessful(Hero.Stun))
                         {
-                            AnsiConsole.Write(new Markup($"You hit a [red1]critical[/] point and dealt [green3]{dmg}dmg[/] to the enemy and [yellow1]stunned[/] it!"));
+                            AnsiConsole.Write(new Markup($"You dealt [green3]{dmg}dmg[/] to the enemy and [yellow1]stunned[/] it!"));
                             InTurn = Hero;
                         }
                         else
                         {
-                            AnsiConsole.Write(new Markup($"You hit a [red1]critical[/] point and dealt [green3]{dmg}dmg[/] to the enemy!"));
+                            AnsiConsole.Write(new Markup($"You dealt [green3]{dmg}dmg[/] to the enemy!"));
                             InTurn = Enemy;
                         }
                     }
@@ -284,13 +284,12 @@ public class Battle : IBattle
                 {
                     if (ChanceSuccessful(Enemy.Stun))
                     {
-                        AnsiConsole.Write(new Markup(
-                            $"Then enemy hit a [red1]critical[/] point and dealt [green3]{dmg}dmg[/] to you and [yellow1]stunned[/] you!"));
-                            InTurn = Enemy;
+                        AnsiConsole.Write(new Markup($"Then enemy dealt [green3]{dmg}dmg[/] to you and [yellow1]stunned[/] you!"));
+                        InTurn = Enemy;
                     }
                     else
                     {
-                        AnsiConsole.Write(new Markup($"The enemy hit a [red1]critical[/] point and dealt [green3]{dmg}dmg[/] to you!"));
+                        AnsiConsole.Write(new Markup($"The enemy dealt [green3]{dmg}dmg[/] to you!"));
                         InTurn = Hero;
                     }
 
@@ -302,12 +301,12 @@ public class Battle : IBattle
                 {
                     if (ChanceSuccessful(Enemy.Stun))
                     {
-                        AnsiConsole.Write(new Markup($"Then enemy hit a [red1]critical[/] point and dealt [green3]{dmg}dmg[/] to you and [yellow1]stunned[/] you!"));
+                        AnsiConsole.Write(new Markup($"Then enemy dealt [green3]{dmg}dmg[/] to you and [yellow1]stunned[/] you!"));
                         InTurn = Enemy;
                     }
                     else
                     {
-                        AnsiConsole.Write(new Markup($"The enemy hit a [red1]critical[/] point and dealt [green3]{dmg}dmg[/] to you!"));
+                        AnsiConsole.Write(new Markup($"The enemy dealt [green3]{dmg}dmg[/] to you!"));
                         InTurn = Hero;
                     }
                 }
