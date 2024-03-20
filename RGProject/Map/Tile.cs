@@ -29,17 +29,16 @@ public enum TileType
     Servant,
     Player
 }
-public class TilePosition(int x, int y /*int z*/)
+public class TilePosition(int x, int y)
 {
     public int X { get; set; } = x;
     public int Y { get; set; } = y;
-    // public int Z { get; set; }
 }
 public interface ITile
 {
     public Guid Id { get; }
     public TileType Type { get; }
-    public TilePosition Position { get; set; } // TODO: add to all classes that inherit
+    public TilePosition Position { get; set; }
     public bool Passable { get; set; }
     public string Name { get; set; }
     public string Interact();
