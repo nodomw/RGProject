@@ -216,7 +216,7 @@ Map map4 = new("map 4", new ITile[,] {
 Map map5 = new("map 5", new ITile[,] {
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d,et,et,et, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, v, v, v, v, v, d, d, d, d, d, v, v, v, v, v, v, d, d },
-	{ d, d, d, d, d, d, d, d, d, d, d, v, v, v, v, v, v, v, d, d, d, d, v, d, d, d, d, d, d, d },
+	{ d, d, d, d, d, d, d, d, d, d, d, v, v, v, new Enemy(new Headhunter("big man")), v, v, v, d, d, d, d, v, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, d, d, d, v, d, d, d, d, d, d, d },
 	{ d, v, v, v, v, v, v, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, v, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, v, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, v, d, v, v, v, d, d, d },
@@ -225,7 +225,7 @@ Map map5 = new("map 5", new ITile[,] {
 	{ d, v, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, v, v, v, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, v, v, v, d, d, d },
 	{ d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, v, d, d, d, d },
-	{ d, d, d, d, d, d, d, d, d, v, v, new Enemy(new Nightshade("hater")), v, v, v, v, v, v, v, v, d, d, d, d, d, v, d, d, d, d },
+	{ d, d, d, d, d, d, d, d, d, v, v, new Enemy(new Nightshade("hater")), v, v, v, v, v, v, new Enemy(new BoneCrusher("hater also")), v, d, d, d, d, d, v, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, new Enemy(new Nightshade("bikiboko")), v, v, v, v, d, d, d, d },
 	{ d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, v, v, v, v, v, d },
 	{ d, new Enemy(new Skeleton("dry gong")), d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, v, v, d, d, new Enemy(new Skeleton("bakibako")), d },
