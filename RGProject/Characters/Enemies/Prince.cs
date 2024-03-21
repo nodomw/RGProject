@@ -14,9 +14,11 @@ public class Prince : ICharacter
 	public string Name { get; set; }
 	public CharacterType Type { get; }
 	public TilePosition Position { get; set; }
+	public bool IsHero { get; } = false;
 	public int Level { get; set; } = 0;
 	public int XP { get; set; } = 0;
 	public double Health { get; set; } = 2700;
+	public double MaxHealth { get; set; } = 2700;
 	public double Damage { get; set; } = 300;
 	public double CATK { get; set; } = 0;
 	public double DEF { get; set; } = 0;

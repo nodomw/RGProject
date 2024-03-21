@@ -32,14 +32,15 @@ public interface ICharacter
     public string Name { get; set; }
     public CharacterType Type { get; }
     public TilePosition Position { get; set; }
+    public bool IsHero { get; }
     public int Level { get; set; }
     public int XP { get; set; } // TODO: figure out xp amount for each level
-
+    public double MaxHealth { get; set; }
     public double Health { get; set; } // HP
     public double Damage { get; set; } // ATK
     public double CATK { get; set; } // CATK%
     public double DEF { get; set; } // DEF%
-    public double Crit { get; set; } // DEF%
+    public double Crit { get; set; } // %
     public double Dodge { get; set; } // %
     public double Stun { get; set; } // %
     public double Combo { get; set; } // %

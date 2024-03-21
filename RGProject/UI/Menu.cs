@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices.JavaScript;
-using System.Text;
-using System.Threading.Tasks;
-using FantasyRPG.Characters;
+﻿using FantasyRPG.Characters;
 using FantasyRPG.Combat;
-using RGProject.Characters.Enemies;
 using RGProject.Characters.Heroes;
 using Spectre.Console;
 
@@ -15,10 +7,7 @@ namespace FantasyRPG.UI;
 
 public class Menu(Battle battle)
 {
-    // TODO: get the classes n shit from the external part
     public Battle battle { get; set; } = battle;
-    public ICharacter hero { get; set; }
-    public ICharacter enemy { get; set; }
     public string currentmenu = "";
 
     public void PreviousMenu()
@@ -31,10 +20,13 @@ public class Menu(Battle battle)
             case "ShowElfAttacks" or "ShowWarriorAttacks" or "ShowMageAttacks" or "ShowAssassinAttacks" or "ShowPaladinAttacks" or "ShowHeroAttacks" or "ShowHunterAttacks" or "ShowNinjaAttacks":
                 battle.Turn();
                 break;
+            case "ShowItemMenu":
+                battle.Turn();
+                break;
         }
     }
     // Starting the game
-    public string[] Show()
+    public void Show()
     {
         currentmenu = "Show";
         Console.Clear();
@@ -52,11 +44,9 @@ public class Menu(Battle battle)
 
         hero = hero.Split('[', ']')[2];
 
-        string[] temp = new string[2];
-
         if (hero == "New Game")
         {
-            temp = ShowCharSelection();
+            ShowCharSelection();
         }
         else if (hero == "Load Game")
         {
@@ -70,15 +60,14 @@ public class Menu(Battle battle)
             Environment.Exit(0);
         }
 
-        return temp;
     }
 
-    public string[] ShowCharSelection()
+    public ICharacter ShowCharSelection()
     {
         currentmenu = "ShowCharSelection";
 
         Console.Clear();
-        var hero = AnsiConsole.Prompt(
+        var @class = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose your [green]Character[/]!")
                 .PageSize(10)
@@ -89,10 +78,7 @@ public class Menu(Battle battle)
                 }));
 
         string name = ShowCharCreation();
-        string[] everything = {name, hero};
-        AnsiConsole.WriteLine($"You chose {name}, who is a(n) {hero}! Good luck on your adventure!");
-        Console.ReadKey();
-        this.hero = hero switch
+        ICharacter hero = @class switch
         {
             "Warrior" => new Warrior(name),
             "Mage" => new Mage(name),
@@ -104,7 +90,9 @@ public class Menu(Battle battle)
             "Ninja" => new Ninja(name),
             _ => throw new ArgumentOutOfRangeException()
         };
-        return everything;
+        AnsiConsole.WriteLine($"You chose {hero.Name}, who is a(n) {@class}! Good luck on your adventure!");
+        Console.ReadKey();
+        return hero;
     }
 
     public string ShowCharCreation()
@@ -130,6 +118,7 @@ public class Menu(Battle battle)
                 {
                     "First Map", "Second Map", "Third Map", "Fourth Map", "[red]Exit[/]"
                 }));
+
     }
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -214,6 +203,10 @@ public class Menu(Battle battle)
                     "Use Health Potion", "Use Mana Potion", "[red]Exit[/]"
                 }));
 
+        if (hero == "[red]Exit[/]")
+        {
+            PreviousMenu();
+        }
         return hero;
     }
 
@@ -233,6 +226,11 @@ public class Menu(Battle battle)
                 {
                     "Attack", "Defend", "Use Item", "Information", "[red]Run[/]"
                 }));
+
+        if (hero == "[red]Run[/]")
+        {
+            hero = hero.Split('[', ']')[2];
+        }
 
         return hero;
     }
@@ -365,8 +363,8 @@ public class Menu(Battle battle)
                     "Run: you lose 10% hp",
                     "Defend: increases your defense by 25%",
                     "Arrow shot: basic attack, deals 500 damage",
-                    "Arrow rain: deals 800 damage and in the next round you will lose 15% stun and combo",
-                    "Shocking arrow: deals 300 damage while giving you a 60% stun",
+                    "Arrow rain: deals 160% of your damage and in the next round you will lose 15% stun and combo",
+                    "Shocking arrow: deals 60% of your damage while giving you a 60% stun",
                     "[red]Exit[/]"
                 }));
 
@@ -423,7 +421,7 @@ public class Menu(Battle battle)
                     "Run: you lose 10% hp",
                     "Defend: increases your defense by 25%",
                     "Dagger strike: Basic attack, deals 600 damage",
-                    "Poison strike: deals 200 damage. In the next round you will damage your enemy with 50hp and sets the enemy damage to 50%",
+                    "Poison strike: deals 40% of your damage. In the next round you will damage your enemy with 50hp and sets the enemy damage to 50%",
                     "Shadow strike: Deals 0 damage and sets dodge to 70% and every other stats to 0%. Cooldown? 4 rounds",
                     "[red]Exit[/]"
                 }));

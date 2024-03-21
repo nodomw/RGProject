@@ -21,9 +21,11 @@ public class Elf : ICharacter
 	public string Name { get; set; }
 	public CharacterType Type { get; } = CharacterType.Elf;
 	public TilePosition Position { get; set; }
+	public bool IsHero { get; } = true;
 	public int Level { get; set; } = 0;
 	public int XP { get; set; } = 0;
 	public double Health { get; set; } = 500;
+	public double MaxHealth { get; set; } = 500;
 	public double Damage { get; set; } = 500;
 	public double CATK { get; set; } = 15;
 	public double DEF { get; set; } = 20;
