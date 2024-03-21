@@ -101,7 +101,9 @@ public class Menu(Battle battle)
 
         Console.Clear();
         AnsiConsole.WriteLine($"Enter your character's name: ");
+#pragma warning disable CS8603 // Possible null reference return.
         return Console.ReadLine();
+#pragma warning restore CS8603 // Possible null reference return.
     }
 
     public void ShowMaps()
