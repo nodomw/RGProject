@@ -37,6 +37,10 @@ public interface ICharacter
     public bool IsCaptain { get; set; }
     public bool IsHealer { get; set; }
     public bool IsSupport { get; set; }
+    public bool SilentStep { get; set; }
+    public bool Fans { get; set; }
+    public bool RunBoost { get; set; } // 10% -> 5% hp lost when run away
+    public bool MultiBooster { get; set; } // 10% -> 8% hp lost when run away
     public int Level { get; set; }
     public int XP { get; set; } // TODO: figure out xp amount for each level
     public double MaxHealth { get; set; }

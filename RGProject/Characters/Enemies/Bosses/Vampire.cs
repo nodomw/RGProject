@@ -13,12 +13,17 @@ public class Vampire : ICharacter
 	public Guid Id { get; } = Guid.NewGuid();
 	public string Name { get; set; }
 	public CharacterType Type { get; }
+
 	public TilePosition Position { get; set; }
 	public bool IsHero { get; set; } = false;
 	public bool IsBoss { get; set; } = true;
 	public bool IsCaptain { get; set; }
 	public bool IsHealer { get; set; }
 	public bool IsSupport { get; set; }
+	public bool SilentStep { get; set; } = false;
+	public bool Fans { get; set; } = false;
+	public bool RunBoost { get; set; } = false;
+	public bool MultiBooster { get; set; } = false;
 	public int Level { get; set; } = 0;
 	public int XP { get; set; } = 0;
 	public double Health { get; set; } = 1800;

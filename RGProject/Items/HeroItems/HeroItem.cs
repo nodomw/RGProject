@@ -14,9 +14,4 @@ public interface IHeroItem : Item
     public double CATKBuff { get; set; }
     public double DodgeBuff { get; set; }
     public double CritBuff { get; set; }
-
-    public bool _SilentStep { get; set; }
-    public bool _Fans { get; set; }
-    public bool _RunBoost { get; set; } // 10% -> 5% hp lost when run away
-    public bool _MultiBooster { get; set; } // 10% -> 8% hp lost when run away
 }

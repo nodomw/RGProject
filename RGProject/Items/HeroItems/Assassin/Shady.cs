@@ -14,9 +14,4 @@ public class Shady : IHeroItem
     public double CATKBuff { get; set; }
     public double DodgeBuff { get; set; } = 10;
     public double CritBuff { get; set; }
-
-    public bool _SilentStep { get; set; } = false;
-    public bool _Fans { get; set; } = false;
-    public bool _RunBoost { get; set; } = false;
-    public bool _MultiBooster { get; set; } = false;
 }

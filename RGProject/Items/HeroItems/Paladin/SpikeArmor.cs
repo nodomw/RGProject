@@ -14,9 +14,4 @@ public class SpikeArmor : IHeroItem
     public double CATKBuff { get; set; } = 15;
     public double DodgeBuff { get; set; }
     public double CritBuff { get; set; }
-
-    public bool _SilentStep { get; set; } = false;
-    public bool _Fans { get; set; } = false;
-    public bool _RunBoost { get; set; } = false;
-    public bool _MultiBooster { get; set; } = false;
 }

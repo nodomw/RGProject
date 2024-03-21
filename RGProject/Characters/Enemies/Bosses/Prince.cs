@@ -19,6 +19,10 @@ public class Prince : ICharacter
 	public bool IsCaptain { get; set; }
 	public bool IsHealer { get; set; }
 	public bool IsSupport { get; set; }
+	public bool SilentStep { get; set; } = false;
+	public bool Fans { get; set; } = false;
+	public bool RunBoost { get; set; } = false;
+	public bool MultiBooster { get; set; } = false;
 	public int Level { get; set; } = 0;
 	public int XP { get; set; } = 0;
 	public double Health { get; set; } = 2700;
