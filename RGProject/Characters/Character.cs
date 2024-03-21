@@ -32,6 +32,7 @@ public interface ICharacter
     public string Name { get; set; }
     public CharacterType Type { get; }
     public TilePosition Position { get; set; }
+    public bool IsHero { get; }
     public int Level { get; set; }
     public int XP { get; set; } // TODO: figure out xp amount for each level
     public double MaxHealth { get; set; }

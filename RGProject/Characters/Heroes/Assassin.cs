@@ -23,6 +23,7 @@ public class Assassin : ICharacter
 	public string Name { get; set; }
 	public CharacterType Type { get; } = CharacterType.Assassin;
 	public TilePosition Position { get; set; }
+	public bool IsHero { get; } = true;
 	public int Level { get; set; } = 0;
 	public int XP { get; set; } = 0;
 	public double Health { get; set; } = 300;
