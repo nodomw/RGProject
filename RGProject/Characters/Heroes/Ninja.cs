@@ -22,7 +22,8 @@ public class Ninja : ICharacter
 	public string Name { get; set; }
 	public CharacterType Type { get; } = CharacterType.Ninja;
 	public TilePosition Position { get; set; }
-	public bool IsHero { get; } = true;
+	public bool IsHero { get; set; } = true;
+	public bool IsBoss { get; set; } = false;
 	public int Level { get; set; } = 0;
 	public int XP { get; set; } = 0;
 	public double Health { get; set; } = 500;
