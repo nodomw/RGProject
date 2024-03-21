@@ -10,5 +10,4 @@ public class Empty : ITile
     public bool Passable { get; set; } = true;
     public TilePosition Position { get; set; }
     public Markup DisplayCharacter { get; set; } = new Markup("[grey]#[/]");
-    public string Interact() => "An empty piece of land. Nothing to see here.";
 }

@@ -18,5 +18,4 @@ public class Enemy : ITile
     public bool Passable { get; set; } = false;
     public string Name { get; set; } = "Enemy";
     public Markup DisplayCharacter { get; set; } = new Markup("[red]![/]");
-    public string Interact() => "A vicious foe.";
 }

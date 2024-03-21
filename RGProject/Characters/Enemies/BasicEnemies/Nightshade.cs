@@ -33,6 +33,6 @@ public class Nightshade : ICharacter
     public double TempDEF { get; set; } // %
     public double TempCombo { get; set; } // %
     public double TempCATK { get; set; } // %
-    public List<IPotion> Potions { get; set; }
+    public List<Item> Items { get; set; }
     public IWeapon Weapon { get; set; }
 }

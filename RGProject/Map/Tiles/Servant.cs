@@ -17,6 +17,5 @@ namespace FantasyRPG.Map.Tiles
         public bool Passable { get; set; } = true;
         public string Name { get; set; } = "Servant";
         public Markup DisplayCharacter { get; set; } = new Markup("[blue]S[/]");
-        public string Interact() => "Your fellow ally, ready to help out at a moment's notice.";
     }
 }
