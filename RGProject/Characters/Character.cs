@@ -39,7 +39,7 @@ public interface ICharacter
     public double Damage { get; set; } // ATK
     public double CATK { get; set; } // CATK%
     public double DEF { get; set; } // DEF%
-    public double Crit { get; set; } // DEF%
+    public double Crit { get; set; } // %
     public double Dodge { get; set; } // %
     public double Stun { get; set; } // %
     public double Combo { get; set; } // %
