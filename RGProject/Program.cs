@@ -1,6 +1,8 @@
 ﻿using FantasyRPG.UI;
+using FantasyRPG.Map;
 using Spectre.Console;
 using FantasyRPG.Combat;
+using FantasyRPG.Map.Tiles;
 using FantasyRPG.Characters;
 using RGProject.Characters.Heroes;
 using RGProject.Characters.Enemies;
