@@ -15,11 +15,10 @@ using FantasyRPG.Items.HeroItems.Warrior;
 using RGProject.Characters.Heroes;
 using Spectre.Console;
 
-public class ClassLoot(Item item) : ITile, ILootable
+public class ClassLoot() : ITile, ILootable
 {
 	public Guid Id { get; } = Guid.NewGuid();
 	public TileType Type { get; } = TileType.Loot;
-	public Item Item { get; set; } = item;
 	public string Name { get; set; } = "Loot";
 	public bool Passable { get; set; } = true;
 	public TilePosition Position { get; set; }
@@ -33,7 +32,7 @@ public class ClassLoot(Item item) : ITile, ILootable
 		},
 		CharacterType.Warrior => new Random().Next(1, 2) switch
 		{
-			1 => new Boots(),
+			// 1 => new Boots(),
 			_ => new GiantSword(),
 		},
 		CharacterType.Mage => new Random().Next(1, 2) switch

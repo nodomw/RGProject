@@ -17,8 +17,6 @@ var tempmenu = new Menu(new Battle(new Hero("john doe"), new Emperor("Lajos")));
 ICharacter hero = tempmenu.ShowCharSelection();
 
 Battle battle = new Battle(hero, enemy);
-
-battle.Turn();
 // var menu = new Menu(battle);
 // battle.Turn();
 
@@ -53,7 +51,7 @@ charclass = temp[1];*/
 
 long before = GC.GetTotalMemory(true);
 Menu menu = new(battle);
-Player pl = new("joni", hero);
+Player pl = new(hero);
 Terrain g = new()
 {
 	DisplayCharacter = new Markup("[darkgreen]■[/]")
@@ -85,7 +83,7 @@ Terrain v = new()
 };
 Enemy vamp = new(new Vampire("joni"));
 Map map1 = new("Map 1", new ITile[,]{
-	{ g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g },
+	{ new ClassLoot(), g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g },
 	{ g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g },
 	{ g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g },
 	{ g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g },
@@ -265,3 +263,6 @@ map5.DrawFull(DrawCriteria.DisplayCharacter);
 long after = GC.GetTotalMemory(true);
 long objectSize = after - before;
 AnsiConsole.MarkupLine($"[bold gold1]Size difference: {objectSize} bytes, before: {before} bytes, after: {after} bytes[/]");
+System.Console.WriteLine("did something happen??");
+map1.InteractWithTile(new TilePosition(0, 0));
+System.Console.WriteLine("something happened");
