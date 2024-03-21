@@ -166,7 +166,7 @@ public class Map
             {
                 Passable = true,
                 Fake = true,
-                DisplayCharacter = new Markup("[grey]X[/]")
+                DisplayCharacter = new Markup("[grey15].[/]")
             };
             return FakeTile;
         }
