@@ -2,7 +2,7 @@ using FantasyRPG.Characters;
 using FantasyRPG.Map;
 using FantasyRPG.Items;
 
-namespace RGProject.Characters.Enemies;
+namespace FantasyRPG.Characters.Enemies.Bosses;
 
 public class Headhunter : ICharacter
 {

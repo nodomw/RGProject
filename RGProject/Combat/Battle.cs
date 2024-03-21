@@ -2,11 +2,10 @@
 using FantasyRPG.Characters;
 using FantasyRPG.Controller;
 using FantasyRPG.UI;
-using RGProject.Characters.Enemies;
 using RGProject.Characters.Heroes;
 using Spectre.Console;
 
-namespace FantasyRPG.Combat;
+ namespace FantasyRPG.Combat;
 
 public interface IBattle : IDisposable
 {

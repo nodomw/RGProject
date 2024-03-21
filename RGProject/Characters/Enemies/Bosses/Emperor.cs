@@ -1,12 +1,11 @@
-using FantasyRPG.Characters;
 using FantasyRPG.Map;
 using FantasyRPG.Items;
 
-namespace RGProject.Characters.Enemies;
+namespace FantasyRPG.Characters.Enemies.Bosses;
 
-public class Prince : ICharacter
+public class Emperor : ICharacter
 {
-	public Prince(string name)
+	public Emperor(string name)
 	{
 		Name = name;
 	}
@@ -17,14 +16,14 @@ public class Prince : ICharacter
 	public bool IsHero { get; } = false;
 	public int Level { get; set; } = 0;
 	public int XP { get; set; } = 0;
-	public double Health { get; set; } = 2700;
-	public double MaxHealth { get; set; } = 2700;
-	public double Damage { get; set; } = 300;
+	public double Health { get; set; } = 3000;
+	public double MaxHealth { get; set; } = 3000;
+	public double Damage { get; set; } = 100;
 	public double CATK { get; set; } = 0;
 	public double DEF { get; set; } = 0;
 	public double Crit { get; set; } = 0;
-	public double Dodge { get; set; } = 20;
-	public double Stun { get; set; } = 10;
+	public double Dodge { get; set; } = 0;
+	public double Stun { get; set; } = 25;
 	public double Combo { get; set; } = 0;
 	public double TempDodge { get; set; }
 	public double TempStun { get; set; } // %
