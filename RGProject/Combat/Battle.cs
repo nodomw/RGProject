@@ -6,16 +6,7 @@ using Spectre.Console;
 
  namespace FantasyRPG.Combat;
 
-public interface IBattle : IDisposable
-{
-    ICharacter Hero { get; }
-    ICharacter Enemy { get; }
-    ICharacter InTurn { get; set; }
-    void Initiate();
-    void Turn(); // Advance to next turn
-    bool Defeat();
-}
-public class Battle : IBattle
+public class Battle
 {
     public Battle(ICharacter hero, ICharacter enemy)
     {
@@ -1213,5 +1204,5 @@ public class Battle : IBattle
         }
 
     }
-    public void Dispose() => GC.SuppressFinalize(this);
+    public void Dispose() => GC.Collect();
 }

@@ -51,7 +51,7 @@ charclass = temp[1];*/
 
 long before = GC.GetTotalMemory(true);
 Menu menu = new(battle);
-Player pl = new("joni", hero);
+Player pl = new(hero);
 Terrain g = new()
 {
 	DisplayCharacter = new Markup("[darkgreen]■[/]")
