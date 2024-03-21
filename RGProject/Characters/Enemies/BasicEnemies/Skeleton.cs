@@ -15,6 +15,9 @@ public class Skeleton : ICharacter
     public TilePosition Position { get; set; }
     public bool IsHero { get; set; } = false;
     public bool IsBoss { get; set; } = false;
+    public bool IsCaptain { get; set; }
+    public bool IsHealer { get; set; }
+    public bool IsSupport { get; set; }
     public int Level { get; set; } = 0;
     public int XP { get; set; } = 0;
     public double Health { get; set; } = 1300;

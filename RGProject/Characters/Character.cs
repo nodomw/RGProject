@@ -34,6 +34,9 @@ public interface ICharacter
     public TilePosition Position { get; set; }
     public bool IsHero { get; set; }
     public bool IsBoss { get; set; }
+    public bool IsCaptain { get; set; }
+    public bool IsHealer { get; set; }
+    public bool IsSupport { get; set; }
     public int Level { get; set; }
     public int XP { get; set; } // TODO: figure out xp amount for each level
     public double MaxHealth { get; set; }

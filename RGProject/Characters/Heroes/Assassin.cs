@@ -26,6 +26,9 @@ public class Assassin : ICharacter
 	public bool IsHero { get; set; } = true;
 
 	public bool IsBoss { get; set; } = false;
+	public bool IsCaptain { get; set; } = false;
+	public bool IsHealer { get; set; } = false;
+	public bool IsSupport { get; set; }	= false;
 	public int Level { get; set; } = 0;
 	public int XP { get; set; } = 0;
 	public double Health { get; set; } = 300;

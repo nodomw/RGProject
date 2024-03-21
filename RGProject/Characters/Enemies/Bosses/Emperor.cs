@@ -13,6 +13,9 @@ public class Emperor : ICharacter
 	public string Name { get; set; }
 	public CharacterType Type { get; }
 	public TilePosition Position { get; set; }
+	public bool IsCaptain { get; set; }
+	public bool IsHealer { get; set; }
+	public bool IsSupport { get; set; }
 	public bool IsHero { get; set; } = false;
 	public bool IsBoss { get; set; } = true;
 	public int Level { get; set; } = 0;
