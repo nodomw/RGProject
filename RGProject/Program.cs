@@ -17,6 +17,8 @@ var tempmenu = new Menu(new Battle(new Hero("john doe"), new Emperor("Lajos")));
 ICharacter hero = tempmenu.ShowCharSelection();
 
 Battle battle = new Battle(hero, enemy);
+
+battle.Turn();
 // var menu = new Menu(battle);
 // battle.Turn();
 

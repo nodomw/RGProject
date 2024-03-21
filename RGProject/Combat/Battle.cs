@@ -674,6 +674,28 @@ public class Battle
         {
             if (InTurn == Hero)
             {
+                Console.Clear();
+
+                if (Hero.IsHealer)
+                {
+                    AnsiConsole.Write(new Markup("You Healer, [green3]Healed[/] you 50hp!"));
+                    Hero.Health += 50;
+                }
+                if (Hero.IsSupport)
+                {
+                    AnsiConsole.Write(new Markup("\nYou Supporter, increased your [grey37]DEF[/] by 2%!"));
+                    Hero.DEF += 2;
+                }
+                if (Hero.IsCaptain)
+                {
+                    AnsiConsole.Write(new Markup("\nYou Captain [red1]Attacked[/] the enemy and dealt [green3]25dmg[/]!"));
+                    Enemy.Health -= 25;
+                }
+                if (Hero.IsHealer || Hero.IsSupport || Hero.IsCaptain)
+                {
+                    Console.ReadKey();
+                }
+
                 cooldown3++;
                 cooldown3_2++;
                 cooldown4++;
@@ -1094,7 +1116,6 @@ public class Battle
             else
             {
                 EnemyCalcDamage();
-                // correctatk = false;
             }
         }
 
