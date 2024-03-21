@@ -12,7 +12,7 @@ public class RunBoost : IHeroItem
     public double StunBuff { get; set; }
     public double ComboBuff { get; set; }
     public double CATKBuff { get; set; }
-    public double DodgeBuff { get; set; } = 10;
+    public double DodgeBuff { get; set; }
     public double CritBuff { get; set; }
 
     public bool _SilentStep { get; set; } = false;
