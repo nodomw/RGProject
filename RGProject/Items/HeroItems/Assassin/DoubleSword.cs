@@ -1,22 +1,11 @@
-﻿namespace FantasyRPG.Items.HeroItems.Assassin;
+﻿using FantasyRPG.Characters;
 
-public class DoubleSword : IHeroItem
+namespace FantasyRPG.Items.HeroItems.Assassin;
+
+public class DoubleSword
 {
-    public Guid Id { get; }
-    public string Name { get; set; } = "Double Sword";
-    public string Description { get; set; }
-
-    public double HPBuff { get; set; }
-    public double DmgBuff { get; set; }
-    public double DEFBuff { get; set; }
-    public double StunBuff { get; set; }
-    public double ComboBuff { get; set; } = 10;
-    public double CATKBuff { get; set; }
-    public double DodgeBuff { get; set; }
-    public double CritBuff { get; set; }
-
-    public bool _SilentStep { get; set; } = false;
-    public bool _Fans { get; set; } = false;
-    public bool _RunBoost { get; set; } = false;
-    public bool _MultiBooster { get; set; } = false;
+    public void _DuelSword(ICharacter hero)
+    {
+        hero.Combo += 10;
+    }
 }
