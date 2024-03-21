@@ -1,6 +1,5 @@
 ﻿﻿using System.Runtime.CompilerServices;
 using FantasyRPG.Characters;
-using FantasyRPG.Controller;
 using FantasyRPG.UI;
 using RGProject.Characters.Heroes;
 using Spectre.Console;
@@ -25,13 +24,11 @@ public class Battle : IBattle
     }
     public ICharacter Hero { get; }
     public ICharacter Enemy { get; }
-    public Player Player { get; }
     public ICharacter InTurn { get; set; }
     public int Turns { get; set; }
     public void Initiate()
     {
         InTurn = Hero;
-        Player.State = State.Fighting;
     }
 
     Random rnd = new Random();

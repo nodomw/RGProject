@@ -7,6 +7,7 @@ using FantasyRPG.Characters;
 using RGProject.Characters.Heroes;
 using FantasyRPG.Characters.Enemies.Bosses;
 using FantasyRPG.Items.HeroItems.BasicItems;
+using FantasyRPG.Characters.Enemies.BasicEnemies;
 
 var enemy = new Emperor("Lajos");
 // var font = FigletFont.Load("ANSI Shadow.flf");
@@ -80,7 +81,7 @@ Terrain v = new()
 {
 	DisplayCharacter = new Markup("[grey37]■[/]")
 };
-Enemy vamp = new("joni", new Vampire("joni"));
+Enemy vamp = new(new Vampire("joni"));
 Map map1 = new("Map 1", new ITile[,]{
 	{ g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g },
 	{ g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g },
@@ -125,24 +126,24 @@ Map map2 = new("map 2", new ITile[,] {
 	{ d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
+	{ d, d, d, d, d, v, v, v, new Enemy(new BloodScream("lemon")), v, v, v, v, v, v, v, v, v, v, new Enemy(new BoneCrusher("golem")), v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
+	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, new Enemy(new ChaosBeast("funny guy")), v, v, v, v, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
-	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
-	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
-	{ d, d, d, d, d, d, v, v, v, v, vamp, v, v, v, v, v, v, vamp, v, v, v, v, v, v, d, d, d, d, d, d },
+	{ d, d, d, d, d, d, v, v, v, v, new Enemy(new Nightshade("slender guy")), v, v, v, v, v, v, new Enemy(new Skeleton("boney")), v, v, v, v, v, v, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d },
-	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v, vamp, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
+	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v, new Enemy(new Vampire("Dracula")), v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v,et, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 });
@@ -155,7 +156,7 @@ Map map3 = new("map 3", new ITile[,] {
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, d, d },
-	{ d, d, d, d, d, d, v, v, v, v, v, v, v, v, vamp, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d },
+	{ d, d, d, d, d, d, v, v, v, v, v, v, v, v, new Enemy(new Nightshade("slender guy 2")), v, v, v, v, v, v, v, v, v, d, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, v, d, d, d, d, d, v, v, v, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, d, d, d, d, d, d, d, v, v, v, v, v, v, v, d, d, d, d, d },
@@ -163,7 +164,7 @@ Map map3 = new("map 3", new ITile[,] {
 	{ d, d, d, d, d, v, v, v, v, d, d, d, d, d, d, d, d, d, d, d, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, d, d, d, d, d, d, d, d, d, d, d, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, d, d, d, d, d, d, d, d, d, d, d, v, v, v, v, v, d, d, d, d, d },
-	{ d, d, d, d, d, v, vamp, v, v, d, d, d, d, d, d, d, d, d, d, d, v, vamp, v, v, v, d, d, d, d, d },
+	{ d, d, d, d, d, v, new Enemy(new BoneCrusher("anti scrankler")), v, v, d, d, d, d, d, d, d, d, d, d, d, v, new Enemy(new Skeleton("scrankler")), v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, d, d, d, d, d, d, d, d, d, d, d, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, d, d, d, d, d, d, d, d, d, d, d, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, d, d, d, d, d, d, d, d, d, v, v, v, v, v, v, d, d, d, d, d },
@@ -171,7 +172,7 @@ Map map3 = new("map 3", new ITile[,] {
 	{ d, d, d, d, d, v, v, v, v, v, v, v, d, d, d, d, d, v, v, v, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
-	{ d, d, d, d, d, d, v, v, v, v, v, v, v, vamp, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d },
+	{ d, d, d, d, d, d, v, v, v, v, v, v, v, new Enemy(new Prince("little prince")), v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d },
 	{ et, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
@@ -181,30 +182,30 @@ Map map3 = new("map 3", new ITile[,] {
 Map map4 = new("map 4", new ITile[,] {
 	{ d,et, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
-	{ d, v, d, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, pl},
-	{ d, v, d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, v, vamp, v, d, d, d, d, d, d, d, d },
-	{ d, vamp, d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
+	{ d, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, pl},
+	{ d, v, d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, v, new Enemy(new Skeleton("bonka")), v, d, d, d, d, d, d, d, d },
+	{ d, new Enemy(new BoneCrusher("foxcoon factory lemon")), d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
-	{ d, v, d, d, d, d, d, d, d, d, d, d, vamp, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
+	{ d, v, d, d, d, d, d, d, d, d, d, d, new Enemy(new Emperor("big prince")), d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, v, v, v, v, v, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, v, v, v, v, v, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, v, v, v, v, v, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, v, v, v, v, v, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, v, v, v, v, v, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
-	{ d, v, d, d, d, d, d, d, d, d, v, vamp, v, vamp, v, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
+	{ d, v, d, d, d, d, d, d, d, d, v, new Enemy(new ChaosBeast("badabeebo")), v, new Enemy(new Nightshade("badabingo")), v, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, v, v, v, v, v, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, v, v, v, v, v, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
-	{ d, v, d, d, d, d, d, d, d, d, v, v, vamp, v, v, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
+	{ d, v, d, d, d, d, d, d, d, d, v, v, new Enemy(new BloodScream("bingyboingo")), v, v, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d },
-	{ d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, vamp, d, d },
+	{ d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, new Enemy(new Skeleton("helen skeltoj")), d, d },
 	{ d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, v, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, v, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, v, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, v, d, d },
-	{ d, v, vamp, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, vamp, v, v, v, v, v, v, v, v, v, d, d },
+	{ d, v, new Enemy(new Skeleton("skeleer")), v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, new Enemy(new Skeleton("skeler")), v, v, v, v, v, v, v, v, v, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
@@ -215,37 +216,50 @@ Map map5 = new("map 5", new ITile[,] {
 	{ d, d, d, d, d, d, d, d, d, d, d, d, v, v, v, v, v, d, d, d, d, d, v, v, v, v, v, v, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, v, v, v, v, v, v, v, d, d, d, d, v, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, d, d, d, v, d, d, d, d, d, d, d },
-	{ d, v, v, v, v, v, v, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, v, d, d, new Loot(new RunBoost()), d, d, d, d },
+	{ d, v, v, v, v, v, v, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, v, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, v, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, v, d, v, v, v, d, d, d },
 	{ d, v, d, d, d, d, v, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, v, v, v, v, v, d, d, d },
 	{ d, v, d, d, d, v, v, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, v, v, v, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, v, v, v, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, v, v, v, d, d, d },
 	{ d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, v, d, d, d, d },
-	{ d, d, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, v, d, d, d, d },
-	{ d, d, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d },
+	{ d, d, d, d, d, d, d, d, d, v, v, new Enemy(new Nightshade("hater")), v, v, v, v, v, v, v, v, d, d, d, d, d, v, d, d, d, d },
+	{ d, d, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, new Enemy(new Nightshade("bikiboko")), v, v, v, v, d, d, d, d },
 	{ d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, v, v, v, v, v, d },
-	{ d, v, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, v, v, d, d, v, d },
+	{ d, new Enemy(new Skeleton("dry gong")), d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, v, v, d, d, new Enemy(new Skeleton("bakibako")), d },
 	{ d, v, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, v, v, d, d, v, d },
 	{ d, v, v, v, v, v, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, v, d, d, v, d },
 	{ d, d, d, d, d, v, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, v, d },
 	{ d, d, d, d, d, v, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, v, d },
 	{ d, v, v, v, v, v, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, v, d },
-	{ d, v, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, v, d },
+	{ d, new Enemy(new BloodScream("sour elmone")), d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, v, d },
 	{ d, v, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, v, d },
 	{ d, v, v, v, v, v, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, v, d },
 	{ d, d, d, d, d, v, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, v, d },
 	{ d, d, d, d, d, v, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, v, d },
-	{ d, v, v, v, v, v, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, v, d },
+	{ d, v, v, v, v, v, d, d, d, v, v, v, new Enemy(new BloodScream("wakcer")), v, v, v, v, new Enemy(new Skeleton("skelr")), v, v, d, d, d, d, d, d, d, d, v, d },
 	{ d, v, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, v, d },
 	{ d, v, d, d, d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, v, d },
 	{ d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d,pl, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 });
 
+
+System.Console.WriteLine("drawing map 1");
+map1.DrawFull(DrawCriteria.DisplayCharacter);
+
+System.Console.WriteLine("drawing map 2");
+map2.DrawFull(DrawCriteria.DisplayCharacter);
+
+System.Console.WriteLine("drawing map 3");
+map3.DrawFull(DrawCriteria.DisplayCharacter);
+
+System.Console.WriteLine("drawing map 4");
+map4.DrawFull(DrawCriteria.DisplayCharacter);
+
+System.Console.WriteLine("drawing map 5");
+map5.DrawFull(DrawCriteria.DisplayCharacter);
+
 long after = GC.GetTotalMemory(true);
 long objectSize = after - before;
-AnsiConsole.MarkupLine($"[bold gold1]Object size: {objectSize} bytes, before: {before} bytes, after: {after} bytes[/]");
-// map5.DrawFull(DrawCriteria.DisplayCharacter);
-
-
+AnsiConsole.MarkupLine($"[bold gold1]Size difference: {objectSize} bytes, before: {before} bytes, after: {after} bytes[/]");
