@@ -52,17 +52,26 @@ public abstract class Item
     public string Name { get; }
     public string Description { get; }
 }
-public abstract class Weapon : Item, IWeapon
+public abstract class Weapon : Item
 {
     public new Guid Id { get; } = Guid.NewGuid();
     public new string Name { get; }
     public new string Description { get; }
-    public int Level { get; set; }
-    public int Damage { get; set; }
+    // public int Level { get; set; }
+    // public int Damage { get; set; }
+
+    public double HPBuff { get; set; }
+    public double DmgBuff { get; set; }
+    public double DEFBuff { get; set; }
+    public double StunBuff { get; set; }
+    public double ComboBuff { get; set; }
+    public double CATKBuff { get; set; }
+    public double DodgeBuff { get; set; }
+    public double CritBuff { get; set; }
 
     // damage from attacks is returned as 'int'. double is needed for multiplication
-    public int Attack() => Damage;
-    public double Critical() => Damage * 1.5;
+    // public int Attack() => Damage;
+    // public double Critical() => Damage * 1.5;
     public string Interact() => "";
 }
 public abstract class Potion : Item, IPotion
