@@ -171,4 +171,14 @@ public class Map
             return FakeTile;
         }
     }
+    public dynamic InteractWithTile(TilePosition tp)
+    {
+        ITile tile = GetTileByPosition(tp);
+        if (tile is ILootable)
+        {
+            ((ILootable)tile).Interact(PlayerTile.Character);
+            return "Looted";
+        }
+        return "Nothing to loot";
+    }
 }

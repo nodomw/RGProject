@@ -17,6 +17,5 @@ namespace FantasyRPG.Map.Tiles
         public bool Passable { get; set; } = true;
         public TilePosition Position { get; set; }
         public Markup DisplayCharacter { get; set; } = new Markup("[bold white]@[/]");
-        public string Interact() => "You, yourself and you.";
     }
 }

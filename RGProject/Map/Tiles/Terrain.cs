@@ -10,6 +10,5 @@ namespace FantasyRPG.Map.Tiles
         public TilePosition Position { get; set; }
         public bool Passable { get; set; } = true;
         public Markup DisplayCharacter { get; set; } = new Markup("[green]#[/]");
-        public string Interact() => "Nature, in all it's might and glory.";
     }
 }
