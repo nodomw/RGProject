@@ -17,6 +17,7 @@ public class Emperor : ICharacter
 	public int Level { get; set; } = 0;
 	public int XP { get; set; } = 0;
 	public double Health { get; set; } = 3000;
+	public double MaxHealth { get; set; } = 3000;
 	public double Damage { get; set; } = 100;
 	public double CATK { get; set; } = 0;
 	public double DEF { get; set; } = 0;

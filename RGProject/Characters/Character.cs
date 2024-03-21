@@ -34,7 +34,7 @@ public interface ICharacter
     public TilePosition Position { get; set; }
     public int Level { get; set; }
     public int XP { get; set; } // TODO: figure out xp amount for each level
-
+    public double MaxHealth { get; set; }
     public double Health { get; set; } // HP
     public double Damage { get; set; } // ATK
     public double CATK { get; set; } // CATK%

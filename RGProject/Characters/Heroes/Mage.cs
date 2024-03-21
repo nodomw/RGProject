@@ -25,6 +25,7 @@ public class Mage : ICharacter
 	public int Level { get; set; } = 0;
 	public int XP { get; set; } = 0;
 	public double Health { get; set; } = 1000;
+	public double MaxHealth { get; set; } = 1000;
 	public double Damage { get; set; } = 400;
 	public double CATK { get; set; } = 20;
 	public double DEF { get; set; } = 0;
