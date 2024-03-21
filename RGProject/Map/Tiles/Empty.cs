@@ -9,6 +9,6 @@ public class Empty : ITile
     public bool Fake { get; set; } = false; // needed for when GetTileByPosition returns a fake tile which does not exist on the map
     public bool Passable { get; set; } = true;
     public TilePosition Position { get; set; }
-    public Markup DisplayCharacter { get; } = new Markup("[grey]#[/]");
+    public Markup DisplayCharacter { get; set; } = new Markup("[grey]#[/]");
     public string Interact() => "An empty piece of land. Nothing to see here.";
 }

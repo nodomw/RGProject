@@ -52,7 +52,7 @@ public class Map
             PlayerTile = (Player)tile;
         }
     }
-    public bool ReplaceTile(TilePosition at, ITile tile) // TODO (same here)
+    public bool ReplaceTile(TilePosition at, ITile tile)
     {
         if (Tiles[at.X, at.Y] == null) return false;
 
@@ -78,13 +78,13 @@ public class Map
                         AnsiConsole.Write(Tiles[x, y].DisplayCharacter);
                         break;
                 }
-                AnsiConsole.Write("     ");
+                AnsiConsole.Write("  ");
             }
-            AnsiConsole.WriteLine();
+            // AnsiConsole.WriteLine();
             AnsiConsole.WriteLine();
         }
     }
-    public void DrawGrid()
+    public void DrawGrid() // do not look at this
     {
         TilePosition Center = PlayerTile.Position;
 
@@ -132,9 +132,9 @@ public class Map
             for (int y = 0; y < grid.GetLength(1); y++)
             {
                 AnsiConsole.Write(grid[x, y]);
-                AnsiConsole.Write("     ");
+                AnsiConsole.Write("  ");
             }
-            AnsiConsole.WriteLine();
+            // AnsiConsole.WriteLine();
             AnsiConsole.WriteLine();
         }
     }
@@ -165,7 +165,8 @@ public class Map
             Empty FakeTile = new()
             {
                 Passable = true,
-                Fake = true
+                Fake = true,
+                DisplayCharacter = new Markup("[grey15].[/]")
             };
             return FakeTile;
         }

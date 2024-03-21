@@ -15,6 +15,6 @@ public class Loot : ITile
     public string Name { get; set; } = "Loot";
     public bool Passable { get; set; } = true;
     public TilePosition Position { get; set; }
-    public Markup DisplayCharacter { get; } = new Markup("[yellow]$[/]");
+    public Markup DisplayCharacter { get; set; } = new Markup("[yellow]$[/]");
     public string Interact() => "Treasures galore!";
 }
