@@ -1,6 +1,7 @@
 ﻿using FantasyRPG.Characters;
 using FantasyRPG.Combat;
 using RGProject.Characters.Heroes;
+using FantasyRPG.Map;
 using Spectre.Console;
 
 namespace FantasyRPG.UI;
@@ -341,7 +342,7 @@ public class Menu(Battle battle)
                 return MageAttacks.Fireball;
             case "Ice Shard":
                 return MageAttacks.IceShard;
-             case "Thunderbolt":
+            case "Thunderbolt":
                 return MageAttacks.Thunderbolt;
             default:
                 PreviousMenu();
@@ -485,7 +486,7 @@ public class Menu(Battle battle)
 
         if (hero != "[red]Exit[/]")
         {
-           ShowPaladinInfo();
+            ShowPaladinInfo();
         }
         else
         {
@@ -711,7 +712,7 @@ public class Menu(Battle battle)
 
     }
 
-    public string[] ShowMoveMenu()
+    public void ShowMoveMenu(Map.Map map)
     {
         Console.Clear();
         var hero = AnsiConsole.Prompt(
@@ -721,38 +722,26 @@ public class Menu(Battle battle)
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
                 .AddChoices(new[]
                 {
-                     "Up", "Down", "Left", "Right", "[red]Exit[/]"
+                    "Up", "Down", "Left", "Right", "[red]Exit[/]"
                 }));
 
-        string[] everything = new string[2];
-
-        if (hero != "[red]Exit[/]")
-        {
-            string length = ShowMoveLengthMenu();
-            everything[0] = hero;
-            everything[1] = length;
-        }
-        else
-        {
-            everything[0] = hero;
-        }
-        return everything;
-
-    }
-
-    public string ShowMoveLengthMenu()
-    {
-        Console.Clear();
-        var hero = AnsiConsole.Prompt(
-            new SelectionPrompt<string>()
+        int length = AnsiConsole.Prompt(
+            new SelectionPrompt<int>()
                 .Title("Choose how many tiles you want to [green]Move[/]!")
                 .PageSize(10)
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
-                .AddChoices(new[]
-                {
-                    "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"
-                }));
+                .AddChoices(
+                [
+                    1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+                ]));
 
-        return hero;
+        map.MoveTile(map.PlayerTile, hero switch
+        {
+            "Up" => new TilePosition(map.PlayerTile.Position.X, map.PlayerTile.Position.Y - length),
+            "Down" => new TilePosition(map.PlayerTile.Position.X, map.PlayerTile.Position.Y + length),
+            "Left" => new TilePosition(map.PlayerTile.Position.X - length, map.PlayerTile.Position.Y),
+            "Right" => new TilePosition(map.PlayerTile.Position.X + length, map.PlayerTile.Position.Y),
+            _ => map.PlayerTile.Position
+        });
     }
 }

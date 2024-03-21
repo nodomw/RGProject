@@ -5,7 +5,8 @@ using FantasyRPG.Combat;
 using FantasyRPG.Map.Tiles;
 using FantasyRPG.Characters;
 using RGProject.Characters.Heroes;
-using RGProject.Characters.Enemies;
+using FantasyRPG.Characters.Enemies.Bosses;
+using FantasyRPG.Items.HeroItems.BasicItems;
 
 var enemy = new Emperor("Lajos");
 // var font = FigletFont.Load("ANSI Shadow.flf");
@@ -16,7 +17,7 @@ ICharacter hero = tempmenu.ShowCharSelection();
 
 Battle battle = new Battle(hero, enemy);
 // var menu = new Menu(battle);
-battle.Turn();
+// battle.Turn();
 
 /*Console.Clear();
 AnsiConsole.Write(new FigletText(font2, "Welcome to").Centered().Color(Color.White));
@@ -48,8 +49,8 @@ charclass = temp[1];*/
 // });
 
 long before = GC.GetTotalMemory(true);
-
-Player pl = new("joni", new Assassin("joni"));
+Menu menu = new(battle);
+Player pl = new("joni", hero);
 Terrain g = new()
 {
 	DisplayCharacter = new Markup("[darkgreen]■[/]")
@@ -214,7 +215,7 @@ Map map5 = new("map 5", new ITile[,] {
 	{ d, d, d, d, d, d, d, d, d, d, d, d, v, v, v, v, v, d, d, d, d, d, v, v, v, v, v, v, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, v, v, v, v, v, v, v, d, d, d, d, v, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, d, d, d, v, d, d, d, d, d, d, d },
-	{ d, v, v, v, v, v, v, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, v, d, d, v, d, d, d, d },
+	{ d, v, v, v, v, v, v, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, v, d, d, new Loot(new RunBoost()), d, d, d, d },
 	{ d, v, d, d, d, d, v, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, v, d, v, v, v, d, d, d },
 	{ d, v, d, d, d, d, v, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, v, v, v, v, v, d, d, d },
 	{ d, v, d, d, d, v, v, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, v, v, v, d, d, d },
@@ -245,11 +246,6 @@ Map map5 = new("map 5", new ITile[,] {
 long after = GC.GetTotalMemory(true);
 long objectSize = after - before;
 AnsiConsole.MarkupLine($"[bold gold1]Object size: {objectSize} bytes, before: {before} bytes, after: {after} bytes[/]");
-
-
-
 // map5.DrawFull(DrawCriteria.DisplayCharacter);
 
-map5.MoveTile(map5.PlayerTile, new TilePosition(28, 1));
-map5.DrawFull(DrawCriteria.DisplayCharacter);
-map5.DrawGrid();
+

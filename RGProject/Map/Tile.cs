@@ -1,6 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
-using Spectre.Console;
+﻿using Spectre.Console;
+using FantasyRPG.Characters;
 
 namespace FantasyRPG.Map;
 
@@ -49,7 +48,11 @@ public interface ITile
     public TilePosition Position { get; set; }
     public bool Passable { get; set; }
     public string Name { get; set; }
-    public string Interact();
     public Markup DisplayCharacter { get; set; }
+}
+
+public interface ILootable
+{
+    public void Interact(ICharacter character);
 }
 

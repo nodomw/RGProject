@@ -46,7 +46,7 @@ public interface IMagic : IWeapon
 {
     MagicType Type { get; }
 }
-public abstract class Item
+public interface Item
 {
     public Guid Id { get; }
     public string Name { get; }
@@ -54,9 +54,9 @@ public abstract class Item
 }
 public abstract class Weapon : Item
 {
-    public new Guid Id { get; } = Guid.NewGuid();
-    public new string Name { get; }
-    public new string Description { get; }
+    public Guid Id { get; } = Guid.NewGuid();
+    public string Name { get; }
+    public string Description { get; }
     // public int Level { get; set; }
     // public int Damage { get; set; }
 
@@ -72,12 +72,13 @@ public abstract class Weapon : Item
     // damage from attacks is returned as 'int'. double is needed for multiplication
     // public int Attack() => Damage;
     // public double Critical() => Damage * 1.5;
-    public string Interact() => "";
+    public dynamic Interact() => "";
 }
 public abstract class Potion : Item, IPotion
 {
-    public new string Name { get; }
-    public new string Description { get; }
+    public Guid Id { get; } = Guid.NewGuid();
+    public string Name { get; }
+    public string Description { get; }
     public int Power { get; }
     public PotionModifier Stat { get; }
     public double Use(ICharacter character)

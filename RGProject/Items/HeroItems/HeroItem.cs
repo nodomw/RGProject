@@ -1,10 +1,10 @@
 ﻿namespace FantasyRPG.Items.HeroItems;
 
-public interface IHeroItem
+public interface IHeroItem : Item
 {
-    public Guid Id { get; }
-    public string Name { get; set; }
-    public string Description { get; set; }
+    public new Guid Id { get; }
+    public new string Name { get; set; }
+    public new string Description { get; set; }
 
     public double HPBuff { get; set; }
     public double DmgBuff { get; set; }
