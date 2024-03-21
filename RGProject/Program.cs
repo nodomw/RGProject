@@ -67,7 +67,7 @@ Terrain p = new()
 };
 Terrain d = new() // darker gray than p but not as dark as dgr
 {
-	DisplayCharacter = new Markup("[grey37]X[/]")
+	DisplayCharacter = new Markup("[grey23]X[/]")
 };
 Terrain dr = new()
 {
@@ -79,7 +79,7 @@ Terrain et = new() // exit
 };
 Terrain v = new()
 {
-	DisplayCharacter = new Markup("[grey37]■[/]")
+	DisplayCharacter = new Markup("[grey58]■[/]")
 };
 Enemy vamp = new(new Vampire("joni"));
 Map map1 = new("Map 1", new ITile[,]{
