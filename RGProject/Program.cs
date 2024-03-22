@@ -6,18 +6,18 @@ using FantasyRPG.Map.Tiles;
 using FantasyRPG.Characters;
 using RGProject.Characters.Heroes;
 using FantasyRPG.Characters.Enemies.Bosses;
-using FantasyRPG.Items.HeroItems.BasicItems;
 using FantasyRPG.Characters.Enemies.BasicEnemies;
+using FantasyRPG.Items.HeroItems.BasicItems;
 
-var enemy = new Emperor("Lajos");
 // var font = FigletFont.Load("ANSI Shadow.flf");
 // var font2 = FigletFont.Load("Cyberlarge.flf");
 
-var tempmenu = new Menu(new Battle(new Hero("john doe"), new Emperor("Lajos")));
-ICharacter hero = tempmenu.ShowCharSelection();
+// var tempmenu = new Menu(new Battle(new Hero("john doe"), new Emperor("Lajos")));
+// ICharacter hero = tempmenu.ShowCharSelection();
+Warrior hero = new("jani");
+Emperor enemy = new("Lajos");
 
 Battle battle = new Battle(hero, enemy);
-// var menu = new Menu(battle);
 // battle.Turn();
 
 /*Console.Clear();
@@ -245,20 +245,20 @@ Map map5 = new("map 5", new ITile[,] {
 });
 
 
-System.Console.WriteLine("drawing map 1");
-map1.DrawFull(DrawCriteria.DisplayCharacter);
-
-System.Console.WriteLine("drawing map 2");
-map2.DrawFull(DrawCriteria.DisplayCharacter);
-
-System.Console.WriteLine("drawing map 3");
-map3.DrawFull(DrawCriteria.DisplayCharacter);
-
-System.Console.WriteLine("drawing map 4");
-map4.DrawFull(DrawCriteria.DisplayCharacter);
-
-System.Console.WriteLine("drawing map 5");
-map5.DrawFull(DrawCriteria.DisplayCharacter);
+// System.Console.WriteLine("drawing map 1");
+// map1.DrawFull(DrawCriteria.DisplayCharacter);
+//
+// System.Console.WriteLine("drawing map 2");
+// map2.DrawFull(DrawCriteria.DisplayCharacter);
+//
+// System.Console.WriteLine("drawing map 3");
+// map3.DrawFull(DrawCriteria.DisplayCharacter);
+//
+// System.Console.WriteLine("drawing map 4");
+// map4.DrawFull(DrawCriteria.DisplayCharacter);
+//
+// System.Console.WriteLine("drawing map 5");
+// map5.DrawFull(DrawCriteria.DisplayCharacter);
 
 long after = GC.GetTotalMemory(true);
 long objectSize = after - before;
@@ -266,3 +266,6 @@ AnsiConsole.MarkupLine($"[bold gold1]Size difference: {objectSize} bytes, before
 System.Console.WriteLine("did something happen??");
 map1.InteractWithTile(new TilePosition(0, 0));
 System.Console.WriteLine("something happened");
+map1.PlayerTile.Character.Items.Add(new RunBoost());
+// System.Console.WriteLine(map1.PlayerTile.Character.Items[0]);
+menu.ShowMoveMenu(map1);

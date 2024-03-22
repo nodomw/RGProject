@@ -5,7 +5,6 @@ public class GiantSword : IHeroItem
     public Guid Id { get; }
     public string Name { get; set; } = "Giant Sword";
     public string Description { get; set; }
-
     public double HPBuff { get; set; }
     public double DmgBuff { get; set; } = 15;
     public double DEFBuff { get; set; }

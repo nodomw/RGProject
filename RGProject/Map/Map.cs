@@ -178,65 +178,65 @@ public class Map
         if (tile is ILootable)
         {
             ((ILootable)tile).Interact(PlayerTile.Character);
-            PlayerTile.Character.XP += 250;
-            switch (PlayerTile.Character.Level)
-            {
-                case 0:
-                    if (PlayerTile.Character.XP >= 1000)
-                    {
-                        PlayerTile.Character.Level++;
-                        AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and all of your [gold1]stats[/] are increased by 10%!\nYou also unlocked your first ability, and you can now your first special item, if you found it!"));
-                    }
-                    if (PlayerTile.Character.XP >= 1500)
-                    {
-                        PlayerTile.Character.Level++;
-                        AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!\nYou also unlocked your second ability!"));
-                    }
-                    break;
-                case 1:
-                    if (PlayerTile.Character.XP >= 1500)
-                    {
-                        PlayerTile.Character.Level++;
-                        AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 10%!\nYou also unlocked your second ability!"));
-                    }
-                    if (PlayerTile.Character.XP >= 2200)
-                    {
-                        PlayerTile.Character.Level++;
-                        AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!\nYou can also use your second special item, if you found it!"));
-                    }
-                    break;
-                case 2:
-                    if (PlayerTile.Character.XP >= 2200)
-                    {
-                        PlayerTile.Character.Level++;
-                        AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!\nYou can also use your second special item, if you found it!"));
-                    }
-                    if (PlayerTile.Character.XP >= 3200)
-                    {
-                        PlayerTile.Character.Level++;
-                        AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!"));
-                    }
-                    break;
-                case 3:
-                    if (PlayerTile.Character.XP >= 3200)
-                    {
-                        PlayerTile.Character.Level++;
-                        AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!"));
-                    }
-                    if (PlayerTile.Character.XP >= 4500)
-                    {
-                        PlayerTile.Character.Level++;
-                        AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20% and all of your [gold1]stats[/] are increased by 10%!"));
-                    }
-                    break;
-                case 4:
-                    if (PlayerTile.Character.XP >= 4500)
-                    {
-                        PlayerTile.Character.Level++;
-                        AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and reached [gold1]MAX[/] level!\nYour [green3]hp[/] and [red1]dmg[/] are increased by 20% and all of your [gold1]stats[/] are increased by 10%!"));
-                    }
-                    break;
-            }
+            // PlayerTile.Character.XP += 250;
+            // switch (PlayerTile.Character.Level)
+            // {
+            //     case 0:
+            //         if (PlayerTile.Character.XP >= 1000)
+            //         {
+            //             PlayerTile.Character.Level++;
+            //             AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and all of your [gold1]stats[/] are increased by 10%!\nYou also unlocked your first ability, and you can now your first special item, if you found it!"));
+            //         }
+            //         if (PlayerTile.Character.XP >= 1500)
+            //         {
+            //             PlayerTile.Character.Level++;
+            //             AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!\nYou also unlocked your second ability!"));
+            //         }
+            //         break;
+            //     case 1:
+            //         if (PlayerTile.Character.XP >= 1500)
+            //         {
+            //             PlayerTile.Character.Level++;
+            //             AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 10%!\nYou also unlocked your second ability!"));
+            //         }
+            //         if (PlayerTile.Character.XP >= 2200)
+            //         {
+            //             PlayerTile.Character.Level++;
+            //             AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!\nYou can also use your second special item, if you found it!"));
+            //         }
+            //         break;
+            //     case 2:
+            //         if (PlayerTile.Character.XP >= 2200)
+            //         {
+            //             PlayerTile.Character.Level++;
+            //             AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!\nYou can also use your second special item, if you found it!"));
+            //         }
+            //         if (PlayerTile.Character.XP >= 3200)
+            //         {
+            //             PlayerTile.Character.Level++;
+            //             AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!"));
+            //         }
+            //         break;
+            //     case 3:
+            //         if (PlayerTile.Character.XP >= 3200)
+            //         {
+            //             PlayerTile.Character.Level++;
+            //             AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!"));
+            //         }
+            //         if (PlayerTile.Character.XP >= 4500)
+            //         {
+            //             PlayerTile.Character.Level++;
+            //             AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20% and all of your [gold1]stats[/] are increased by 10%!"));
+            //         }
+            //         break;
+            //     case 4:
+            //         if (PlayerTile.Character.XP >= 4500)
+            //         {
+            //             PlayerTile.Character.Level++;
+            //             AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and reached [gold1]MAX[/] level!\nYour [green3]hp[/] and [red1]dmg[/] are increased by 20% and all of your [gold1]stats[/] are increased by 10%!"));
+            //         }
+            //         break;
+            // }
             return "Looted";
         }
         return "Nothing to loot";

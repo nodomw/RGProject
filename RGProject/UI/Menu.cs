@@ -3,6 +3,7 @@ using FantasyRPG.Combat;
 using RGProject.Characters.Heroes;
 using FantasyRPG.Map;
 using Spectre.Console;
+using FantasyRPG.Items.HeroItems.BasicItems;
 
 namespace FantasyRPG.UI;
 
@@ -30,7 +31,7 @@ public class Menu(Battle battle)
     public void Show()
     {
         currentmenu = "Show";
-        Console.Clear();
+        // Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Select an option, use arrow keys to navigate.")
@@ -67,7 +68,7 @@ public class Menu(Battle battle)
     {
         currentmenu = "ShowCharSelection";
 
-        Console.Clear();
+        // Console.Clear();
         var @class = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose your [green]Character[/]!")
@@ -100,7 +101,7 @@ public class Menu(Battle battle)
     {
         currentmenu = "ShowCharCreation";
 
-        Console.Clear();
+        // Console.Clear();
         AnsiConsole.WriteLine($"Enter your character's name: ");
 #pragma warning disable CS8603 // Possible null reference return.
         return Console.ReadLine();
@@ -109,7 +110,7 @@ public class Menu(Battle battle)
 
     public void ShowMaps()
     {
-        Console.Clear();
+        // Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose the [green]Map[/] you want to play on!")
@@ -129,7 +130,7 @@ public class Menu(Battle battle)
     {
         currentmenu = "ShowMainMenu";
 
-        Console.Clear();
+        // Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Main Menu")
@@ -145,7 +146,7 @@ public class Menu(Battle battle)
     {
         currentmenu = "ShowInGameMenu";
 
-        Console.Clear();
+        // Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Game Menu")
@@ -161,7 +162,7 @@ public class Menu(Battle battle)
     {
         currentmenu = "ShowInventoryMenu";
 
-        Console.Clear();
+        // Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("[gold1]Inventory[/]")
@@ -177,7 +178,7 @@ public class Menu(Battle battle)
     {
         currentmenu = "ShowEquipMenu";
 
-        Console.Clear();
+        // Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Equip one item!")
@@ -193,7 +194,7 @@ public class Menu(Battle battle)
     {
         currentmenu = "ShowItemMenu";
 
-        Console.Clear();
+        // Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose the [yellow]Item[/] you want to use!")
@@ -217,7 +218,7 @@ public class Menu(Battle battle)
     public string ShowBattleMenu()
     {
         currentmenu = "ShowBattleMenu";
-        Console.Clear();
+        // Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose your [red]Move[/]!")
@@ -239,7 +240,7 @@ public class Menu(Battle battle)
     public void ShowWarriorInfo()
     {
         currentmenu = "ShowWarriorInfo";
-        Console.Clear();
+        // Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("These are your [red]Abilities[/]!")
@@ -268,7 +269,7 @@ public class Menu(Battle battle)
     public WarriorAttacks ShowWarriorAttacks()
     {
         currentmenu = "ShowWarriorAttacks";
-        Console.Clear();
+        // Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose your [red]Attack[/]!")
@@ -296,7 +297,7 @@ public class Menu(Battle battle)
     public void ShowMageInfo()
     {
         currentmenu = "ShowMageInfo";
-        Console.Clear();
+        // Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("These are your [red]Abilities[/]!")
@@ -325,7 +326,7 @@ public class Menu(Battle battle)
     public MageAttacks ShowMageAttacks()
     {
         currentmenu = "ShowMageAttacks";
-        Console.Clear();
+        // Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose your [red]Attack[/]!")
@@ -353,7 +354,7 @@ public class Menu(Battle battle)
     public void ShowElfInfo()
     {
         currentmenu = "ShowElfInfo";
-        Console.Clear();
+        // Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("These are your [red]Abilities[/]!")
@@ -382,7 +383,7 @@ public class Menu(Battle battle)
     public ElfAttacks ShowElfAttacks()
     {
         currentmenu = "ShowElfAttacks";
-        Console.Clear();
+        // Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose your [red]Attack[/]!")
@@ -410,7 +411,7 @@ public class Menu(Battle battle)
     public void ShowAssassinInfo()
     {
         currentmenu = "ShowAssassinInfo";
-        Console.Clear();
+        // Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("These are your [red]Abilities[/]!")
@@ -440,7 +441,7 @@ public class Menu(Battle battle)
     public AssassinAttacks ShowAssassinAttacks()
     {
         currentmenu = "ShowAssassinAttacks";
-        Console.Clear();
+        // Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose your [red]Attack[/]!")
@@ -468,7 +469,7 @@ public class Menu(Battle battle)
     public void ShowPaladinInfo()
     {
         currentmenu = "ShowPaladinInfo";
-        Console.Clear();
+        // Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("These are your [red]Abilities[/]!")
@@ -497,7 +498,7 @@ public class Menu(Battle battle)
     public PaladinAttacks ShowPaladinAttacks()
     {
         currentmenu = "ShowPaladinAttacks";
-        Console.Clear();
+        // Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose your [red]Attack[/]!")
@@ -525,7 +526,7 @@ public class Menu(Battle battle)
     public void ShowHeroInfo()
     {
         currentmenu = "ShowHeroInfo";
-        Console.Clear();
+        // Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("These are your [red]Abilities[/]!")
@@ -554,7 +555,7 @@ public class Menu(Battle battle)
     public HeroAttacks ShowHeroAttacks()
     {
         currentmenu = "ShowHeroAttacks";
-        Console.Clear();
+        // Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose your [red]Attack[/]!")
@@ -582,7 +583,7 @@ public class Menu(Battle battle)
     public void ShowHunterInfo()
     {
         currentmenu = "ShowHunterInfo";
-        Console.Clear();
+        // Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("These are your [red]Abilities[/]!")
@@ -611,7 +612,7 @@ public class Menu(Battle battle)
     public HunterAttacks ShowHunterAttacks()
     {
         currentmenu = "ShowHunterAttacks";
-        Console.Clear();
+        // Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose your [red]Attack[/]!")
@@ -639,7 +640,7 @@ public class Menu(Battle battle)
     public void ShowNinjaInfo()
     {
         currentmenu = "ShowNinjaInfo";
-        Console.Clear();
+        // Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("These are your [red]Abilities[/]!")
@@ -668,7 +669,7 @@ public class Menu(Battle battle)
     public NinjaAttacks ShowNinjaAttacks()
     {
         currentmenu = "ShowNinjaAttacks";
-        Console.Clear();
+        // Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose your [red]Attack[/]!")
@@ -698,7 +699,7 @@ public class Menu(Battle battle)
 
     public void ShowPeaceMenu()
     {
-        Console.Clear();
+        // Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose what you want to [green]Do[/]!")
@@ -714,7 +715,7 @@ public class Menu(Battle battle)
 
     public void ShowMoveMenu(Map.Map map)
     {
-        Console.Clear();
+        // Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose what direction you want to [green]Move[/]!")
@@ -731,9 +732,10 @@ public class Menu(Battle battle)
                 .PageSize(10)
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
                 .AddChoices(
-                [
-                    1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-                ]));
+                    map.PlayerTile.Character.Items.Contains(new RunBoost()) ?
+                    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] :
+                    [1, 2, 3, 4, 5]
+                ));
 
         map.MoveTile(map.PlayerTile, hero switch
         {
