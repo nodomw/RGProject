@@ -1,6 +1,6 @@
 ﻿namespace FantasyRPG.Items.HeroItems.Hunter;
 
-public class Shotgun : IHeroItem
+public class Shotgun : IBoost
 {
     public Guid Id { get; }
     public string Name { get; set; } = "Shotgun";

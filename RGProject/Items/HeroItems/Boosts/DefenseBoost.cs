@@ -1,6 +1,6 @@
 ﻿namespace FantasyRPG.Items.HeroItems.BasicItems;
 
-public class DefenseBoost : IHeroItem
+public class DefenseBoost : IBoost
 {
     public Guid Id { get; }
     public string Name { get; set; } = "Defense Boost";

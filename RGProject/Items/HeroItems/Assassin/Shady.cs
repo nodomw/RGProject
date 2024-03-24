@@ -1,6 +1,6 @@
 ﻿namespace FantasyRPG.Items.HeroItems.Assassin;
 
-public class Shady : IHeroItem
+public class Shady : IBoost
 {
     public Guid Id { get; }
     public string Name { get; set; } = "Shady";

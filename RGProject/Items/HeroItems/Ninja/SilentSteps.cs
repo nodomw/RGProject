@@ -1,6 +1,6 @@
 ﻿namespace FantasyRPG.Items.HeroItems.Ninja;
 
-public class SilentSteps : IHeroItem
+public class SilentSteps : IBoost
 {
     public Guid Id { get; }
     public string Name { get; set; } = "Silent Steps";

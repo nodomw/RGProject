@@ -1,6 +1,6 @@
 ﻿namespace FantasyRPG.Items.HeroItems.Hero;
 
-public class Crown : IHeroItem
+public class Crown : IBoost
 {
     public Guid Id { get; }
     public string Name { get; set; } = "Crown";

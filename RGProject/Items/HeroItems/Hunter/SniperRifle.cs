@@ -1,6 +1,6 @@
 ﻿namespace FantasyRPG.Items.HeroItems.Hunter;
 
-public class SniperRifle : IHeroItem
+public class SniperRifle : IBoost
 {
     public Guid Id { get; }
     public string Name { get; set; } = "Sniper Rifle";

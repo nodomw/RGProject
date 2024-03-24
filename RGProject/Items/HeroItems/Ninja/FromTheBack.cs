@@ -1,6 +1,6 @@
 ﻿namespace FantasyRPG.Items.HeroItems.Ninja;
 
-public class FromTheBack : IHeroItem
+public class FromTheBack : IBoost
 {
     public Guid Id { get; }
     public string Name { get; set; } = "From The Back";

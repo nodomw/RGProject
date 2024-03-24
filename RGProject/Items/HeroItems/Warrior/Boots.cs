@@ -1,6 +1,6 @@
 ﻿namespace FantasyRPG.Items.HeroItems.Warrior;
 
-public class Boots : IHeroItem
+public class Boots : IBoost
 {
     public Guid Id { get; }
     public string Name { get; set; } = "Boots";

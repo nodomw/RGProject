@@ -1,6 +1,6 @@
 ﻿namespace FantasyRPG.Items.HeroItems.Mage;
 
-public class MedKit : IHeroItem
+public class MedKit : IBoost
 {
     public Guid Id { get; }
     public string Name { get; set; } = "Med Kit";

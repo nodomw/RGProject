@@ -1,6 +1,6 @@
 ﻿namespace FantasyRPG.Items.HeroItems.Paladin;
 
-public class SpikeArmor : IHeroItem
+public class SpikeArmor : IBoost
 {
     public Guid Id { get; }
     public string Name { get; set; } = "Spike Armor";

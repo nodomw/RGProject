@@ -1,6 +1,6 @@
 ﻿namespace FantasyRPG.Items.HeroItems.Elf;
 
-public class IcyArrow : IHeroItem
+public class IcyArrow : IBoost
 {
     public Guid Id { get; }
     public string Name { get; set; } = "Icy Arrow";

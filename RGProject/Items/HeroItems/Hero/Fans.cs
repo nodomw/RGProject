@@ -1,6 +1,6 @@
 ﻿namespace FantasyRPG.Items.HeroItems.Hero;
 
-public class Fans : IHeroItem
+public class Fans : IBoost
 {
     public Guid Id { get; }
     public string Name { get; set; } = "Fans";

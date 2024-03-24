@@ -1,6 +1,6 @@
 ﻿namespace FantasyRPG.Items.HeroItems.Paladin;
 
-public class Helmet : IHeroItem
+public class Helmet : IBoost
 {
     public Guid Id { get; }
     public string Name { get; set; } = "Paladin's Helmet";

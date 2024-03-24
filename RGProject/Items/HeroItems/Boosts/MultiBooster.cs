@@ -1,14 +1,14 @@
 ﻿namespace FantasyRPG.Items.HeroItems.BasicItems;
 
-public class RunBoost : IHeroItem
+public class MultiBooster : IBoost
 {
     public Guid Id { get; }
-    public string Name { get; set; } = "Run Boost";
+    public string Name { get; set; } = "Multi Booster";
     public string Description { get; set; }
 
-    public double HPBuff { get; set; }
+    public double HPBuff { get; set; } = 5;
     public double DmgBuff { get; set; }
-    public double DEFBuff { get; set; }
+    public double DEFBuff { get; set; } = 10;
     public double StunBuff { get; set; }
     public double ComboBuff { get; set; }
     public double CATKBuff { get; set; }

@@ -1,13 +1,13 @@
-﻿namespace FantasyRPG.Items.HeroItems.BasicItems;
+﻿namespace FantasyRPG.Items.HeroItems;
 
-public class DamageBoost : IHeroItem
+public interface IBoost : Item
 {
-    public Guid Id { get; }
-    public string Name { get; set; } = "Damage Boost";
-    public string Description { get; set; }
+    public new Guid Id { get; }
+    public new string Name { get; set; }
+    public new string Description { get; set; }
 
     public double HPBuff { get; set; }
-    public double DmgBuff { get; set; } = 10;
+    public double DmgBuff { get; set; }
     public double DEFBuff { get; set; }
     public double StunBuff { get; set; }
     public double ComboBuff { get; set; }

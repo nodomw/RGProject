@@ -1,6 +1,6 @@
 ﻿namespace FantasyRPG.Items.HeroItems.Warrior;
 
-public class GiantSword : IHeroItem
+public class GiantSword : IBoost
 {
     public Guid Id { get; }
     public string Name { get; set; } = "Giant Sword";

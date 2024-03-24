@@ -1,6 +1,6 @@
 ﻿namespace FantasyRPG.Items.HeroItems.Mage;
 
-public class GoldenStick : IHeroItem
+public class GoldenStick : IBoost
 {
     public Guid Id { get; }
     public string Name { get; set; } = "Golden Stick";
