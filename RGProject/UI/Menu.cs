@@ -5,6 +5,7 @@ using FantasyRPG.Map;
 using Spectre.Console;
 using FantasyRPG.Items;
 using FantasyRPG.Items.HeroItems;
+using System.Diagnostics;
 
 namespace FantasyRPG.UI;
 
@@ -191,23 +192,22 @@ public class Menu(Battle battle)
                 }));
     }
 
-    public string ShowItemMenu(ICharacter character)
+    public void ShowItemMenu(ICharacter character)
     {
         currentmenu = "ShowItemMenu";
+        List<Potion> potions = character.Items.Where(x => x is Potion).Select(x => x as Potion).ToList()!;
 
         // Console.Clear();
-        var potion = AnsiConsole.Prompt(
+        string choice = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose the [yellow]Item[/] you want to use!")
                 .PageSize(10)
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
-                .AddChoices(
-                    character.Items.Where(x => x is Potion or IBoost).Select(x => x.Name).Append("[red]Exit[/]").ToArray()
-                ));
+                .AddChoices(potions.Select(x => x.Name).Append("[red]Exit[/]").ToArray()));
 
-        System.Console.WriteLine(potion);
+        if (choice == "[red]Exit[/]") PreviousMenu();
 
-        return potion;
+        potions.First(x => x.Name == choice).Use(character);
     }
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------*/

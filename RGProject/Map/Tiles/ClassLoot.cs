@@ -4,7 +4,6 @@ namespace FantasyRPG.Map.Tiles;
 
 using FantasyRPG.Characters;
 using FantasyRPG.Items.Potions;
-using FantasyRPG.Items.HeroItems.BasicItems;
 using FantasyRPG.Items.HeroItems.Elf;
 using FantasyRPG.Items.HeroItems.Hero;
 using FantasyRPG.Items.HeroItems.Hunter;
@@ -63,8 +62,8 @@ public class ClassLoot() : ITile, ILootable
 		{
 			1 => new Damage(),
 			2 => new Resistance(),
-			3 => new MultiBooster(),
-			_ => new RunBoost(),
+			3 => new Multi(),
+			_ => new Run(),
 		},
 	});
 }

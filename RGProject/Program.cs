@@ -242,14 +242,16 @@ Map map5 = new("map 5", new ITile[,] {
 long after = GC.GetTotalMemory(true);
 long objectSize = after - before;
 AnsiConsole.MarkupLine($"[bold gold1]Size difference: {objectSize} bytes, before: {before} bytes, after: {after} bytes[/]");
-System.Console.WriteLine("did something happen??");
+Console.WriteLine("did something happen??");
 
 map1.InteractWithTile(new TilePosition(0, 0));
 // map1.PlayerTile.Character.Items.Add(new Run());
 hero.Items.Add(new Damage());
 hero.Items.Add(new Resistance());
 hero.Items.Add(new Heal());
-System.Console.WriteLine("something happened");
+Console.WriteLine("something happened");
+Console.WriteLine(string.Join(", ", hero.Items));
 
-// menu.ShowMoveMenu(map1);
-menu.ShowItemMenu(hero);
+Battle b = new(hero, enemy, false);
+
+b.Turn();
