@@ -715,16 +715,14 @@ public class Menu(Battle battle)
 
     public void ShowMoveMenu(Map.Map map)
     {
+        ICharacter character = map.PlayerTile.Character;
         // Console.Clear();
-        var hero = AnsiConsole.Prompt(
+        var direction = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose what direction you want to [green]Move[/]!")
                 .PageSize(10)
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
-                .AddChoices(new[]
-                {
-                    "Up", "Down", "Left", "Right", "[red]Exit[/]"
-                }));
+                .AddChoices(["Up", "Down", "Left", "Right", "[red]Exit[/]"]));
 
         int length = AnsiConsole.Prompt(
             new SelectionPrompt<int>()
@@ -732,12 +730,15 @@ public class Menu(Battle battle)
                 .PageSize(10)
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
                 .AddChoices(
-                    map.PlayerTile.Character.Items.Contains(new RunBoost()) ?
-                    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] :
-                    [1, 2, 3, 4, 5]
-                ));
+                    (
+                        character.Items.Find(x => x is RunBoost) is RunBoost ?
+                        Enumerable.Range(1, 10) :
+                        Enumerable.Range(1, 5)
+                    ).ToArray()
+                )
+        );
 
-        map.MoveTile(map.PlayerTile, hero switch
+        map.MoveTile(map.PlayerTile, direction switch
         {
             "Up" => new TilePosition(map.PlayerTile.Position.X, map.PlayerTile.Position.Y - length),
             "Down" => new TilePosition(map.PlayerTile.Position.X, map.PlayerTile.Position.Y + length),
