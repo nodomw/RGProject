@@ -1,26 +1,30 @@
-﻿﻿using System.Runtime.CompilerServices;
-using FantasyRPG.Characters;
+﻿using FantasyRPG.Characters;
 using FantasyRPG.UI;
 using RGProject.Characters.Heroes;
 using Spectre.Console;
 
- namespace FantasyRPG.Combat;
+namespace FantasyRPG.Combat;
 
 public class Battle
 {
-    public Battle(ICharacter hero, ICharacter enemy)
+    public Battle(ICharacter hero, ICharacter enemy, bool temp = false)
     {
         Hero = hero;
         Enemy = enemy;
+
+        // dear god please dont let me fall off 🙏
+        // if (temp != false)
+        // {
+        // while (!Defeat() && !Victory())
+        // {
+        // Turn();
+        // }
+        // }
     }
     public ICharacter Hero { get; }
     public ICharacter Enemy { get; }
     public ICharacter InTurn { get; set; }
     public int Turns { get; set; }
-    public void Initiate()
-    {
-        InTurn = Hero;
-    }
 
     Random rnd = new Random();
     public bool ChanceSuccessful(double chance)
@@ -34,6 +38,8 @@ public class Battle
         double dmg = 0;
         double defDmg = 0;
 
+        // might just regret doing the checks this way loooool
+
         Hero.TempCrit = Hero.Crit;
         Hero.TempDmg = Hero.Damage;
         Hero.TempDEF = Hero.DEF;
@@ -46,6 +52,8 @@ public class Battle
         Enemy.TempCombo = Enemy.Combo;
         Enemy.TempCATK = Enemy.CATK;
         Enemy.TempCrit = Enemy.Crit;
+
+
 
         AnsiConsole.Clear();
 
@@ -1055,7 +1063,7 @@ public class Battle
                             SmokeBomb = false;
                         }
                         correctatk = true;
-                        menu.ShowItemMenu();
+                        menu.ShowItemMenu(Hero);
                         InTurn = Enemy;
                     }
                     else if (move == "Information")

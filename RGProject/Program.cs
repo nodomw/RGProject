@@ -7,47 +7,26 @@ using FantasyRPG.Characters;
 using RGProject.Characters.Heroes;
 using FantasyRPG.Characters.Enemies.Bosses;
 using FantasyRPG.Characters.Enemies.BasicEnemies;
-using FantasyRPG.Items.HeroItems.BasicItems;
+using FantasyRPG.Items.Potions;
 
+var enemy = new Emperor("Lajos");
 // var font = FigletFont.Load("ANSI Shadow.flf");
 // var font2 = FigletFont.Load("Cyberlarge.flf");
 
-// var tempmenu = new Menu(new Battle(new Hero("john doe"), new Emperor("Lajos")));
+var tempmenu = new Menu(new Battle(new Hero("john doe"), new Emperor("Lajos")));
 // ICharacter hero = tempmenu.ShowCharSelection();
-Warrior hero = new("jani");
-Emperor enemy = new("Lajos");
+ICharacter hero = new Warrior("john doe");
 
-Battle battle = new Battle(hero, enemy);
+Battle battle = new Battle(hero, enemy, true);
+// var menu = new Menu(battle);
 // battle.Turn();
 
-/*Console.Clear();
-AnsiConsole.Write(new FigletText(font2, "Welcome to").Centered().Color(Color.White));
-AnsiConsole.Write(new FigletText(font, "Fantasy Frontiers").Centered().Color(Color.Red));
+// AnsiConsole.Write(new FigletText(font2, "Welcome to").Centered().Color(Color.White));
+// AnsiConsole.Write(new FigletText(font, "Fantasy Frontiers").Centered().Color(Color.Red));
 
-AnsiConsole.Write(new Markup("[red]Press any key to continue.....[/]"));
-Console.ReadKey();
+// AnsiConsole.Write(new Markup("[red]Press any key to continue.....[/]"));
+// Console.ReadKey();
 
-temp = menu.Show();
-charname = temp[0];
-charclass = temp[1];*/
-// Enemy v = new("vampire", new Vampire("gino juno"));
-// Player p = new("joni", new Assassin("joni"));
-// Empty e = new();
-// Terrain t = new();
-
-// Map m1 = new Map("map 1", new ITile[,] {
-// 	// when making an actual map b sure to create actual instances instead of substituting stuff in
-// 	{ e, e, e, e, e, e, e, e, e, e },
-// 	{ e, e, e, e, e, e, e, e, e, e },
-// 	{ e, e, e, e, e, e, e, e, e, e },
-// 	{ e, e, e, e, e, e, e, e, e, e },
-// 	{ e, e, e, e, p, e, e, e, e, e },
-// 	{ e, e, e, e, e, e, e, e, e, e },
-// 	{ e, e, e, e, e, e, e, e, e, e },
-// 	{ e, e, e, e, e, e, e, e, e, e },
-// 	{ e, e, e, e, e, e, e, e, e, e },
-// 	{ e, e, e, e, e, e, e, e, e, e }
-// });
 
 long before = GC.GetTotalMemory(true);
 Menu menu = new(battle);
@@ -264,8 +243,13 @@ long after = GC.GetTotalMemory(true);
 long objectSize = after - before;
 AnsiConsole.MarkupLine($"[bold gold1]Size difference: {objectSize} bytes, before: {before} bytes, after: {after} bytes[/]");
 System.Console.WriteLine("did something happen??");
+
 map1.InteractWithTile(new TilePosition(0, 0));
+// map1.PlayerTile.Character.Items.Add(new Run());
+hero.Items.Add(new Damage());
+hero.Items.Add(new Resistance());
+hero.Items.Add(new Heal());
 System.Console.WriteLine("something happened");
-map1.PlayerTile.Character.Items.Add(new RunBoost());
-// System.Console.WriteLine(map1.PlayerTile.Character.Items[0]);
-menu.ShowMoveMenu(map1);
+
+// menu.ShowMoveMenu(map1);
+menu.ShowItemMenu(hero);

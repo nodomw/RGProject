@@ -15,11 +15,13 @@ public enum WeaponType
     Bow,
     Spell
 }
-public enum PotionModifier // Potion and spell Modifiers
+public enum PotionModifier // Potion modifiers
 {
     Heal, // Heals (n)
     Damage, // Increases damage by (n)%
-    Resistance // Increases resistance to attacks by (n)%
+    Resistance, // Increases resistance to attacks by (n)%
+    Run,
+    Multi
 }
 public interface IWeapon
 {
@@ -46,13 +48,13 @@ public interface IMagic : IWeapon
 {
     MagicType Type { get; }
 }
-public interface Item
+public interface ITem // haha get it
 {
     public Guid Id { get; }
     public string Name { get; }
     public string Description { get; }
 }
-public abstract class Weapon : Item
+public abstract class Weapon : ITem
 {
     public Guid Id { get; } = Guid.NewGuid();
     public string Name { get; }
@@ -74,7 +76,7 @@ public abstract class Weapon : Item
     // public double Critical() => Damage * 1.5;
     public dynamic Interact() => "";
 }
-public abstract class Potion : Item, IPotion
+public abstract class Potion : ITem, IPotion
 {
     public Guid Id { get; } = Guid.NewGuid();
     public string Name { get; }
@@ -90,12 +92,19 @@ public abstract class Potion : Item, IPotion
                 return (double)character.Health;
             case PotionModifier.Damage:
                 character.Weapon.Damage += Power;
-                return (double)character.Weapon.Damage;
+                return (double)character.Damage;
             case PotionModifier.Resistance:
                 character.DEF += Power;
                 return (double)character.DEF;
+            case PotionModifier.Run: // do nothing cuz it doesnt do anything in battles just on map
+                character.RunBoost = true;
+                goto default;
+            case PotionModifier.Multi:
+                character.DEF += 10;
+                character.Health += 5;
+                goto default;
             default:
-                return (double)0;
+                return 0;
         }
     }
 }
