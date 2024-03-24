@@ -3,7 +3,7 @@
 namespace FantasyRPG.Map.Tiles;
 
 using FantasyRPG.Characters;
-using FantasyRPG.Items;
+using FantasyRPG.Items.Potions;
 using FantasyRPG.Items.HeroItems.BasicItems;
 using FantasyRPG.Items.HeroItems.Elf;
 using FantasyRPG.Items.HeroItems.Hero;
@@ -12,7 +12,6 @@ using FantasyRPG.Items.HeroItems.Mage;
 using FantasyRPG.Items.HeroItems.Ninja;
 using FantasyRPG.Items.HeroItems.Paladin;
 using FantasyRPG.Items.HeroItems.Warrior;
-using RGProject.Characters.Heroes;
 using Spectre.Console;
 
 public class ClassLoot() : ITile, ILootable
@@ -62,8 +61,8 @@ public class ClassLoot() : ITile, ILootable
 		},
 		_ => new Random().Next(1, 4) switch
 		{
-			1 => new DamageBoost(),
-			2 => new DefenseBoost(),
+			1 => new Damage(),
+			2 => new Resistance(),
 			3 => new MultiBooster(),
 			_ => new RunBoost(),
 		},

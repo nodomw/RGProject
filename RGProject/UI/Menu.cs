@@ -3,7 +3,8 @@ using FantasyRPG.Combat;
 using RGProject.Characters.Heroes;
 using FantasyRPG.Map;
 using Spectre.Console;
-using FantasyRPG.Items.HeroItems.BasicItems;
+using FantasyRPG.Items;
+using FantasyRPG.Items.HeroItems;
 
 namespace FantasyRPG.UI;
 
@@ -190,26 +191,23 @@ public class Menu(Battle battle)
                 }));
     }
 
-    public string ShowItemMenu()
+    public string ShowItemMenu(ICharacter character)
     {
         currentmenu = "ShowItemMenu";
 
         // Console.Clear();
-        var hero = AnsiConsole.Prompt(
+        var potion = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose the [yellow]Item[/] you want to use!")
                 .PageSize(10)
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
-                .AddChoices(new[]
-                {
-                    "Use Health Potion", "Use Mana Potion", "[red]Exit[/]"
-                }));
+                .AddChoices(
+                    character.Items.Where(x => x is Potion or IBoost).Select(x => x.Name).Append("[red]Exit[/]").ToArray()
+                ));
 
-        if (hero == "[red]Exit[/]")
-        {
-            PreviousMenu();
-        }
-        return hero;
+        System.Console.WriteLine(potion);
+
+        return potion;
     }
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -731,7 +729,7 @@ public class Menu(Battle battle)
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
                 .AddChoices(
                     (
-                        character.Items.Find(x => x is RunBoost) is RunBoost ?
+                        character.RunBoost ?
                         Enumerable.Range(1, 10) :
                         Enumerable.Range(1, 5)
                     ).ToArray()
