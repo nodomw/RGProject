@@ -192,10 +192,11 @@ public class Menu(Battle battle)
                 }));
     }
 
-    public void ShowItemMenu(ICharacter character)
+    public string ShowItemMenu(ICharacter character)
     {
         currentmenu = "ShowItemMenu";
         List<Potion> potions = character.Items.Where(x => x is Potion).Select(x => x as Potion).ToList()!;
+        var potionnames = potions.Select(x => x.Name).Append("[red]Exit[/]").ToArray();
 
         // Console.Clear();
         string choice = AnsiConsole.Prompt(
@@ -203,11 +204,14 @@ public class Menu(Battle battle)
                 .Title("Choose the [yellow]Item[/] you want to use!")
                 .PageSize(10)
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
-                .AddChoices(potions.Select(x => x.Name).Append("[red]Exit[/]").ToArray()));
+                .AddChoices(potionnames));
 
         if (choice == "[red]Exit[/]") PreviousMenu();
 
-        potions.First(x => x.Name == choice).Use(character);
+        Potion pot = potions.Select(x => x).Where(x => x.Name == choice).First()!;
+        pot.Use(character);
+
+        return pot.Name;
     }
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------*/

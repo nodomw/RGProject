@@ -55,7 +55,7 @@ public class Battle
 
 
 
-        AnsiConsole.Clear();
+        // AnsiConsole.Clear();
 
         switch (Hero.Type)
         {
@@ -1126,7 +1126,6 @@ public class Battle
                 EnemyCalcDamage();
             }
         }
-
 
         if (Defeat())
         {

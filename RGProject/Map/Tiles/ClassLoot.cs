@@ -3,7 +3,7 @@
 namespace FantasyRPG.Map.Tiles;
 
 using FantasyRPG.Characters;
-using FantasyRPG.Items.Potions;
+using FantasyRPG.Items;
 using FantasyRPG.Items.HeroItems.Elf;
 using FantasyRPG.Items.HeroItems.Hero;
 using FantasyRPG.Items.HeroItems.Hunter;
@@ -60,10 +60,28 @@ public class ClassLoot() : ITile, ILootable
 		},
 		_ => new Random().Next(1, 4) switch
 		{
-			1 => new Damage(),
-			2 => new Resistance(),
-			3 => new Multi(),
-			_ => new Run(),
+			1 => new Potion()
+			{
+				Name = "Damage Potion",
+				Power = 10,
+				Stat = PotionModifier.Damage
+			},
+			2 => new Potion()
+			{
+				Name = "Health Potion",
+				Power = 50,
+				Stat = PotionModifier.Heal
+			},
+			3 => new Potion()
+			{
+				Name = "Run Potion",
+				Stat = PotionModifier.Run
+			},
+			_ => new Potion()
+			{
+				Name = "Multi",
+				Stat = PotionModifier.Multi
+			},
 		},
 	});
 }

@@ -76,13 +76,13 @@ public abstract class Weapon : ITem
     // public double Critical() => Damage * 1.5;
     public dynamic Interact() => "";
 }
-public abstract class Potion : ITem, IPotion
+public class Potion() : ITem, IPotion
 {
     public Guid Id { get; } = Guid.NewGuid();
-    public string Name { get; }
-    public string Description { get; }
-    public int Power { get; }
-    public PotionModifier Stat { get; }
+    public string Name { get; set; }
+    public string Description { get; set; }
+    public int Power { get; set; }
+    public PotionModifier Stat { get; set; }
     public double Use(ICharacter character)
     {
         switch (Stat)
@@ -91,7 +91,7 @@ public abstract class Potion : ITem, IPotion
                 character.Health += Power;
                 return (double)character.Health;
             case PotionModifier.Damage:
-                character.Weapon.Damage += Power;
+                character.Damage += Power;
                 return (double)character.Damage;
             case PotionModifier.Resistance:
                 character.DEF += Power;

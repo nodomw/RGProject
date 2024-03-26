@@ -7,7 +7,7 @@ using FantasyRPG.Characters;
 using RGProject.Characters.Heroes;
 using FantasyRPG.Characters.Enemies.Bosses;
 using FantasyRPG.Characters.Enemies.BasicEnemies;
-using FantasyRPG.Items.Potions;
+using FantasyRPG.Items;
 
 var enemy = new Emperor("Lajos");
 // var font = FigletFont.Load("ANSI Shadow.flf");
@@ -246,12 +246,23 @@ Console.WriteLine("did something happen??");
 
 map1.InteractWithTile(new TilePosition(0, 0));
 // map1.PlayerTile.Character.Items.Add(new Run());
-hero.Items.Add(new Damage());
-hero.Items.Add(new Resistance());
-hero.Items.Add(new Heal());
+hero.Items.Add(new Potion()
+{
+	Name = "Damage Potion",
+	Power = 10,
+	Stat = PotionModifier.Damage
+});
+hero.Items.Add(new Potion()
+{
+	Name = "Heal Potion",
+	Power = 50,
+	Stat = PotionModifier.Heal
+});
+// hero.Items.Add(new Potion("Resistance Potion ", "reduces incoming damage by 10%", 10, PotionModifier.Damage));
 Console.WriteLine("something happened");
-Console.WriteLine(string.Join(", ", hero.Items));
+Console.WriteLine(string.Join(", ", hero.Items.OfType<Potion>().Select(x => x.Name).ToList()!));
 
 Battle b = new(hero, enemy, false);
 
-b.Turn();
+// b.Turn();
+Console.WriteLine(menu.ShowItemMenu(hero));
