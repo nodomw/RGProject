@@ -1,6 +1,6 @@
 ﻿namespace FantasyRPG.Items.HeroItems;
 
-public interface IBoost : ITem
+public interface IBoost : Item
 {
     public new Guid Id { get; }
     public new string Name { get; set; }

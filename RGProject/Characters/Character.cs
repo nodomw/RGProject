@@ -59,7 +59,7 @@ public interface ICharacter
     public double TempDEF { get; set; } // %
     public double TempCombo { get; set; } // %
     public double TempCATK { get; set; } // %
-    public List<ITem> Items { get; set; } // TODO: add initializer for all classes
+    public List<Item> Items { get; set; } // TODO: add initializer for all classes
     public IWeapon Weapon { get; set; }
 
     public int Attack() => Weapon.Damage * (Level / 100); // should increase with level so like level 12 should give you a 1.2% passive damage increase

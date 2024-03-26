@@ -17,7 +17,6 @@ var tempmenu = new Menu(new Battle(new Hero("john doe"), new Emperor("Lajos")));
 // ICharacter hero = tempmenu.ShowCharSelection();
 ICharacter hero = new Warrior("john doe");
 
-Battle battle = new Battle(hero, enemy, true);
 // var menu = new Menu(battle);
 // battle.Turn();
 
@@ -29,7 +28,7 @@ Battle battle = new Battle(hero, enemy, true);
 
 
 long before = GC.GetTotalMemory(true);
-Menu menu = new(battle);
+Menu menu = new(new Battle(hero, enemy, true));
 Player pl = new(hero);
 Terrain g = new()
 {
@@ -258,11 +257,17 @@ hero.Items.Add(new Potion()
 	Power = 50,
 	Stat = PotionModifier.Heal
 });
+hero.Items.Add(new Potion()
+{
+	Name = "Resistance Potion",
+	Power = 10,
+	Stat = PotionModifier.Resistance
+});
 // hero.Items.Add(new Potion("Resistance Potion ", "reduces incoming damage by 10%", 10, PotionModifier.Damage));
 Console.WriteLine("something happened");
 Console.WriteLine(string.Join(", ", hero.Items.OfType<Potion>().Select(x => x.Name).ToList()!));
 
 Battle b = new(hero, enemy, false);
 
-// b.Turn();
-Console.WriteLine(menu.ShowItemMenu(hero));
+b.Turn();
+// Console.WriteLine(menu.ShowItemMenu(hero));

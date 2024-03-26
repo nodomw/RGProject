@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Items\Boost\" />
+    <Folder Include="Items\Enum\" />
   </ItemGroup>
 
 </Project>
