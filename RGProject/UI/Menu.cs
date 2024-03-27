@@ -6,6 +6,7 @@ using Spectre.Console;
 using FantasyRPG.Items;
 using FantasyRPG.Items.HeroItems;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace FantasyRPG.UI;
 
@@ -723,38 +724,49 @@ public class Menu(Battle battle)
 
     }
 
-    public void ShowMoveMenu(Map.Map map)
+    public string ShowMoveMenu(Map.Map map)
     {
         ICharacter character = map.PlayerTile.Character;
-        Console.Clear();
-        var direction = AnsiConsole.Prompt(
+        // Console.Clear();
+        switch (AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+            .Title("What would you like do to?")
+            .AddChoices(["Interact", "Move"])
+        ))
+        {
+            case "Interact":
+                var direction = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose what direction you want to [green]Move[/]!")
                 .PageSize(10)
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
                 .AddChoices(["Up", "Down", "Left", "Right", "[red]Exit[/]"]));
 
-        int length = AnsiConsole.Prompt(
-            new SelectionPrompt<int>()
-                .Title("Choose how many tiles you want to [green]Move[/]!")
-                .PageSize(10)
-                .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
-                .AddChoices(
-                    (
-                        character.RunBoost ?
-                        Enumerable.Range(1, 10) :
-                        Enumerable.Range(1, 5)
-                    ).ToArray()
-                )
-        );
+                int length = AnsiConsole.Prompt(
+                    new SelectionPrompt<int>()
+                        .Title("Choose how many tiles you want to [green]Move[/]!")
+                        .PageSize(10)
+                        .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
+                        .AddChoices(
+                            (
+                                character.RunBoost ?
+                                Enumerable.Range(1, 10) :
+                                Enumerable.Range(1, 5)
+                            ).ToArray()
+                        )
+                );
 
-        map.MoveTile(map.PlayerTile, direction switch
-        {
-            "Up" => new TilePosition(map.PlayerTile.Position.X, map.PlayerTile.Position.Y - length),
-            "Down" => new TilePosition(map.PlayerTile.Position.X, map.PlayerTile.Position.Y + length),
-            "Left" => new TilePosition(map.PlayerTile.Position.X - length, map.PlayerTile.Position.Y),
-            "Right" => new TilePosition(map.PlayerTile.Position.X + length, map.PlayerTile.Position.Y),
-            _ => map.PlayerTile.Position
-        });
+                map.MoveTile(map.PlayerTile, direction switch
+                {
+                    "Up" => new TilePosition(map.PlayerTile.Position.X, map.PlayerTile.Position.Y - length),
+                    "Down" => new TilePosition(map.PlayerTile.Position.X, map.PlayerTile.Position.Y + length),
+                    "Left" => new TilePosition(map.PlayerTile.Position.X - length, map.PlayerTile.Position.Y),
+                    "Right" => new TilePosition(map.PlayerTile.Position.X + length, map.PlayerTile.Position.Y),
+                    _ => map.PlayerTile.Position
+                });
+                return direction;
+            default:
+                return map.InteractWithTile(new TilePosition(map.PlayerTile.Position.Y + 1, map.PlayerTile.Position.X));
+        }
     }
 }
