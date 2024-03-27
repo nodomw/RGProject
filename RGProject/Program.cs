@@ -245,14 +245,30 @@ long after = GC.GetTotalMemory(true);
 long objectSize = after - before;
 AnsiConsole.MarkupLine($"[bold gold1]Size difference: {objectSize} bytes, before: {before} bytes, after: {after} bytes[/]");
 
+Map SelectedMap;
+string Maps = AnsiConsole.Prompt(
+	new SelectionPrompt<string>()
+	.Title("[bold steelblue1] hello and wlecom please chose youre map")
+	.AddChoices(["map 1", "map 2", "map 3", "map 4", "map 5"])
+	);
+
+SelectedMap = Maps switch
+{
+	"map 1" => map1,
+	"map 2" => map2,
+	"map 3" => map3,
+	"map 4" => map4,
+	_ => map5
+};
+
 bool Break = false;
 bool FightLoop = false;
 while (Break == false && FightLoop == false)
 {
-	map1.DrawFull(DrawCriteria.DisplayCharacter);
-	Console.WriteLine(map1.PlayerTile.Position.ToString());
+	SelectedMap.DrawFull(DrawCriteria.DisplayCharacter);
+	Console.WriteLine(SelectedMap.PlayerTile.Position.ToString());
 	Console.ReadLine();
-	Console.WriteLine(menu.ShowMoveMenu(map1));
+	Console.WriteLine(menu.ShowMoveMenu(SelectedMap));
 	_ = AnsiConsole.Confirm("Continue?") ? Break = false : Break = true;
 }
 
