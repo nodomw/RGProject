@@ -105,6 +105,9 @@ public interface ICharacter
                 Health += 5;
                 MultiBooster = true;
                 goto default;
+            case PotionModifier.Combo:
+                Combo += potion.Power;
+                return (double)Combo;
             default:
                 Items.Remove(potion);
                 return 0;

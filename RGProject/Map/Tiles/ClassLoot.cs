@@ -93,8 +93,7 @@ public class ClassLoot() : ITile, ILootable
 				Name = "Defense Potion",
 				Power = 15,
 				Stat = PotionModifier.Resistance
-			},
-
+			}
 		},
 	});
 }
