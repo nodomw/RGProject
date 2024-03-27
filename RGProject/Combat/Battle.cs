@@ -1104,8 +1104,23 @@ public class Battle
                             SmokeBomb = false;
                         }
                         correctatk = true;
-                        double losthp = Hero.Health/100 * 10;
-                        Hero.Health -= losthp;
+                        double losthp;
+                        if(Hero.RunBoost)
+                        {
+                            losthp = Hero.Health/100 * 5;
+                            Hero.Health -= losthp;
+
+                        }
+                        else if(Hero.MultiBooster)
+                        {
+                            losthp = Hero.Health/100 * 8;
+                            Hero.Health -= losthp;
+                        }
+                        else
+                        {
+                            losthp = Hero.Health/100 * 10;
+                            Hero.Health -= losthp;
+                        }
                         AnsiConsole.Write(new Markup($"You chose run and lost [red1]{losthp}hp[/] during the escape!"));
                         Console.ReadKey();
                         runaway = true;
