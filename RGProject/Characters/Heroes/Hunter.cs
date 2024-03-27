@@ -12,14 +12,10 @@ public enum HunterAttacks
 	Explorer
 }
 
-public class Hunter : ICharacter
+public class Hunter(string name) : ICharacter
 {
-	public Hunter(string name)
-	{
-		Name = name;
-	}
 	public Guid Id { get; } = Guid.NewGuid();
-	public string Name { get; set; }
+	public string Name { get; set; } = name;
 	public CharacterType Type { get; } = CharacterType.Hunter;
 	public TilePosition Position { get; set; }
 	public bool IsHero { get; set; } = true;

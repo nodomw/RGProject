@@ -12,14 +12,10 @@ public enum PaladinAttacks
 	HolyLight
 }
 
-public class Paladin : ICharacter
+public class Paladin(string name) : ICharacter
 {
-	public Paladin(string name)
-	{
-		Name = name;
-	}
 	public Guid Id { get; } = Guid.NewGuid();
-	public string Name { get; set; }
+	public string Name { get; set; } = name;
 	public CharacterType Type { get; } = CharacterType.Paladin;
 	public TilePosition Position { get; set; }
 	public bool IsHero { get; set; } = true;

@@ -12,14 +12,10 @@ public enum NinjaAttacks
 	SharperDagger
 }
 
-public class Ninja : ICharacter
+public class Ninja(string name) : ICharacter
 {
-	public Ninja(string name)
-	{
-		Name = name;
-	}
 	public Guid Id { get; } = Guid.NewGuid();
-	public string Name { get; set; }
+	public string Name { get; set; } = name;
 	public CharacterType Type { get; } = CharacterType.Ninja;
 	public TilePosition Position { get; set; }
 	public bool IsHero { get; set; } = true;

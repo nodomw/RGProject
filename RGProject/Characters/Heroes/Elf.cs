@@ -11,14 +11,10 @@ public enum ElfAttacks
 	ArrowRain,
 	ShockingArrow
 }
-public class Elf : ICharacter
+public class Elf(string name) : ICharacter
 {
-	public Elf(string name)
-	{
-		Name = name;
-	}
 	public Guid Id { get; } = Guid.NewGuid();
-	public string Name { get; set; }
+	public string Name { get; set; } = name;
 	public CharacterType Type { get; } = CharacterType.Elf;
 	public TilePosition Position { get; set; }
 	public bool IsHero { get; set; } = true;

@@ -12,14 +12,10 @@ public enum MageAttacks
 	Thunderbolt
 }
 
-public class Mage : ICharacter
+public class Mage(string name) : ICharacter
 {
-	public Mage(string name)
-	{
-		Name = name;
-	}
 	public Guid Id { get; } = Guid.NewGuid();
-	public string Name { get; set; }
+	public string Name { get; set; } = name;
 	public CharacterType Type { get; } = CharacterType.Mage;
 	public TilePosition Position { get; set; }
 	public bool IsHero { get; set; } = true;

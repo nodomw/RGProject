@@ -4,14 +4,10 @@ using FantasyRPG.Items;
 
 namespace FantasyRPG.Characters.Enemies.Bosses;
 
-public class Prince : ICharacter
+public class Prince(string name) : ICharacter
 {
-	public Prince(string name)
-	{
-		Name = name;
-	}
 	public Guid Id { get; } = Guid.NewGuid();
-	public string Name { get; set; }
+	public string Name { get; set; } = name;
 	public CharacterType Type { get; }
 	public TilePosition Position { get; set; }
 	public bool IsHero { get; set; } = false;

@@ -6,24 +6,10 @@ using Spectre.Console;
 
 namespace FantasyRPG.Combat;
 
-public class Battle
+public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
 {
-    public Battle(ICharacter hero, ICharacter enemy, bool temp = false)
-    {
-        Hero = hero;
-        Enemy = enemy;
-
-        // dear god please dont let me fall off 🙏
-        // if (temp != false)
-        // {
-        // while (!Defeat() && !Victory())
-        // {
-        // Turn();
-        // }
-        // }
-    }
-    public ICharacter Hero { get; }
-    public ICharacter Enemy { get; }
+    public ICharacter Hero { get; } = hero;
+    public ICharacter Enemy { get; } = enemy;
     public ICharacter InTurn { get; set; }
     public int Turns { get; set; }
 
