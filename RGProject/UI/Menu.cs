@@ -209,7 +209,7 @@ public class Menu(Battle battle)
         if (choice == "[red]Exit[/]") PreviousMenu();
 
         Potion pot = potions.Select(x => x).Where(x => x.Name == choice).First()!;
-        pot.Use(character);
+        character.UsePotion(pot);
 
         return pot.Name;
     }
