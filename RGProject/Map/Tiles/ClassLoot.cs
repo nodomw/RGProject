@@ -2,6 +2,7 @@
 
 namespace FantasyRPG.Map.Tiles;
 
+using System.Security.Cryptography;
 using FantasyRPG.Characters;
 using FantasyRPG.Items;
 using FantasyRPG.Items.HeroItems.Elf;
@@ -26,7 +27,8 @@ public class ClassLoot() : ITile, ILootable
 	{
 		if (!Looted)
 		{
-			character.Items.Add(character.Type switch // Vermin! Do you seek to repeat the actions of Celtor?!
+			character.XP += 250;
+			Item SelectedItem = character.Type switch // Vermin! Do you seek to repeat the actions of Celtor?!
 			{
 				CharacterType.Hero => new Random().Next(1, 2) switch
 				{
@@ -58,12 +60,20 @@ public class ClassLoot() : ITile, ILootable
 					1 => new Helmet(),
 					_ => new SpikeArmor(),
 				},
-				CharacterType.Hunter => new Random().Next(1, 2) switch
+				_ => new Random().Next(1, 2) switch // Hunter
 				{
 					1 => new Shotgun(),
 					_ => new SniperRifle(),
-				},
-				_ => new Random().Next(1, 6) switch
+				}
+			};
+
+			if (!character.Items.Contains(SelectedItem))
+			{
+				character.Items.Add(SelectedItem);
+			}
+			else
+			{
+				character.Items.Add(new Random().Next(1, 6) switch
 				{
 					1 => new Potion()
 					{
@@ -99,8 +109,9 @@ public class ClassLoot() : ITile, ILootable
 						Power = 15,
 						Stat = PotionModifier.Resistance
 					}
-				},
-			});
+				});
+
+			}
 			Looted = true;
 		}
 	}
