@@ -196,6 +196,14 @@ public class Menu(Battle battle)
     {
         currentmenu = "ShowItemMenu";
         List<Potion> potions = character.Items.Where(x => x is Potion).Select(x => x as Potion).ToList()!;
+        if (potions.Count == 0)
+        {
+            AnsiConsole.WriteLine("You don't have any potions!");
+            Console.ReadKey();
+            PreviousMenu();
+
+            return "";
+        }
         var potionnames = potions.Select(x => x.Name).Append("[red]Exit[/]").ToArray();
 
         Console.Clear();

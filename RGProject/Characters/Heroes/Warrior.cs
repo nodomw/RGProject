@@ -12,14 +12,10 @@ public enum WarriorAttacks
 	WarCry
 }
 
-public class Warrior : ICharacter
+public class Warrior(string name) : ICharacter
 {
-	public Warrior(string name)
-	{
-		Name = name;
-	}
 	public Guid Id { get; } = Guid.NewGuid();
-	public string Name { get; set; }
+	public string Name { get; set; } = name;
 	public CharacterType Type { get; } = CharacterType.Warrior;
 	public TilePosition Position { get; set; }
 	public bool IsHero { get; set; } = true;

@@ -3,14 +3,10 @@ using FantasyRPG.Items;
 
 namespace FantasyRPG.Characters.Enemies.Bosses;
 
-public class Emperor : ICharacter
+public class Emperor(string name) : ICharacter
 {
-	public Emperor(string name)
-	{
-		Name = name;
-	}
 	public Guid Id { get; } = Guid.NewGuid();
-	public string Name { get; set; }
+	public string Name { get; set; } = name;
 	public CharacterType Type { get; }
 	public TilePosition Position { get; set; }
 	public bool IsCaptain { get; set; }

@@ -12,15 +12,10 @@ public enum AssassinAttacks
 	ShadowStrike
 }
 
-public class Assassin : ICharacter
+public class Assassin(string name) : ICharacter
 {
-	public Assassin(string name)
-	{
-		Name = name;
-	}
-
 	public Guid Id { get; } = Guid.NewGuid();
-	public string Name { get; set; }
+	public string Name { get; set; } = name;
 	public CharacterType Type { get; } = CharacterType.Assassin;
 	public TilePosition Position { get; set; }
 	public bool IsHero { get; set; } = true;

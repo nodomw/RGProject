@@ -12,14 +12,10 @@ public enum HeroAttacks
 	GettingACape
 }
 
-public class Hero : ICharacter
+public class Hero(string name) : ICharacter
 {
-	public Hero(string name)
-	{
-		Name = name;
-	}
 	public Guid Id { get; } = Guid.NewGuid();
-	public string Name { get; set; }
+	public string Name { get; set; } = name;
 	public CharacterType Type { get; } = CharacterType.Hero;
 	public TilePosition Position { get; set; }
 	public bool IsHero { get; set; } = true;
