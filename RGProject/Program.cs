@@ -16,8 +16,8 @@ var enemy = new Emperor("Lajos");
 // var font2 = FigletFont.Load("Cyberlarge.flf");
 
 var tempmenu = new Menu(new Battle(new Hero("john doe"), new Emperor("Lajos")));
-// ICharacter hero = tempmenu.ShowCharSelection();
-ICharacter hero = new Warrior("john doe");
+ICharacter hero = tempmenu.ShowCharSelection();
+// ICharacter hero = new Warrior("john doe");
 
 Battle battle = new Battle(hero, enemy, true);
 // var menu = new Menu(battle);
@@ -245,45 +245,54 @@ long after = GC.GetTotalMemory(true);
 long objectSize = after - before;
 AnsiConsole.MarkupLine($"[bold gold1]Size difference: {objectSize} bytes, before: {before} bytes, after: {after} bytes[/]");
 
-Map SelectedMap;
-string Maps = AnsiConsole.Prompt(
+switch (AnsiConsole.Prompt(
 	new SelectionPrompt<string>()
-	.Title("[bold steelblue1] hello and wlecom please chose youre map")
-	.AddChoices(["map 1", "map 2", "map 3", "map 4", "map 5"])
-	);
-
-SelectedMap = Maps switch
+	.Title("What would you like to do?")
+	.AddChoices(["Demo Battle", "Map navigation"])
+))
 {
-	"map 1" => map1,
-	"map 2" => map2,
-	"map 3" => map3,
-	"map 4" => map4,
-	_ => map5
-};
+	case "Map navigation":
+		Map SelectedMap;
+		string Maps = AnsiConsole.Prompt(
+			new SelectionPrompt<string>()
+			.Title("[bold steelblue1] hello and wlecom please chose youre map[/]")
+			.AddChoices(["map 1", "map 2", "map 3", "map 4", "map 5"])
+			);
 
-bool Break = false;
-bool FightLoop = false;
-while (Break == false && FightLoop == false)
-{
-	SelectedMap.DrawFull(DrawCriteria.DisplayCharacter);
-	Console.WriteLine(SelectedMap.PlayerTile.Position.ToString());
-	Console.ReadLine();
-	Console.WriteLine(menu.ShowMoveMenu(SelectedMap));
-	_ = AnsiConsole.Confirm("Continue?") ? Break = false : Break = true;
+		SelectedMap = Maps switch
+		{
+			"map 1" => map1,
+			"map 2" => map2,
+			"map 3" => map3,
+			"map 4" => map4,
+			_ => map5
+		};
+
+		bool Break = false;
+		while (Break == false)
+		{
+			SelectedMap.DrawFull(DrawCriteria.DisplayCharacter);
+			Console.WriteLine(SelectedMap.PlayerTile.Position.ToString());
+			Console.ReadLine();
+			Console.WriteLine(menu.ShowMoveMenu(SelectedMap));
+			_ = AnsiConsole.Confirm("Continue?") ? Break = false : Break = true;
+		}
+
+		break;
+	case "Demo Battle":
+		Console.WriteLine("did something happen??");
+		{
+			hero.Items.Add(new Potion()
+			{
+				Name = "Dmg",
+				Power = 10,
+				Stat = PotionModifier.Damage
+			});
+		}
+		Console.WriteLine("something happened");
+		Console.WriteLine(string.Join(", ", hero.Items));
+		//
+		Battle b = new(hero, enemy, false);
+		b.Turn();
+		break;
 }
-
-// Console.WriteLine("did something happen??");
-// map1.InteractWithTile(new TilePosition(0, 0));
-// {
-// 	hero.Items.Add(new Potion()
-// 	{
-// 		Name = "Dmg",
-// 		Power = 10,
-// 		Stat = PotionModifier.Damage
-// 	});
-// }
-// Console.WriteLine("something happened");
-// Console.WriteLine(string.Join(", ", hero.Items));
-
-// Battle b = new(hero, enemy, false);
-// b.Turn();

@@ -734,7 +734,7 @@ public class Menu(Battle battle)
             .AddChoices(["Interact", "Move"])
         ))
         {
-            case "Interact":
+            case "Move":
                 var direction = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose what direction you want to [green]Move[/]!")
