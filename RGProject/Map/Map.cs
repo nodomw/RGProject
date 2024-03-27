@@ -1,6 +1,7 @@
 ﻿// Ignore Spelling: Enums
 using System.ComponentModel;
 using FantasyRPG.Characters;
+using FantasyRPG.Combat;
 using FantasyRPG.Map.Tiles;
 using Spectre.Console;
 
@@ -39,13 +40,20 @@ public class Map
 
     public void MoveTile(ITile tile, TilePosition to)
     {
-        // move the tile at 'to' to the position of 'tile'
-        ITile tile1 = GetTileByPosition(to);
-        Tiles[tile.Position.X, tile.Position.Y] = tile1;
+        try
+        {
+            // move the tile at 'to' to the position of 'tile'
+            ITile tile1 = GetTileByPosition(to);
+            Tiles[tile.Position.X, tile.Position.Y] = tile1;
 
-        // move 'tile' to 'to'
-        Tiles[to.X, to.Y] = tile;
-        tile.Position = to;
+            // move 'tile' to 'to'
+            Tiles[to.X, to.Y] = tile;
+            tile.Position = to;
+        }
+        catch (IndexOutOfRangeException)
+        {
+            AnsiConsole.MarkupLine("[red1]You can't move there![/]");
+        }
 
         // in case
         if (typeof(Player).IsInstanceOfType(tile))
@@ -239,6 +247,10 @@ public class Map
             // }
             return "Looted";
         }
-        return "Nothing to loot";
+        else if (tile is IFightable)
+        {
+            ((Enemy)tile).Interact(new Battle(PlayerTile.Character, ((Enemy)tile).Character));
+        }
+        return "Nothing happened.";
     }
 }

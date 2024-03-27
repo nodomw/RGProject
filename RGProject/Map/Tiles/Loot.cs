@@ -10,6 +10,7 @@ public class Loot(Item item) : ITile, ILootable
     public TileType Type { get; } = TileType.Loot;
     public Item Item { get; set; } = item;
     public string Name { get; set; } = "Loot";
+    public bool Looted { get; set; } = false;
     public bool Passable { get; set; } = true;
     public TilePosition Position { get; set; }
     public Markup DisplayCharacter { get; set; } = new Markup("[yellow]$[/]");

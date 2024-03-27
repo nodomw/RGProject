@@ -9,6 +9,7 @@ using FantasyRPG.Characters.Enemies.Bosses;
 using FantasyRPG.Characters.Enemies.BasicEnemies;
 using FantasyRPG.Items;
 using FantasyRPG;
+using System.Security.Cryptography;
 
 var enemy = new Emperor("Lajos");
 // var font = FigletFont.Load("ANSI Shadow.flf");
@@ -243,18 +244,30 @@ Map map5 = new("map 5", new ITile[,] {
 long after = GC.GetTotalMemory(true);
 long objectSize = after - before;
 AnsiConsole.MarkupLine($"[bold gold1]Size difference: {objectSize} bytes, before: {before} bytes, after: {after} bytes[/]");
-Console.WriteLine("did something happen??");
-map1.InteractWithTile(new TilePosition(0, 0));
-{
-	hero.Items.Add(new Potion()
-	{
-		Name = "Dmg",
-		Power = 10,
-		Stat = PotionModifier.Damage
-	});
-}
-Console.WriteLine("something happened");
-Console.WriteLine(string.Join(", ", hero.Items));
 
-Battle b = new(hero, enemy, false);
-b.Turn();
+bool Break = false;
+bool FightLoop = false;
+while (Break == false && FightLoop == false)
+{
+	map1.DrawFull(DrawCriteria.DisplayCharacter);
+	Console.WriteLine(map1.PlayerTile.Position.ToString());
+	Console.ReadLine();
+	Console.WriteLine(menu.ShowMoveMenu(map1));
+	_ = AnsiConsole.Confirm("Continue?") ? Break = false : Break = true;
+}
+
+// Console.WriteLine("did something happen??");
+// map1.InteractWithTile(new TilePosition(0, 0));
+// {
+// 	hero.Items.Add(new Potion()
+// 	{
+// 		Name = "Dmg",
+// 		Power = 10,
+// 		Stat = PotionModifier.Damage
+// 	});
+// }
+// Console.WriteLine("something happened");
+// Console.WriteLine(string.Join(", ", hero.Items));
+
+// Battle b = new(hero, enemy, false);
+// b.Turn();

@@ -1,5 +1,6 @@
 ﻿using Spectre.Console;
 using FantasyRPG.Characters;
+using FantasyRPG.Combat;
 
 namespace FantasyRPG.Map;
 
@@ -53,6 +54,17 @@ public interface ITile
 
 public interface ILootable
 {
+    public bool Looted { get; set; }
     public void Interact(ICharacter character);
+}
+
+public interface IFightable
+{
+    public void Interact(Battle battle);
+}
+
+public interface ICharacterTile
+{
+    public ICharacter Character { get; }
 }
 

@@ -3,7 +3,7 @@ using Spectre.Console;
 
 namespace FantasyRPG.Map.Tiles
 {
-    public class Player(ICharacter character) : ITile
+    public class Player(ICharacter character) : ITile, ICharacterTile
     {
         public Guid Id { get; } = Guid.NewGuid();
         public TileType Type { get; } = TileType.Player;
