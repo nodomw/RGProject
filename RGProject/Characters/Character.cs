@@ -85,21 +85,26 @@ public interface ICharacter
         {
             case PotionModifier.Heal:
                 Health += potion.Power;
+                Items.Remove(potion);
                 return (double)Health;
             case PotionModifier.Damage:
                 Damage += potion.Power;
-                return (double)character.Damage;
+                Items.Remove(potion);
+                return (double)Damage;
             case PotionModifier.Resistance:
-                character.DEF += Power;
-                return (double)character.DEF;
+                DEF += potion.Power;
+                Items.Remove(potion);
+                return (double)DEF;
             case PotionModifier.Run: // do nothing cuz it doesnt do anything in battles just on map
-                character.RunBoost = true;
+                RunBoost = true;
                 goto default;
             case PotionModifier.Multi:
-                character.DEF += 10;
-                character.Health += 5;
+                DEF += 10;
+                Health += 5;
+                MultiBooster = true;
                 goto default;
             default:
+                Items.Remove(potion);
                 return 0;
         }
     }
