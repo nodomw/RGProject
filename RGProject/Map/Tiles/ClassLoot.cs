@@ -58,7 +58,7 @@ public class ClassLoot() : ITile, ILootable
 			1 => new Shotgun(),
 			_ => new SniperRifle(),
 		},
-		_ => new Random().Next(1, 4) switch
+		_ => new Random().Next(1, 6) switch
 		{
 			1 => new Potion()
 			{
@@ -77,11 +77,24 @@ public class ClassLoot() : ITile, ILootable
 				Name = "Run Potion",
 				Stat = PotionModifier.Run
 			},
-			_ => new Potion()
+			4 => new Potion()
 			{
 				Name = "Multi",
 				Stat = PotionModifier.Multi
 			},
+			5 => new Potion()
+			{
+				Name = "Combo Potion",
+				Power = 5,
+				Stat = PotionModifier.Combo
+			},
+			_ => new Potion()
+			{
+				Name = "Defense Potion",
+				Power = 15,
+				Stat = PotionModifier.Resistance
+			},
+
 		},
 	});
 }

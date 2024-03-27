@@ -6,5 +6,6 @@ public enum PotionModifier // Potion modifiers
 	Damage, // Increases damage by (n)%
 	Resistance, // Increases resistance to attacks by (n)%
 	Run,
-	Multi
+	Multi,
+	Combo
 }

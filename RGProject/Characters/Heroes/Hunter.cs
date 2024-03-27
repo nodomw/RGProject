@@ -31,6 +31,8 @@ public class Hunter : ICharacter
 	public bool Fans { get; set; } = false;
 	public bool RunBoost { get; set; } = false;
 	public bool MultiBooster { get; set; } = false;
+	public bool BloodThirsty { get; set; } = false;
+	public bool Explorer { get; set; } = false;
 	public int Level { get; set; } = 0;
 	public int XP { get; set; } = 0;
 	public double Health { get; set; } = 900;

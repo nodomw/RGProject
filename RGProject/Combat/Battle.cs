@@ -1,4 +1,5 @@
 ﻿using FantasyRPG.Characters;
+using FantasyRPG.Map.Tiles;
 using FantasyRPG.UI;
 using RGProject.Characters.Heroes;
 using Spectre.Console;
@@ -855,15 +856,35 @@ public class Battle
                                         correctatk = true;
                                         break;
                                     case HunterAttacks.Bloodthirsty:
-                                        Enemy.Health *= 0.8;
-                                        Hero.Damage *= 0.855;
-                                        bloodthirsty = true;
-                                        correctatk = true;
+                                        if (!Hero.BloodThirsty)
+                                        {
+                                            Enemy.Health *= 0.8;
+                                            Hero.Damage *= 0.855;
+                                            bloodthirsty = true;
+                                            correctatk = true;
+                                            AnsiConsole.Write(new Markup("You used [green3]Bloodthirsty[/] and weakened the enemy (-20% hp), but decreased your [red1]Dmg[/] by 15,5%!"));
+                                            Hero.BloodThirsty = true;
+                                        }
+                                        else
+                                        {
+                                            AnsiConsole.Write(new Markup("You can't use this attack again on this map!"));
+                                            Console.ReadKey();
+                                        }
                                         //Once/map
                                         break;
                                     case HunterAttacks.Explorer:
-                                        Hero.Damage *= 0.855;
-                                        correctatk = true;
+                                        if (!Hero.Explorer)
+                                        {
+                                            ClassLoot asd = new ClassLoot();
+                                            asd.Interact(Hero);
+                                            correctatk = true;
+                                            Hero.Explorer = true;
+                                        }
+                                        else
+                                        {
+                                            AnsiConsole.Write(new Markup("You can't use this attack again on this map!"));
+                                            Console.ReadKey();
+                                        }
                                         //Gets a random item on the map
                                         //Once/map
                                         break;

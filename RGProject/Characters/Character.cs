@@ -41,6 +41,8 @@ public interface ICharacter
     public bool Fans { get; set; }
     public bool RunBoost { get; set; } // 10% -> 5% hp lost when run away
     public bool MultiBooster { get; set; } // 10% -> 8% hp lost when run away
+    public bool BloodThirsty { get; set; }
+    public bool Explorer { get; set; }
     public int Level { get; set; }
     public int XP { get; set; } // TODO: figure out xp amount for each level
     public double MaxHealth { get; set; }
