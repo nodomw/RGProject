@@ -1,5 +1,6 @@
 ﻿using FantasyRPG.Items;
 using FantasyRPG.Map;
+using Spectre.Console;
 
 namespace FantasyRPG.Characters;
 
@@ -65,9 +66,67 @@ public interface ICharacter
     public IWeapon Weapon { get; set; }
 
     public int Attack() => Weapon.Damage * (Level / 100); // should increase with level so like level 12 should give you a 1.2% passive damage increase
-    public int LevelUp() // TODO: need xp limits for levels (e.g: level 12 at 5200xp or lvl 20 at 10_000xp)
+    public int LevelUp()
     {
-        Level += 1;
+        switch (Level) // TODO: convert to case switch
+        {
+            case 0:
+                if (XP >= 1000)
+                {
+                    Level++;
+                    AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and all of your [gold1]stats[/] are increased by 10%!\nYou also unlocked your first ability, and you can now use your first special item, if you found it!"));
+                }
+                if (XP >= 1500)
+                {
+                    Level++;
+                    AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!\nYou also unlocked your second ability!"));
+                }
+                break;
+            case 1:
+                if (XP >= 1500)
+                {
+                    Level++;
+                    AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 10%!\nYou also unlocked your second ability!"));
+                }
+                if (XP >= 2200)
+                {
+                    Level++;
+                    AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!\nYou can also use your second special item, if you found it!"));
+                }
+                break;
+            case 2:
+                if (XP >= 2200)
+                {
+                    Level++;
+                    AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!\nYou can also use your second special item, if you found it!"));
+                }
+                if (XP >= 3200)
+                {
+                    Level++;
+                    AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!"));
+                }
+                break;
+            case 3:
+                if (XP >= 3200)
+                {
+                    Level++;
+                    AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!"));
+                }
+                if (XP >= 4500)
+                {
+                    Level++;
+                    AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20% and all of your [gold1]stats[/] are increased by 10%!"));
+                }
+                break;
+            case 4:
+                if (XP >= 4500)
+                {
+                    Level++;
+                    AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and reached [gold1]MAX[/] level!\nYour [green3]hp[/] and [red1]dmg[/] are increased by 20% and all of your [gold1]stats[/] are increased by 10%!"));
+                }
+                break;
+        }
+
 
         return Level;
     }
