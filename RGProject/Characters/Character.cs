@@ -79,4 +79,28 @@ public interface ICharacter
 
         return Damage;
     }
+    public double UsePotion(Potion potion)
+    {
+        switch (potion.Stat)
+        {
+            case PotionModifier.Heal:
+                Health += potion.Power;
+                return (double)Health;
+            case PotionModifier.Damage:
+                Damage += potion.Power;
+                return (double)character.Damage;
+            case PotionModifier.Resistance:
+                character.DEF += Power;
+                return (double)character.DEF;
+            case PotionModifier.Run: // do nothing cuz it doesnt do anything in battles just on map
+                character.RunBoost = true;
+                goto default;
+            case PotionModifier.Multi:
+                character.DEF += 10;
+                character.Health += 5;
+                goto default;
+            default:
+                return 0;
+        }
+    }
 }
