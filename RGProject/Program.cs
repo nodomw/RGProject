@@ -8,6 +8,7 @@ using RGProject.Characters.Heroes;
 using FantasyRPG.Characters.Enemies.Bosses;
 using FantasyRPG.Characters.Enemies.BasicEnemies;
 using FantasyRPG.Items;
+using FantasyRPG;
 
 var enemy = new Emperor("Lajos");
 // var font = FigletFont.Load("ANSI Shadow.flf");
@@ -17,6 +18,7 @@ var tempmenu = new Menu(new Battle(new Hero("john doe"), new Emperor("Lajos")));
 // ICharacter hero = tempmenu.ShowCharSelection();
 ICharacter hero = new Warrior("john doe");
 
+Battle battle = new Battle(hero, enemy, true);
 // var menu = new Menu(battle);
 // battle.Turn();
 
@@ -28,7 +30,7 @@ ICharacter hero = new Warrior("john doe");
 
 
 long before = GC.GetTotalMemory(true);
-Menu menu = new(new Battle(hero, enemy, true));
+Menu menu = new(battle);
 Player pl = new(hero);
 Terrain g = new()
 {
@@ -242,32 +244,17 @@ long after = GC.GetTotalMemory(true);
 long objectSize = after - before;
 AnsiConsole.MarkupLine($"[bold gold1]Size difference: {objectSize} bytes, before: {before} bytes, after: {after} bytes[/]");
 Console.WriteLine("did something happen??");
-
 map1.InteractWithTile(new TilePosition(0, 0));
-// map1.PlayerTile.Character.Items.Add(new Run());
-hero.Items.Add(new Potion()
 {
-	Name = "Damage Potion",
-	Power = 10,
-	Stat = PotionModifier.Damage
-});
-hero.Items.Add(new Potion()
-{
-	Name = "Heal Potion",
-	Power = 50,
-	Stat = PotionModifier.Heal
-});
-hero.Items.Add(new Potion()
-{
-	Name = "Resistance Potion",
-	Power = 10,
-	Stat = PotionModifier.Resistance
-});
-// hero.Items.Add(new Potion("Resistance Potion ", "reduces incoming damage by 10%", 10, PotionModifier.Damage));
+	hero.Items.Add(new Potion()
+	{
+		Name = "Dmg",
+		Power = 10,
+		Stat = PotionModifier.Damage
+	});
+}
 Console.WriteLine("something happened");
-Console.WriteLine(string.Join(", ", hero.Items.OfType<Potion>().Select(x => x.Name).ToList()!));
+Console.WriteLine(string.Join(", ", hero.Items));
 
 Battle b = new(hero, enemy, false);
-
 b.Turn();
-// Console.WriteLine(menu.ShowItemMenu(hero));
