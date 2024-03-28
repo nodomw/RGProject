@@ -81,16 +81,16 @@ public class Map
         switch (direction)
         {
             case MoveDirection.Up:
-                MoveTile(tile, new TilePosition(tile.Position.Y + 1, tile.Position.X));
+                MoveTile(tile, new TilePosition(tile.Position.X, tile.Position.Y + 1));
                 break;
             case MoveDirection.Down:
-                MoveTile(tile, new TilePosition(tile.Position.Y - 1, tile.Position.X));
+                MoveTile(tile, new TilePosition(tile.Position.X, tile.Position.Y - 1));
                 break;
             case MoveDirection.Left:
-                MoveTile(tile, new TilePosition(tile.Position.Y, tile.Position.X - 1));
+                MoveTile(tile, new TilePosition(tile.Position.X - 1, tile.Position.Y));
                 break;
             case MoveDirection.Right:
-                MoveTile(tile, new TilePosition(tile.Position.Y, tile.Position.X + 1));
+                MoveTile(tile, new TilePosition(tile.Position.X + 1, tile.Position.Y));
                 break;
         }
     }
