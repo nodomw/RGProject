@@ -1,4 +1,5 @@
 ﻿// Ignore Spelling: Enums
+using FantasyRPG.Characters;
 using FantasyRPG.Combat;
 using FantasyRPG.Map.Tiles;
 using Spectre.Console;
@@ -191,6 +192,17 @@ public class Map
             if (Tile.Id == id)
             {
                 return Tile;
+            }
+        }
+        throw new Exception("Tile not found");
+    }
+    public ITile GetTileByCharacter(ICharacter character)
+    {
+        foreach (ICharacterTile Tile in Tiles)
+        {
+            if (character == Tile.Character)
+            {
+                return (ITile)Tile;
             }
         }
         throw new Exception("Tile not found");
