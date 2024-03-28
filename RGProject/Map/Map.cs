@@ -1,6 +1,4 @@
 ﻿// Ignore Spelling: Enums
-using System.ComponentModel;
-using FantasyRPG.Characters;
 using FantasyRPG.Combat;
 using FantasyRPG.Map.Tiles;
 using Spectre.Console;
@@ -12,6 +10,14 @@ public enum DrawCriteria
     Name,
     Guid,
     DisplayCharacter
+}
+
+public enum MoveDirection
+{
+    Up, // Tile.Position.Y + 1
+    Down, // Tile.Position.Y - 1
+    Left, // Tile.Position.X - 1
+    Right // Tile.Position.X + 1
 }
 
 public class Map
@@ -59,6 +65,25 @@ public class Map
         if (typeof(Player).IsInstanceOfType(tile))
         {
             PlayerTile = (Player)tile;
+        }
+
+    }
+    public void MoveTileDirection(ITile tile, MoveDirection direction)
+    {
+        switch (direction)
+        {
+            case MoveDirection.Up:
+                MoveTile(tile, new TilePosition(tile.Position.Y + 1, tile.Position.X));
+                break;
+            case MoveDirection.Down:
+                MoveTile(tile, new TilePosition(tile.Position.Y - 1, tile.Position.X));
+                break;
+            case MoveDirection.Left:
+                MoveTile(tile, new TilePosition(tile.Position.Y, tile.Position.X - 1));
+                break;
+            case MoveDirection.Right:
+                MoveTile(tile, new TilePosition(tile.Position.Y, tile.Position.X + 1));
+                break;
         }
     }
     public bool ReplaceTile(TilePosition at, ITile tile)
