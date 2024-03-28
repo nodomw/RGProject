@@ -55,6 +55,13 @@ public class Map
             // move 'tile' to 'to'
             Tiles[to.X, to.Y] = tile;
             tile.Position = to;
+
+            if(tile1 is Enemy enemy)
+            {
+                Console.WriteLine("You have encountered an enemy!");
+                Battle b = new(PlayerTile.Character, enemy.Character, false);
+                b.Turn();
+            }
         }
         catch (IndexOutOfRangeException)
         {
