@@ -12,22 +12,21 @@ using FantasyRPG;
 using System.Security.Cryptography;
 
 var enemy = new Emperor("Lajos");
-// var font = FigletFont.Load("ANSI Shadow.flf");
-// var font2 = FigletFont.Load("Cyberlarge.flf");
+var font = FigletFont.Load("ANSI Shadow.flf");
+var font2 = FigletFont.Load("Cyberlarge.flf");
+
+AnsiConsole.Write(new FigletText(font2, "Welcome to").Centered().Color(Color.White));
+AnsiConsole.Write(new FigletText(font, "Fantasy Frontiers").Centered().Color(Color.Red));
+
+AnsiConsole.Write(new Markup("[red]Press any key to continue.....[/]"));
+Console.ReadKey();
 
 var tempmenu = new Menu(new Battle(new Hero("john doe"), new Emperor("Lajos")));
 ICharacter hero = tempmenu.ShowCharSelection();
 // ICharacter hero = new Warrior("john doe");
 
 Battle battle = new Battle(hero, enemy, true);
-// var menu = new Menu(battle);
-// battle.Turn();
 
-// AnsiConsole.Write(new FigletText(font2, "Welcome to").Centered().Color(Color.White));
-// AnsiConsole.Write(new FigletText(font, "Fantasy Frontiers").Centered().Color(Color.Red));
-
-// AnsiConsole.Write(new Markup("[red]Press any key to continue.....[/]"));
-// Console.ReadKey();
 
 
 long before = GC.GetTotalMemory(true);
@@ -255,7 +254,7 @@ switch (AnsiConsole.Prompt(
 		Map SelectedMap;
 		string Maps = AnsiConsole.Prompt(
 			new SelectionPrompt<string>()
-			.Title("[bold steelblue1] hello and wlecom please chose youre map[/]")
+			.Title("[bold steelblue1] hello and welcome please chose a map[/]")
 			.AddChoices(["map 1", "map 2", "map 3", "map 4", "map 5"])
 			);
 
