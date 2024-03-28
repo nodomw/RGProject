@@ -272,8 +272,7 @@ switch (AnsiConsole.Prompt(
 		{
 			SelectedMap.DrawFull(DrawCriteria.DisplayCharacter);
 			Console.WriteLine(SelectedMap.PlayerTile.Position.ToString());
-			Console.ReadLine();
-			Console.WriteLine(menu.ShowMoveMenu(SelectedMap));
+			menu.ShowMoveMenu(SelectedMap);
 			_ = AnsiConsole.Confirm("Continue?") ? Break = false : Break = true;
 		}
 

@@ -724,49 +724,35 @@ public class Menu(Battle battle)
 
     }
 
-    public string ShowMoveMenu(Map.Map map)
+    public void ShowMoveMenu(Map.Map map)
     {
-        ICharacter character = map.PlayerTile.Character;
-        // Console.Clear();
-        switch (AnsiConsole.Prompt(
-            new SelectionPrompt<string>()
-            .Title("What would you like do to?")
-            .AddChoices(["Interact", "Move"])
-        ))
+        ITile tile =  map.PlayerTile;
+        while (tile.Passable)
         {
-            case "Move":
-                var direction = AnsiConsole.Prompt(
-            new SelectionPrompt<string>()
-                .Title("Choose what direction you want to [green]Move[/]!")
-                .PageSize(10)
-                .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
-                .AddChoices(["Up", "Down", "Left", "Right", "[red]Exit[/]"]));
-
-                int length = AnsiConsole.Prompt(
-                    new SelectionPrompt<int>()
-                        .Title("Choose how many tiles you want to [green]Move[/]!")
-                        .PageSize(10)
-                        .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
-                        .AddChoices(
-                            (
-                                character.RunBoost ?
-                                Enumerable.Range(1, 10) :
-                                Enumerable.Range(1, 5)
-                            ).ToArray()
-                        )
-                );
-
-                map.MoveTile(map.PlayerTile, direction switch
-                {
-                    "Up" => new TilePosition(map.PlayerTile.Position.X, map.PlayerTile.Position.Y - length),
-                    "Down" => new TilePosition(map.PlayerTile.Position.X, map.PlayerTile.Position.Y + length),
-                    "Left" => new TilePosition(map.PlayerTile.Position.X - length, map.PlayerTile.Position.Y),
-                    "Right" => new TilePosition(map.PlayerTile.Position.X + length, map.PlayerTile.Position.Y),
-                    _ => map.PlayerTile.Position
-                });
-                return direction;
-            default:
-                return map.InteractWithTile(new TilePosition(map.PlayerTile.Position.Y + 1, map.PlayerTile.Position.X));
+            var direction = Console.ReadKey().Key;
+            switch (direction)
+            {
+                case ConsoleKey.W:
+                    map.MoveTileDirection(tile, MoveDirection.Up);
+                    Console.Clear();
+                    map.DrawFull(DrawCriteria.DisplayCharacter);
+                    break;
+                case ConsoleKey.A:
+                    map.MoveTileDirection(tile, MoveDirection.Left);
+                    Console.Clear();
+                    map.DrawFull(DrawCriteria.DisplayCharacter);
+                    break;
+                case ConsoleKey.S:
+                    map.MoveTileDirection(tile, MoveDirection.Down);
+                    Console.Clear();
+                    map.DrawFull(DrawCriteria.DisplayCharacter);
+                    break;
+                case ConsoleKey.D:
+                    map.MoveTileDirection(tile, MoveDirection.Right);
+                    Console.Clear();
+                    map.DrawFull(DrawCriteria.DisplayCharacter);
+                    break;
+            }
         }
     }
 }

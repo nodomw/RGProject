@@ -17,7 +17,8 @@ public enum MoveDirection
     Up, // Tile.Position.Y + 1
     Down, // Tile.Position.Y - 1
     Left, // Tile.Position.X - 1
-    Right // Tile.Position.X + 1
+    Right, // Tile.Position.X + 1
+    None
 }
 
 public class Map
