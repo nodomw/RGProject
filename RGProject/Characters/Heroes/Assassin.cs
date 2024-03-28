@@ -30,6 +30,7 @@ public class Assassin(string name) : ICharacter
 	public bool MultiBooster { get; set; } = false;
 	public bool BloodThirsty { get; set; }
 	public bool Explorer { get; set; }
+	public bool Dead { get; set; } = false;
 	public int Level { get; set; } = 0;
 	public int XP { get; set; } = 0;
 	public double Health { get; set; } = 300;

@@ -1,4 +1,5 @@
 ﻿using FantasyRPG.Characters;
+using FantasyRPG.Items.HeroItems.Ninja;
 using FantasyRPG.Map.Tiles;
 using FantasyRPG.UI;
 using RGProject.Characters.Heroes;
@@ -671,20 +672,41 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
             {
                 Console.Clear();
 
-                if (Hero.IsHealer)
+                if (Hero.Fans)
                 {
-                    AnsiConsole.Write(new Markup("You Healer, [green3]Healed[/] you 50hp!"));
-                    Hero.Health += 50;
+                    if (Hero.IsHealer)
+                    {
+                        AnsiConsole.Write(new Markup("Your Healer, [green3]Healed[/] you 75hp!"));
+                        Hero.Health += 75;
+                    }
+                    if (Hero.IsSupport)
+                    {
+                        AnsiConsole.Write(new Markup("\nYour Supporter, increased your [grey37][DEF/] by 3%!"));
+                        Hero.DEF += 3;
+                    }
+                    if (Hero.IsCaptain)
+                    {
+                        AnsiConsole.Write(new Markup("\nYour Captain [red1]Attacked[/] the enemy and dealt [green3]37.5dmg[/]!"));
+                        Enemy.Health -= 37.5;
+                    }
                 }
-                if (Hero.IsSupport)
+                else
                 {
-                    AnsiConsole.Write(new Markup("\nYou Supporter, increased your [grey37]DEF[/] by 2%!"));
-                    Hero.DEF += 2;
-                }
-                if (Hero.IsCaptain)
-                {
-                    AnsiConsole.Write(new Markup("\nYou Captain [red1]Attacked[/] the enemy and dealt [green3]25dmg[/]!"));
-                    Enemy.Health -= 25;
+                    if (Hero.IsHealer)
+                    {
+                        AnsiConsole.Write(new Markup("Your Healer, [green3]Healed[/] you 50hp!"));
+                        Hero.Health += 50;
+                    }
+                    if (Hero.IsSupport)
+                    {
+                        AnsiConsole.Write(new Markup("\nYour Supporter, increased your [grey37]DEF[/] by 2%!"));
+                        Hero.DEF += 2;
+                    }
+                    if (Hero.IsCaptain)
+                    {
+                        AnsiConsole.Write(new Markup("\nYour Captain [red1]Attacked[/] the enemy and dealt [green3]25dmg[/]!"));
+                        Enemy.Health -= 25;
+                    }
                 }
                 if (Hero.IsHealer || Hero.IsSupport || Hero.IsCaptain)
                 {
@@ -1112,23 +1134,30 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                         }
                         correctatk = true;
                         double losthp;
-                        if(Hero.RunBoost)
+                        if (Hero.SilentStep)
+                        {
+                            AnsiConsole.Write(new Markup($"You chose run and didn't received any damage during the escape!"));
+                        }
+                        else if(Hero.RunBoost)
                         {
                             losthp = Hero.Health/100 * 5;
                             Hero.Health -= losthp;
+                            AnsiConsole.Write(new Markup($"You chose run and lost [red1]{losthp}hp[/] during the escape!"));
 
                         }
                         else if(Hero.MultiBooster)
                         {
                             losthp = Hero.Health/100 * 8;
                             Hero.Health -= losthp;
+                            AnsiConsole.Write(new Markup($"You chose run and lost [red1]{losthp}hp[/] during the escape!"));
                         }
                         else
                         {
                             losthp = Hero.Health/100 * 10;
                             Hero.Health -= losthp;
+                            AnsiConsole.Write(new Markup($"You chose run and lost [red1]{losthp}hp[/] during the escape!"));
                         }
-                        AnsiConsole.Write(new Markup($"You chose run and lost [red1]{losthp}hp[/] during the escape!"));
+
                         Console.ReadKey();
                         runaway = true;
                         break;
@@ -1246,7 +1275,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
     {
         if(Enemy.Health <= 0)
         {
-
+            Enemy.Dead = true;
             return true;
         }
         else
