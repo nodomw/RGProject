@@ -7,16 +7,13 @@ using FantasyRPG.Characters;
 using RGProject.Characters.Heroes;
 using FantasyRPG.Characters.Enemies.Bosses;
 using FantasyRPG.Characters.Enemies.BasicEnemies;
-using FantasyRPG.Items;
-using FantasyRPG;
-using System.Security.Cryptography;
 
 var enemy = new Emperor("Lajos");
-var font = FigletFont.Load("ANSI Shadow.flf");
-var font2 = FigletFont.Load("Cyberlarge.flf");
+// var font = FigletFont.Load("ANSI Shadow.flf");
+// var font2 = FigletFont.Load("Cyberlarge.flf");
 
-AnsiConsole.Write(new FigletText(font2, "Welcome to").Centered().Color(Color.White));
-AnsiConsole.Write(new FigletText(font, "Fantasy Frontiers").Centered().Color(Color.Red));
+// AnsiConsole.Write(new FigletText(font2, "Welcome to").Centered().Color(Color.White));
+// AnsiConsole.Write(new FigletText(font, "Fantasy Frontiers").Centered().Color(Color.Red));
 
 AnsiConsole.Write(new Markup("[red]Press any key to continue.....[/]"));
 Console.ReadKey();
@@ -27,11 +24,9 @@ ICharacter hero = tempmenu.ShowCharSelection();
 
 Battle battle = new Battle(hero, enemy, true);
 
-
-
 long before = GC.GetTotalMemory(true);
 Menu menu = new(battle);
-Player pl = new(hero);
+// Player pl = new(hero);
 Terrain g = new()
 {
 	DisplayCharacter = new Markup("[darkgreen]■[/]")
@@ -79,7 +74,7 @@ Map map1 = new("Map 1", new ITile[,]{
 	{ g, g, g, w, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g },
 	{ g, g, g, g, g, g, g, g, g, g, p, p, p, p, p, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g },
 	{ g, g, g, g, g, g, g, g, g, g, p, g, g, g, p, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g },
-	{ g, g, g, g, g, g, g, g, g, g, p, g,pl, g, p, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g },
+	{ g, g, g, g, g, g, g, g, g, g, p, g,new Player(hero), g, p, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g },
 	{ g, g, g, g, g, g, g, g, g, g, p, p, p, p, p, g, g, d, d, d, g, g, g, g, g, g, g, g, g, g },
 	{ g, g, g, g, g, g, g, g, g, g, g, g, p, g, g, g, d, d, d, d, d, g, g, g, g, g, g, g, g, g },
 	{ g, g, g, g, g, g, g, g, g, g, g, g, p, g, g, g, d, dr,et,dr,d, g, g, g, g, g, g, g, g, g },
@@ -96,7 +91,7 @@ Map map1 = new("Map 1", new ITile[,]{
 });
 
 Map map2 = new("map 2", new ITile[,] {
-	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v,pl, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
+	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v,new Player(hero), v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
@@ -128,7 +123,7 @@ Map map2 = new("map 2", new ITile[,] {
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v,et, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 });
 Map map3 = new("map 3", new ITile[,] {
-	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d,pl, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
+	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d,new Player(hero), d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
@@ -162,7 +157,7 @@ Map map3 = new("map 3", new ITile[,] {
 Map map4 = new("map 4", new ITile[,] {
 	{ d,et, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
-	{ d, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, pl},
+	{ d, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, new Player(hero)},
 	{ d, v, d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, v, new Enemy(new Skeleton("bonka")), v, d, d, d, d, d, d, d, d },
 	{ d, new Enemy(new BoneCrusher("foxcoon factory lemon")), d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
@@ -221,7 +216,7 @@ Map map5 = new("map 5", new ITile[,] {
 	{ d, v, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, v, d },
 	{ d, v, d, d, d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, v, d },
 	{ d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d },
-	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d,pl, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
+	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d,new Player(hero), d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 });
 
 
