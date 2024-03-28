@@ -29,7 +29,8 @@ public enum TileType
     Enemy,
     Loot,
     Servant,
-    Player
+    Player,
+    Exit
 }
 
 public class TilePosition(int x, int y)
@@ -66,5 +67,10 @@ public interface IFightable
 public interface ICharacterTile
 {
     public ICharacter Character { get; }
+}
+
+public interface ITileExit
+{
+    public void Interact(Map map);
 }
 
