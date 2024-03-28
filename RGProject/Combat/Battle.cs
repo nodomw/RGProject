@@ -1246,6 +1246,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
     {
         if(Enemy.Health <= 0)
         {
+
             return true;
         }
         else

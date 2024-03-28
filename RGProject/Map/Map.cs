@@ -81,16 +81,16 @@ public class Map
         switch (direction)
         {
             case MoveDirection.Up:
-                MoveTile(tile, new TilePosition(tile.Position.X, tile.Position.Y + 1));
-                break;
-            case MoveDirection.Down:
-                MoveTile(tile, new TilePosition(tile.Position.X, tile.Position.Y - 1));
-                break;
-            case MoveDirection.Left:
                 MoveTile(tile, new TilePosition(tile.Position.X - 1, tile.Position.Y));
                 break;
-            case MoveDirection.Right:
+            case MoveDirection.Down:
                 MoveTile(tile, new TilePosition(tile.Position.X + 1, tile.Position.Y));
+                break;
+            case MoveDirection.Left:
+                MoveTile(tile, new TilePosition(tile.Position.X, tile.Position.Y - 1));
+                break;
+            case MoveDirection.Right:
+                MoveTile(tile, new TilePosition(tile.Position.X, tile.Position.Y + 1));
                 break;
         }
     }
@@ -125,6 +125,7 @@ public class Map
             // AnsiConsole.WriteLine();
             AnsiConsole.WriteLine();
         }
+        Console.WriteLine(PlayerTile.Position.ToString());
     }
     public void DrawGrid() // do not look at this
     {
@@ -221,10 +222,10 @@ public class Map
             lootable.Interact(PlayerTile.Character);
             return "Looted";
         }
-        else if (tile is IFightable)
-        {
-            ((Enemy)tile).Interact(new Battle(PlayerTile.Character, ((Enemy)tile).Character));
-        }
+        // else if (tile is IFightable)
+        // {
+        //     ((Enemy)tile).Interact(new Battle(PlayerTile.Character, ((Enemy)tile).Character));
+        // }
         return "Nothing happened.";
     }
 }
