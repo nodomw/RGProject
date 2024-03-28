@@ -41,6 +41,16 @@ public class Map
             }
         }
     }
+    // TODO: immutable & mutable map relations;
+    // basically, where player is not and is not 'Empty()',
+    // draw the mutable map.
+    // otherwise, if 'Empty()'
+    // then draw the tile from
+    // the immutable map.
+
+    // a bit iffy tho because
+    // how do u handle the tile
+    // the player spawned on
     public ITile[,] Tiles { get; set; } // Tile & TileType
     public Guid Id { get; } = Guid.NewGuid();
     public string Name { get; }
