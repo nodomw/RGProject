@@ -10,6 +10,7 @@ public class Headhunter(string name) : ICharacter
 	public string Name { get; set; } = name;
 	public CharacterType Type { get; }
 	public TilePosition Position { get; set; }
+	public ITile Parent { get; set; }
 	public bool IsHero { get; set; } = false;
 	public bool IsBoss { get; set; } = true;
 	public bool IsCaptain { get; set; }

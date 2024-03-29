@@ -33,6 +33,7 @@ public interface ICharacter
     public string Name { get; set; }
     public CharacterType Type { get; }
     public TilePosition Position { get; set; }
+    public ITile Parent { get; set; }
     public bool IsHero { get; set; }
     public bool IsBoss { get; set; }
     public bool IsCaptain { get; set; }

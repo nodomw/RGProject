@@ -18,6 +18,7 @@ public class Warrior(string name) : ICharacter
 	public string Name { get; set; } = name;
 	public CharacterType Type { get; } = CharacterType.Warrior;
 	public TilePosition Position { get; set; }
+	public ITile Parent { get; set; }
 	public bool IsHero { get; set; } = true;
 	public bool IsBoss { get; set; } = false;
 	public bool IsCaptain { get; set; } = false;
