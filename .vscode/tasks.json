@@ -47,9 +47,24 @@
                 "${workspaceFolder}/RGProject/FantasyRPG.csproj"
             ],
             "presentation": {
-                "reveal": "always",
-                "panel":
-            }
+                "reveal": "always"
+            },
+            "problemMatcher": ["$msCompile"]
+        },
+        {
+            "label": "run (external)",
+            "command": "alacritty",
+            "type": "process",
+            "args": [
+                "-e",
+                "dotnet",
+                "run",
+                "--project",
+                "${workspaceFolder}/RGProject/FantasyRPG.csproj"
+            ],
+            "presentation": {
+                "reveal": "never"
+            },
             "problemMatcher": ["$msCompile"]
         }
     ]
