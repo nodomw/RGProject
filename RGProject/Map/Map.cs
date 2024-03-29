@@ -40,7 +40,12 @@ public class Map
                 }
             }
         }
-        MutableTiles = Tiles;
+        MutableTiles = (ITile[,])Tiles.Clone();
+        if (PlayerTile != null)
+        {
+            PlayerTile = (Player)MutableTiles[PlayerTile.Position.X, PlayerTile.Position.Y];
+            Tiles[PlayerTile.Position.X, PlayerTile.Position.Y] = new Empty();
+        }
     }
     // TODO: immutable & mutable map relations;
     // basically, where player is not and is not 'Empty()',
@@ -78,13 +83,14 @@ public class Map
             // TODO: implement entrance tile logic, probs just a magic break to go back to map select or smn
 
             // finally, set the previous position to empty
-            MutableTiles[PrevPosition.X, PrevPosition.Y] = new Empty();
+            // MutableTiles[PrevPosition.X, PrevPosition.Y] = new Empty();
+            ReplaceTile(PrevPosition, new Empty());
         }
 
-        catch (IndexOutOfRangeException)
+        catch (IndexOutOfRangeException) // dont let yo ass move out de map
         {
-            AnsiConsole.MarkupLine("[red1]You can't move there![/]");
-            return;
+            // AnsiConsole.MarkupLine("[red1]You can't move there![/]");
+            return; // bomboclaat
         }
 
         // in case
@@ -114,9 +120,9 @@ public class Map
     }
     public bool ReplaceTile(TilePosition at, ITile tile)
     {
-        if (Tiles[at.X, at.Y] == null) return false;
+        if (MutableTiles[at.X, at.Y] == null) return false;
 
-        Tiles[at.X, at.Y] = tile;
+        MutableTiles[at.X, at.Y] = tile;
 
         return true;
     }
@@ -132,7 +138,7 @@ public class Map
         {
             for (int y = 0; y < Tiles.GetLength(1); y++)
             {
-                if (MutableTiles[x, y] is Empty)
+                if (typeof(Empty).IsInstanceOfType(MutableTiles[x, y]))
                 {
                     switch (criteria)
                     {
@@ -146,7 +152,6 @@ public class Map
                             AnsiConsole.Write(Tiles[x, y].DisplayCharacter);
                             break;
                     }
-
                 }
                 else
                 {
@@ -162,7 +167,6 @@ public class Map
                             AnsiConsole.Write(MutableTiles[x, y].DisplayCharacter);
                             break;
                     }
-
                 }
                 AnsiConsole.Write("  ");
             }
@@ -256,7 +260,14 @@ public class Map
     {
         try
         {
-            return Tiles[tp.X, tp.Y];
+            if (typeof(Empty).IsInstanceOfType(MutableTiles[tp.X, tp.Y]))
+            {
+                return Tiles[tp.X, tp.Y];
+            }
+            else
+            {
+                return MutableTiles[tp.X, tp.Y];
+            }
         }
         catch (IndexOutOfRangeException)
         {
@@ -264,7 +275,7 @@ public class Map
             {
                 Passable = true,
                 Fake = true,
-                DisplayCharacter = new Markup("[grey15].[/]")
+                DisplayCharacter = new Markup(" ")
             };
             return FakeTile;
         }
