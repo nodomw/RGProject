@@ -7,6 +7,7 @@ using FantasyRPG.Characters;
 using RGProject.Characters.Heroes;
 using FantasyRPG.Characters.Enemies.Bosses;
 using FantasyRPG.Characters.Enemies.BasicEnemies;
+using FantasyRPG;
 
 var enemy = new Emperor("Lajos");
 // var font = FigletFont.Load("ANSI Shadow.flf");
@@ -48,16 +49,17 @@ Terrain dr = new()
 {
 	DisplayCharacter = new Markup("[grey15]X[/]")
 };
-Terrain et = new() // exit
+Exit et = new() // exit
 {
-	DisplayCharacter = new Markup("[bold white]■[/]")
+	DisplayCharacter = new Markup("[bold white]■[/]"),
+	Passable = true
 };
 Terrain v = new()
 {
 	DisplayCharacter = new Markup("[grey58]■[/]")
 };
 Enemy vamp = new(new Vampire("joni"));
-Map map1 = new("Map 1", new ITile[,]{
+Map map1 = new("Map 1", typeof(Terrain), new ITile[,]{
 	{ new ClassLoot(), g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g },
 	{ g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g },
 	{ g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g },
@@ -90,7 +92,7 @@ Map map1 = new("Map 1", new ITile[,]{
 	{ g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g },
 });
 
-Map map2 = new("map 2", new ITile[,] {
+Map map2 = new("map 2", typeof(Terrain), new ITile[,] {
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v,new Player(hero), v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
@@ -122,7 +124,7 @@ Map map2 = new("map 2", new ITile[,] {
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v,et, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 });
-Map map3 = new("map 3", new ITile[,] {
+Map map3 = new("map 3", typeof(Terrain), new ITile[,] {
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d,new Player(hero), d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
@@ -154,7 +156,7 @@ Map map3 = new("map 3", new ITile[,] {
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 });
-Map map4 = new("map 4", new ITile[,] {
+Map map4 = new("map 4", typeof(Terrain), new ITile[,] {
 	{ d,et, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, new Player(hero)},
@@ -186,7 +188,7 @@ Map map4 = new("map 4", new ITile[,] {
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 });
-Map map5 = new("map 5", new ITile[,] {
+Map map5 = new("map 5", typeof(Terrain),new ITile[,] {
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d,et,et,et, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, v, v, v, v, v, d, d, d, d, d, v, v, v, v, v, v, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, v, v, v, new Enemy(new Headhunter("big man")), v, v, v, d, d, d, d, v, d, d, d, d, d, d, d },
@@ -246,6 +248,7 @@ AnsiConsole.MarkupLine($"[bold gold1]Size difference: {objectSize} bytes, before
 // ))
 // {
 // 	case "Map navigation":
+MapNav:
 string Maps = AnsiConsole.Prompt(
 	new SelectionPrompt<string>()
 	.Title("[bold steelblue1] hello and welcome please chose a map[/]")
@@ -261,13 +264,14 @@ Map SelectedMap = Maps switch
 	_ => map5
 };
 
-bool Break = false;
-while (Break == false)
+// bool Break = false;
+while (SelectedMap.Running)
 {
 	SelectedMap.DrawFull(DrawCriteria.DisplayCharacter);
 	menu.ShowMoveMenu(SelectedMap);
-	_ = AnsiConsole.Confirm("Continue?") ? Break = false : Break = true;
+	// _ = AnsiConsole.Confirm("Continue?") ? Break = false : Break = true;
 }
+goto MapNav;
 
 // break;
 // case "Demo Battle":

@@ -24,9 +24,10 @@ public enum MoveDirection
 
 public class Map
 {
-    public Map(string name, ITile[,] tiles)
+    public Map(string name, Type placeholder, ITile[,] tiles)
     {
         Name = name;
+        Placeholder = placeholder;
         Tiles = tiles;
         // set the TilePosition for all tiles
         for (int x = 0; x < Tiles.GetLength(0); x++)
@@ -41,10 +42,10 @@ public class Map
             }
         }
         MutableTiles = (ITile[,])Tiles.Clone();
-        if (PlayerTile != null)
+        if (PlayerTile is not null)
         {
             PlayerTile = (Player)MutableTiles[PlayerTile.Position.X, PlayerTile.Position.Y];
-            Tiles[PlayerTile.Position.X, PlayerTile.Position.Y] = new Empty();
+            Tiles[PlayerTile.Position.X, PlayerTile.Position.Y] = (ITile)Activator.CreateInstance(Placeholder);
         }
     }
     // TODO: immutable & mutable map relations;
@@ -60,6 +61,8 @@ public class Map
     public ITile[,] Tiles { get; set; } //! IMMUTABLE; Tile & TileType
     public ITile[,] MutableTiles { get; set; } //! MUTABLE
     public Guid Id { get; } = Guid.NewGuid();
+    public bool Running { get; set; } = true; // needed for while-loop checks
+    public Type Placeholder { get; }
     public string Name { get; }
     public Player PlayerTile { get; set; }
 
@@ -67,24 +70,35 @@ public class Map
     {
         try
         {
-            // store previous position so that we can set it to empty
-            TilePosition PrevPosition = tile.Position;
-
-            // move 'tile' to 'to'
-            MutableTiles[to.X, to.Y] = tile;
-            tile.Position = to;
-
-            if (GetTileByPosition(to) is Enemy enemy)
+            if (GetTileByPosition(to).Passable)
             {
-                Console.WriteLine("You have encountered an enemy!");
-                Battle b = new(PlayerTile.Character, enemy.Character, false);
-                b.Turn();
-            }
-            // TODO: implement entrance tile logic, probs just a magic break to go back to map select or smn
+                // store previous position so that we can set it to empty
+                TilePosition PrevPosition = tile.Position;
 
-            // finally, set the previous position to empty
-            // MutableTiles[PrevPosition.X, PrevPosition.Y] = new Empty();
-            ReplaceTile(PrevPosition, new Empty());
+                // TODO: test all thees if they actually work
+                if (GetTileByPosition(to) is Enemy enemy)
+                {
+                    Console.WriteLine("You have encountered an enemy!");
+                    Battle b = new(PlayerTile.Character, enemy.Character, false);
+                    b.Turn();
+                }
+                else if (GetTileByPosition(to) is Loot or ClassLoot)
+                {
+                    InteractWithTile(to);
+                }
+                else if (GetTileByPosition(to) is Exit)
+                {
+                    Running = false;
+                }
+                // move 'tile' to 'to'
+                MutableTiles[to.X, to.Y] = tile;
+                tile.Position = to;
+
+
+                // finally, set the previous position to empty
+                // MutableTiles[PrevPosition.X, PrevPosition.Y] = new Empty();
+                ReplaceTile(PrevPosition, new Empty());
+            }
         }
 
         catch (IndexOutOfRangeException) // dont let yo ass move out de map

@@ -727,7 +727,7 @@ public class Menu(Battle battle)
     public void ShowMoveMenu(Map.Map map)
     {
         ITile tile =  map.PlayerTile;
-        while (tile.Passable)
+        while (map.Running)
         {
             var direction = Console.ReadKey().Key;
             switch (direction)
