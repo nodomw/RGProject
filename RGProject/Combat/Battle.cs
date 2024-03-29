@@ -1276,6 +1276,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
         if(Enemy.Health <= 0)
         {
             Enemy.Dead = true;
+            // TODO: change tile display character to skull
             return true;
         }
         else
@@ -1284,5 +1285,5 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
         }
 
     }
-    public void Dispose() => GC.Collect();
+    public static void Dispose() => GC.Collect();
 }

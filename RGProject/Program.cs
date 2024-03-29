@@ -246,43 +246,43 @@ AnsiConsole.MarkupLine($"[bold gold1]Size difference: {objectSize} bytes, before
 // ))
 // {
 // 	case "Map navigation":
-		string Maps = AnsiConsole.Prompt(
-			new SelectionPrompt<string>()
-			.Title("[bold steelblue1] hello and welcome please chose a map[/]")
-			.AddChoices(["map 1", "map 2", "map 3", "map 4", "map 5"])
-			);
+string Maps = AnsiConsole.Prompt(
+	new SelectionPrompt<string>()
+	.Title("[bold steelblue1] hello and welcome please chose a map[/]")
+	.AddChoices(["map 1", "map 2", "map 3", "map 4", "map 5"])
+	);
 
-		Map SelectedMap = Maps switch
-		{
-			"map 1" => map1,
-			"map 2" => map2,
-			"map 3" => map3,
-			"map 4" => map4,
-			_ => map5
-		};
+Map SelectedMap = Maps switch
+{
+	"map 1" => map1,
+	"map 2" => map2,
+	"map 3" => map3,
+	"map 4" => map4,
+	_ => map5
+};
 
-		bool Break = false;
-		while (Break == false)
-		{
-			SelectedMap.DrawFull(DrawCriteria.DisplayCharacter);
-			menu.ShowMoveMenu(SelectedMap);
-			_ = AnsiConsole.Confirm("Continue?") ? Break = false : Break = true;
-		}
+bool Break = false;
+while (Break == false)
+{
+	SelectedMap.DrawFull(DrawCriteria.DisplayCharacter);
+	menu.ShowMoveMenu(SelectedMap);
+	_ = AnsiConsole.Confirm("Continue?") ? Break = false : Break = true;
+}
 
-		// break;
-	// case "Demo Battle":
-	// 	Console.WriteLine("did something happen??");
-	// 	{
-	// 		hero.Items.Add(new Potion()
-	// 		{
-	// 			Name = "Dmg",
-	// 			Power = 10,
-	// 			Stat = PotionModifier.Damage
-	// 		});
-	// 	}
-	// 	Console.WriteLine("something happened");
-	// 	Console.WriteLine(string.Join(", ", hero.Items));
-	// 	Battle b = new(hero, enemy, false);
-	// 	b.Turn(SelectedMap);
-	// 	break;
+// break;
+// case "Demo Battle":
+// 	Console.WriteLine("did something happen??");
+// 	{
+// 		hero.Items.Add(new Potion()
+// 		{
+// 			Name = "Dmg",
+// 			Power = 10,
+// 			Stat = PotionModifier.Damage
+// 		});
+// 	}
+// 	Console.WriteLine("something happened");
+// 	Console.WriteLine(string.Join(", ", hero.Items));
+// 	Battle b = new(hero, enemy, false);
+// 	b.Turn(SelectedMap);
+// 	break;
 // }

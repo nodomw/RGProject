@@ -29,17 +29,18 @@ public class Map
         Name = name;
         Tiles = tiles;
         // set the TilePosition for all tiles
-        for (int x = 0; x < tiles.GetLength(0); x++)
+        for (int x = 0; x < Tiles.GetLength(0); x++)
         {
-            for (int y = 0; y < tiles.GetLength(1); y++)
+            for (int y = 0; y < Tiles.GetLength(1); y++)
             {
-                tiles[x, y].Position = new TilePosition(x, y);
-                if (tiles[x, y] is Player)
+                Tiles[x, y].Position = new TilePosition(x, y);
+                if (Tiles[x, y] is Player)
                 {
-                    PlayerTile = (Player)tiles[x, y];
+                    PlayerTile = (Player)Tiles[x, y];
                 }
             }
         }
+        MutableTiles = Tiles;
     }
     // TODO: immutable & mutable map relations;
     // basically, where player is not and is not 'Empty()',
@@ -51,7 +52,8 @@ public class Map
     // a bit iffy tho because
     // how do u handle the tile
     // the player spawned on
-    public ITile[,] Tiles { get; set; } // Tile & TileType
+    public ITile[,] Tiles { get; set; } //! IMMUTABLE; Tile & TileType
+    public ITile[,] MutableTiles { get; set; } //! MUTABLE
     public Guid Id { get; } = Guid.NewGuid();
     public string Name { get; }
     public Player PlayerTile { get; set; }
@@ -60,24 +62,29 @@ public class Map
     {
         try
         {
-            // move the tile at 'to' to the position of 'tile'
-            ITile tile1 = GetTileByPosition(to);
-            Tiles[tile.Position.X, tile.Position.Y] = tile1;
+            // store previous position so that we can set it to empty
+            TilePosition PrevPosition = tile.Position;
 
             // move 'tile' to 'to'
-            Tiles[to.X, to.Y] = tile;
+            MutableTiles[to.X, to.Y] = tile;
             tile.Position = to;
 
-            if(tile1 is Enemy enemy)
+            if (GetTileByPosition(to) is Enemy enemy)
             {
                 Console.WriteLine("You have encountered an enemy!");
                 Battle b = new(PlayerTile.Character, enemy.Character, false);
                 b.Turn();
             }
+            // TODO: implement entrance tile logic, probs just a magic break to go back to map select or smn
+
+            // finally, set the previous position to empty
+            MutableTiles[PrevPosition.X, PrevPosition.Y] = new Empty();
         }
+
         catch (IndexOutOfRangeException)
         {
             AnsiConsole.MarkupLine("[red1]You can't move there![/]");
+            return;
         }
 
         // in case
@@ -113,23 +120,49 @@ public class Map
 
         return true;
     }
-    public void DrawFull(DrawCriteria criteria) // Draw the map;
+
+    //! DO NOT USE THIS!! THIS SHIT IS SLOW AS FUCK!!
+    //! this was mainly meant as a debug function
+    //! so that you could see where you're going
+    //! instead of the shitty 5x5 grid that tells you
+    //! absolutely nothing
+    public void DrawFull(DrawCriteria criteria)
     {
         for (int x = 0; x < Tiles.GetLength(0); x++)
         {
             for (int y = 0; y < Tiles.GetLength(1); y++)
             {
-                switch (criteria)
+                if (MutableTiles[x, y] is Empty)
                 {
-                    case DrawCriteria.Name:
-                        Console.Write(Tiles[x, y].Name);
-                        break;
-                    case DrawCriteria.Guid:
-                        Console.Write(Tiles[x, y].Id);
-                        break;
-                    case DrawCriteria.DisplayCharacter:
-                        AnsiConsole.Write(Tiles[x, y].DisplayCharacter);
-                        break;
+                    switch (criteria)
+                    {
+                        case DrawCriteria.Name:
+                            Console.Write(Tiles[x, y].Name);
+                            break;
+                        case DrawCriteria.Guid:
+                            Console.Write(Tiles[x, y].Id);
+                            break;
+                        case DrawCriteria.DisplayCharacter:
+                            AnsiConsole.Write(Tiles[x, y].DisplayCharacter);
+                            break;
+                    }
+
+                }
+                else
+                {
+                    switch (criteria)
+                    {
+                        case DrawCriteria.Name:
+                            Console.Write(MutableTiles[x, y].Name);
+                            break;
+                        case DrawCriteria.Guid:
+                            Console.Write(MutableTiles[x, y].Id);
+                            break;
+                        case DrawCriteria.DisplayCharacter:
+                            AnsiConsole.Write(MutableTiles[x, y].DisplayCharacter);
+                            break;
+                    }
+
                 }
                 AnsiConsole.Write("  ");
             }
