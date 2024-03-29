@@ -76,24 +76,27 @@ public class Map
                 TilePosition PrevPosition = tile.Position;
 
                 // TODO: test all thees if they actually work
-                if (GetTileByPosition(to) is Enemy enemy)
+                if (GetTileByPosition(to) is Exit)
                 {
-                    Console.WriteLine("You have encountered an enemy!");
-                    Battle b = new(PlayerTile.Character, enemy.Character, false);
-                    b.Turn();
+                    Running = false;
+                }
+
+                // move 'tile' to 'to'
+                MutableTiles[to.X, to.Y] = tile;
+                tile.Position = to;
+
+                if (GetTileByPosition(to, true) is Enemy enemy)
+                {
+                    if (!enemy.Character.Dead)
+                    {
+                        Console.WriteLine("You have encountered an enemy!");
+                        new Battle(PlayerTile.Character, enemy.Character, false).Turn();
+                    }
                 }
                 else if (GetTileByPosition(to) is Loot or ClassLoot)
                 {
                     InteractWithTile(to);
                 }
-                else if (GetTileByPosition(to) is Exit)
-                {
-                    Running = false;
-                }
-                // move 'tile' to 'to'
-                MutableTiles[to.X, to.Y] = tile;
-                tile.Position = to;
-
 
                 // finally, set the previous position to empty
                 // MutableTiles[PrevPosition.X, PrevPosition.Y] = new Empty();
@@ -270,11 +273,11 @@ public class Map
         throw new Exception("Tile not found");
     }
     // Get a tile by its position
-    public ITile GetTileByPosition(TilePosition tp)
+    public ITile GetTileByPosition(TilePosition tp, bool ImmutableMap = false)
     {
         try
         {
-            if (typeof(Empty).IsInstanceOfType(MutableTiles[tp.X, tp.Y]))
+            if (typeof(Empty).IsInstanceOfType(MutableTiles[tp.X, tp.Y]) || ImmutableMap)
             {
                 return Tiles[tp.X, tp.Y];
             }

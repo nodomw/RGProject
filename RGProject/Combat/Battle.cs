@@ -15,13 +15,13 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
     public int Turns { get; set; }
 
     Random rnd = new Random();
-    public bool ChanceSuccessful(double chance)
+    internal bool ChanceSuccessful(double chance)
     {
         int randomNumber = rnd.Next(101);
         return randomNumber <= (int)chance;
     }
 
-    public double HeroCalcDamage(double dmgMultiplier = 1.0, double stunMultiplier = 1.0)
+    internal double HeroCalcDamage(double dmgMultiplier = 1.0, double stunMultiplier = 1.0)
     {
         double dmg = 0;
         double defDmg = 0;
@@ -340,7 +340,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
         return dmg;
     }
 
-    private double EnemyCalcDamage(double dmgMultiplier = 1.0)
+    internal double EnemyCalcDamage(double dmgMultiplier = 1.0)
     {
         double dmg = 0;
 
@@ -1260,7 +1260,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
         }
     }
 
-    public bool Defeat()
+    internal bool Defeat()
     {
         if(Hero.Health <= 0)
         {
@@ -1271,12 +1271,13 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
             return false;
         }
     }
-    public bool Victory()
+    internal bool Victory()
     {
         if(Enemy.Health <= 0)
         {
             Enemy.Dead = true;
             // TODO: change tile display character to skull
+
             return true;
         }
         else
