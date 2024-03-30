@@ -9,6 +9,8 @@ using FantasyRPG.Characters.Enemies.Bosses;
 using FantasyRPG.Characters.Enemies.BasicEnemies;
 using FantasyRPG;
 using FantasyRPG.Items;
+using System.Diagnostics;
+using System.Security.Cryptography;
 
 var enemy = new Emperor("Lajos");
 // var font = FigletFont.Load("ANSI Shadow.flf");
@@ -20,6 +22,7 @@ var enemy = new Emperor("Lajos");
 AnsiConsole.Write(new Markup("[red]Press any key to continue.....[/]"));
 Console.ReadKey();
 
+MakeChar:
 var tempmenu = new Menu(new Battle(new Hero("john doe"), new Emperor("Lajos")));
 ICharacter hero = tempmenu.ShowCharSelection();
 // ICharacter hero = new Warrior("john doe");
@@ -235,14 +238,20 @@ hero.Items.Add(new Potion()
 
 MapNav:
 string Maps = Menu.ShowMaps();
-Map SelectedMap = Maps switch
+Map? SelectedMap = Maps switch
 {
 	"surface" => surface,
 	"1-1" => map1,
 	"1-2" => map2,
 	"1-3" => map3,
-	_ => map4
+	"1-4" => map4,
+	_ => null
 };
+
+if (SelectedMap is null)
+{
+	goto MakeChar;
+}
 
 Hud hud = new Hud();
 // bool Break = false;
