@@ -653,6 +653,8 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
     private PaladinAttacks g;
     private WarriorAttacks h;
 
+    private Hud hud = new Hud();
+
     public void Turn()
     {
         InTurn = Hero;
@@ -660,7 +662,6 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
         double def = 0;
 
         bool correctatk = false;
-
 
 
         while (!Defeat() && !Victory() && !runaway)
@@ -722,16 +723,18 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                 cooldown4++;
                 while (!correctatk)
                 {
+                    hud.BattleStats(hero, enemy);
                     string move = menu.ShowBattleMenu();
-
+                    Console.Clear();
                     if (move == "Attack")
                     {
                         switch (Hero.Type)
                         {
                             case CharacterType.Assassin:
+                                hud.BattleStats(hero, enemy);
                                 a = menu.ShowAssassinAttacks();
                                 Console.Clear();
-                                switch (a)
+                               switch (a)
                                 {
                                     case AssassinAttacks.DaggerStrike:
                                         HeroCalcDamage();
@@ -776,6 +779,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                 }
                                 break;
                             case CharacterType.Elf:
+                                hud.BattleStats(hero, enemy);
                                 b = menu.ShowElfAttacks();
                                 Console.Clear();
                                 switch (b)
@@ -821,6 +825,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                 }
                                 break;
                             case CharacterType.Hero:
+                                hud.BattleStats(hero, enemy);
                                 c = menu.ShowHeroAttacks();
                                 Console.Clear();
                                 switch (c)
@@ -872,6 +877,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                 }
                                 break;
                             case CharacterType.Hunter:
+                                hud.BattleStats(hero, enemy);
                                 d = menu.ShowHunterAttacks();
                                 Console.Clear();
                                 switch (d)
@@ -919,6 +925,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                 }
                                 break;
                             case CharacterType.Mage:
+                                hud.BattleStats(hero, enemy);
                                 e = menu.ShowMageAttacks();
                                 Console.Clear();
                                 switch (e)
@@ -964,6 +971,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                 }
                                 break;
                             case CharacterType.Ninja:
+                                hud.BattleStats(hero, enemy);
                                 f = menu.ShowNinjaAttacks();
                                 Console.Clear();
                                 switch (f)
@@ -1012,6 +1020,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                 }
                                 break;
                             case CharacterType.Paladin:
+                                hud.BattleStats(hero, enemy);
                                  g = menu.ShowPaladinAttacks();
                                  Console.Clear();
                                 switch (g)
@@ -1059,6 +1068,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                 }
                                 break;
                             case CharacterType.Warrior:
+                                hud.BattleStats(hero, enemy);
                                 h = menu.ShowWarriorAttacks();
                                 Console.Clear();
                                 switch (h)

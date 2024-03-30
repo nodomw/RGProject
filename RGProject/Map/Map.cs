@@ -211,9 +211,9 @@ public class Map
             // AnsiConsole.WriteLine();
             AnsiConsole.WriteLine();
         }
+        Console.WriteLine(PlayerTile.Position.ToString());
         AnsiConsole.WriteLine();
         hud.Stats(hero);
-        Console.WriteLine(PlayerTile.Position.ToString());
     }
     public void DrawGrid() // do not look at this
     {

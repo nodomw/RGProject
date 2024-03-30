@@ -94,7 +94,7 @@ public class Menu(Battle battle)
 
     public string ShowItemInBattleMenu(ICharacter character)
     {
-        currentmenu = "ShowItemMenu";
+        currentmenu = "ShowItemInBattleMenu";
         List<Potion> potions = character.Items.Where(x => x is Potion).Select(x => x as Potion).ToList()!;
         if (potions.Count == 0)
         {
@@ -115,11 +115,14 @@ public class Menu(Battle battle)
                 .AddChoices(potionnames));
 
         if (choice == "[red]Exit[/]") PreviousMenu();
+        else
+        {
+            Potion pot = potions.Select(x => x).Where(x => x.Name == choice).First()!;
+            character.UsePotion(pot);
+            return pot.Name;
+        }
 
-        Potion pot = potions.Select(x => x).Where(x => x.Name == choice).First()!;
-        character.UsePotion(pot);
-
-        return pot.Name;
+        return"";
     }
     public void ShowItemMenu(ICharacter character, Map.Map map)
     {
@@ -160,7 +163,6 @@ public class Menu(Battle battle)
     public string ShowBattleMenu()
     {
         currentmenu = "ShowBattleMenu";
-        Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose your [red]Move[/]!")
@@ -211,7 +213,6 @@ public class Menu(Battle battle)
     public WarriorAttacks ShowWarriorAttacks()
     {
         currentmenu = "ShowWarriorAttacks";
-        Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose your [red]Attack[/]!")
@@ -268,7 +269,6 @@ public class Menu(Battle battle)
     public MageAttacks ShowMageAttacks()
     {
         currentmenu = "ShowMageAttacks";
-        Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose your [red]Attack[/]!")
@@ -325,7 +325,6 @@ public class Menu(Battle battle)
     public ElfAttacks ShowElfAttacks()
     {
         currentmenu = "ShowElfAttacks";
-        Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose your [red]Attack[/]!")
@@ -383,7 +382,6 @@ public class Menu(Battle battle)
     public AssassinAttacks ShowAssassinAttacks()
     {
         currentmenu = "ShowAssassinAttacks";
-        Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose your [red]Attack[/]!")
@@ -440,7 +438,6 @@ public class Menu(Battle battle)
     public PaladinAttacks ShowPaladinAttacks()
     {
         currentmenu = "ShowPaladinAttacks";
-        Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose your [red]Attack[/]!")
@@ -497,7 +494,6 @@ public class Menu(Battle battle)
     public HeroAttacks ShowHeroAttacks()
     {
         currentmenu = "ShowHeroAttacks";
-        Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose your [red]Attack[/]!")
@@ -554,7 +550,6 @@ public class Menu(Battle battle)
     public HunterAttacks ShowHunterAttacks()
     {
         currentmenu = "ShowHunterAttacks";
-        Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose your [red]Attack[/]!")
@@ -611,7 +606,6 @@ public class Menu(Battle battle)
     public NinjaAttacks ShowNinjaAttacks()
     {
         currentmenu = "ShowNinjaAttacks";
-        Console.Clear();
         var hero = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose your [red]Attack[/]!")
