@@ -730,6 +730,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                 cooldown4++;
                 while (!correctatk)
                 {
+                    Console.Clear();
                     hud.BattleStats(hero, enemy);
                     string move = menu.ShowBattleMenu();
                     Console.Clear();
