@@ -740,9 +740,6 @@ public class Menu(Battle battle)
                 case ConsoleKey.I:
                     ShowInventoryMenu();
                     break;
-                case ConsoleKey.I:
-                    hud.Stats(map.PlayerTile.Character);
-                    break;
             }
         }
     }
