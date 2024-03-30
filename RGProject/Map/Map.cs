@@ -94,11 +94,29 @@ public class Map
                         new Battle(PlayerTile.Character, enemy.Character, false).Turn();
                     }
                 }
-                else if (GetTileByPosition(to) is Loot or ClassLoot)
+                if (GetTileByPosition(to, true) is ClassLoot cl)
                 {
-                    InteractWithTile(to);
+                    Console.WriteLine(InteractWithTile(cl));
                 }
-
+                if (GetTileByPosition(to, true) is Servant servant)
+                {
+                    switch (servant.Class)
+                    {
+                        case ServantType.Captain:
+                            Console.WriteLine("You have encountered a captain!");
+                            PlayerTile.Character.IsCaptain = true;
+                            break;
+                        case ServantType.Healer:
+                            Console.WriteLine("You have encountered a healer!");
+                            PlayerTile.Character.IsHealer = true;
+                            break;
+                        case ServantType.Support:
+                            Console.WriteLine("You have encountered a support!");
+                            PlayerTile.Character.IsSupport = true;
+                            break;
+                    }
+                    servant.DisplayCharacter = new Markup("[blue]X[/]");
+                }
                 // finally, set the previous position to empty
                 // MutableTiles[PrevPosition.X, PrevPosition.Y] = new Empty();
                 ReplaceTile(PrevPosition, new Empty());
@@ -302,13 +320,14 @@ public class Map
             return FakeTile;
         }
     }
-    public string InteractWithTile(TilePosition tp)
+    public string InteractWithTile(ITile tile)
     {
-        ITile tile = GetTileByPosition(tp);
         if (tile is ILootable lootable)
         {
             lootable.Interact(PlayerTile.Character);
+            tile.DisplayCharacter = new Markup("[green]X[/]");
             return "Looted";
+
         }
         // else if (tile is IFightable)
         // {

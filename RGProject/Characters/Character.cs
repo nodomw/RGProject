@@ -147,7 +147,14 @@ public interface ICharacter
         switch (potion.Stat)
         {
             case PotionModifier.Heal:
-                Health += potion.Power;
+                if (Health + potion.Power > MaxHealth)
+                {
+                    Health = MaxHealth;
+                }
+                else
+                {
+                    Health += potion.Power;
+                }
                 Items.Remove(potion);
                 return (double)Health;
             case PotionModifier.Damage:
