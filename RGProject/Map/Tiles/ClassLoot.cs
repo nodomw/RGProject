@@ -78,13 +78,13 @@ public class ClassLoot() : ITile, ILootable
 					1 => new Potion()
 					{
 						Name = "Damage Potion",
-						Power = 10,
+						Power = 1.1,
 						Stat = PotionModifier.Damage
 					},
 					2 => new Potion()
 					{
 						Name = "Health Potion",
-						Power = 50,
+						Power = 150,
 						Stat = PotionModifier.Heal
 					},
 					3 => new Potion()
@@ -106,7 +106,7 @@ public class ClassLoot() : ITile, ILootable
 					_ => new Potion()
 					{
 						Name = "Defense Potion",
-						Power = 15,
+						Power = 1.1,
 						Stat = PotionModifier.Resistance
 					}
 				});
