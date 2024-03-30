@@ -710,7 +710,8 @@ public class Menu(Battle battle)
 
     public void ShowMoveMenu(Map.Map map, ICharacter hero)
     {
-        ITile tile =  map.PlayerTile;
+        Hud hud = new();
+        ITile tile = map.PlayerTile;
         while (map.Running)
         {
             var direction = Console.ReadKey().Key;
@@ -738,6 +739,9 @@ public class Menu(Battle battle)
                     break;
                 case ConsoleKey.I:
                     ShowInventoryMenu();
+                    break;
+                case ConsoleKey.I:
+                    hud.Stats(map.PlayerTile.Character);
                     break;
             }
         }
