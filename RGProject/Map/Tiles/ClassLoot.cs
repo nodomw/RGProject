@@ -5,6 +5,7 @@ namespace FantasyRPG.Map.Tiles;
 using System.Security.Cryptography;
 using FantasyRPG.Characters;
 using FantasyRPG.Items;
+using FantasyRPG.Items.HeroItems.Assassin;
 using FantasyRPG.Items.HeroItems.Elf;
 using FantasyRPG.Items.HeroItems.Hero;
 using FantasyRPG.Items.HeroItems.Hunter;
@@ -59,6 +60,11 @@ public class ClassLoot() : ITile, ILootable
 				{
 					1 => new Helmet(),
 					_ => new SpikeArmor(),
+				},
+				CharacterType.Assassin => new Random().Next(1, 2) switch
+				{
+					1 => new DoubleSword(), // .net why do i need to put a cast here hello???
+					_ => new Shady(),
 				},
 				_ => new Random().Next(1, 2) switch // Hunter
 				{
