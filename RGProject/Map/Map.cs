@@ -91,29 +91,39 @@ public class Map
                 {
                     if (!enemy.Character.Dead)
                     {
-                        Console.WriteLine("You have encountered an enemy!");
+                        Console.Clear();
+                        AnsiConsole.Write(new Markup("You have encountered an [red1]Enemy[/]!"));
+                        Console.ReadKey();
                         new Battle(PlayerTile.Character, enemy.Character, false).Turn();
                     }
                 }
                 if (GetTileByPosition(to, true) is ClassLoot cl)
                 {
+                    Console.Clear();
                     Console.WriteLine(InteractWithTile(cl));
+                    Console.ReadKey();
                 }
                 if (GetTileByPosition(to, true) is Servant servant)
                 {
                     switch (servant.Class)
                     {
                         case ServantType.Captain:
-                            Console.WriteLine("You have encountered a captain!");
+                            Console.Clear();
+                            AnsiConsole.Write(new Markup("You have encountered the [blue3_1]Captain[/]!"));
                             PlayerTile.Character.IsCaptain = true;
+                            Console.ReadKey();
                             break;
                         case ServantType.Healer:
-                            Console.WriteLine("You have encountered a healer!");
+                            Console.Clear();
+                            AnsiConsole.Write(new Markup("You have encountered the [blue3_1]Healer[/]!"));
                             PlayerTile.Character.IsHealer = true;
+                            Console.ReadKey();
                             break;
                         case ServantType.Support:
-                            Console.WriteLine("You have encountered a support!");
+                            Console.Clear();
+                            AnsiConsole.Write(new Markup("You have encountered the [blue3_1]Support[/]!"));
                             PlayerTile.Character.IsSupport = true;
+                            Console.ReadKey();
                             break;
                     }
                     servant.DisplayCharacter = new Markup("[blue]X[/]");

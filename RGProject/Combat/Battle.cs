@@ -700,7 +700,14 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                     if (Hero.IsHealer)
                     {
                         AnsiConsole.Write(new Markup("Your Healer, [green3]Healed[/] you 50hp!"));
-                        Hero.Health += 50;
+                        if (Hero.Health + 50 > Hero.MaxHealth)
+                        {
+                            Hero.Health = Hero.MaxHealth;
+                        }
+                        else
+                        {
+                            Hero.Health += 50;
+                        }
                     }
                     if (Hero.IsSupport)
                     {
