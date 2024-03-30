@@ -111,19 +111,15 @@ public class Menu(Battle battle)
 #pragma warning restore CS8603 // Possible null reference return.
     }
 
-    public void ShowMaps()
+    public static string ShowMaps()
     {
-        Console.Clear();
-        var hero = AnsiConsole.Prompt(
+        // Console.Clear();
+        return AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose the [green]Map[/] you want to play on!")
                 .PageSize(10)
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
-                .AddChoices(new[]
-                {
-                    "First Map", "Second Map", "Third Map", "Fourth Map", "[red]Exit[/]"
-                }));
-
+                .AddChoices(["surface", "1-1", "1-2", "1-3", "1-4", "[red]Exit[/]"]));
     }
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -717,7 +713,7 @@ public class Menu(Battle battle)
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------*/
     // During peacetime
 
-    public void ShowPeaceMenu()
+    public static void ShowPeaceMenu()
     {
         Console.Clear();
         var hero = AnsiConsole.Prompt(
@@ -733,7 +729,7 @@ public class Menu(Battle battle)
 
     }
 
-    public void ShowMoveMenu(Map.Map map, ICharacter hero)
+    public static void ShowMoveMenu(Map.Map map, ICharacter hero)
     {
         Hud hud = new();
         ITile tile = map.PlayerTile;
