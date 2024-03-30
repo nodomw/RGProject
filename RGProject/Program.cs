@@ -59,7 +59,7 @@ Terrain v = new()
 	DisplayCharacter = new Markup("[grey58]■[/]")
 };
 Enemy vamp = new(new Vampire("joni"));
-Map map1 = new("Map 1", typeof(Terrain), new ITile[,]{
+Map surface = new("Map 1", typeof(Terrain), new ITile[,]{
 	{ new ClassLoot(), g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g },
 	{ g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g },
 	{ g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g },
@@ -92,7 +92,7 @@ Map map1 = new("Map 1", typeof(Terrain), new ITile[,]{
 	{ g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g },
 });
 
-Map map2 = new("map 2", typeof(Terrain), new ITile[,] {
+Map map1 = new("map 2", typeof(Terrain), new ITile[,] {
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v,new Player(hero), v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
@@ -124,7 +124,7 @@ Map map2 = new("map 2", typeof(Terrain), new ITile[,] {
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v,et, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 });
-Map map3 = new("map 3", typeof(Terrain), new ITile[,] {
+Map map2 = new("map 3", typeof(Terrain), new ITile[,] {
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d,new Player(hero), d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
@@ -156,7 +156,7 @@ Map map3 = new("map 3", typeof(Terrain), new ITile[,] {
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 });
-Map map4 = new("map 4", typeof(Terrain), new ITile[,] {
+Map map3 = new("map 4", typeof(Terrain), new ITile[,] {
 	{ d,et, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, new Player(hero)},
@@ -188,7 +188,7 @@ Map map4 = new("map 4", typeof(Terrain), new ITile[,] {
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 });
-Map map5 = new("map 5", typeof(Terrain),new ITile[,] {
+Map map4 = new("map 5", typeof(Terrain), new ITile[,] {
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d,et,et,et, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, v, v, v, v, v, d, d, d, d, d, v, v, v, v, v, v, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, v, v, v, new Enemy(new Headhunter("big man")), v, v, v, d, d, d, d, v, d, d, d, d, d, d, d },
@@ -221,72 +221,26 @@ Map map5 = new("map 5", typeof(Terrain),new ITile[,] {
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d,new Player(hero), d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 });
 
-
-// System.Console.WriteLine("drawing map 1");
-// map1.DrawFull(DrawCriteria.DisplayCharacter);
-//
-// System.Console.WriteLine("drawing map 2");
-// map2.DrawFull(DrawCriteria.DisplayCharacter);
-//
-// System.Console.WriteLine("drawing map 3");
-// map3.DrawFull(DrawCriteria.DisplayCharacter);
-//
-// System.Console.WriteLine("drawing map 4");
-// map4.DrawFull(DrawCriteria.DisplayCharacter);
-//
-// System.Console.WriteLine("drawing map 5");
-// map5.DrawFull(DrawCriteria.DisplayCharacter);
-
 long after = GC.GetTotalMemory(true);
 long objectSize = after - before;
 AnsiConsole.MarkupLine($"[bold gold1]Size difference: {objectSize} bytes, before: {before} bytes, after: {after} bytes[/]");
 
-// switch (AnsiConsole.Prompt(
-// 	new SelectionPrompt<string>()
-// 	.Title("What would you like to do?")
-// 	.AddChoices(["Demo Battle", "Map navigation"])
-// ))
-// {
-// 	case "Map navigation":
 MapNav:
-string Maps = AnsiConsole.Prompt(
-	new SelectionPrompt<string>()
-	.Title("[bold steelblue1] hello and welcome please chose a map[/]")
-	.AddChoices(["map 1", "map 2", "map 3", "map 4", "map 5"])
-	);
-
+string Maps = Menu.ShowMaps();
 Map SelectedMap = Maps switch
 {
-	"map 1" => map1,
-	"map 2" => map2,
-	"map 3" => map3,
-	"map 4" => map4,
-	_ => map5
+	"surface" => surface,
+	"1-1" => map1,
+	"1-2" => map2,
+	"1-3" => map3,
+	_ => map4
 };
 
 // bool Break = false;
 while (SelectedMap.Running)
 {
 	SelectedMap.DrawFull(DrawCriteria.DisplayCharacter);
-	menu.ShowMoveMenu(SelectedMap);
+	Menu.ShowMoveMenu(SelectedMap);
 	// _ = AnsiConsole.Confirm("Continue?") ? Break = false : Break = true;
 }
 goto MapNav;
-
-// break;
-// case "Demo Battle":
-// 	Console.WriteLine("did something happen??");
-// 	{
-// 		hero.Items.Add(new Potion()
-// 		{
-// 			Name = "Dmg",
-// 			Power = 10,
-// 			Stat = PotionModifier.Damage
-// 		});
-// 	}
-// 	Console.WriteLine("something happened");
-// 	Console.WriteLine(string.Join(", ", hero.Items));
-// 	Battle b = new(hero, enemy, false);
-// 	b.Turn(SelectedMap);
-// 	break;
-// }
