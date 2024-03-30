@@ -9,15 +9,13 @@ using FantasyRPG.Characters.Enemies.Bosses;
 using FantasyRPG.Characters.Enemies.BasicEnemies;
 using FantasyRPG;
 using FantasyRPG.Items;
-using System.Diagnostics;
-using System.Security.Cryptography;
 
 var enemy = new Emperor("Lajos");
-// var font = FigletFont.Load("ANSI Shadow.flf");
-// var font2 = FigletFont.Load("Cyberlarge.flf");
+var font = FigletFont.Load("ANSI Shadow.flf");
+var font2 = FigletFont.Load("Cyberlarge.flf");
 
-// AnsiConsole.Write(new FigletText(font2, "Welcome to").Centered().Color(Color.White));
-// AnsiConsole.Write(new FigletText(font, "Fantasy Frontiers").Centered().Color(Color.Red));
+AnsiConsole.Write(new FigletText(font2, "Welcome to").Centered().Color(Color.White));
+AnsiConsole.Write(new FigletText(font, "Fantasy Frontiers").Centered().Color(Color.Red));
 
 AnsiConsole.Write(new Markup("[red]Press any key to continue.....[/]"));
 Console.ReadKey();
@@ -236,29 +234,33 @@ hero.Items.Add(new Potion()
 	Stat = PotionModifier.Heal
 });
 
-MapNav:
-string Maps = Menu.ShowMaps();
-Map? SelectedMap = Maps switch
-{
-	"surface" => surface,
-	"1-1" => map1,
-	"1-2" => map2,
-	"1-3" => map3,
-	"1-4" => map4,
-	_ => null
-};
+List<Map> Maps =
+[
+	surface,
+	map1,
+	map2,
+	map3,
+	map4
+];
 
-if (SelectedMap is null)
+foreach (Map map in Maps)
 {
-	goto MakeChar;
+
+	if (map is null)
+	{
+		goto MakeChar;
+	}
+
+	Hud hud = new Hud();
+	// bool Break = false;
+	while (map.Running)
+	{
+		map.DrawFull(DrawCriteria.DisplayCharacter, hero);
+		menu.ShowMoveMenu(map, hero);
+		// _ = AnsiConsole.Confirm("Continue?") ? Break = false : Break = true;
+	}
 }
 
-Hud hud = new Hud();
-// bool Break = false;
-while (SelectedMap.Running)
-{
-	SelectedMap.DrawFull(DrawCriteria.DisplayCharacter, hero);
-	menu.ShowMoveMenu(SelectedMap, hero);
-	// _ = AnsiConsole.Confirm("Continue?") ? Break = false : Break = true;
-}
-goto MapNav;
+AnsiConsole.Write(new FigletText(font, "Victory").Centered().Color(Color.Gold1));
+Console.WriteLine("Press any key to continue...");
+Console.ReadKey();
