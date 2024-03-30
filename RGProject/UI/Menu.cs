@@ -560,7 +560,7 @@ public class Menu(Battle battle)
                     "Run: you lose 10% hp",
                     "Defend: increases your defense by 25%",
                     "Heroic strike:",
-                    "Crown: deals 100 damage and givs you 25% critical damage. The next round you will gain 25% defence. 3 round cooldown",
+                    "Crown: deals 100 damage and gives you 25% critical damage. The next round you will gain 25% defence. 3 round cooldown",
                     "Getting a cape: The next 2 rounds you will gain 20% dmg and 10% def. 3 rounds cooldown.",
                     "[red]Exit[/]"
                 }));
