@@ -177,22 +177,6 @@ public class Menu(Battle battle)
                 }));
     }
 
-    public void ShowEquipMenu()
-    {
-        currentmenu = "ShowEquipMenu";
-
-        Console.Clear();
-        var hero = AnsiConsole.Prompt(
-            new SelectionPrompt<string>()
-                .Title("Equip one item!")
-                .PageSize(10)
-                .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
-                .AddChoices(new[]
-                {
-                    "Equip Weapon", "Equip Armor", "[red]Exit[/]"
-                }));
-    }
-
     public string ShowItemMenu(ICharacter character)
     {
         currentmenu = "ShowItemMenu";
@@ -724,7 +708,7 @@ public class Menu(Battle battle)
 
     }
 
-    public void ShowMoveMenu(Map.Map map)
+    public void ShowMoveMenu(Map.Map map, ICharacter hero)
     {
         ITile tile =  map.PlayerTile;
         while (map.Running)
@@ -735,22 +719,25 @@ public class Menu(Battle battle)
                 case ConsoleKey.W:
                     map.MoveTileDirection(tile, MoveDirection.Up);
                     Console.Clear();
-                    map.DrawFull(DrawCriteria.DisplayCharacter);
+                    map.DrawFull(DrawCriteria.DisplayCharacter, hero);
                     break;
                 case ConsoleKey.A:
                     map.MoveTileDirection(tile, MoveDirection.Left);
                     Console.Clear();
-                    map.DrawFull(DrawCriteria.DisplayCharacter);
+                    map.DrawFull(DrawCriteria.DisplayCharacter, hero);
                     break;
                 case ConsoleKey.S:
                     map.MoveTileDirection(tile, MoveDirection.Down);
                     Console.Clear();
-                    map.DrawFull(DrawCriteria.DisplayCharacter);
+                    map.DrawFull(DrawCriteria.DisplayCharacter, hero);
                     break;
                 case ConsoleKey.D:
                     map.MoveTileDirection(tile, MoveDirection.Right);
                     Console.Clear();
-                    map.DrawFull(DrawCriteria.DisplayCharacter);
+                    map.DrawFull(DrawCriteria.DisplayCharacter, hero);
+                    break;
+                case ConsoleKey.I:
+                    ShowInventoryMenu();
                     break;
             }
         }

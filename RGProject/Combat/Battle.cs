@@ -43,8 +43,6 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
 
 
 
-        // AnsiConsole.Clear();
-
         switch (Hero.Type)
         {
             case CharacterType.Assassin:
@@ -336,7 +334,6 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
         Enemy.CATK = Enemy.TempCATK;
         Enemy.Crit = Enemy.TempCrit;
 
-        Console.ReadKey();
         return dmg;
     }
 
@@ -357,7 +354,6 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
         Hero.TempCombo = Hero.Combo;
         Hero.TempCATK = Hero.CATK;
 
-        AnsiConsole.Clear();
         AnsiConsole.Write(new Markup("The enemy attacks!"));
 
         switch (Hero.Type)
@@ -620,7 +616,6 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
         Hero.CATK = Hero.TempCATK;
         Hero.Crit = Hero.TempCrit;
 
-        Console.ReadKey();
         return dmg;
     }
 
@@ -665,6 +660,8 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
         double def = 0;
 
         bool correctatk = false;
+
+
 
         while (!Defeat() && !Victory() && !runaway)
         {
@@ -726,11 +723,13 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                         {
                             case CharacterType.Assassin:
                                 a = menu.ShowAssassinAttacks();
+                                Console.Clear();
                                 switch (a)
                                 {
                                     case AssassinAttacks.DaggerStrike:
                                         HeroCalcDamage();
                                         correctatk = true;
+                                        Console.ReadKey();
                                         break;
                                     case AssassinAttacks.PoisonDagger:
                                         if (cooldown3 >= 3)
@@ -740,6 +739,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                             PosionDaggers = true;
                                             turncooldown = 1;
                                             correctatk = true;
+                                            Console.ReadKey();
                                         }
                                         else
                                         {
@@ -757,6 +757,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                             Hero.Dodge = Hero.TempDodge;
                                             cooldown4 = 0;
                                             correctatk = true;
+                                            Console.ReadKey();
                                         }
                                         else
                                         {
@@ -769,11 +770,13 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                 break;
                             case CharacterType.Elf:
                                 b = menu.ShowElfAttacks();
+                                Console.Clear();
                                 switch (b)
                                 {
                                     case ElfAttacks.ArrowShot:
                                         HeroCalcDamage();
                                         correctatk = true;
+                                        Console.ReadKey();
                                         break;
                                     case ElfAttacks.ArrowRain:
                                         if (cooldown3 >= 3)
@@ -784,6 +787,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                             ArrowRain = true;
                                             turncooldown = 1;
                                             correctatk = true;
+                                            Console.ReadKey();
                                         }
                                         else
                                         {
@@ -798,6 +802,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                             HeroCalcDamage(0.6, 5);
                                             cooldown3_2 = 0;
                                             correctatk = true;
+                                            Console.ReadKey();
                                         }
                                         else
                                         {
@@ -810,10 +815,12 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                 break;
                             case CharacterType.Hero:
                                 c = menu.ShowHeroAttacks();
+                                Console.Clear();
                                 switch (c)
                                 {
                                     case HeroAttacks.HeroicStrike:
                                         HeroCalcDamage();
+                                        Console.ReadKey();
                                         break;
                                     case HeroAttacks.Crown:
                                         if (cooldown3 >= 3)
@@ -827,6 +834,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                             Crown = true;
                                             turncooldown = 1;
                                             correctatk = true;
+                                            Console.ReadKey();
                                         }
                                         else
                                         {
@@ -845,6 +853,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                             turncooldown2 = 2;
                                             turncooldown2_2 = 2;
                                             correctatk = true;
+                                            Console.ReadKey();
                                         }
                                         else
                                         {
@@ -857,11 +866,13 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                 break;
                             case CharacterType.Hunter:
                                 d = menu.ShowHunterAttacks();
+                                Console.Clear();
                                 switch (d)
                                 {
                                     case HunterAttacks.BlastShot:
                                         HeroCalcDamage();
                                         correctatk = true;
+                                        Console.ReadKey();
                                         break;
                                     case HunterAttacks.Bloodthirsty:
                                         if (!Hero.BloodThirsty)
@@ -872,6 +883,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                             correctatk = true;
                                             AnsiConsole.Write(new Markup("You used [green3]Bloodthirsty[/] and weakened the enemy (-20% hp), but decreased your [red1]Dmg[/] by 15,5%!"));
                                             Hero.BloodThirsty = true;
+                                            Console.ReadKey();
                                         }
                                         else
                                         {
@@ -887,6 +899,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                             asd.Interact(Hero);
                                             correctatk = true;
                                             Hero.Explorer = true;
+                                            Console.ReadKey();
                                         }
                                         else
                                         {
@@ -900,11 +913,13 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                 break;
                             case CharacterType.Mage:
                                 e = menu.ShowMageAttacks();
+                                Console.Clear();
                                 switch (e)
                                 {
                                     case MageAttacks.Fireball:
                                         HeroCalcDamage();
                                         correctatk = true;
+                                        Console.ReadKey();
                                         break;
                                     case MageAttacks.IceShard:
                                         if (cooldown3 >= 3)
@@ -915,6 +930,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                             IceShard = true;
                                             turncooldown = 1;
                                             correctatk = true;
+                                            Console.ReadKey();
                                         }
                                         else
                                         {
@@ -929,6 +945,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                             HeroCalcDamage(1.75);
                                             cooldown3_2 = 0;
                                             correctatk = true;
+                                            Console.ReadKey();
                                         }
                                         else
                                         {
@@ -941,11 +958,13 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                 break;
                             case CharacterType.Ninja:
                                 f = menu.ShowNinjaAttacks();
+                                Console.Clear();
                                 switch (f)
                                 {
                                     case NinjaAttacks.SpinningBlades:
                                         HeroCalcDamage();
                                         correctatk = true;
+                                        Console.ReadKey();
                                         break;
                                     case NinjaAttacks.SmokeBomb:
                                         if (cooldown3 >= 3)
@@ -956,6 +975,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                             turncooldown = 1;
                                             correctatk = true;
                                             InTurn = Hero;
+                                            Console.ReadKey();
                                         }
                                         else
                                         {
@@ -973,6 +993,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                             SharperDagger = true;
                                             turncooldown_2 = 1;
                                             correctatk = true;
+                                            Console.ReadKey();
                                         }
                                         else
                                         {
@@ -985,11 +1006,13 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                 break;
                             case CharacterType.Paladin:
                                  g = menu.ShowPaladinAttacks();
+                                 Console.Clear();
                                 switch (g)
                                 {
                                     case PaladinAttacks.HolyStrike:
                                         HeroCalcDamage();
                                         correctatk = true;
+                                        Console.ReadKey();
                                         break;
                                     case PaladinAttacks.HolyShield:
                                         if (cooldown3 >= 3)
@@ -999,6 +1022,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                             HolyShield = true;
                                             turncooldown = 1;
                                             correctatk = true;
+                                            Console.ReadKey();
                                         }
                                         else
                                         {
@@ -1016,6 +1040,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                             HolyLight = true;
                                             turncooldown_2 = 1;
                                             correctatk = true;
+                                            Console.ReadKey();
                                         }
                                         else
                                         {
@@ -1028,11 +1053,13 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                 break;
                             case CharacterType.Warrior:
                                 h = menu.ShowWarriorAttacks();
+                                Console.Clear();
                                 switch (h)
                                 {
                                     case WarriorAttacks.Slash:
                                         HeroCalcDamage();
                                         correctatk = true;
+                                        Console.ReadKey();
                                         break;
                                     case WarriorAttacks.ShieldBash:
                                         if (cooldown3 >= 3)
@@ -1042,6 +1069,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                             ShieldBash = true;
                                             turncooldown = 1;
                                             correctatk = true;
+                                            Console.ReadKey();
                                         }
                                         else
                                         {
@@ -1061,6 +1089,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                             WarCry = true;
                                             turncooldown_2 = 1;
                                             correctatk = true;
+                                            Console.ReadKey();
                                         }
                                         else
                                         {
@@ -1183,6 +1212,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
 
             Console.Clear();
             AnsiConsole.Write(new Markup("You are [red1]Defeated[/] by the enemy!"));
+            Console.ReadKey();
         }
         else if(Victory())
         {
@@ -1257,6 +1287,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                     break;
             }
 
+            Console.ReadKey();
         }
     }
 
@@ -1277,7 +1308,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
         {
             Enemy.Dead = true;
             // TODO: change tile display character to skull
-            Enemy.Parent.DisplayCharacter = new Markup("☠");
+            Enemy.Parent.DisplayCharacter = new Markup("!");
             return true;
         }
         else

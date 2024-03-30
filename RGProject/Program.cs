@@ -264,11 +264,12 @@ Map SelectedMap = Maps switch
 	_ => map5
 };
 
+Hud hud = new Hud();
 // bool Break = false;
 while (SelectedMap.Running)
 {
-	SelectedMap.DrawFull(DrawCriteria.DisplayCharacter);
-	menu.ShowMoveMenu(SelectedMap);
+	SelectedMap.DrawFull(DrawCriteria.DisplayCharacter, hero);
+	menu.ShowMoveMenu(SelectedMap, hero);
 	// _ = AnsiConsole.Confirm("Continue?") ? Break = false : Break = true;
 }
 goto MapNav;
