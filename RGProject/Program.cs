@@ -236,11 +236,12 @@ Map SelectedMap = Maps switch
 	_ => map4
 };
 
+Hud hud = new Hud();
 // bool Break = false;
 while (SelectedMap.Running)
 {
 	SelectedMap.DrawFull(DrawCriteria.DisplayCharacter);
-	Menu.ShowMoveMenu(SelectedMap);
+	Menu.ShowMoveMenu(SelectedMap, hero);
 	// _ = AnsiConsole.Confirm("Continue?") ? Break = false : Break = true;
 }
 goto MapNav;

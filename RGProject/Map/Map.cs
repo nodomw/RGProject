@@ -2,6 +2,7 @@
 using FantasyRPG.Characters;
 using FantasyRPG.Combat;
 using FantasyRPG.Map.Tiles;
+using FantasyRPG.UI;
 using Spectre.Console;
 
 namespace FantasyRPG.Map;
@@ -149,7 +150,9 @@ public class Map
     //! so that you could see where you're going
     //! instead of the shitty 5x5 grid that tells you
     //! absolutely nothing
-    public void DrawFull(DrawCriteria criteria)
+
+    private Hud hud = new Hud();
+    public void DrawFull(DrawCriteria criteria, ICharacter hero)
     {
         for (int x = 0; x < Tiles.GetLength(0); x++)
         {
@@ -190,6 +193,8 @@ public class Map
             // AnsiConsole.WriteLine();
             AnsiConsole.WriteLine();
         }
+        AnsiConsole.WriteLine();
+        hud.Stats(hero);
         Console.WriteLine(PlayerTile.Position.ToString());
     }
     public void DrawGrid() // do not look at this
