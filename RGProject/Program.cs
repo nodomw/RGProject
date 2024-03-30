@@ -8,6 +8,7 @@ using RGProject.Characters.Heroes;
 using FantasyRPG.Characters.Enemies.Bosses;
 using FantasyRPG.Characters.Enemies.BasicEnemies;
 using FantasyRPG;
+using FantasyRPG.Items;
 
 var enemy = new Emperor("Lajos");
 // var font = FigletFont.Load("ANSI Shadow.flf");
@@ -240,6 +241,13 @@ Map map5 = new("map 5", typeof(Terrain),new ITile[,] {
 long after = GC.GetTotalMemory(true);
 long objectSize = after - before;
 AnsiConsole.MarkupLine($"[bold gold1]Size difference: {objectSize} bytes, before: {before} bytes, after: {after} bytes[/]");
+
+hero.Items.Add(new Potion()
+{
+	Name = "HP",
+	Power = 10,
+	Stat = PotionModifier.Heal
+});
 
 // switch (AnsiConsole.Prompt(
 // 	new SelectionPrompt<string>()

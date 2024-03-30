@@ -46,28 +46,28 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
         switch (Hero.Type)
         {
             case CharacterType.Assassin:
-                AnsiConsole.Write(new Markup($"You chose {a}!"));
+                AnsiConsole.Write(new Markup($"\nYou chose {a}!"));
                 break;
             case CharacterType.Elf:
-                AnsiConsole.Write(new Markup($"You chose {b}!"));
+                AnsiConsole.Write(new Markup($"\nYou chose {b}!"));
                 break;
             case CharacterType.Hero:
-                AnsiConsole.Write(new Markup($"You chose {c}!"));
+                AnsiConsole.Write(new Markup($"\nYou chose {c}!"));
                 break;
             case CharacterType.Hunter:
-                AnsiConsole.Write(new Markup($"You chose {d}!"));
+                AnsiConsole.Write(new Markup($"\nYou chose {d}!"));
                 break;
             case CharacterType.Mage:
-                AnsiConsole.Write(new Markup($"You chose {e}!"));
+                AnsiConsole.Write(new Markup($"\nYou chose {e}!"));
                 break;
             case CharacterType.Ninja:
-                AnsiConsole.Write(new Markup($"You chose {f}!"));
+                AnsiConsole.Write(new Markup($"\nYou chose {f}!"));
                 break;
             case CharacterType.Paladin:
-                AnsiConsole.Write(new Markup($"You chose {g}!"));
+                AnsiConsole.Write(new Markup($"\nYou chose {g}!"));
                 break;
             case CharacterType.Warrior:
-                AnsiConsole.Write(new Markup($"You chose {h}!"));
+                AnsiConsole.Write(new Markup($"\nYou chose {h}!"));
                 break;
         }
 
@@ -673,7 +673,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                 {
                     if (Hero.IsHealer)
                     {
-                        AnsiConsole.Write(new Markup("Your Healer, [green3]Healed[/] you 75hp!"));
+                        AnsiConsole.Write(new Markup("\nYour Healer, [green3]Healed[/] you 75hp!"));
                         Hero.Health += 75;
                     }
                     if (Hero.IsSupport)
@@ -1121,7 +1121,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                             SmokeBomb = false;
                         }
                         correctatk = true;
-                        menu.ShowItemMenu(Hero);
+                        menu.ShowItemInBattleMenu(Hero);
                         InTurn = Enemy;
                     }
                     else if (move == "Information")
@@ -1234,55 +1234,55 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                     if (Hero.XP >= 1000)
                     {
                         Hero.Level++;
-                        AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and all of your [gold1]stats[/] are increased by 10%!\nYou also unlocked your first ability, and you can now your first special item, if you found it!"));
+                        AnsiConsole.Write(new Markup("\nYou [green3]Leveled Up[/] and all of your [gold1]stats[/] are increased by 10%!\nYou also unlocked your first ability, and you can now your first special item, if you found it!"));
                     }
                     if (Hero.XP >= 1500)
                     {
                         Hero.Level++;
-                        AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!\nYou also unlocked your second ability!"));
+                        AnsiConsole.Write(new Markup("\nYou [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!\nYou also unlocked your second ability!"));
                     }
                     break;
                 case 1:
                     if (Hero.XP >= 1500)
                     {
                         Hero.Level++;
-                        AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 10%!\nYou also unlocked your second ability!"));
+                        AnsiConsole.Write(new Markup("\nYou [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 10%!\nYou also unlocked your second ability!"));
                     }
                     if (Hero.XP >= 2200)
                     {
                         Hero.Level++;
-                        AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!\nYou can also use your second special item, if you found it!"));
+                        AnsiConsole.Write(new Markup("\nYou [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!\nYou can also use your second special item, if you found it!"));
                     }
                     break;
                 case 2:
                     if (Hero.XP >= 2200)
                     {
                         Hero.Level++;
-                        AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!\nYou can also use your second special item, if you found it!"));
+                        AnsiConsole.Write(new Markup("\nYou [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!\nYou can also use your second special item, if you found it!"));
                     }
                     if (Hero.XP >= 3200)
                     {
                         Hero.Level++;
-                        AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!"));
+                        AnsiConsole.Write(new Markup("\nYou [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!"));
                     }
                     break;
                 case 3:
                     if (Hero.XP >= 3200)
                     {
                         Hero.Level++;
-                        AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!"));
+                        AnsiConsole.Write(new Markup("\nYou [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!"));
                     }
                     if (Hero.XP >= 4500)
                     {
                         Hero.Level++;
-                        AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20% and all of your [gold1]stats[/] are increased by 10%!"));
+                        AnsiConsole.Write(new Markup("\nYou [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20% and all of your [gold1]stats[/] are increased by 10%!"));
                     }
                     break;
                 case 4:
                     if (Hero.XP >= 4500)
                     {
                         Hero.Level++;
-                        AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and reached [gold1]MAX[/] level!\nYour [green3]hp[/] and [red1]dmg[/] are increased by 20% and all of your [gold1]stats[/] are increased by 10%!"));
+                        AnsiConsole.Write(new Markup("\nYou [green3]Leveled Up[/] and reached [gold1]MAX[/] level!\nYour [green3]hp[/] and [red1]dmg[/] are increased by 20% and all of your [gold1]stats[/] are increased by 10%!"));
                     }
                     break;
             }
@@ -1295,6 +1295,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
     {
         if(Hero.Health <= 0)
         {
+            Hero.Health = 0;
             return true;
         }
         else
@@ -1307,7 +1308,6 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
         if(Enemy.Health <= 0)
         {
             Enemy.Dead = true;
-            // TODO: change tile display character to skull
             Enemy.Parent.DisplayCharacter = new Markup("!");
             return true;
         }

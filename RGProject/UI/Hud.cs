@@ -65,6 +65,7 @@ public class Hud
         stats.AddRow($"[white]Name[/]", $"[white]{hero.Name}[/]").Width(30);
         stats.AddRow("[white]Class[/]", $"[white]{hero.Type}[/]");
         stats.AddRow($"[green]Level[/]", $"[green]{hero.Level}[/]");
+        stats.AddRow($"[gold1]XP[/]", $"[gold1]{hero.XP}[/]");
         stats.AddRow("[red3_1]HP[/]", $"[red3_1]{hero.Health}[/]");
         stats.AddRow($"[darkred_1]Dmg[/]", $"[darkred_1]{hero.Damage}[/]");
         stats.AddRow($"[grey37]DEF[/]", $"[grey37]{hero.DEF}%[/]");

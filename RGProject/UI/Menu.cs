@@ -25,7 +25,7 @@ public class Menu(Battle battle)
             case "ShowElfAttacks" or "ShowWarriorAttacks" or "ShowMageAttacks" or "ShowAssassinAttacks" or "ShowPaladinAttacks" or "ShowHeroAttacks" or "ShowHunterAttacks" or "ShowNinjaAttacks":
                 battle.Turn();
                 break;
-            case "ShowItemMenu":
+            case "ShowItemInBattleMenu":
                 battle.Turn();
                 break;
         }
@@ -173,11 +173,11 @@ public class Menu(Battle battle)
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
                 .AddChoices(new[]
                 {
-                    "Use Item", "Equip Item", "[red]Exit[/]"
+                    "Use Item", "[red]Exit[/]"
                 }));
     }
 
-    public string ShowItemMenu(ICharacter character)
+    public string ShowItemInBattleMenu(ICharacter character)
     {
         currentmenu = "ShowItemMenu";
         List<Potion> potions = character.Items.Where(x => x is Potion).Select(x => x as Potion).ToList()!;
@@ -205,6 +205,31 @@ public class Menu(Battle battle)
         character.UsePotion(pot);
 
         return pot.Name;
+    }
+    public void ShowItemMenu(ICharacter character, Map.Map map)
+    {
+        Console.Clear();
+        currentmenu = "ShowItemMenu";
+        List<Potion> potions = character.Items.Where(x => x is Potion).Select(x => x as Potion).ToList()!;
+        if (potions.Count == 0)
+        {
+            AnsiConsole.WriteLine("You don't have any potions!");
+            Console.ReadKey();
+        }
+        var potionnames = potions.Select(x => x.Name).Append("[red]Exit[/]").ToArray();
+
+        Console.Clear();
+        string choice = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+                .Title("Choose the [yellow]Item[/] you want to use!")
+                .PageSize(10)
+                .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
+                .AddChoices(potionnames));
+
+        Potion pot = potions.Select(x => x).Where(x => x.Name == choice).First()!;
+        character.UsePotion(pot);
+
+        map.DrawFull(DrawCriteria.DisplayCharacter, character);
     }
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -738,7 +763,7 @@ public class Menu(Battle battle)
                     map.DrawFull(DrawCriteria.DisplayCharacter, hero);
                     break;
                 case ConsoleKey.I:
-                    ShowInventoryMenu();
+                    ShowItemMenu(hero, map);
                     break;
             }
         }
