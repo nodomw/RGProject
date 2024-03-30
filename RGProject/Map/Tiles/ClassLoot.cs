@@ -23,7 +23,7 @@ public class ClassLoot() : ITile, ILootable
 	public bool Looted { get; set; } = false;
 	public TilePosition Position { get; set; }
 	public Markup DisplayCharacter { get; set; } = new Markup("[yellow]$[/]");
-	public void Interact(ICharacter character)
+	public object Interact(ICharacter character)
 	{
 		if (!Looted)
 		{
@@ -67,13 +67,9 @@ public class ClassLoot() : ITile, ILootable
 				}
 			};
 
-			if (!character.Items.Contains(SelectedItem))
+			if (character.Items.Contains(SelectedItem))
 			{
-				character.Items.Add(SelectedItem);
-			}
-			else
-			{
-				character.Items.Add(new Random().Next(1, 6) switch
+				SelectedItem = new Random().Next(1, 6) switch
 				{
 					1 => new Potion()
 					{
@@ -109,10 +105,14 @@ public class ClassLoot() : ITile, ILootable
 						Power = 1.1,
 						Stat = PotionModifier.Resistance
 					}
-				});
+				};
+
+				character.Items.Add(SelectedItem);
 
 			}
 			Looted = true;
+			return SelectedItem;
 		}
+		return null;
 	}
 }

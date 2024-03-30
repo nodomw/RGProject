@@ -56,7 +56,7 @@ public interface ITile
 public interface ILootable
 {
     public bool Looted { get; set; }
-    public void Interact(ICharacter character);
+    public object Interact(ICharacter character);
 }
 
 public interface IFightable
