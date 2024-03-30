@@ -729,7 +729,7 @@ public class Menu(Battle battle)
 
     }
 
-    public static void ShowMoveMenu(Map.Map map, ICharacter hero)
+    public void ShowMoveMenu(Map.Map map, ICharacter hero)
     {
         Hud hud = new();
         ITile tile = map.PlayerTile;
