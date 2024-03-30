@@ -325,10 +325,9 @@ public class Map
     {
         if (tile is ILootable lootable)
         {
-            Item loot = (Item)lootable.Interact(PlayerTile.Character);
+            Item loot = lootable.Interact(PlayerTile.Character);
             tile.DisplayCharacter = new Markup("[green]X[/]");
             return $"Looted {loot.Name}";
-
         }
         // else if (tile is IFightable)
         // {
