@@ -1277,7 +1277,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
         {
             Enemy.Dead = true;
             // TODO: change tile display character to skull
-            Enemy.Parent.DisplayCharacter = new Markup("☠");
+            Enemy.Parent.DisplayCharacter = new Markup("[gray15]![/]");
             return true;
         }
         else
