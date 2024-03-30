@@ -11,6 +11,6 @@ namespace FantasyRPG.Map.Tiles
         public TilePosition Position { get; set; }
         public bool Passable { get; set; } = true;
         public string Name { get; set; } = name;
-        public Markup DisplayCharacter { get; set; } = new Markup("[blue]S[/]");
+        public Markup DisplayCharacter { get; set; } = new Markup("[blue3_1]S[/]");
     }
 }
