@@ -11,11 +11,11 @@ using FantasyRPG;
 using FantasyRPG.Items;
 
 var enemy = new Emperor("Lajos");
-var font = FigletFont.Load("../../../ANSI Shadow.flf");
-var font2 = FigletFont.Load("../../../Cyberlarge.flf");
+// var font = FigletFont.Load("../../../ANSI Shadow.flf");
+// var font2 = FigletFont.Load("../../../Cyberlarge.flf");
 
-AnsiConsole.Write(new FigletText(font2, "Welcome to").Centered().Color(Color.White));
-AnsiConsole.Write(new FigletText(font, "Fantasy Frontiers").Centered().Color(Color.Red));
+// AnsiConsole.Write(new FigletText(font2, "Welcome to").Centered().Color(Color.White));
+// AnsiConsole.Write(new FigletText(font, "Fantasy Frontiers").Centered().Color(Color.Red));
 
 AnsiConsole.Write(new Markup("[red]Press any key to continue.....[/]"));
 Console.ReadKey();
@@ -61,8 +61,8 @@ Terrain v = new()
 	DisplayCharacter = new Markup("[grey58]■[/]")
 };
 Enemy vamp = new(new Vampire("joni"));
-Map surface = new("Map 1", typeof(Terrain), new ITile[,]{
-	{ new ClassLoot(), g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g },
+Map surface = new("Surface", typeof(Terrain), new ITile[,]{
+	{ g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g },
 	{ g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g },
 	{ g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g },
 	{ g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g },
@@ -94,7 +94,7 @@ Map surface = new("Map 1", typeof(Terrain), new ITile[,]{
 	{ g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g, g },
 });
 
-Map map1 = new("map 2", typeof(Terrain), new ITile[,] {
+Map map1 = new("1-1", typeof(Terrain), new ITile[,] {
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v,new Player(hero), v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
@@ -104,13 +104,13 @@ Map map1 = new("map 2", typeof(Terrain), new ITile[,] {
 	{ d, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d },
-	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
+	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, new Servant(ServantType.Healer), v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, new Enemy(new BloodScream("lemon")), v, v, v, v, v, v, v, v, v, v, new Enemy(new BoneCrusher("golem")), v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
-	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
+	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, new ClassLoot(), v, v, v, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, new Enemy(new ChaosBeast("funny guy")), v, v, v, v, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
@@ -123,10 +123,10 @@ Map map1 = new("map 2", typeof(Terrain), new ITile[,] {
 	{ d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v, new Enemy(new Vampire("Dracula")), v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
-	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
+	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v, new ClassLoot(), v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, v,et, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 });
-Map map2 = new("map 3", typeof(Terrain), new ITile[,] {
+Map map2 = new("1-2", typeof(Terrain), new ITile[,] {
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d,new Player(hero), d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
@@ -148,24 +148,24 @@ Map map2 = new("map 3", typeof(Terrain), new ITile[,] {
 	{ d, d, d, d, d, v, v, v, v, d, d, d, d, d, d, d, d, d, d, d, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, d, d, d, d, d, d, d, d, d, v, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, d, d, d, d, d, d, d, v, v, v, v, v, v, v, d, d, d, d, d },
-	{ d, d, d, d, d, v, v, v, v, v, v, v, d, d, d, d, d, v, v, v, v, v, v, v, v, d, d, d, d, d },
+	{ d, d, d, d, d, v, v, v, v, v, v, v, d, d, d, d, d, v, v, v, v, v, new Servant(ServantType.Captain), v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d },
 	{ d, d, d, d, d, d, v, v, v, v, v, v, v, new Enemy(new Prince("little prince")), v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d },
-	{ et, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d },
+	{ et, v, v, v, new ClassLoot(), v, v, v, v, v, v, v, v, v, v, v, v, v, new ClassLoot(), v, v, v, v, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 });
-Map map3 = new("map 4", typeof(Terrain), new ITile[,] {
+Map map3 = new("1-3", typeof(Terrain), new ITile[,] {
 	{ d,et, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
-	{ d, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, new Player(hero)},
+	{ d, v, d, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, new Player(hero)},
 	{ d, v, d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, v, new Enemy(new Skeleton("bonka")), v, d, d, d, d, d, d, d, d },
 	{ d, new Enemy(new BoneCrusher("foxcoon factory lemon")), d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
-	{ d, v, d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
+	{ d, v, d, d, d, d, d, d, d, d, d, d, new Servant(ServantType.Support), d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, d, d, new Enemy(new Emperor("big prince")), d, d, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
@@ -178,27 +178,27 @@ Map map3 = new("map 4", typeof(Terrain), new ITile[,] {
 	{ d, v, d, d, d, d, d, d, d, d, v, v, v, v, v, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, v, v, v, v, v, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, v, v, new Enemy(new BloodScream("bingyboingo")), v, v, d, d, d, d, v, v, v, d, d, d, d, d, d, d, d },
-	{ d, v, d, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d },
+	{ d, v, d, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, new ClassLoot(), v, v, v, v, v, v, v, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, new Enemy(new Skeleton("helen skeltoj")), d, d },
 	{ d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, v, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, v, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, v, d, d },
 	{ d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, v, d, d },
-	{ d, v, new Enemy(new Skeleton("skeleer")), v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, new Enemy(new Skeleton("skeler")), v, v, v, v, v, v, v, v, v, d, d },
+	{ d, v, new Enemy(new Skeleton("skeleer")), v, v, v, v, v, new ClassLoot(), v, v, v, v, v, v, v, v, v, new Enemy(new Skeleton("skeler")), v, v, v, v, v, v, v, v, v, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 });
-Map map4 = new("map 5", typeof(Terrain), new ITile[,] {
+Map map4 = new("1-4", typeof(Terrain), new ITile[,] {
 	{ d, d, d, d, d, d, d, d, d, d, d, d, d,et,et,et, d, d, d, d, d, d, d, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, d, d, v, v, v, v, v, d, d, d, d, d, v, v, v, v, v, v, d, d },
-	{ d, d, d, d, d, d, d, d, d, d, d, v, v, v, new Enemy(new Headhunter("big man")), v, v, v, d, d, d, d, v, d, d, d, d, d, d, d },
+	{ d, d, d, d, d, d, d, d, d, d, d, v, v, v, new Enemy(new Headhunter("big man")), v, v, new ClassLoot(), d, d, d, d, v, d, d, d, d, d, d, d },
 	{ d, d, d, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, d, d, d, v, d, d, d, d, d, d, d },
 	{ d, v, v, v, v, v, v, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, v, d, d, d, d, d, d, d },
 	{ d, v, d, d, d, d, v, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, v, d, v, v, v, d, d, d },
 	{ d, v, d, d, d, d, v, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, v, v, v, v, v, d, d, d },
-	{ d, v, d, d, d, v, v, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, v, v, v, d, d, d },
+	{ d, v, d, d, d, new ClassLoot(), v, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, v, v, v, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, v, v, v, d, d, d },
 	{ d, v, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, v, v, v, d, d, d },
 	{ d, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, v, d, d, d, d },
@@ -209,13 +209,13 @@ Map map4 = new("map 5", typeof(Terrain), new ITile[,] {
 	{ d, v, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, v, v, d, d, v, d },
 	{ d, v, v, v, v, v, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, v, d, d, v, d },
 	{ d, d, d, d, d, v, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, v, d },
-	{ d, d, d, d, d, v, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, v, d },
+	{ d, d, d, d, d, new ClassLoot(), d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, v, d },
 	{ d, v, v, v, v, v, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, v, d },
-	{ d, new Enemy(new BloodScream("sour elmone")), d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, v, d },
+	{ d, new Enemy(new BloodScream("sour elmone")), d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, new ClassLoot(), d },
 	{ d, v, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, v, d },
 	{ d, v, v, v, v, v, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, v, d },
 	{ d, d, d, d, d, v, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, v, d },
-	{ d, d, d, d, d, v, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, v, d },
+	{ d, d, d, d, d, new ClassLoot(), d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, v, d },
 	{ d, v, v, v, v, v, d, d, d, v, v, v, new Enemy(new BloodScream("wakcer")), v, v, v, v, new Enemy(new Skeleton("skelr")), v, v, d, d, d, d, d, d, d, d, v, d },
 	{ d, v, d, d, d, d, d, d, d, v, v, v, v, v, v, v, v, v, v, v, d, d, d, d, d, d, d, d, v, d },
 	{ d, v, d, d, d, d, d, d, d, d, d, d, d, d, v, d, d, d, d, d, d, d, d, d, d, d, d, d, v, d },
@@ -261,6 +261,6 @@ foreach (Map map in Maps)
 	}
 }
 
-AnsiConsole.Write(new FigletText(font, "Victory").Centered().Color(Color.Gold1));
+// AnsiConsole.Write(new FigletText(font, "Victory").Centered().Color(Color.Gold1));
 Console.WriteLine("Press any key to continue...");
 Console.ReadKey();

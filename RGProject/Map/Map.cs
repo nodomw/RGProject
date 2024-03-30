@@ -94,11 +94,11 @@ public class Map
                         new Battle(PlayerTile.Character, enemy.Character, false).Turn();
                     }
                 }
-                else if (GetTileByPosition(to) is Loot or ClassLoot)
+                if (GetTileByPosition(to, true) is ClassLoot cl)
                 {
-                    InteractWithTile(to);
+                    Console.WriteLine(InteractWithTile(cl));
                 }
-                else if (GetTileByPosition(to) is Servant servant)
+                if (GetTileByPosition(to, true) is Servant servant)
                 {
                     switch (servant.Class)
                     {
@@ -115,6 +115,7 @@ public class Map
                             PlayerTile.Character.IsSupport = true;
                             break;
                     }
+                    servant.DisplayCharacter = new Markup("[blue]X[/]");
                 }
                 // finally, set the previous position to empty
                 // MutableTiles[PrevPosition.X, PrevPosition.Y] = new Empty();
@@ -319,13 +320,14 @@ public class Map
             return FakeTile;
         }
     }
-    public string InteractWithTile(TilePosition tp)
+    public string InteractWithTile(ITile tile)
     {
-        ITile tile = GetTileByPosition(tp);
         if (tile is ILootable lootable)
         {
             lootable.Interact(PlayerTile.Character);
+            tile.DisplayCharacter = new Markup("[green]X[/]");
             return "Looted";
+
         }
         // else if (tile is IFightable)
         // {
