@@ -211,10 +211,12 @@ public class Menu(Battle battle)
         {
             AnsiConsole.WriteLine("You don't have any potions!");
             Console.ReadKey();
+            Console.Clear();
+            map.DrawFull(DrawCriteria.DisplayCharacter, character);
+            return;
         }
         var potionnames = potions.Select(x => x.Name).Append("[red]Exit[/]").ToArray();
 
-        Console.Clear();
         string choice = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Choose the [yellow]Item[/] you want to use!")
@@ -222,6 +224,11 @@ public class Menu(Battle battle)
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
                 .AddChoices(potionnames));
 
+        if (choice == "[red]Exit[/]")
+        {
+            map.DrawFull(DrawCriteria.DisplayCharacter, character);
+            return;
+        }
         Potion pot = potions.Select(x => x).Where(x => x.Name == choice).First()!;
         character.UsePotion(pot);
 

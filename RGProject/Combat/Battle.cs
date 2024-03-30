@@ -1203,7 +1203,9 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
             }
             else
             {
+                Console.Clear();
                 EnemyCalcDamage();
+                Console.ReadKey();
             }
         }
 
