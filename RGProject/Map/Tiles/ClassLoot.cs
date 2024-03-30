@@ -23,7 +23,7 @@ public class ClassLoot() : ITile, ILootable
 	public bool Looted { get; set; } = false;
 	public TilePosition Position { get; set; }
 	public Markup DisplayCharacter { get; set; } = new Markup("[yellow]$[/]");
-	public object Interact(ICharacter character)
+	public Item Interact(ICharacter character)
 	{
 		if (!Looted)
 		{
@@ -113,6 +113,11 @@ public class ClassLoot() : ITile, ILootable
 			Looted = true;
 			return SelectedItem;
 		}
-		return null;
+		return new Potion()
+		{
+			Name = "Nothingburger",
+			Power = -0.1,
+			Stat = PotionModifier.Heal
+		};
 	}
 }

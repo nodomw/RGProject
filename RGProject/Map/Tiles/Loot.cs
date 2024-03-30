@@ -14,7 +14,7 @@ public class Loot(Item item) : ITile, ILootable
     public bool Passable { get; set; } = true;
     public TilePosition Position { get; set; }
     public Markup DisplayCharacter { get; set; } = new Markup("[yellow]$[/]");
-    public object Interact(ICharacter character)
+    public Item Interact(ICharacter character)
     {
         if (Item is not null)
         {
@@ -61,6 +61,11 @@ public class Loot(Item item) : ITile, ILootable
             });
 
         }
-        return null;
+        return new Potion()
+        {
+            Name = "Nothingburger",
+            Power = -0.1,
+            Stat = PotionModifier.Heal
+        };
     }
 }
