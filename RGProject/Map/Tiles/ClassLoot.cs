@@ -1,9 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace FantasyRPG.Map.Tiles;
-
-using System.Security.Cryptography;
-using FantasyRPG.Characters;
+﻿using FantasyRPG.Characters;
 using FantasyRPG.Items;
 using FantasyRPG.Items.HeroItems.Assassin;
 using FantasyRPG.Items.HeroItems.Elf;
@@ -15,6 +10,7 @@ using FantasyRPG.Items.HeroItems.Paladin;
 using FantasyRPG.Items.HeroItems.Warrior;
 using Spectre.Console;
 
+namespace FantasyRPG.Map.Tiles;
 public class ClassLoot() : ITile, ILootable
 {
 	public Guid Id { get; } = Guid.NewGuid();
@@ -63,17 +59,17 @@ public class ClassLoot() : ITile, ILootable
 				},
 				CharacterType.Assassin => new Random().Next(1, 2) switch
 				{
-					1 => new DoubleSword(), // .net why do i need to put a cast here hello???
+					1 => new DoubleSword(),
 					_ => new Shady(),
 				},
-				_ => new Random().Next(1, 2) switch // Hunter
+				_ => new Random().Next(1, 2) switch
 				{
 					1 => new Shotgun(),
 					_ => new SniperRifle(),
 				}
 			};
 
-			if (character.Items.Contains(SelectedItem))
+			if (character.Items.Exists(x => x.Name == SelectedItem.Name))
 			{
 				SelectedItem = new Random().Next(1, 6) switch
 				{
@@ -113,10 +109,9 @@ public class ClassLoot() : ITile, ILootable
 					}
 				};
 
-				character.Items.Add(SelectedItem);
-
 			}
 			Looted = true;
+			character.Items.Add(SelectedItem);
 			return SelectedItem;
 		}
 		return new Potion()

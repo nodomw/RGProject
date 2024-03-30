@@ -11,11 +11,11 @@ using FantasyRPG;
 using FantasyRPG.Items;
 
 var enemy = new Emperor("Lajos");
-var font = FigletFont.Load("../../../ANSI Shadow.flf");
-var font2 = FigletFont.Load("../../../Cyberlarge.flf");
+// var font = FigletFont.Load("../../../ANSI Shadow.flf");
+// var font2 = FigletFont.Load("../../../Cyberlarge.flf");
 
-AnsiConsole.Write(new FigletText(font2, "Welcome to").Centered().Color(Color.White));
-AnsiConsole.Write(new FigletText(font, "Fantasy Frontiers").Centered().Color(Color.Red));
+// AnsiConsole.Write(new FigletText(font2, "Welcome to").Centered().Color(Color.White));
+// AnsiConsole.Write(new FigletText(font, "Fantasy Frontiers").Centered().Color(Color.Red));
 
 AnsiConsole.Write(new Markup("[red]Press any key to continue.....[/]"));
 Console.ReadKey();
