@@ -259,6 +259,7 @@ foreach (Map map in Maps)
 		menu.ShowMoveMenu(map, hero);
 		// _ = AnsiConsole.Confirm("Continue?") ? Break = false : Break = true;
 	}
+	Console.Clear();
 }
 
 // AnsiConsole.Write(new FigletText(font, "Victory").Centered().Color(Color.Gold1));

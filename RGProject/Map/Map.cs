@@ -1,6 +1,7 @@
 ﻿// Ignore Spelling: Enums
 using FantasyRPG.Characters;
 using FantasyRPG.Combat;
+using FantasyRPG.Items;
 using FantasyRPG.Map.Tiles;
 using FantasyRPG.UI;
 using Spectre.Console;
@@ -334,9 +335,9 @@ public class Map
     {
         if (tile is ILootable lootable)
         {
-            lootable.Interact(PlayerTile.Character);
+            Item loot = (Item)lootable.Interact(PlayerTile.Character);
             tile.DisplayCharacter = new Markup("[green]X[/]");
-            return "Looted";
+            return $"Looted {loot.Name}";
 
         }
         // else if (tile is IFightable)
