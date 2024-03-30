@@ -12,7 +12,7 @@ namespace FantasyRPG.UI;
 
 public class Menu(Battle battle)
 {
-    public Battle battle { get; set; } = battle;
+    public Battle battle { get;} = battle;
     public string currentmenu = "";
 
     public void PreviousMenu()
@@ -31,41 +31,6 @@ public class Menu(Battle battle)
         }
     }
     // Starting the game
-    public void Show()
-    {
-        currentmenu = "Show";
-        Console.Clear();
-        var hero = AnsiConsole.Prompt(
-            new SelectionPrompt<string>()
-                .Title("Select an option, use arrow keys to navigate.")
-                .PageSize(10)
-                .MoreChoicesText("[grey](Move up and down to reveal more Options.)[/]")
-                .AddChoices(new[]
-                {
-                    "[gray]New Game[/]",
-                    "[green]Load Game[/]",
-                    "[red]Exit[/]"
-                }));
-
-        hero = hero.Split('[', ']')[2];
-
-        if (hero == "New Game")
-        {
-            ShowCharSelection();
-        }
-        else if (hero == "Load Game")
-        {
-            Console.WriteLine("Loading Game...");
-            Console.ReadKey();
-        }
-        else if (hero == "Exit")
-        {
-            AnsiConsole.Write(new Markup("See you next time [red1]Adventurer[/]!"));
-
-            Environment.Exit(0);
-        }
-
-    }
 
     public ICharacter ShowCharSelection()
     {
@@ -111,7 +76,6 @@ public class Menu(Battle battle)
         AnsiConsole.WriteLine($"Enter your character's name: ");
 #pragma warning disable CS8603 // Possible null reference return.
         return Console.ReadLine();
-#pragma warning restore CS8603 // Possible null reference return.
     }
 
     public static string ShowMaps()
@@ -127,54 +91,6 @@ public class Menu(Battle battle)
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------*/
     // During the game
-
-    public void ShowMainMenu()
-    {
-        currentmenu = "ShowMainMenu";
-
-        Console.Clear();
-        var hero = AnsiConsole.Prompt(
-            new SelectionPrompt<string>()
-                .Title("Main Menu")
-                .PageSize(10)
-                .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
-                .AddChoices(new[]
-                {
-                    "[white]Continue[/]", "[green]Save[/]", "[red]Exit[/]"
-                }));
-    }
-
-    public void ShowInGameMenu()
-    {
-        currentmenu = "ShowInGameMenu";
-
-        Console.Clear();
-        var hero = AnsiConsole.Prompt(
-            new SelectionPrompt<string>()
-                .Title("Game Menu")
-                .PageSize(10)
-                .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
-                .AddChoices(new[]
-                {
-                    "Show Stats", "Show Inventory", "Show Equipment", "Show Skills", "Show Map", "[red]Exit[/]"
-                }));
-    }
-
-    public void ShowInventoryMenu()
-    {
-        currentmenu = "ShowInventoryMenu";
-
-        Console.Clear();
-        var hero = AnsiConsole.Prompt(
-            new SelectionPrompt<string>()
-                .Title("[gold1]Inventory[/]")
-                .PageSize(10)
-                .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
-                .AddChoices(new[]
-                {
-                    "Use Item", "[red]Exit[/]"
-                }));
-    }
 
     public string ShowItemInBattleMenu(ICharacter character)
     {
@@ -722,22 +638,6 @@ public class Menu(Battle battle)
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------*/
     // During peacetime
-
-    public static void ShowPeaceMenu()
-    {
-        Console.Clear();
-        var hero = AnsiConsole.Prompt(
-            new SelectionPrompt<string>()
-                .Title("Choose what you want to [green]Do[/]!")
-                .PageSize(10)
-                .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
-                .AddChoices(new[]
-                {
-                    "Move", "Use Item", "Show In Game Menu", "Show Main Menu"
-                }));
-
-
-    }
 
     public void ShowMoveMenu(Map.Map map, ICharacter hero)
     {
