@@ -1211,10 +1211,13 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
 
         if (Defeat())
         {
-
             Console.Clear();
             AnsiConsole.Write(new Markup("You are [red1]Defeated[/] by the enemy!"));
             Console.ReadKey();
+            Console.WriteLine();
+            var font = FigletFont.Load("ANSI Shadow.flf");
+            AnsiConsole.Write(new FigletText(font, "Game Over").Centered().Color(Color.Red1));
+            Environment.Exit(0);
         }
         else if(Victory())
         {
