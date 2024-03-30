@@ -112,6 +112,7 @@ public class ClassLoot() : ITile, ILootable
 			}
 			Looted = true;
 			character.Items.Add(SelectedItem);
+			character.LevelUp();
 			return SelectedItem;
 		}
 		return new Potion()
