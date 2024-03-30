@@ -151,11 +151,11 @@ public interface ICharacter
                 Items.Remove(potion);
                 return (double)Health;
             case PotionModifier.Damage:
-                Damage += potion.Power;
+                Damage *= potion.Power;
                 Items.Remove(potion);
                 return (double)Damage;
             case PotionModifier.Resistance:
-                DEF += potion.Power;
+                DEF *= potion.Power;
                 Items.Remove(potion);
                 return (double)DEF;
             case PotionModifier.Run: // do nothing cuz it doesnt do anything in battles just on map
