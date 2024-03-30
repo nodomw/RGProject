@@ -77,13 +77,13 @@ public class Menu(Battle battle)
                 .Title("Choose your [green]Character[/]!")
                 .PageSize(10)
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
-                .AddChoices(new[]
-                {
-                    "Assassin", "Elf", "Hero", "Hunter", "Mage", "Ninja", "Paladin", "Warrior"
-                }));
+                .AddChoices(
+                [
+                    "Assassin", "Elf", "Hero", "Hunter", "Mage", "Ninja", "Paladin", "Warrior", "[red]Exit[/]"
+                ]));
 
         string name = ShowCharCreation();
-        ICharacter hero = @class switch
+        ICharacter? hero = @class switch
         {
             "Warrior" => new Warrior(name),
             "Mage" => new Mage(name),
@@ -93,8 +93,11 @@ public class Menu(Battle battle)
             "Hero" => new Hero(name),
             "Hunter" => new Hunter(name),
             "Ninja" => new Ninja(name),
-            _ => throw new ArgumentOutOfRangeException()
+            _ => null
         };
+
+        if (hero is null) Environment.Exit(0);
+
         AnsiConsole.WriteLine($"You chose {hero.Name}, who is a(n) {@class}! Good luck on your adventure!");
         Console.ReadKey();
         return hero;
