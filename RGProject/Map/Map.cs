@@ -139,6 +139,8 @@ public class Map
                             break;
                     }
                     servant.DisplayCharacter = new Markup("[blue]X[/]");
+                    PlayerTile.Character.XP += 250;
+                    PlayerTile.Character.LevelUp();
                 }
                 // finally, set the previous position to empty
                 // MutableTiles[PrevPosition.X, PrevPosition.Y] = new Empty();
