@@ -175,16 +175,20 @@ public interface ICharacter
                 DEF *= potion.Power;
                 Items.Remove(potion);
                 return (double)DEF;
-            case PotionModifier.Run: // do nothing cuz it doesnt do anything in battles just on map
+            case PotionModifier.Run:
                 RunBoost = true;
+                Items.Remove(potion);
                 goto default;
             case PotionModifier.Multi:
                 DEF += 10;
-                Health += 5;
+                Damage *= 1.1;
+                Health += 50;
                 MultiBooster = true;
+                Items.Remove(potion);
                 goto default;
             case PotionModifier.Combo:
                 Combo += potion.Power;
+                Items.Remove(potion);
                 return (double)Combo;
             default:
                 Items.Remove(potion);
