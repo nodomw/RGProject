@@ -248,7 +248,6 @@ public class Map
         }
         Console.WriteLine(PlayerTile.Position.ToString());
         AnsiConsole.WriteLine();
-        Console.WriteLine($"HasBoss: {HasBoss}, BossDefeated: {BossDefeated}");
         hud.Stats(hero);
     }
     public void DrawGrid() // do not look at this
