@@ -3,13 +3,14 @@ using FantasyRPG.Items;
 
 namespace FantasyRPG.Characters.Enemies.Bosses;
 
-public class Emperor(string name) : ICharacter
+public class Emperor(string name) : ICharacter, IBoss
 {
 	public Guid Id { get; } = Guid.NewGuid();
 	public string Name { get; set; } = name;
 	public CharacterType Type { get; }
 	public TilePosition Position { get; set; }
 	public ITile Parent { get; set; }
+	public Map.Map Map { get; set; }
 	public bool IsCaptain { get; set; }
 	public bool IsHealer { get; set; }
 	public bool IsSupport { get; set; }

@@ -27,6 +27,10 @@ public enum CharacterType // TODO
     Emperor,
     Headhunter
 }
+public interface IBoss
+{
+    Map.Map Map { get; set; }
+}
 public interface ICharacter
 {
     public Guid Id { get; }
