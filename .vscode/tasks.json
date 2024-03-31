@@ -5,6 +5,9 @@
             "label": "build",
             "command": "dotnet",
             "type": "process",
+            "options": {
+                "cwd": "${workspaceFolder}/RGProject/bin/Debug/net8.0"
+            },
             "args": [
                 "build",
                 "${workspaceFolder}/RGProject.sln",
@@ -17,6 +20,9 @@
             "label": "publish",
             "command": "dotnet",
             "type": "process",
+            "options": {
+                "cwd": "${workspaceFolder}/RGProject/bin/Debug/net8.0"
+            },
             "args": [
                 "publish",
                 "${workspaceFolder}/RGProject.sln",
@@ -29,6 +35,9 @@
             "label": "watch",
             "command": "dotnet",
             "type": "process",
+            "options": {
+                "cwd": "${workspaceFolder}/RGProject/bin/Debug/net8.0"
+            },
             "args": [
                 "watch",
                 "run",
@@ -41,6 +50,9 @@
             "label": "run",
             "command": "dotnet",
             "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}/RGProject/bin/Debug/net8.0"
+            },
             "args": [
                 "run",
                 "--project",
@@ -54,8 +66,12 @@
         {
             "label": "run (external)",
             "command": "alacritty",
+            "options": {
+                "cwd": "${workspaceFolder}/RGProject/bin/Debug/net8.0"
+            },
             "type": "process",
             "args": [
+                "--hold",
                 "-e",
                 "dotnet",
                 "run",
