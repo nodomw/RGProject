@@ -21,8 +21,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Items\Enum\" />
-  </ItemGroup>
-
 </Project>

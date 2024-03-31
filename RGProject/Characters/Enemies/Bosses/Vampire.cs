@@ -4,13 +4,14 @@ using FantasyRPG.Items;
 
 namespace FantasyRPG.Characters.Enemies.Bosses;
 
-public class Vampire(string name) : ICharacter
+public class Vampire(string name) : ICharacter, IBoss
 {
 	public Guid Id { get; } = Guid.NewGuid();
 	public string Name { get; set; } = name;
 	public CharacterType Type { get; }
 	public TilePosition Position { get; set; }
 	public ITile Parent { get; set; }
+	public Map.Map Map { get; set; }
 	public bool IsHero { get; set; } = false;
 	public bool IsBoss { get; set; } = true;
 	public bool IsCaptain { get; set; }

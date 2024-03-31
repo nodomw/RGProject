@@ -1,4 +1,5 @@
 ﻿using FantasyRPG.Characters;
+using FantasyRPG.Characters.Enemies.Bosses;
 using FantasyRPG.Items.HeroItems.Ninja;
 using FantasyRPG.Map.Tiles;
 using FantasyRPG.UI;
@@ -1479,6 +1480,13 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
         {
             Enemy.Dead = true;
             Enemy.Parent.DisplayCharacter = new Markup("!");
+            if (Enemy is IBoss boss)
+            {
+                // big dilemma: do i hook the death thing into
+                // the draw map function cuz dat gets ran a ton
+                // or do i do it here magically somehow
+                boss.Map.BossDefeated = true;
+            }
             return true;
         }
         else

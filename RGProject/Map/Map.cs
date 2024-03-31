@@ -1,5 +1,6 @@
 ﻿// Ignore Spelling: Enums
 using FantasyRPG.Characters;
+using FantasyRPG.Characters.Enemies.Bosses;
 using FantasyRPG.Combat;
 using FantasyRPG.Items;
 using FantasyRPG.Map.Tiles;
@@ -41,6 +42,15 @@ public class Map
                 {
                     PlayerTile = (Player)Tiles[x, y];
                 }
+                else if (Tiles[x, y] is ICharacterTile ct)
+                {
+                    if (ct.Character is IBoss boss)
+                    {
+                        boss.Map = this;
+                        HasBoss = true;
+                        BossDefeated = false;
+                    }
+                }
             }
         }
         MutableTiles = (ITile[,])Tiles.Clone();
@@ -65,6 +75,8 @@ public class Map
     public Guid Id { get; } = Guid.NewGuid();
     public bool Running { get; set; } = true; // needed for while-loop checks
     public Type Placeholder { get; }
+    public bool HasBoss { get; set; } = false;
+    public bool BossDefeated { get; set; } = false;
     public string Name { get; }
     public Player PlayerTile { get; set; }
 
@@ -78,7 +90,7 @@ public class Map
                 TilePosition PrevPosition = tile.Position;
 
                 // TODO: test all thees if they actually work
-                if (GetTileByPosition(to) is Exit)
+                if (GetTileByPosition(to) is Exit && (HasBoss == false || BossDefeated == true))
                 {
                     Running = false;
                 }
@@ -137,6 +149,8 @@ public class Map
                             break;
                     }
                     servant.DisplayCharacter = new Markup("[blue]X[/]");
+                    PlayerTile.Character.XP += 250;
+                    PlayerTile.Character.LevelUp();
                 }
                 // finally, set the previous position to empty
                 // MutableTiles[PrevPosition.X, PrevPosition.Y] = new Empty();
@@ -234,6 +248,7 @@ public class Map
         }
         Console.WriteLine(PlayerTile.Position.ToString());
         AnsiConsole.WriteLine();
+        Console.WriteLine($"HasBoss: {HasBoss}, BossDefeated: {BossDefeated}");
         hud.Stats(hero);
     }
     public void DrawGrid() // do not look at this
