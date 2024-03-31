@@ -4,7 +4,7 @@ using FantasyRPG.Items;
 
 namespace FantasyRPG.Characters.Enemies.Bosses;
 
-public class Vampire(string name) : ICharacter
+public class Vampire(string name) : ICharacter, IBoss
 {
 	public Guid Id { get; } = Guid.NewGuid();
 	public string Name { get; set; } = name;
