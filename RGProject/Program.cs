@@ -11,11 +11,11 @@ using FantasyRPG;
 using FantasyRPG.Items;
 
 var enemy = new Emperor("Lajos");
-// var font = FigletFont.Load("../../../ANSI Shadow.flf");
-// var font2 = FigletFont.Load("../../../Cyberlarge.flf");
+var font = FigletFont.Load("ANSI Shadow.flf");
+var font2 = FigletFont.Load("Cyberlarge.flf");
 
-// AnsiConsole.Write(new FigletText(font2, "Welcome to").Centered().Color(Color.White));
-// AnsiConsole.Write(new FigletText(font, "Fantasy Frontiers").Centered().Color(Color.Red));
+AnsiConsole.Write(new FigletText(font2, "Welcome to").Centered().Color(Color.White));
+AnsiConsole.Write(new FigletText(font, "Fantasy Frontiers").Centered().Color(Color.Red));
 
 AnsiConsole.Write(new Markup("[red]Press any key to continue.....[/]"));
 Console.ReadKey();
@@ -32,7 +32,8 @@ Menu menu = new(battle);
 // Player pl = new(hero);
 Terrain g = new()
 {
-	DisplayCharacter = new Markup("[darkgreen]■[/]")
+	DisplayCharacter = new Markup("[darkgreen]■[/]"),
+	Passable = false
 };
 Terrain w = new()
 {
@@ -45,7 +46,8 @@ Terrain p = new()
 };
 Terrain d = new() // darker gray than p but not as dark as dgr
 {
-	DisplayCharacter = new Markup("[grey23]X[/]")
+	DisplayCharacter = new Markup("[grey23]X[/]"),
+	Passable = false
 };
 Terrain dr = new()
 {
@@ -262,6 +264,6 @@ foreach (Map map in Maps)
 	Console.Clear();
 }
 
-// AnsiConsole.Write(new FigletText(font, "Victory").Centered().Color(Color.Gold1));
+AnsiConsole.Write(new FigletText(font, "Victory").Centered().Color(Color.Gold1));
 Console.WriteLine("Press any key to continue...");
 Console.ReadKey();
