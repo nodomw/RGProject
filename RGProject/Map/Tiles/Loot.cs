@@ -71,6 +71,7 @@ public class Loot() : ITile, ILootable
 
 			if (character.Items.Exists(x => x.Name == SelectedItem.Name))
 			{
+			RandomPotion:
 				SelectedItem = new Random().Next(1, 6) switch
 				{
 					1 => new Potion()
@@ -108,6 +109,11 @@ public class Loot() : ITile, ILootable
 						Stat = PotionModifier.Resistance
 					}
 				};
+
+				if (character.RunBoost || character.MultiBooster || character.ComboCount >= 3)
+				{
+					goto RandomPotion;
+				}
 
 			}
 			Looted = true;

@@ -57,7 +57,8 @@ public interface ICharacter
     public bool Explorer { get; set; }
     public bool Dead { get; set; }
     public int Level { get; set; }
-    public int XP { get; set; } // TODO: figure out xp amount for each level
+    public int XP { get; set; }
+    public int ComboCount { get; set; }
     public double MaxHealth { get; set; }
     public double Health { get; set; } // HP
     public double Damage { get; set; } // ATK
@@ -188,6 +189,7 @@ public interface ICharacter
                 goto default;
             case PotionModifier.Combo:
                 Combo += potion.Power;
+                ComboCount++;
                 Items.Remove(potion);
                 return (double)Combo;
             default:
