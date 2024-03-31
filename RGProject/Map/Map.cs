@@ -91,10 +91,20 @@ public class Map
                 {
                     if (!enemy.Character.Dead)
                     {
-                        Console.Clear();
-                        AnsiConsole.Write(new Markup("You have encountered an [red1]Enemy[/]!"));
-                        Console.ReadKey();
-                        new Battle(PlayerTile.Character, enemy.Character, false).Turn();
+                        if(enemy.Character.IsBoss)
+                        {
+                            Console.Clear();
+                            AnsiConsole.Write(new Markup("You have encountered the map's [red1]Boss[/]!"));
+                            Console.ReadKey();
+                            new Battle(PlayerTile.Character, enemy.Character, true).Turn();
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            AnsiConsole.Write(new Markup("You have encountered an [red1]Enemy[/]!"));
+                            Console.ReadKey();
+                            new Battle(PlayerTile.Character, enemy.Character, false).Turn();
+                        }
                     }
                 }
                 if (GetTileByPosition(to, true) is ClassLoot cl)

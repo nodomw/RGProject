@@ -15,21 +15,6 @@ public class Menu(Battle battle)
     public Battle battle { get;} = battle;
     public string currentmenu = "";
 
-    public void PreviousMenu()
-    {
-        switch (currentmenu)
-        {
-            case "ShowElfInfo" or "ShowWarriorInfo" or "ShowMageInfo" or "ShowAssassinInfo" or "ShowPaladinInfo" or "ShowHeroInfo" or "ShowHunterInfo" or "ShowNinjaInfo":
-                battle.Turn();
-                break;
-            case "ShowElfAttacks" or "ShowWarriorAttacks" or "ShowMageAttacks" or "ShowAssassinAttacks" or "ShowPaladinAttacks" or "ShowHeroAttacks" or "ShowHunterAttacks" or "ShowNinjaAttacks":
-                battle.Turn();
-                break;
-            case "ShowItemInBattleMenu":
-                battle.Turn();
-                break;
-        }
-    }
     // Starting the game
 
     public ICharacter ShowCharSelection()
@@ -100,7 +85,6 @@ public class Menu(Battle battle)
         {
             AnsiConsole.WriteLine("You don't have any potions!");
             Console.ReadKey();
-            PreviousMenu();
 
             return "";
         }
@@ -114,7 +98,7 @@ public class Menu(Battle battle)
                 .MoreChoicesText("[grey](Move up and down to reveal more.)[/]")
                 .AddChoices(potionnames));
 
-        if (choice == "[red]Exit[/]") PreviousMenu();
+        if (choice == "[red]Exit[/]") return "";
         else
         {
             Potion pot = potions.Select(x => x).Where(x => x.Name == choice).First()!;
@@ -204,10 +188,6 @@ public class Menu(Battle battle)
         {
             ShowWarriorInfo();
         }
-        else
-        {
-            PreviousMenu();
-        }
     }
 
     public WarriorAttacks ShowWarriorAttacks()
@@ -232,7 +212,6 @@ public class Menu(Battle battle)
             case "War Cry":
                 return WarriorAttacks.WarCry;
             default:
-                PreviousMenu();
                 return WarriorAttacks.None;
         }
     }
@@ -260,10 +239,6 @@ public class Menu(Battle battle)
         {
             ShowMageInfo();
         }
-        else
-        {
-            PreviousMenu();
-        }
     }
 
     public MageAttacks ShowMageAttacks()
@@ -288,7 +263,6 @@ public class Menu(Battle battle)
             case "Thunderbolt":
                 return MageAttacks.Thunderbolt;
             default:
-                PreviousMenu();
                 return MageAttacks.None;
         }
     }
@@ -316,10 +290,6 @@ public class Menu(Battle battle)
         {
             ShowElfInfo();
         }
-        else
-        {
-            PreviousMenu();
-        }
     }
 
     public ElfAttacks ShowElfAttacks()
@@ -344,7 +314,6 @@ public class Menu(Battle battle)
             case "Shocking Arrow":
                 return ElfAttacks.ShockingArrow;
             default:
-                PreviousMenu();
                 return ElfAttacks.None;
         }
     }
@@ -373,10 +342,6 @@ public class Menu(Battle battle)
         {
             ShowAssassinInfo();
         }
-        else
-        {
-            PreviousMenu();
-        }
     }
 
     public AssassinAttacks ShowAssassinAttacks()
@@ -401,7 +366,6 @@ public class Menu(Battle battle)
             case "Shadow Strike":
                 return AssassinAttacks.ShadowStrike;
             default:
-                PreviousMenu();
                 return AssassinAttacks.None;
         }
     }
@@ -429,10 +393,6 @@ public class Menu(Battle battle)
         {
             ShowPaladinInfo();
         }
-        else
-        {
-            PreviousMenu();
-        }
     }
 
     public PaladinAttacks ShowPaladinAttacks()
@@ -457,7 +417,6 @@ public class Menu(Battle battle)
             case "Holy Light":
                 return PaladinAttacks.HolyLight;
             default:
-                PreviousMenu();
                 return PaladinAttacks.None;
         }
     }
@@ -485,10 +444,6 @@ public class Menu(Battle battle)
         {
             ShowHeroInfo();
         }
-        else
-        {
-            PreviousMenu();
-        }
     }
 
     public HeroAttacks ShowHeroAttacks()
@@ -513,7 +468,6 @@ public class Menu(Battle battle)
             case "Getting a cape":
                 return HeroAttacks.GettingACape;
             default:
-                PreviousMenu();
                 return HeroAttacks.None;
         }
     }
@@ -541,10 +495,6 @@ public class Menu(Battle battle)
         {
             ShowHunterInfo();
         }
-        else
-        {
-            PreviousMenu();
-        }
     }
 
     public HunterAttacks ShowHunterAttacks()
@@ -569,7 +519,6 @@ public class Menu(Battle battle)
             case "Explorer":
                 return HunterAttacks.Explorer;
             default:
-                PreviousMenu();
                 return HunterAttacks.None;
         }
     }
@@ -597,10 +546,6 @@ public class Menu(Battle battle)
         {
             ShowNinjaInfo();
         }
-        else
-        {
-            PreviousMenu();
-        }
     }
 
     public NinjaAttacks ShowNinjaAttacks()
@@ -625,7 +570,6 @@ public class Menu(Battle battle)
             case "Sharper dagger":
                 return NinjaAttacks.SharperDagger;
             default:
-                PreviousMenu();
                 return NinjaAttacks.None;
         }
     }

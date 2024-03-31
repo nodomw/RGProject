@@ -637,9 +637,9 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
     bool HolyLight = false;
     bool SmokeBomb = false;
 
-    int cooldown3 = 3;
-    int cooldown3_2 = 3;
-    int cooldown4 = 4;
+    int cooldown3 = 0;
+    int cooldown3_2 = 0;
+    int cooldown4 = 0;
 
     bool bloodthirsty = false;
     bool runaway = false;
@@ -669,7 +669,6 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
             if (InTurn == Hero)
             {
                 Console.Clear();
-
                 if (Hero.Fans)
                 {
                     if (Hero.IsHealer)
@@ -678,6 +677,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                         if (Hero.Health + 75 > Hero.MaxHealth)
                         {
                             Hero.Health = Hero.MaxHealth;
+
                         }
                         else
                         {
@@ -724,10 +724,9 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                 {
                     Console.ReadKey();
                 }
-
-                cooldown3++;
-                cooldown3_2++;
-                cooldown4++;
+                cooldown3--;
+                cooldown3_2--;
+                cooldown4--;
                 while (!correctatk)
                 {
                     Console.Clear();
@@ -750,39 +749,57 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                         Console.ReadKey();
                                         break;
                                     case AssassinAttacks.PoisonDagger:
-                                        if (cooldown3 >= 3)
+                                        if (hero.Level >= 1)
                                         {
-                                            HeroCalcDamage(0.4);
-                                            cooldown3 = 0;
-                                            PosionDaggers = true;
-                                            turncooldown = 1;
-                                            correctatk = true;
-                                            Console.ReadKey();
+                                            if (cooldown3 <= 0)
+                                            {
+                                                HeroCalcDamage(0.4);
+                                                cooldown3 = 3;
+                                                PosionDaggers = true;
+                                                turncooldown = 1;
+                                                correctatk = true;
+                                                Console.ReadKey();
+                                            }
+                                            else
+                                            {
+                                                AnsiConsole.Write(new Markup($"You can't use this attack yet! You need to wait {cooldown3} more round(s)!"));
+                                                Console.ReadKey();
+                                            }
                                         }
                                         else
                                         {
-                                            AnsiConsole.Write(new Markup("You can't use this attack yet!"));
+                                            AnsiConsole.Write(new Markup("You need to be at least level 1 to use this attack!"));
                                             Console.ReadKey();
                                         }
                                         //3 rounds cooldown
                                         break;
                                     case AssassinAttacks.ShadowStrike:
-                                        if (cooldown4 >= 4)
+                                        if (hero.Level >= 2)
                                         {
-                                            Hero.TempDodge = Hero.Dodge;
-                                            Hero.Dodge = 75;
-                                            HeroCalcDamage();
-                                            Hero.Dodge = Hero.TempDodge;
-                                            cooldown4 = 0;
-                                            correctatk = true;
-                                            Console.ReadKey();
+                                            if (cooldown4 <= 0)
+                                            {
+                                                Hero.TempDodge = Hero.Dodge;
+                                                Hero.Dodge = 75;
+                                                HeroCalcDamage();
+                                                Hero.Dodge = Hero.TempDodge;
+                                                cooldown4 = 4;
+                                                correctatk = true;
+                                                Console.ReadKey();
+                                            }
+                                            else
+                                            {
+                                                AnsiConsole.Write(new Markup($"You can't use this attack yet! You need to wait {cooldown4} more round(s)!"));
+                                                Console.ReadKey();
+                                            }
                                         }
                                         else
                                         {
-                                            AnsiConsole.Write(new Markup("You can't use this attack yet!"));
+                                            AnsiConsole.Write(new Markup("You need to be at least level 2 to use this attack!"));
                                             Console.ReadKey();
                                         }
                                         //4 rounds cooldown
+                                        break;
+                                    case AssassinAttacks.None:
                                         break;
                                 }
                                 break;
@@ -798,37 +815,56 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                         Console.ReadKey();
                                         break;
                                     case ElfAttacks.ArrowRain:
-                                        if (cooldown3 >= 3)
+                                        if (hero.Level >= 1)
                                         {
-                                            ArrowRain = true;
-                                            HeroCalcDamage(1.6);
-                                            cooldown3 = 0;
-                                            ArrowRain = true;
-                                            turncooldown = 1;
-                                            correctatk = true;
-                                            Console.ReadKey();
+                                            if (cooldown3 <= 0)
+                                            {
+                                                ArrowRain = true;
+                                                HeroCalcDamage(1.6);
+                                                cooldown3 = 3;
+                                                ArrowRain = true;
+                                                turncooldown = 1;
+                                                correctatk = true;
+                                                Console.ReadKey();
+                                            }
+                                            else
+                                            {
+                                                AnsiConsole.Write(new Markup($"You can't use this attack yet! You need to wait {cooldown3} more round(s)!"));
+                                                Console.ReadKey();
+                                            }
                                         }
                                         else
                                         {
-                                            AnsiConsole.Write(new Markup("You can't use this attack yet!"));
+                                            AnsiConsole.Write(new Markup("You need to be at least level 1 to use this attack!"));
                                             Console.ReadKey();
                                         }
                                         //3 rounds cooldown
                                         break;
                                     case ElfAttacks.ShockingArrow:
-                                        if (cooldown3_2 >= 3)
+                                        if ((hero.Level >= 2))
                                         {
-                                            HeroCalcDamage(0.6, 5);
-                                            cooldown3_2 = 0;
-                                            correctatk = true;
-                                            Console.ReadKey();
+                                            if (cooldown3_2 <= 0)
+                                            {
+                                                HeroCalcDamage(0.6, 5);
+                                                cooldown3_2 = 3;
+                                                correctatk = true;
+                                                Console.ReadKey();
+                                            }
+                                            else
+                                            {
+                                                AnsiConsole.Write(new Markup($"You can't use this attack yet! You need to wait {cooldown3_2} more round(s)!"));
+                                                Console.ReadKey();
+                                            }
+
                                         }
                                         else
                                         {
-                                            AnsiConsole.Write(new Markup("You can't use this attack yet!"));
+                                            AnsiConsole.Write(new Markup("You need to be at least level 2 to use this attack!"));
                                             Console.ReadKey();
                                         }
                                         //3 rounds cooldown
+                                        break;
+                                    case ElfAttacks.None:
                                         break;
                                 }
                                 break;
@@ -843,44 +879,62 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                         Console.ReadKey();
                                         break;
                                     case HeroAttacks.Crown:
-                                        if (cooldown3 >= 3)
+                                        if (hero.Level >= 1)
                                         {
-                                            Hero.TempCrit = Hero.Crit;
-                                            Hero.Crit += 25;
-                                            Crown = true;
-                                            HeroCalcDamage(0.3);
-                                            Hero.Crit = Hero.TempCrit;
-                                            cooldown3 = 0;
-                                            Crown = true;
-                                            turncooldown = 1;
-                                            correctatk = true;
-                                            Console.ReadKey();
+                                            if (cooldown3 <= 0)
+                                            {
+                                                Hero.TempCrit = Hero.Crit;
+                                                Hero.Crit += 25;
+                                                Crown = true;
+                                                HeroCalcDamage(0.3);
+                                                Hero.Crit = Hero.TempCrit;
+                                                cooldown3 = 3;
+                                                Crown = true;
+                                                turncooldown = 1;
+                                                correctatk = true;
+                                                Console.ReadKey();
+                                            }
+                                            else
+                                            {
+                                                AnsiConsole.Write(new Markup($"You can't use this attack yet! You need to wait {cooldown3} more round(s)!"));
+                                                Console.ReadKey();
+                                            }
                                         }
                                         else
                                         {
-                                            AnsiConsole.Write(new Markup("You can't use this attack yet!"));
+                                            AnsiConsole.Write(new Markup("You need to be at least level 1 to use this attack!"));
                                             Console.ReadKey();
                                         }
                                         //3 rounds cooldown
                                         break;
                                     case HeroAttacks.GettingACape:
-                                        if (cooldown3_2 >= 3)
+                                        if (hero.Level >= 2)
                                         {
-                                            HeroCalcDamage();
-                                            cooldown3_2 = 0;
-                                            GettingACape1 = true;
-                                            GettingACape2 = true;
-                                            turncooldown2 = 2;
-                                            turncooldown2_2 = 2;
-                                            correctatk = true;
-                                            Console.ReadKey();
+                                            if (cooldown3_2 <= 0)
+                                            {
+                                                HeroCalcDamage();
+                                                cooldown3_2 = 3;
+                                                GettingACape1 = true;
+                                                GettingACape2 = true;
+                                                turncooldown2 = 2;
+                                                turncooldown2_2 = 2;
+                                                correctatk = true;
+                                                Console.ReadKey();
+                                            }
+                                            else
+                                            {
+                                                AnsiConsole.Write(new Markup($"You can't use this attack yet! You need to wait {cooldown3_2} more round(s)!"));
+                                                Console.ReadKey();
+                                            }
                                         }
                                         else
                                         {
-                                            AnsiConsole.Write(new Markup("You can't use this attack yet!"));
+                                            AnsiConsole.Write(new Markup("You need to be at least level 2 to use this attack!"));
                                             Console.ReadKey();
                                         }
                                         //3 rounds cooldown
+                                        break;
+                                    case HeroAttacks.None:
                                         break;
                                 }
                                 break;
@@ -896,39 +950,56 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                         Console.ReadKey();
                                         break;
                                     case HunterAttacks.Bloodthirsty:
-                                        if (!Hero.BloodThirsty)
+                                        if (hero.Level >= 1)
                                         {
-                                            Enemy.Health *= 0.8;
-                                            Hero.Damage *= 0.855;
-                                            bloodthirsty = true;
-                                            correctatk = true;
-                                            AnsiConsole.Write(new Markup("You used [green3]Bloodthirsty[/] and weakened the enemy (-20% hp), but decreased your [red1]Dmg[/] by 15,5%!"));
-                                            Hero.BloodThirsty = true;
-                                            Console.ReadKey();
+                                            if (!Hero.BloodThirsty)
+                                            {
+                                                Enemy.Health *= 0.7;
+                                                Hero.Damage *= 0.855;
+                                                bloodthirsty = true;
+                                                correctatk = true;
+                                                AnsiConsole.Write(new Markup("You used [green3]Bloodthirsty[/] and weakened the enemy (-30% hp), but decreased your [red1]Dmg[/] by 15,5%!"));
+                                                Hero.BloodThirsty = true;
+                                                Console.ReadKey();
+                                            }
+                                            else
+                                            {
+                                                AnsiConsole.Write(new Markup("You can't use this attack again on this map!"));
+                                                Console.ReadKey();
+                                            }
                                         }
                                         else
                                         {
-                                            AnsiConsole.Write(new Markup("You can't use this attack again on this map!"));
+                                            AnsiConsole.Write(new Markup("You need to be at least level 1 to use this attack!"));
                                             Console.ReadKey();
                                         }
                                         //Once/map
                                         break;
                                     case HunterAttacks.Explorer:
-                                        if (!Hero.Explorer)
+                                        if (hero.Level >= 2)
                                         {
-                                            ClassLoot asd = new ClassLoot();
-                                            asd.Interact(Hero);
-                                            correctatk = true;
-                                            Hero.Explorer = true;
-                                            Console.ReadKey();
+                                            if (!Hero.Explorer)
+                                            {
+                                                ClassLoot asd = new ClassLoot();
+                                                asd.Interact(Hero);
+                                                correctatk = true;
+                                                Hero.Explorer = true;
+                                                Console.ReadKey();
+                                            }
+                                            else
+                                            {
+                                                AnsiConsole.Write(new Markup("You can't use this attack again on this map!"));
+                                                Console.ReadKey();
+                                            }
                                         }
                                         else
                                         {
-                                            AnsiConsole.Write(new Markup("You can't use this attack again on this map!"));
+                                            AnsiConsole.Write(new Markup("You need to be at least level 2 to use this attack!"));
                                             Console.ReadKey();
                                         }
-                                        //Gets a random item on the map
                                         //Once/map
+                                        break;
+                                    case HunterAttacks.None:
                                         break;
                                 }
                                 break;
@@ -944,37 +1015,55 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                         Console.ReadKey();
                                         break;
                                     case MageAttacks.IceShard:
-                                        if (cooldown3 >= 3)
+                                        if (hero.Level >= 1)
                                         {
-                                            IceShard = true;
-                                            HeroCalcDamage(0.375);
-                                            cooldown3 = 0;
-                                            IceShard = true;
-                                            turncooldown = 1;
-                                            correctatk = true;
-                                            Console.ReadKey();
+                                            if (cooldown3 <= 0)
+                                            {
+                                                IceShard = true;
+                                                HeroCalcDamage(0.375);
+                                                cooldown3 = 3;
+                                                IceShard = true;
+                                                turncooldown = 1;
+                                                correctatk = true;
+                                                Console.ReadKey();
+                                            }
+                                            else
+                                            {
+                                                AnsiConsole.Write(new Markup($"You can't use this attack yet! You need to wait {cooldown3} more round(s)!"));
+                                                Console.ReadKey();
+                                            }
                                         }
                                         else
                                         {
-                                            AnsiConsole.Write(new Markup("You can't use this attack yet!"));
+                                            AnsiConsole.Write(new Markup("You need to be at least level 1 to use this attack!"));
                                             Console.ReadKey();
                                         }
                                         //3 rounds cooldown
                                         break;
                                     case MageAttacks.Thunderbolt:
-                                        if (cooldown3_2 >= 3)
+                                        if (hero.Level >= 2)
                                         {
-                                            HeroCalcDamage(1.75);
-                                            cooldown3_2 = 0;
-                                            correctatk = true;
-                                            Console.ReadKey();
+                                            if (cooldown3_2 <= 0)
+                                            {
+                                                HeroCalcDamage(1.75);
+                                                cooldown3_2 = 3;
+                                                correctatk = true;
+                                                Console.ReadKey();
+                                            }
+                                            else
+                                            {
+                                                AnsiConsole.Write(new Markup($"You can't use this attack yet! You need to wait {cooldown3_2} more round(s)!"));
+                                                Console.ReadKey();
+                                            }
                                         }
                                         else
                                         {
-                                            AnsiConsole.Write(new Markup("You can't use this attack yet!"));
+                                            AnsiConsole.Write(new Markup("You need to be at least level 2 to use this attack!"));
                                             Console.ReadKey();
                                         }
                                         //3 rounds cooldown
+                                        break;
+                                    case MageAttacks.None:
                                         break;
                                 }
                                 break;
@@ -990,40 +1079,58 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                         Console.ReadKey();
                                         break;
                                     case NinjaAttacks.SmokeBomb:
-                                        if (cooldown3 >= 3)
+                                        if (hero.Level >= 1)
                                         {
-                                            HeroCalcDamage();
-                                            cooldown3 = 0;
-                                            SmokeBomb = true;
-                                            turncooldown = 1;
-                                            correctatk = true;
-                                            InTurn = Hero;
-                                            Console.ReadKey();
+                                            if (cooldown3 <= 0)
+                                            {
+                                                HeroCalcDamage();
+                                                cooldown3 = 3;
+                                                SmokeBomb = true;
+                                                turncooldown = 1;
+                                                correctatk = true;
+                                                InTurn = Hero;
+                                                Console.ReadKey();
+                                            }
+                                            else
+                                            {
+                                                AnsiConsole.Write(new Markup($"You can't use this attack yet! You need to wait {cooldown3} more round(s)!"));
+                                                Console.ReadKey();
+                                            }
                                         }
                                         else
                                         {
-                                            AnsiConsole.Write(new Markup("You can't use this attack yet!"));
+                                            AnsiConsole.Write(new Markup("You need to be at least level 1 to use this attack!"));
                                             Console.ReadKey();
                                         }
                                         //3 rounds cooldown
                                         break;
                                     case NinjaAttacks.SharperDagger:
-                                        if (cooldown3_2 >= 3)
+                                        if (hero.Level >= 2)
                                         {
-                                            SharperDagger = true;
-                                            HeroCalcDamage(1.5);
-                                            cooldown3_2 = 0;
-                                            SharperDagger = true;
-                                            turncooldown_2 = 1;
-                                            correctatk = true;
-                                            Console.ReadKey();
+                                            if (cooldown3_2 <= 0)
+                                            {
+                                                SharperDagger = true;
+                                                HeroCalcDamage(1.5);
+                                                cooldown3_2 = 3;
+                                                SharperDagger = true;
+                                                turncooldown_2 = 1;
+                                                correctatk = true;
+                                                Console.ReadKey();
+                                            }
+                                            else
+                                            {
+                                                AnsiConsole.Write(new Markup($"You can't use this attack yet! You need to wait {cooldown3_2} more round(s)!"));
+                                                Console.ReadKey();
+                                            }
                                         }
                                         else
                                         {
-                                            AnsiConsole.Write(new Markup("You can't use this attack yet!"));
+                                            AnsiConsole.Write(new Markup("You need to be at least level 2 to use this attack!"));
                                             Console.ReadKey();
                                         }
                                         //3 rounds cooldown
+                                        break;
+                                    case NinjaAttacks.None:
                                         break;
                                 }
                                 break;
@@ -1039,39 +1146,57 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                         Console.ReadKey();
                                         break;
                                     case PaladinAttacks.HolyShield:
-                                        if (cooldown3 >= 3)
+                                        if (hero.Level >= 1)
                                         {
-                                            Hero.Health += 500;
-                                            cooldown3 = 0;
-                                            HolyShield = true;
-                                            turncooldown = 1;
-                                            correctatk = true;
-                                            Console.ReadKey();
+                                            if (cooldown3 <= 0)
+                                            {
+                                                Hero.Health += 500;
+                                                cooldown3 = 3;
+                                                HolyShield = true;
+                                                turncooldown = 1;
+                                                correctatk = true;
+                                                Console.ReadKey();
+                                            }
+                                            else
+                                            {
+                                                AnsiConsole.Write(new Markup($"You can't use this attack yet! You need to wait {cooldown3} more round(s)!"));
+                                                Console.ReadKey();
+                                            }
                                         }
                                         else
                                         {
-                                            AnsiConsole.Write(new Markup("You can't use this attack yet!"));
+                                            AnsiConsole.Write(new Markup("You need to be at least level 1 to use this attack!"));
                                             Console.ReadKey();
                                         }
                                         //3 rounds cooldown
                                         break;
                                     case PaladinAttacks.HolyLight:
-                                        if (cooldown3_2 >= 3)
+                                        if (hero.Level >= 2)
                                         {
-                                            Hero.Health -= 300;
-                                            HeroCalcDamage(2.667);
-                                            cooldown3_2 = 0;
-                                            HolyLight = true;
-                                            turncooldown_2 = 1;
-                                            correctatk = true;
-                                            Console.ReadKey();
+                                            if (cooldown3_2 <= 0)
+                                            {
+                                                Hero.Health -= 300;
+                                                HeroCalcDamage(2.667);
+                                                cooldown3_2 = 3;
+                                                HolyLight = true;
+                                                turncooldown_2 = 1;
+                                                correctatk = true;
+                                                Console.ReadKey();
+                                            }
+                                            else
+                                            {
+                                                AnsiConsole.Write(new Markup($"You can't use this attack yet! You need to wait {cooldown3_2} more round(s)!"));
+                                                Console.ReadKey();
+                                            }
                                         }
                                         else
                                         {
-                                            AnsiConsole.Write(new Markup("You can't use this attack yet!"));
+                                            AnsiConsole.Write(new Markup("You need to be at least level 2 to use this attack!"));
                                             Console.ReadKey();
                                         }
                                         //3 rounds cooldown
+                                        break;
+                                    case PaladinAttacks.None:
                                         break;
                                 }
                                 break;
@@ -1087,41 +1212,59 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                         Console.ReadKey();
                                         break;
                                     case WarriorAttacks.ShieldBash:
-                                        if (cooldown3 >= 3)
+                                        if (hero.Level >= 1)
                                         {
-                                            Hero.Health += 200;
-                                            cooldown3 = 0;
-                                            ShieldBash = true;
-                                            turncooldown = 1;
-                                            correctatk = true;
-                                            Console.ReadKey();
+                                            if (cooldown3 <= 0)
+                                            {
+                                                Hero.Health += 200;
+                                                cooldown3 = 3;
+                                                ShieldBash = true;
+                                                turncooldown = 1;
+                                                correctatk = true;
+                                                Console.ReadKey();
+                                            }
+                                            else
+                                            {
+                                                AnsiConsole.Write(new Markup($"You can't use this attack yet! You need to wait {cooldown3} more round(s)!"));
+                                                Console.ReadKey();
+                                            }
                                         }
                                         else
                                         {
-                                            AnsiConsole.Write(new Markup("You can't use this attack yet!"));
+                                            AnsiConsole.Write(new Markup("You need to be at least level 1 to use this attack!"));
                                             Console.ReadKey();
                                         }
                                         //3 rounds cooldown
                                         break;
                                     case WarriorAttacks.WarCry:
-                                        if (cooldown3_2 >= 3)
+                                        if (hero.Level >= 2)
                                         {
-                                            Hero.TempCombo = Hero.Combo;
-                                            Hero.Combo += 45;
-                                            HeroCalcDamage(0.5);
-                                            Hero.Combo = Hero.TempCombo;
-                                            cooldown3_2 = 0;
-                                            WarCry = true;
-                                            turncooldown_2 = 1;
-                                            correctatk = true;
-                                            Console.ReadKey();
+                                            if (cooldown3_2 <= 0)
+                                            {
+                                                Hero.TempCombo = Hero.Combo;
+                                                Hero.Combo += 45;
+                                                HeroCalcDamage(0.5);
+                                                Hero.Combo = Hero.TempCombo;
+                                                cooldown3_2 = 3;
+                                                WarCry = true;
+                                                turncooldown_2 = 1;
+                                                correctatk = true;
+                                                Console.ReadKey();
+                                            }
+                                            else
+                                            {
+                                                AnsiConsole.Write(new Markup($"You can't use this attack yet! You need to wait {cooldown3_2} more round(s)!"));
+                                                Console.ReadKey();
+                                            }
                                         }
                                         else
                                         {
-                                            AnsiConsole.Write(new Markup("You can't use this attack yet!"));
+                                            AnsiConsole.Write(new Markup("You need to be at least level 2 to use this attack!"));
                                             Console.ReadKey();
                                         }
                                         //3 rounds cooldown
+                                        break;
+                                    case WarriorAttacks.None:
                                         break;
                                 }
                                 break;
@@ -1145,13 +1288,10 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                         {
                             SmokeBomb = false;
                         }
-                        correctatk = true;
                         menu.ShowItemInBattleMenu(Hero);
-                        InTurn = Enemy;
                     }
                     else if (move == "Information")
                     {
-                        correctatk = true;
                         switch (Hero.Type)
                         {
                             case CharacterType.Hero:
