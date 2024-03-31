@@ -7,7 +7,7 @@ public class BloodScream(string name) : ICharacter
 {
     public Guid Id { get; } = Guid.NewGuid();
     public string Name { get; set; } = name;
-    public CharacterType Type { get; }
+    public CharacterType Type { get; } = CharacterType.BloodScream;
     public TilePosition Position { get; set; }
     public ITile Parent { get; set; }
     public bool IsHero { get; set; } = false;

@@ -22,6 +22,12 @@ public enum CharacterType // TODO
     Hunter,
     Ninja,
     // ENEMIES
+    BloodScream,
+    BoneCrusher,
+    ChaosBeast,
+    Nightshade,
+    Skeleton,
+    // BOSSES
     Prince,
     Vampire,
     Emperor,
