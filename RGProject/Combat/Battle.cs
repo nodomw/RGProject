@@ -1399,64 +1399,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                 Hero.XP += 100;
             }
 
-            switch (Hero.Level)
-            {
-                case 0:
-                    if (Hero.XP >= 1000)
-                    {
-                        Hero.Level++;
-                        AnsiConsole.Write(new Markup("\nYou [green3]Leveled Up[/] and all of your [gold1]stats[/] are increased by 10%!\nYou also unlocked your first ability, and you can now your first special item, if you found it!"));
-                    }
-                    if (Hero.XP >= 1500)
-                    {
-                        Hero.Level++;
-                        AnsiConsole.Write(new Markup("\nYou [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!\nYou also unlocked your second ability!"));
-                    }
-                    break;
-                case 1:
-                    if (Hero.XP >= 1500)
-                    {
-                        Hero.Level++;
-                        AnsiConsole.Write(new Markup("\nYou [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 10%!\nYou also unlocked your second ability!"));
-                    }
-                    if (Hero.XP >= 2200)
-                    {
-                        Hero.Level++;
-                        AnsiConsole.Write(new Markup("\nYou [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!\nYou can also use your second special item, if you found it!"));
-                    }
-                    break;
-                case 2:
-                    if (Hero.XP >= 2200)
-                    {
-                        Hero.Level++;
-                        AnsiConsole.Write(new Markup("\nYou [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!\nYou can also use your second special item, if you found it!"));
-                    }
-                    if (Hero.XP >= 3200)
-                    {
-                        Hero.Level++;
-                        AnsiConsole.Write(new Markup("\nYou [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!"));
-                    }
-                    break;
-                case 3:
-                    if (Hero.XP >= 3200)
-                    {
-                        Hero.Level++;
-                        AnsiConsole.Write(new Markup("\nYou [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!"));
-                    }
-                    if (Hero.XP >= 4500)
-                    {
-                        Hero.Level++;
-                        AnsiConsole.Write(new Markup("\nYou [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20% and all of your [gold1]stats[/] are increased by 10%!"));
-                    }
-                    break;
-                case 4:
-                    if (Hero.XP >= 4500)
-                    {
-                        Hero.Level++;
-                        AnsiConsole.Write(new Markup("\nYou [green3]Leveled Up[/] and reached [gold1]MAX[/] level!\nYour [green3]hp[/] and [red1]dmg[/] are increased by 20% and all of your [gold1]stats[/] are increased by 10%!"));
-                    }
-                    break;
-            }
+            hero.LevelUp();
 
             Console.ReadKey();
         }

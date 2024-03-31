@@ -20,16 +20,16 @@ public class Hud
                 levelCap = 1000;
                 break;
             case 1:
-                levelCap = 1500;
+                levelCap = 2000;
                 break;
             case 2:
-                levelCap = 2200;
+                levelCap = 3500;
                 break;
             case 3:
-                levelCap = 3200;
+                levelCap = 5700;
                 break;
             case 4:
-                levelCap = 4500;
+                levelCap = 6500;
                 break;
         }
 

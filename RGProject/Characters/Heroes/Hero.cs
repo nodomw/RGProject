@@ -33,8 +33,8 @@ public class Hero(string name) : ICharacter
 	public bool Dead { get; set; } = false;
 	public int Level { get; set; } = 0;
 	public int XP { get; set; } = 0;
-	public double Health { get; set; } = 1000;
-	public double MaxHealth { get; set; } = 1000;
+	public double Health { get; set; } = 2300;
+	public double MaxHealth { get; set; } = 2300;
 	public double Damage { get; set; } = 450;
 	public double CATK { get; set; } = 10;
 	public double DEF { get; set; } = 20;

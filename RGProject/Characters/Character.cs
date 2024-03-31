@@ -80,55 +80,55 @@ public interface ICharacter
                 if (XP >= 1000)
                 {
                     Level++;
-                    AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and all of your [gold1]stats[/] are increased by 10%!\nYou also unlocked your first ability, and you can now use your first special item, if you found it!"));
+                    AnsiConsole.Write(new Markup("\nYou [green3]Leveled Up[/] and all of your [gold1]stats[/] are increased by 10%!\nYou also unlocked your first ability, and you can now use your first special item, if you found it!"));
                 }
-                if (XP >= 1500)
+                if (XP >= 2000)
                 {
                     Level++;
-                    AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!\nYou also unlocked your second ability!"));
+                    AnsiConsole.Write(new Markup("\nYou [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!\nYou also unlocked your second ability!"));
                 }
                 break;
             case 1:
-                if (XP >= 1500)
+                if (XP >= 2000)
                 {
                     Level++;
-                    AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 10%!\nYou also unlocked your second ability!"));
+                    AnsiConsole.Write(new Markup("\nYou [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 10%!\nYou also unlocked your second ability!"));
                 }
-                if (XP >= 2200)
+                if (XP >= 3500)
                 {
                     Level++;
-                    AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!\nYou can also use your second special item, if you found it!"));
+                    AnsiConsole.Write(new Markup("\nYou [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!\nYou can also use your second special item, if you found it!"));
                 }
                 break;
             case 2:
-                if (XP >= 2200)
+                if (XP >= 3500)
                 {
                     Level++;
                     AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!\nYou can also use your second special item, if you found it!"));
                 }
-                if (XP >= 3200)
+                if (XP >= 5700)
                 {
                     Level++;
-                    AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!"));
+                    AnsiConsole.Write(new Markup("\nYou [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!"));
                 }
                 break;
             case 3:
-                if (XP >= 3200)
+                if (XP >= 5700)
                 {
                     Level++;
-                    AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!"));
+                    AnsiConsole.Write(new Markup("\nYou [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20%!"));
                 }
-                if (XP >= 4500)
+                if (XP >= 6500)
                 {
                     Level++;
-                    AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and your [green3]hp[/] and [red1]dmg[/] are increased by 20% and all of your [gold1]stats[/] are increased by 10%!"));
+                    AnsiConsole.Write(new Markup("\nYou [green3]Leveled Up[/] and reached [gold1]MAX[/] level!\nYour [green3]hp[/] and [red1]dmg[/] are increased by 20% and all of your [gold1]stats[/] are increased by 10%!"));
                 }
                 break;
             case 4:
-                if (XP >= 4500)
+                if (XP >= 6500)
                 {
                     Level++;
-                    AnsiConsole.Write(new Markup("You [green3]Leveled Up[/] and reached [gold1]MAX[/] level!\nYour [green3]hp[/] and [red1]dmg[/] are increased by 20% and all of your [gold1]stats[/] are increased by 10%!"));
+                    AnsiConsole.Write(new Markup("\nYou [green3]Leveled Up[/] and reached [gold1]MAX[/] level!\nYour [green3]hp[/] and [red1]dmg[/] are increased by 20% and all of your [gold1]stats[/] are increased by 10%!"));
                 }
                 break;
         }

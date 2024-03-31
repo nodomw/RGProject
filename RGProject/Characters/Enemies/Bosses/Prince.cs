@@ -8,7 +8,7 @@ public class Prince(string name) : ICharacter, IBoss
 {
 	public Guid Id { get; } = Guid.NewGuid();
 	public string Name { get; set; } = name;
-	public CharacterType Type { get; }
+	public CharacterType Type { get; } = CharacterType.Prince;
 	public TilePosition Position { get; set; }
 	public ITile Parent { get; set; }
 	public Map.Map Map { get; set; }
