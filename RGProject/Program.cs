@@ -32,7 +32,8 @@ Menu menu = new(battle);
 // Player pl = new(hero);
 Terrain g = new()
 {
-	DisplayCharacter = new Markup("[darkgreen]■[/]")
+	DisplayCharacter = new Markup("[darkgreen]■[/]"),
+	Passable = false
 };
 Terrain w = new()
 {
@@ -45,7 +46,8 @@ Terrain p = new()
 };
 Terrain d = new() // darker gray than p but not as dark as dgr
 {
-	DisplayCharacter = new Markup("[grey23]X[/]")
+	DisplayCharacter = new Markup("[grey23]X[/]"),
+	Passable = false
 };
 Terrain dr = new()
 {
