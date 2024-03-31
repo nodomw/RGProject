@@ -119,7 +119,7 @@ public class Map
                         }
                     }
                 }
-                if (GetTileByPosition(to, true) is ClassLoot cl)
+                if (GetTileByPosition(to, true) is Loot cl)
                 {
                     Console.Clear();
                     Console.WriteLine(InteractWithTile(cl));

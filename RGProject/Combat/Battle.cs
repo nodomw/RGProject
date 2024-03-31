@@ -981,7 +981,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                         {
                                             if (!Hero.Explorer)
                                             {
-                                                ClassLoot asd = new ClassLoot();
+                                                Loot asd = new Loot();
                                                 asd.Interact(Hero);
                                                 correctatk = true;
                                                 Hero.Explorer = true;
