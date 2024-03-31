@@ -33,7 +33,14 @@ public class Hud
                 break;
         }
 
-        return Math.Round((double)hero.XP / levelCap * 100, 2);
+        if (hero.Level == 5)
+        {
+            return 100;
+        }
+        else
+        {
+            return Math.Round((double)hero.XP / levelCap * 100, 2);
+        }
     }
     public void Stats(ICharacter hero)
     {

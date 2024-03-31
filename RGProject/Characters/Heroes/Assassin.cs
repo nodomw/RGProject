@@ -34,7 +34,7 @@ public class Assassin(string name) : ICharacter
 	public int Level { get; set; } = 0;
 	public int XP { get; set; } = 0;
 	public double Health { get; set; } = 1200;
-	public double MaxHealth { get; set; } = 1000;
+	public double MaxHealth { get; set; } = 1200;
 	public double Damage { get; set; } = 600;
 	public double CATK { get; set; } = 10;
 	public double DEF { get; set; } = 5; // %

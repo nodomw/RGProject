@@ -264,6 +264,6 @@ foreach (Map map in Maps)
 	Console.Clear();
 }
 
-// AnsiConsole.Write(new FigletText(font, "Victory").Centered().Color(Color.Gold1));
+AnsiConsole.Write(new FigletText(font, "Victory").Centered().Color(Color.Gold1));
 Console.WriteLine("Press any key to continue...");
 Console.ReadKey();
