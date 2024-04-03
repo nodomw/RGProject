@@ -25,7 +25,7 @@ var tempmenu = new Menu(new Battle(new Hero("john doe"), new Emperor("Lajos")));
 ICharacter hero = tempmenu.ShowCharSelection();
 // ICharacter hero = new Warrior("john doe");
 
-Battle battle = new Battle(hero, enemy, true);
+Battle battle = new(hero, enemy);
 
 long before = GC.GetTotalMemory(true);
 Menu menu = new(battle);

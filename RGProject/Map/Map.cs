@@ -57,7 +57,7 @@ public class Map
         if (PlayerTile is not null)
         {
             PlayerTile = (Player)MutableTiles[PlayerTile.Position.X, PlayerTile.Position.Y];
-            Tiles[PlayerTile.Position.X, PlayerTile.Position.Y] = (ITile)Activator.CreateInstance(Placeholder);
+            Tiles[PlayerTile.Position.X, PlayerTile.Position.Y] = (ITile)Activator.CreateInstance(Placeholder)!;
         }
     }
     // TODO: immutable & mutable map relations;
@@ -108,14 +108,14 @@ public class Map
                             Console.Clear();
                             AnsiConsole.Write(new Markup("You have encountered the map's [red1]Boss[/]!"));
                             Console.ReadKey();
-                            new Battle(PlayerTile.Character, enemy.Character, true).Turn();
+                            new Battle(PlayerTile.Character, enemy.Character).Turn();
                         }
                         else
                         {
                             Console.Clear();
                             AnsiConsole.Write(new Markup("You have encountered an [red1]Enemy[/]!"));
                             Console.ReadKey();
-                            new Battle(PlayerTile.Character, enemy.Character, false).Turn();
+                            new Battle(PlayerTile.Character, enemy.Character).Turn();
                         }
                     }
                 }

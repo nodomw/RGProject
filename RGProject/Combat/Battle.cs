@@ -8,14 +8,21 @@ using Spectre.Console;
 
 namespace FantasyRPG.Combat;
 
-public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
+public class Battle
 {
-    public ICharacter Hero { get; } = hero;
-    public ICharacter Enemy { get; } = enemy;
+    public ICharacter Hero { get; }
+    public ICharacter Enemy { get; }
     public ICharacter InTurn { get; set; }
     public int Turns { get; set; }
-
     Random rnd = new Random();
+
+    public Battle(ICharacter hero, ICharacter enemy)
+    {
+        Hero = hero;
+        Enemy = enemy;
+        InTurn = Hero;
+        Turns = 0;
+    }
     internal bool ChanceSuccessful(double chance)
     {
         int randomNumber = rnd.Next(101);
@@ -137,8 +144,8 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                 {
                     dmg = Enemy.Health * 0.80;
                     Enemy.Health -= dmg;
-                    defDmg = Hero.Damage*dmgMultiplier / 100;
-                    dmg = Hero.Damage*dmgMultiplier - (defDmg * Enemy.DEF);
+                    defDmg = Hero.Damage * dmgMultiplier / 100;
+                    dmg = Hero.Damage * dmgMultiplier - (defDmg * Enemy.DEF);
                     Enemy.Health -= dmg;
                     Hero.Stun += 20;
                     bloodthirsty = false;
@@ -188,8 +195,8 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                 }
                 else
                 {
-                    defDmg = Hero.Damage*dmgMultiplier / 100;
-                    dmg = Hero.Damage*dmgMultiplier - (defDmg * Enemy.DEF);
+                    defDmg = Hero.Damage * dmgMultiplier / 100;
+                    dmg = Hero.Damage * dmgMultiplier - (defDmg * Enemy.DEF);
                     Enemy.Health -= dmg;
                     if (ChanceSuccessful(Hero.Combo))
                     {
@@ -225,8 +232,8 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
             {
                 if (ChanceSuccessful(Hero.Crit))
                 {
-                    defDmg = Hero.Damage*dmgMultiplier / 100;
-                    dmg = Hero.Damage*dmgMultiplier*2 - (defDmg * Enemy.DEF);
+                    defDmg = Hero.Damage * dmgMultiplier / 100;
+                    dmg = Hero.Damage * dmgMultiplier * 2 - (defDmg * Enemy.DEF);
                     Enemy.Health -= dmg;
                     Hero.Stun += 20;
                     if (ChanceSuccessful(Hero.Combo))
@@ -275,8 +282,8 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                 }
                 else
                 {
-                    defDmg = Hero.Damage*dmgMultiplier / 100;
-                    dmg = Hero.Damage*dmgMultiplier - (defDmg * Enemy.DEF);
+                    defDmg = Hero.Damage * dmgMultiplier / 100;
+                    dmg = Hero.Damage * dmgMultiplier - (defDmg * Enemy.DEF);
                     Enemy.Health -= dmg;
                     if (ChanceSuccessful(Hero.Combo))
                     {
@@ -508,8 +515,8 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
 
             if (ChanceSuccessful(Enemy.Crit))
             {
-                defDmg = Enemy.Damage*dmgMultiplier / 100;
-                dmg = Enemy.Damage*dmgMultiplier*2 - (defDmg * Hero.DEF);
+                defDmg = Enemy.Damage * dmgMultiplier / 100;
+                dmg = Enemy.Damage * dmgMultiplier * 2 - (defDmg * Hero.DEF);
                 Hero.Health -= dmg;
                 Enemy.Stun += 20;
                 if (ChanceSuccessful(Enemy.Combo))
@@ -558,8 +565,8 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
             }
             else
             {
-                defDmg = Enemy.Damage*dmgMultiplier / 100;
-                dmg = Enemy.Damage*dmgMultiplier - (defDmg * Hero.DEF);
+                defDmg = Enemy.Damage * dmgMultiplier / 100;
+                dmg = Enemy.Damage * dmgMultiplier - (defDmg * Hero.DEF);
                 Hero.Health -= dmg;
                 if (ChanceSuccessful(Enemy.Combo))
                 {
@@ -731,7 +738,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                 while (!correctatk)
                 {
                     Console.Clear();
-                    hud.BattleStats(hero, enemy);
+                    hud.BattleStats(Hero, Enemy);
                     string move = menu.ShowBattleMenu();
                     Console.Clear();
                     if (move == "Attack")
@@ -739,10 +746,10 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                         switch (Hero.Type)
                         {
                             case CharacterType.Assassin:
-                                hud.BattleStats(hero, enemy);
+                                hud.BattleStats(Hero, Enemy);
                                 a = menu.ShowAssassinAttacks();
                                 Console.Clear();
-                               switch (a)
+                                switch (a)
                                 {
                                     case AssassinAttacks.DaggerStrike:
                                         HeroCalcDamage();
@@ -750,7 +757,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                         Console.ReadKey();
                                         break;
                                     case AssassinAttacks.PoisonDagger:
-                                        if (hero.Level >= 1)
+                                        if (Hero.Level >= 1)
                                         {
                                             if (cooldown3 <= 0)
                                             {
@@ -775,7 +782,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                         //3 rounds cooldown
                                         break;
                                     case AssassinAttacks.ShadowStrike:
-                                        if (hero.Level >= 2)
+                                        if (Hero.Level >= 2)
                                         {
                                             if (cooldown4 <= 0)
                                             {
@@ -805,7 +812,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                 }
                                 break;
                             case CharacterType.Elf:
-                                hud.BattleStats(hero, enemy);
+                                hud.BattleStats(Hero, Enemy);
                                 b = menu.ShowElfAttacks();
                                 Console.Clear();
                                 switch (b)
@@ -816,7 +823,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                         Console.ReadKey();
                                         break;
                                     case ElfAttacks.ArrowRain:
-                                        if (hero.Level >= 1)
+                                        if (Hero.Level >= 1)
                                         {
                                             if (cooldown3 <= 0)
                                             {
@@ -842,7 +849,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                         //3 rounds cooldown
                                         break;
                                     case ElfAttacks.ShockingArrow:
-                                        if ((hero.Level >= 2))
+                                        if ((Hero.Level >= 2))
                                         {
                                             if (cooldown3_2 <= 0)
                                             {
@@ -870,7 +877,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                 }
                                 break;
                             case CharacterType.Hero:
-                                hud.BattleStats(hero, enemy);
+                                hud.BattleStats(Hero, Enemy);
                                 c = menu.ShowHeroAttacks();
                                 Console.Clear();
                                 switch (c)
@@ -880,7 +887,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                         Console.ReadKey();
                                         break;
                                     case HeroAttacks.Crown:
-                                        if (hero.Level >= 1)
+                                        if (Hero.Level >= 1)
                                         {
                                             if (cooldown3 <= 0)
                                             {
@@ -909,7 +916,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                         //3 rounds cooldown
                                         break;
                                     case HeroAttacks.GettingACape:
-                                        if (hero.Level >= 2)
+                                        if (Hero.Level >= 2)
                                         {
                                             if (cooldown3_2 <= 0)
                                             {
@@ -940,7 +947,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                 }
                                 break;
                             case CharacterType.Hunter:
-                                hud.BattleStats(hero, enemy);
+                                hud.BattleStats(Hero, Enemy);
                                 d = menu.ShowHunterAttacks();
                                 Console.Clear();
                                 switch (d)
@@ -951,7 +958,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                         Console.ReadKey();
                                         break;
                                     case HunterAttacks.Bloodthirsty:
-                                        if (hero.Level >= 1)
+                                        if (Hero.Level >= 1)
                                         {
                                             if (!Hero.BloodThirsty)
                                             {
@@ -977,7 +984,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                         //Once/map
                                         break;
                                     case HunterAttacks.Explorer:
-                                        if (hero.Level >= 2)
+                                        if (Hero.Level >= 2)
                                         {
                                             if (!Hero.Explorer)
                                             {
@@ -1005,7 +1012,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                 }
                                 break;
                             case CharacterType.Mage:
-                                hud.BattleStats(hero, enemy);
+                                hud.BattleStats(Hero, Enemy);
                                 e = menu.ShowMageAttacks();
                                 Console.Clear();
                                 switch (e)
@@ -1016,7 +1023,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                         Console.ReadKey();
                                         break;
                                     case MageAttacks.IceShard:
-                                        if (hero.Level >= 1)
+                                        if (Hero.Level >= 1)
                                         {
                                             if (cooldown3 <= 0)
                                             {
@@ -1042,7 +1049,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                         //3 rounds cooldown
                                         break;
                                     case MageAttacks.Thunderbolt:
-                                        if (hero.Level >= 2)
+                                        if (Hero.Level >= 2)
                                         {
                                             if (cooldown3_2 <= 0)
                                             {
@@ -1069,7 +1076,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                 }
                                 break;
                             case CharacterType.Ninja:
-                                hud.BattleStats(hero, enemy);
+                                hud.BattleStats(Hero, Enemy);
                                 f = menu.ShowNinjaAttacks();
                                 Console.Clear();
                                 switch (f)
@@ -1080,7 +1087,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                         Console.ReadKey();
                                         break;
                                     case NinjaAttacks.SmokeBomb:
-                                        if (hero.Level >= 1)
+                                        if (Hero.Level >= 1)
                                         {
                                             if (cooldown3 <= 0)
                                             {
@@ -1106,7 +1113,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                         //3 rounds cooldown
                                         break;
                                     case NinjaAttacks.SharperDagger:
-                                        if (hero.Level >= 2)
+                                        if (Hero.Level >= 2)
                                         {
                                             if (cooldown3_2 <= 0)
                                             {
@@ -1136,9 +1143,9 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                 }
                                 break;
                             case CharacterType.Paladin:
-                                hud.BattleStats(hero, enemy);
-                                 g = menu.ShowPaladinAttacks();
-                                 Console.Clear();
+                                hud.BattleStats(Hero, Enemy);
+                                g = menu.ShowPaladinAttacks();
+                                Console.Clear();
                                 switch (g)
                                 {
                                     case PaladinAttacks.HolyStrike:
@@ -1147,7 +1154,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                         Console.ReadKey();
                                         break;
                                     case PaladinAttacks.HolyShield:
-                                        if (hero.Level >= 1)
+                                        if (Hero.Level >= 1)
                                         {
                                             if (cooldown3 <= 0)
                                             {
@@ -1172,7 +1179,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                         //3 rounds cooldown
                                         break;
                                     case PaladinAttacks.HolyLight:
-                                        if (hero.Level >= 2)
+                                        if (Hero.Level >= 2)
                                         {
                                             if (cooldown3_2 <= 0)
                                             {
@@ -1202,7 +1209,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                 }
                                 break;
                             case CharacterType.Warrior:
-                                hud.BattleStats(hero, enemy);
+                                hud.BattleStats(Hero, Enemy);
                                 h = menu.ShowWarriorAttacks();
                                 Console.Clear();
                                 switch (h)
@@ -1213,7 +1220,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                         Console.ReadKey();
                                         break;
                                     case WarriorAttacks.ShieldBash:
-                                        if (hero.Level >= 1)
+                                        if (Hero.Level >= 1)
                                         {
                                             if (cooldown3 <= 0)
                                             {
@@ -1238,7 +1245,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                         //3 rounds cooldown
                                         break;
                                     case WarriorAttacks.WarCry:
-                                        if (hero.Level >= 2)
+                                        if (Hero.Level >= 2)
                                         {
                                             if (cooldown3_2 <= 0)
                                             {
@@ -1271,7 +1278,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                 break;
                         }
                     }
-                    else if(move == "Defend" )
+                    else if (move == "Defend")
                     {
                         if (SmokeBomb)
                         {
@@ -1321,7 +1328,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                                 break;
                         }
                     }
-                    else if(move == "Run")
+                    else if (move == "Run")
                     {
                         if (SmokeBomb)
                         {
@@ -1333,22 +1340,22 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                         {
                             AnsiConsole.Write(new Markup($"You chose run and didn't received any damage during the escape!"));
                         }
-                        else if(Hero.RunBoost)
+                        else if (Hero.RunBoost)
                         {
-                            losthp = Hero.Health/100 * 5;
+                            losthp = Hero.Health / 100 * 5;
                             Hero.Health -= losthp;
                             AnsiConsole.Write(new Markup($"You chose run and lost [red1]{losthp}hp[/] during the escape!"));
 
                         }
-                        else if(Hero.MultiBooster)
+                        else if (Hero.MultiBooster)
                         {
-                            losthp = Hero.Health/100 * 8;
+                            losthp = Hero.Health / 100 * 8;
                             Hero.Health -= losthp;
                             AnsiConsole.Write(new Markup($"You chose run and lost [red1]{losthp}hp[/] during the escape!"));
                         }
                         else
                         {
-                            losthp = Hero.Health/100 * 10;
+                            losthp = Hero.Health / 100 * 10;
                             Hero.Health -= losthp;
                             AnsiConsole.Write(new Markup($"You chose run and lost [red1]{losthp}hp[/] during the escape!"));
                         }
@@ -1385,7 +1392,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
             AnsiConsole.Write(new FigletText(font, "Game Over").Centered().Color(Color.Red1));
             Environment.Exit(0);
         }
-        else if(Victory())
+        else if (Victory())
         {
             Console.Clear();
             if (Enemy.IsBoss)
@@ -1399,7 +1406,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
                 Hero.XP += 100;
             }
 
-            hero.LevelUp();
+            Hero.LevelUp();
 
             Console.ReadKey();
         }
@@ -1407,7 +1414,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
 
     internal bool Defeat()
     {
-        if(Hero.Health <= 0)
+        if (Hero.Health <= 0)
         {
             Hero.Health = 0;
             return true;
@@ -1419,7 +1426,7 @@ public class Battle(ICharacter hero, ICharacter enemy, bool temp = false)
     }
     internal bool Victory()
     {
-        if(Enemy.Health <= 0)
+        if (Enemy.Health <= 0)
         {
             Enemy.Dead = true;
             Enemy.Parent.DisplayCharacter = new Markup("!");

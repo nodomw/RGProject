@@ -24,6 +24,7 @@ public class BloodScream(string name) : ICharacter
     public bool Dead { get; set; } = false;
     public int Level { get; set; } = 0;
     public int XP { get; set; } = 0;
+    public int ComboCount { get; set; }
     public double Health { get; set; } = 1000;
     public double MaxHealth { get; set; } = 1000;
     public double Damage { get; set; } = 400;

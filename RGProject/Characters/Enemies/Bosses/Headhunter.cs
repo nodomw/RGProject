@@ -26,6 +26,7 @@ public class Headhunter(string name) : ICharacter, IBoss
 	public bool Dead { get; set; } = false;
 	public int Level { get; set; } = 0;
 	public int XP { get; set; } = 0;
+	public int ComboCount { get; set; }
 	public double Health { get; set; } = 6000;
 	public double MaxHealth { get; set; } = 6000;
 	public double Damage { get; set; } = 300;

@@ -105,8 +105,6 @@ public class Menu(Battle battle)
             character.UsePotion(pot);
             return pot.Name;
         }
-
-        return"";
     }
     public void ShowItemMenu(ICharacter character, Map.Map map)
     {
