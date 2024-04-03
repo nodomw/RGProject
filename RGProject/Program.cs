@@ -229,13 +229,6 @@ long after = GC.GetTotalMemory(true);
 long objectSize = after - before;
 AnsiConsole.MarkupLine($"[bold gold1]Size difference: {objectSize} bytes, before: {before} bytes, after: {after} bytes[/]");
 
-hero.Items.Add(new Potion()
-{
-	Name = "HP",
-	Power = 150,
-	Stat = PotionModifier.Heal
-});
-
 List<Map> Maps =
 [
 	surface,
@@ -247,13 +240,11 @@ List<Map> Maps =
 
 foreach (Map map in Maps)
 {
-
-	if (map is null)
+	if (map is null) // not sure if this is nessecary
 	{
 		goto MakeChar;
 	}
 
-	Hud hud = new Hud();
 	// bool Break = false;
 	while (map.Running)
 	{

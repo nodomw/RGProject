@@ -94,6 +94,12 @@ public class Map
                 {
                     Running = false;
                 }
+                else if (GetTileByPosition(to) is Exit)
+                {
+                    Console.Clear();
+                    Console.WriteLine("You must defeat the map's boss to leave.");
+                    Console.ReadKey();
+                }
 
                 // move 'tile' to 'to'
                 MutableTiles[to.X, to.Y] = tile;
@@ -121,9 +127,13 @@ public class Map
                 }
                 if (GetTileByPosition(to, true) is Loot cl)
                 {
-                    Console.Clear();
-                    Console.WriteLine(InteractWithTile(cl));
-                    Console.ReadKey();
+                    string Loot = InteractWithTile(cl);
+                    if (Loot != "Looted Nothingburger")
+                    {
+                        Console.Clear();
+                        AnsiConsole.Write(new Markup(Loot));
+                        Console.ReadKey();
+                    }
                 }
                 if (GetTileByPosition(to, true) is Servant servant)
                 {
@@ -131,19 +141,19 @@ public class Map
                     {
                         case ServantType.Captain:
                             Console.Clear();
-                            AnsiConsole.Write(new Markup("You have encountered the [blue3_1]Captain[/]!"));
+                            AnsiConsole.Write(new Markup("You have encountered the [blue]Captain[/]!"));
                             PlayerTile.Character.IsCaptain = true;
                             Console.ReadKey();
                             break;
                         case ServantType.Healer:
                             Console.Clear();
-                            AnsiConsole.Write(new Markup("You have encountered the [blue3_1]Healer[/]!"));
+                            AnsiConsole.Write(new Markup("You have encountered the [blue]Healer[/]!"));
                             PlayerTile.Character.IsHealer = true;
                             Console.ReadKey();
                             break;
                         case ServantType.Support:
                             Console.Clear();
-                            AnsiConsole.Write(new Markup("You have encountered the [blue3_1]Support[/]!"));
+                            AnsiConsole.Write(new Markup("You have encountered the [blue]Support[/]!"));
                             PlayerTile.Character.IsSupport = true;
                             Console.ReadKey();
                             break;

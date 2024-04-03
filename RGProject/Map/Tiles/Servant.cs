@@ -18,6 +18,6 @@ namespace FantasyRPG.Map.Tiles
         public TilePosition Position { get; set; }
         public ServantType Class { get; set; } = type;
         public bool Passable { get; set; } = true;
-        public Markup DisplayCharacter { get; set; } = new Markup("[blue3_1]S[/]");
+        public Markup DisplayCharacter { get; set; } = new Markup("[blue]S[/]");
     }
 }
